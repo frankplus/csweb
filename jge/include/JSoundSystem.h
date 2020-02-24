@@ -25,8 +25,6 @@ class JMusic
 public:
 	JMusic();
 	~JMusic();
-
-	FSOUND_SAMPLE *mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
 };
 
 
@@ -37,13 +35,9 @@ public:
 	JSample();
 	~JSample();
 
-	//int mVoice;
-
 	int mVoice;
 	int mVolume;
 	int mPanning;
-
-	FSOUND_SAMPLE *mSample;
 };
 
 

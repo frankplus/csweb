@@ -16,17 +16,7 @@
 #include <map>
 #include <string>
 
-#include "unzip/unzip.h"
-
 using namespace std;
-
-//////////////////////////////////////////////////////////////////////////
-/// Interface for low level file access with ZIP archive support. All
-/// file operations in JGE are handled through this class so if a ZIP
-/// archive is attached, all the resources will be loaded from the
-/// archive file.
-///
-//////////////////////////////////////////////////////////////////////////
 
 class JFileSystem
 {
@@ -40,23 +30,6 @@ public:
 
 	static void Destroy();
 
-	
-	//////////////////////////////////////////////////////////////////////////
-	/// Attach ZIP archive to the file system.
-	///
-	/// @param zipfile - Name of ZIP archive.
-	/// @param password - Password for the ZIP archive. Default is NULL.
-	/// 
-	/// @return Status of the attach operation.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	bool AttachZipFile(const string &zipfile, char *password = NULL);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Release the attached ZIP archive.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void DetachZipFile();
 	
 	//////////////////////////////////////////////////////////////////////////
 	/// Open file for reading.
@@ -103,12 +76,9 @@ private:
 	static JFileSystem* mInstance;
 
 	string mResourceRoot;
-	string mZipFileName;
 	char *mPassword;
-	bool mZipAvailable;
 
 	FILE *mFile;
-	unzFile mZipFile;
 	int mFileSize;
 
 };

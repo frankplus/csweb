@@ -16,8 +16,7 @@
 #include "../include/JResourceManager.h"
 #include "../include/JFileSystem.h"
 
-#include "../../Dependencies/include/png.h"
-#include "../../Dependencies/include/fmod.h"
+#include "../Dependencies/include/png.h"
 
 
 JGE::JGE()
@@ -85,11 +84,6 @@ void JGE::Run()
 void JGE::SetDelta(int delta)
 {
 	mDeltaTime = (float)delta / 1000.0f;		// change to second
-}
-
-int JGE::GetTime(void)
-{
-	return (int)GetTickCount();
 }
 
 

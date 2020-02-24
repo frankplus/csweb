@@ -11,8 +11,6 @@
 #ifndef _RESOURCE_MANAGER_H_
 #define _RESOURCE_MANAGER_H_
 
-#pragma warning(disable : 4786)
-
 #include <stdio.h>
 #include <vector>
 #include <map>

@@ -37,18 +37,9 @@
 #define SCREEN_HEIGHT_2			136.0f
 
 
-// #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
 
-#include "../Dependencies/include/fmod.h"
-
-//#include "../HGE/include/hge.h"
-//#include "../HGE/include/hgeSprite.h"
-
-//#define u8				BYTE
-//#define u16				WORD
-//#define u32				DWORD
 typedef signed char s8;
 typedef signed short s16;
 typedef signed long s32;

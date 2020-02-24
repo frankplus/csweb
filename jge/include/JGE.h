@@ -20,10 +20,6 @@
 
 #define DEBUG_PRINT
 
-//#define _MP3_ENABLED_
-
-// #include <windows.h>
-
 void JGEControl();
 bool JGEGetKeyState(int key);
 bool JGEGetButtonState(u32 button);
@@ -94,13 +90,6 @@ public:
 
 	void Pause();
 	void Resume();
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Return system timer in milliseconds.
-	///
-	/// @return System time in milliseconds.
-	//////////////////////////////////////////////////////////////////////////
-	int GetTime(void);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Return elapsed time since last frame update.

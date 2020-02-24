@@ -16,8 +16,6 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include <gif_lib.h>
-
 #include "JTypes.h"
 
 #include "Vector2D.h"
@@ -506,8 +504,6 @@ private:
 
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0);
 	void LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0);
-	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0);
-	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0);
 
 	static JRenderer* mInstance;
 

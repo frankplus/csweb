@@ -13,8 +13,6 @@
 #include "../include/JGE.h"
 #include "../include/JFileSystem.h"
 #include "tinyxml/tinyxml.h"
-#include "unzip/unzip.h"
-
 
 #include <stdio.h>
 #include <vector>
@@ -46,10 +44,8 @@ void JFileSystem::Destroy()
 
 JFileSystem::JFileSystem()
 {
-	mZipAvailable = false;
 	mFile = NULL;
 	mPassword = NULL;
-	mZipFile = NULL;
 	mFileSize = 0;
 
 	mResourceRoot = "";//"Res/";				// default root folder 
@@ -58,43 +54,7 @@ JFileSystem::JFileSystem()
 
 JFileSystem::~JFileSystem()
 {
-	if (mZipAvailable && mZipFile != NULL)
-		unzCloseCurrentFile(mZipFile);
-}
 
-
-bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
-{
-	if (mZipAvailable && mZipFile != NULL)
-	{
-		if (mZipFileName != zipfile)
-			unzCloseCurrentFile(mZipFile);		// close the previous zip file
-	}
-	
-	mZipFileName = zipfile;
-	mPassword = password;
-
-	mZipFile = unzOpen(mZipFileName.c_str());
-
-	if (mZipFile != NULL)
-	{
-		mZipAvailable = true;
-		return true;
-	}
-
-	return false;
-}
-
-
-void JFileSystem::DetachZipFile()
-{
-	if (mZipAvailable && mZipFile != NULL)
-	{
-		unzCloseCurrentFile(mZipFile);
-	}
-	
-	mZipFile = NULL;
-	mZipAvailable = false;
 }
 
 
@@ -103,32 +63,14 @@ bool JFileSystem::OpenFile(const string &filename)
 
 	string path = mResourceRoot + filename;
 
-	if (mZipAvailable && mZipFile != NULL)
+	mFile = fopen(path.c_str(), "rb");
+	if (mFile != NULL)
 	{
-		if (unzLocateFile(mZipFile, path.c_str(), 0) != UNZ_OK)
-			return false;
-
-		char filenameInzip[256];
-		unz_file_info fileInfo;
-
-		if (unzGetCurrentFileInfo(mZipFile, &fileInfo, filenameInzip, sizeof(filenameInzip), NULL, 0, NULL, 0) == UNZ_OK)
-			mFileSize = fileInfo.uncompressed_size;
-		else
-			mFileSize = 0;
-		
-		return (unzOpenCurrentFilePassword(mZipFile, mPassword) == UNZ_OK);
-	}
-	else
-	{
-		mFile = fopen(path.c_str(), "rb");
-		if (mFile != NULL)
-		{
-			fseek(mFile, 0, SEEK_END);
-			mFileSize = ftell(mFile);
-			fseek(mFile, 0, SEEK_SET);
-			return true;
-		}	
-	}
+		fseek(mFile, 0, SEEK_END);
+		mFileSize = ftell(mFile);
+		fseek(mFile, 0, SEEK_SET);
+		return true;
+	}	
 	
 	return false;
 			
@@ -137,9 +79,6 @@ bool JFileSystem::OpenFile(const string &filename)
 
 void JFileSystem::CloseFile()
 {
-	if (mZipAvailable && mZipFile != NULL)
-		return;
-
 	if (mFile != NULL)
 		fclose(mFile);
 }
@@ -147,14 +86,7 @@ void JFileSystem::CloseFile()
 
 int JFileSystem::ReadFile(void *buffer, int size)
 {
-	if (mZipAvailable && mZipFile != NULL)
-	{
-		return unzReadCurrentFile(mZipFile, buffer, size);
-	}
-	else
-	{
-		return fread(buffer, 1, size, mFile);
-	}
+	return fread(buffer, 1, size, mFile);
 }
 
 
