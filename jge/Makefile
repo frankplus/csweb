@@ -1,5 +1,5 @@
 CXX      := emcc
-CXXFLAGS := -Wall
+CXXFLAGS := -Wall -w
 LDFLAGS  := -std=c++11
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects
@@ -20,7 +20,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(LIB_DIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
-	ar crf $(LIB_DIR)/$(TARGET) $(OBJECTS)
+	ar rcs $(LIB_DIR)/$(TARGET) $(OBJECTS)
 
 .PHONY: all build clean
 

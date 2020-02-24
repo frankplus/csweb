@@ -2,20 +2,17 @@
 
 JMusic::JMusic()
 {
-	mTrack = NULL;
+
 }
 
 JMusic::~JMusic()
 {
 	JSoundSystem::GetInstance()->StopMusic(this);
 
-	if (mTrack)
-		delete mTrack;
 }
 
 JSample::JSample()
 {
-	mSample = NULL;
 	mVoice = -1;
 	mVolume = 255;
 	mPanning = 127;

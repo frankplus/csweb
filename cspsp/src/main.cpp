@@ -37,14 +37,14 @@ int InitGame(GLvoid)
 	
 	lastTickCount = steady_clock::now();
 
-	return TRUE;
+	return true;
 }
 
 int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 {
 	g_engine->Render();
 
-	return TRUE;										// Everything Went OK
+	return true;										// Everything Went OK
 }
 
 void Update(int dt)

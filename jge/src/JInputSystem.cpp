@@ -686,7 +686,7 @@ void JInputSystem::DrawInputHelp( float x, float y )
 
 	x+=L/2/**1.5f*/;
 	y+=L/2-8;
-	printf12("¡û",x,y);
+	printf12("ï¿½ï¿½",x,y);
 
 	x--;
 	y+=19;
@@ -749,7 +749,7 @@ char* JInputSystem::GetChinese( char* str)
 {
 	char first = str[0];
 	char* after = str+1;
-	if(first=='i')return NULL;        /*´íÎóÆ´ÒôÊäÈë*/
+	if(first=='i')return NULL;        /*ï¿½ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	if(first=='u')return NULL;
 	if(first=='v')return NULL;
 
@@ -759,7 +759,7 @@ char* JInputSystem::GetChinese( char* str)
 	{
 		//char *PY;
 		//char *PY_mb;
-		if(stricmp(after,py_index[i].PY)==0)
+		if(strcmp(after,py_index[i].PY)==0)
 			return py_index[i].PY_mb;
 	}
 	return NULL;

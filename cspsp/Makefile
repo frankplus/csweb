@@ -1,15 +1,15 @@
 CXX      := emcc
-CXXFLAGS := -fdeclspec #-pedantic-errors -Wall -Wextra
+CXXFLAGS := -fdeclspec -w #-pedantic-errors -Wall -Wextra
 LDFLAGS  := -std=c++11
 BUILD    := ./bin
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
 TARGET   := index.html
-JGE_INCLUDE := -I../JGE/include -I../JGE/Dependencies/include
+JGE_INCLUDE := -I../JGE/include 
 SDL_INCLUDE := -I../SDL2/include
 SRC      := $(wildcard src/*.cpp)
 EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 --use-preload-plugins -O3 --preload-file ./bin/assets@/
-LIBS := -L ../SDL2/lib -lSDL2 -lSDL2_image
+LIBS 	 := -L../JGE/build/lib -ljge
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
@@ -21,7 +21,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(APP_DIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
-	$(CXX) $(OBJECTS) $(CXXFLAGS) $(JGE_INCLUDE) $(LDFLAGS) $(EMCC_FLAGS) -o $(APP_DIR)/$(TARGET)
+	$(CXX) $(OBJECTS) $(CXXFLAGS) $(LIBS) $(JGE_INCLUDE) $(LDFLAGS) $(EMCC_FLAGS) -o $(APP_DIR)/$(TARGET)
 
 .PHONY: all build clean debug release
 
@@ -41,6 +41,3 @@ clean:
 
 emcc:
 	emcc main.cpp $(LDFLAGS) $(EMCC_FLAGS) $(JGE_INCLUDE) $(CXXFLAGS) -o $(APP_DIR)/$(TARGET)
-
-main:
-	$(CXX) main.cpp -o main $(CXXFLAGS) $(SDL_INCLUDE) $(LDFLAGS) $(LIBS)
