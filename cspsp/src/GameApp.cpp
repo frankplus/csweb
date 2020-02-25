@@ -84,38 +84,6 @@ void GameApp::Create()
 //-------------------------------------------------------------------------------------
 void GameApp::Destroy()
 {
-
-	/*SAFE_DELETE(mBg);
-
-	SAFE_DELETE(mBgQuad);
-
-	SAFE_DELETE(mLogo);
-
-	SAFE_DELETE(mLogoQuad);
-
-	SAFE_DELETE(gFont);
-
-	SAFE_DELETE(gHudFont);
-
-	SAFE_DELETE(mPlayersTexture);
-
-	SAFE_DELETE(mPlayersDeadTexture);
-
-	SAFE_DELETE(mGunsTexture);
-
-	SAFE_DELETE(mGunsGroundTexture);
-
-	SAFE_DELETE(mRadarTexture);
-
-	SAFE_DELETE(mParticlesQuad);
-
-	SAFE_DELETE(mParticlesTex);
-
-	for (int i=GAME_STATE_LOADING;i<=GAME_STATE_ONLINE;i++)
-	{
-		mGameStates[i]->Destroy();
-		delete mGameStates[i];
-	}*/
 }
 
 

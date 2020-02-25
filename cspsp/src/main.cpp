@@ -1,11 +1,10 @@
 #include <functional>
-#include <chrono>
-
-#define GL_GLEXT_PROTOTYPES 1
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengles2.h>
 #include <emscripten.h>
+#include <SDL.h>
+#define GL_GLEXT_PROTOTYPES 1
+#include <SDL_opengles2.h>
+
+#include <chrono>
 
 #include <JTypes.h>
 #include <JGE.h>
@@ -23,12 +22,38 @@ JGE* g_engine = NULL;
 JApp* g_app = NULL;
 JGameLauncher* g_launcher = NULL;
 
+void JGEControl()
+{
+}
+
+
+bool JGEGetKeyState(int key)
+{
+    return false;
+}
+
+
+bool JGEGetButtonState(u32 button)
+{
+    return false;
+}
+
+
+bool JGEGetButtonClick(u32 button)
+{
+    return false;
+}
+
 
 int InitGame(GLvoid)
 {
+    g_launcher = new JGameLauncher();
+	u32 flags = g_launcher->GetInitFlags();
+
+	if ((flags&JINIT_FLAG_ENABLE3D)!=0)
+		JRenderer::Set3DFlag(true);
 	g_engine = JGE::GetInstance();
 	
-	//JGameLauncher *launcher = new JGameLauncher();
 	g_app = g_launcher->GetGameApp();
 	g_app->Create();
 	g_engine->SetApp(g_app);
@@ -79,12 +104,6 @@ int main()
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
     InitGame();
-
-    g_launcher = new JGameLauncher();
-	u32 flags = g_launcher->GetInitFlags();
-
-	if ((flags&JINIT_FLAG_ENABLE3D)!=0)
-		JRenderer::Set3DFlag(true);
 
     emscripten_set_main_loop(main_loop, 0, true);
 

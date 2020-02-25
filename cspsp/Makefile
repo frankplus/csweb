@@ -7,7 +7,7 @@ APP_DIR  := $(BUILD)/apps
 TARGET   := index.html
 JGE_INCLUDE := -I../JGE/include 
 SRC      := $(wildcard src/*.cpp)
-EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 --use-preload-plugins -O3 --preload-file ./bin/assets@/
+EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s LEGACY_GL_EMULATION=1 --use-preload-plugins -O3 --preload-file ./bin/assets@/
 LIBS 	 := -L../JGE/build/lib -ljge
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
@@ -16,11 +16,11 @@ all: build $(APP_DIR)/$(TARGET)
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(JGE_INCLUDE) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(EMCC_FLAGS) $(JGE_INCLUDE) -o $@ -c $<
 
 $(APP_DIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
-	$(CXX) $(OBJECTS) $(CXXFLAGS) $(LIBS) $(JGE_INCLUDE) $(LDFLAGS) $(EMCC_FLAGS) -o $(APP_DIR)/$(TARGET)
+	$(CXX) $(OBJECTS) $(LDFLAGS) $(EMCC_FLAGS) $(LIBS) -o $(APP_DIR)/$(TARGET)
 
 .PHONY: all build clean debug release
 

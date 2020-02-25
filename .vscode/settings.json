@@ -1,6 +1,9 @@
 {
     "files.associations": {
         "iosfwd": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "algorithm": "cpp",
+        "*.hlsl": "cpp",
+        "*.cl": "cpp"
     }
 }
