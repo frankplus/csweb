@@ -1,10 +1,10 @@
+#include <chrono>
+#include <stdio.h>
 #include <functional>
 #include <emscripten.h>
 #include <SDL.h>
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL_opengles2.h>
-
-#include <chrono>
 
 #include <JTypes.h>
 #include <JGE.h>
@@ -92,10 +92,7 @@ void main_loop()
 }
 
 int main()
-{
-    printf("debugging");
-    
-    SDL_Init(SDL_INIT_VIDEO);
+{   
     SDL_Window *window;
     SDL_Renderer *renderer;
     SDL_CreateWindowAndRenderer(640, 480, 0, &window, &renderer);
@@ -107,7 +104,7 @@ int main()
 
     InitGame();
 
-    emscripten_set_main_loop(main_loop, 0, true);
+    emscripten_set_main_loop(main_loop, -1, true);
 
     return EXIT_SUCCESS;
 }
