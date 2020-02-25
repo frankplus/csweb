@@ -23,6 +23,12 @@ $(LIB_DIR)/$(TARGET): $(OBJECTS)
 
 .PHONY: all build clean
 
+debug: EMCC_FLAGS += -g4
+debug: all
+
+release: EMCC_FLAGS += -O3
+release: all
+
 build:
 	@mkdir -p $(LIB_DIR)
 	@mkdir -p $(OBJ_DIR)

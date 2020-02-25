@@ -93,6 +93,8 @@ void main_loop()
 
 int main()
 {
+    printf("debugging");
+    
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window;
     SDL_Renderer *renderer;
