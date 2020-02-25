@@ -2378,11 +2378,6 @@ void Game::Render()
 							x += 15;
 						}
 						gFont->DrawString(mPeople[i]->mName, x, y, JGETEXT_LEFT);
-						/*if (strcmp(mPeople[i]->mName,"nataku92") == 0) {
-							gFont->SetColor(ARGB(255,0,128,0));
-							gFont->DrawString(" [CSPSP dev]",60.0f+gFont->GetStringWidth(buffer),y);
-							gFont->SetColor(ARGB(255,255,64,64));
-						}*/
 						if (mPeople[i]->mState == DEAD) {
 							gFont->DrawString("Dead", SCREEN_WIDTH_2, y, JGETEXT_CENTER);
 						}
@@ -2445,11 +2440,6 @@ void Game::Render()
 							x += 15;
 						}
 						gFont->DrawString(mPeople[i]->mName, x, y, JGETEXT_LEFT);
-						/*if (strcmp(mPeople[i]->mName,"nataku92") == 0) {
-							gFont->SetColor(ARGB(255,0,128,0));
-							gFont->DrawString(" [CSPSP dev]",60.0f+gFont->GetStringWidth(buffer),y);
-							gFont->SetColor(ARGB(255,255,64,64));
-						}*/
 						if (mPeople[i]->mState == DEAD) {
 							gFont->DrawString("Dead", SCREEN_WIDTH_2, y, JGETEXT_CENTER);
 						}
@@ -2512,11 +2502,6 @@ void Game::Render()
 							x += 15;
 						}
 						gFont->DrawString(mPeople[i]->mName, x, y, JGETEXT_LEFT);
-						/*if (strcmp(mPeople[i]->mName,"nataku92") == 0) {
-							gFont->SetColor(ARGB(255,0,128,0));
-							gFont->DrawString(" [CSPSP dev]",60.0f+gFont->GetStringWidth(buffer),y);
-							gFont->SetColor(ARGB(255,153,204,255));
-						}*/
 						if (mPeople[i]->mState == DEAD) {
 							gFont->DrawString("Dead", SCREEN_WIDTH_2, y, JGETEXT_CENTER);
 						}
@@ -2566,11 +2551,6 @@ void Game::Render()
 						x += 15;
 					}
 					gFont->DrawString(mPeople[i]->mName, x, y, JGETEXT_LEFT);
-					/*if (strcmp(mPeople[i]->mName,"nataku92") == 0) {
-						gFont->SetColor(ARGB(255,0,128,0));
-						gFont->DrawString(" [CSPSP dev]",60.0f+gFont->GetStringWidth(buffer),y);
-						gFont->SetColor(ARGB(255,255,64,64));
-					}*/
 					
 					y += 12;
 					counter++;
@@ -2630,16 +2610,6 @@ void Game::Render()
 				x += 15;
 			}
 			gFont->DrawString(mPlayer->mName, x, y, JGETEXT_LEFT);
-			/*if (strcmp(mPlayer->mName,"nataku92") == 0) {
-				gFont->SetColor(ARGB(255,0,128,0));
-				gFont->DrawString(" [CSPSP dev]",60.0f+gFont->GetStringWidth(mPlayer->mName),y);
-				if (mPlayer->mTeam == T) {
-					gFont->SetColor(ARGB(255,255,64,64));
-				}
-				else if (mPlayer->mTeam == CT) {
-					gFont->SetColor(ARGB(255,153,204,255));
-				}
-			}*/
 			if (mPlayer->mTeam == T || mPlayer->mTeam == CT) {
 				if (mPlayer->mState == DEAD) {
 					gFont->DrawString("Dead", SCREEN_WIDTH_2, y, JGETEXT_CENTER);

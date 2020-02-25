@@ -98,11 +98,6 @@ void Hud::Render()
 		float x = 475.0f;
 		float y = ystart+i*15.0f;
 
-		/*if (strcmp(mKillEvents[i].victimname,"nataku92") == 0) {
-			gFont->SetColor(ARGB(255,0,128,0));
-			gFont->DrawString(" [CSPSP dev]",x,y,JGETEXT_RIGHT);
-			x -= gFont->GetStringWidth(" [CSPSP dev]");
-		}*/
 		if (mKillEvents[i].victimteam == CT) {
 			gFont->SetColor(ARGB(255,153,204,255));
 		}
@@ -124,11 +119,6 @@ void Hud::Render()
 		if (strcmp(mKillEvents[i].victimname,mKillEvents[i].attackername) == 0) continue; //suicide
 
 		x -= 22.0f;
-		/*if (strcmp(mKillEvents[i].attackername,"nataku92") == 0) {
-			gFont->SetColor(ARGB(255,0,128,0));
-			gFont->DrawString(" [CSPSP dev]",x,y,JGETEXT_RIGHT);
-			x -= gFont->GetStringWidth(" [CSPSP dev]");
-		}*/
 		if (mKillEvents[i].attackerteam == CT) {
 			gFont->SetColor(ARGB(255,153,204,255));
 		}
@@ -186,12 +176,6 @@ void Hud::Render()
 
 			gFont->DrawShadowedString(mMessageEvents[i].chatevent.name,x,y);
 			x += gFont->GetStringWidth(mMessageEvents[i].chatevent.name);
-
-			/*if (strcmp(mMessageEvents[i].chatevent.name,"nataku92") == 0) {
-				gFont->SetColor(ARGB(255,0,128,0));
-				gFont->DrawString(" [CSPSP dev]",x,y);
-				x += gFont->GetStringWidth(" [CSPSP dev]");
-			}*/
 
 			gFont->SetColor(ARGB(alpha,255,200,0));
 			gFont->DrawShadowedString(": ",x,y);
