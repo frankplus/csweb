@@ -70,10 +70,6 @@ void GameApp::Create()
 
 	mCurrentState = NULL;
 	mNextState = mGameStates[GAME_STATE_SPLASH];
-
-		//file = fopen("log.txt","a");
-		//fputs("1",file);
-		//fclose(file);
 }
 
 
@@ -97,7 +93,7 @@ void GameApp::Update()
 	JGE* engine = JGE::GetInstance();	
 	
 	float dt = engine->GetDelta()*1000;
-	//if (dt < 0.000001f) dt = 35.0f;
+
 	if (dt > 35.0f)		// min 30 FPS ;)
 		dt = 35.0f;
 	else if (dt < 1.0f)
@@ -131,12 +127,10 @@ void GameApp::Update()
 //-------------------------------------------------------------------------------------
 void GameApp::Render()
 {
-
 	if (mCurrentState != NULL)
 	{
 		mCurrentState->Render();
 	}
-	
 }
 
 

@@ -7,7 +7,7 @@ APP_DIR  := $(BUILD)/apps
 TARGET   := index.html
 INCLUDE := -I../JGE/include 
 SRC      := $(wildcard src/*.cpp)
-EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s LEGACY_GL_EMULATION=1 -s ALLOW_MEMORY_GROWTH=1 --use-preload-plugins --preload-file ./bin/assets@/
+EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s USE_LIBPNG=1 -s LEGACY_GL_EMULATION=1 -s ALLOW_MEMORY_GROWTH=1 --use-preload-plugins --preload-file ./bin/assets@/
 LIBS 	 := -L../JGE/build/lib -ljge
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
