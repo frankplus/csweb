@@ -8,7 +8,6 @@ TARGET   := libjge.a
 INCLUDE  := 
 SRC      := $(wildcard src/*.cpp)
 EMCC_FLAGS := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 --use-preload-plugins -O3
-LIBS     := -L ../SDL2/lib -lSDL2 -lSDL2_image
 
 OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 

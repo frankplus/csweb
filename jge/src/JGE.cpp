@@ -26,13 +26,6 @@ JGE::JGE()
 	strcpy(mDebuggingMsg, "");
 	mCurrentMusic = NULL;
 	Init();
-
-//	mResourceManager = new JResourceManager();
-//	mFileSystem = new JFileSystem();
-
-//	mParticleSystem = NULL;//new JParticleSystem(500);
-//	mMotionSystem = NULL;//new JMotionSystem();
-
 }
 
 
@@ -41,22 +34,6 @@ JGE::~JGE()
 	JRenderer::Destroy();
 	JFileSystem::Destroy();
 	JSoundSystem::Destroy();
-	//JParticleSystem::Destroy();
-
-	//DestroyGfx();
-	//DestroySfx();
-
-//	if (mResourceManager != NULL)
-//		delete mResourceManager;
-// 
-// 	if (mFileSystem != NULL)
-// 		delete mFileSystem;
-// 
-// 	if (mParticleSystem != NULL)
-// 		delete mParticleSystem;
-// 
-// 	if (mMotionSystem != NULL)
-// 		delete mMotionSystem;
 }
 
 

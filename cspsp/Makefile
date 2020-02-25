@@ -6,7 +6,6 @@ OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
 TARGET   := index.html
 JGE_INCLUDE := -I../JGE/include 
-SDL_INCLUDE := -I../SDL2/include
 SRC      := $(wildcard src/*.cpp)
 EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 --use-preload-plugins -O3 --preload-file ./bin/assets@/
 LIBS 	 := -L../JGE/build/lib -ljge

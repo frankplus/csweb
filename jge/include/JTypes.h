@@ -167,17 +167,8 @@ public:
 	int mHeight;
 	int mTexWidth;
 	int mTexHeight;
-
 	int mFilter;
-
-#ifdef WIN32
 	GLuint mTexId;
-#else
-
-	int mTexId;
-	bool mInVideoRAM;
-	PIXEL_TYPE* mBits;
-#endif
 };
 
 
