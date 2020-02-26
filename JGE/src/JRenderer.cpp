@@ -873,42 +873,6 @@ void JRenderer::LoadIdentity()
 }
 
 
-void JRenderer::Translate(float x, float y, float z)
-{
-	glTranslatef(x, y, z);
-}
-
-
-void JRenderer::RotateX(float angle)
-{
-	glRotatef(angle*RAD2DEG, 1.0f, 0.0f, 0.0f);
-}
-
-
-void JRenderer::RotateY(float angle)
-{
-	glRotatef(angle*RAD2DEG, 0.0f, 1.0f, 0.0f);
-}
-
-
-void JRenderer::RotateZ(float angle)
-{
-	glRotatef(angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
-}
-
-
-void JRenderer::PushMatrix()
-{
-	glPushMatrix();
-}
-
-
-void JRenderer::PopMatrix()
-{
-	glPopMatrix();
-}
-
-
 void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start, int count)
 {
 	if (texture)

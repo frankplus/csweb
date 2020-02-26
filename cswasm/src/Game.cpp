@@ -2726,50 +2726,6 @@ void Game::Render()
 		gFont->DrawString("[START] Enter  [SELECT] Cancel",SCREEN_WIDTH_F-100,200,JGETEXT_CENTER);
 		gDanzeff->Render(SCREEN_WIDTH_F-175,50);
 	}
-
-	/*gFont->printf(50,100,"FPS:%6.2f", mEngine->GetFPS());	
-
-	dx -= SCREEN_WIDTH_2;
-	dy -= SCREEN_HEIGHT_2;
-
-	for (int i=0; i<mGrid->mWidth*mGrid->mCellSize;i+=mGrid->mCellSize) {
-		mRenderer->DrawLine(0-dx,i-dy,mGrid->mWidth*mGrid->mCellSize-dx,i-dy,ARGB(100,255,0,0));
-		mRenderer->DrawLine(i-dx,0-dy,i-dx,mGrid->mWidth*mGrid->mCellSize-dy,ARGB(100,255,0,0));
-	}*/
-	/*Vertex3D tris[] =								// define a 3D cube
-	{
-
-		// front
-		{ 0.0f, 0.0f, 50.0f, -50.0f, 0.0f },		
-		{ 1.0f, 0.0f, 50.0f, 50.0f, 0.0f },
-		{ 1.0f, 1.0f, -50.0f, 50.0f, 0.0f },
-
-		{ 1.0f, 1.0f, -50.0f, 50.0f, 0.0f },
-		{ 0.0f, 1.0f, -50.0f, -50.0f, 0.0f },
-		{ 0.0f, 0.0f, 50.0f, -50.0f, 0.0f },
-	};
-
-	mRenderer->Enable3D();
-	mRenderer->PushMatrix();
-	mRenderer->Translate(-15.0f, 0.0f, -30.0f);
-	mRenderer->RenderTriangles(mPlayer->mQuads[0]->mTex, tris, 0, 12);
-	mRenderer->PopMatrix();*/
-	/*float x[4];
-	float y[4];
-
-	x[0]=0;
-	y[0]=0;
-
-	x[1]=0;
-	y[1]=100;
-
-	x[2]=100;
-	y[2]=100;
-
-	x[3]=100;
-	y[3]=0;
-
-	mRenderer->FillPolygon(x, y, 4, ARGB(100,255,0,0));*/
 }
 
 void Game::UpdateScores(Person* attacker, Person* victim, Gun* weapon) {
