@@ -86,9 +86,7 @@ void GameApp::Update()
 	
 	float dt = engine->GetDelta()*1000;
 
-	if (dt > 35.0f)		// min 30 FPS ;)
-		dt = 35.0f;
-	else if (dt < 1.0f)
+	if (dt < 1.0f)
 		dt = 16.0f;		// avoid division by 0
 
 	clock_t start_time = clock();
