@@ -98,10 +98,10 @@ void GameStateMenu::Update(float dt)
 		else
 		{
 			mCreditsYPos -= 0.03f*dt;
-			if (mEngine->GetButtonState(PSP_CTRL_CROSS)) {
+			if (mEngine->GetButtonState(CTRL_CROSS)) {
 				mCreditsYPos -= 0.08f*dt;
 			}
-			if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) {
+			if (mEngine->GetButtonClick(CTRL_CIRCLE)) {
 				mStage = STAGE_MENU;
 			}
 		}

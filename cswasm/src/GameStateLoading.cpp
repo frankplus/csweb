@@ -43,7 +43,7 @@ void GameStateLoading::Update(float dt)
 	mStage = Load(mStage);
 	if (mStage == 8) {
 		printf("finished loading\n");
-		// mParent->SetNextState(GAME_STATE_MENU);
+		mParent->SetNextState(GAME_STATE_MENU);
 	}
 }
 
@@ -79,8 +79,8 @@ int GameStateLoading::Load(int stage) {
 				gPlayersDeadQuads[i] = new JQuad(mParent->mPlayersDeadTexture,i*32,0,29,47);
 				gPlayersDeadQuads[i]->SetHotSpot(14,23);
 			}*/
-			JTexture* playersTexture = mRenderer->LoadTexture("gfx/players.png", true);
-			JTexture* playersDeadTexture = mRenderer->LoadTexture("gfx/playersdead.png", true);
+			JTexture* playersTexture = mRenderer->LoadTexture("gfx/players.png");
+			JTexture* playersDeadTexture = mRenderer->LoadTexture("gfx/playersdead.png");
 			
 			for (int i=0; i<2; i++) {
 				for (int j=0; j<4; j++) {
@@ -117,15 +117,15 @@ int GameStateLoading::Load(int stage) {
 				}
 			}
 
-			JTexture* radarTexture = mRenderer->LoadTexture("gfx/radar.png", true);
+			JTexture* radarTexture = mRenderer->LoadTexture("gfx/radar.png");
 			gRadarQuad = new JQuad(radarTexture,0,0,64,64);
 			//gRadarQuad->SetColor(ARGB(175,255,255,255));
 
-			JTexture* buyzoneTexture = mRenderer->LoadTexture("gfx/buyzone.png", true);
+			JTexture* buyzoneTexture = mRenderer->LoadTexture("gfx/buyzone.png");
 			gBuyZoneQuad = new JQuad(buyzoneTexture,0,0,16,16);
 			gBuyZoneQuad->SetColor(ARGB(175,255,255,255));
 
-			JTexture* decalTexture = mRenderer->LoadTexture("gfx/decals.png",true);
+			JTexture* decalTexture = mRenderer->LoadTexture("gfx/decals.png");
 			for (int i=0; i<5; i++) {
 				gDecalQuads[i] = new JQuad(decalTexture,i*32.0f,0.0f,32.0f,32.0f);
 				gDecalQuads[i]->SetHotSpot(16.0f,16.0f);
@@ -143,8 +143,8 @@ int GameStateLoading::Load(int stage) {
 		}
 		case 1: {
 
-			JTexture* gunsTexture = mRenderer->LoadTexture("gfx/guns.png", true);
-			JTexture* gunsgroundTexture = mRenderer->LoadTexture("gfx/gunsground.png", true);
+			JTexture* gunsTexture = mRenderer->LoadTexture("gfx/guns.png");
+			JTexture* gunsgroundTexture = mRenderer->LoadTexture("gfx/gunsground.png");
 			int k = 0;
 			gGunHandQuads = new JQuad*[(gunsTexture->mTexWidth/32)*(gunsTexture->mTexHeight/32)];
 			gGunGroundQuads = new JQuad*[(gunsgroundTexture->mTexWidth/32)*(gunsgroundTexture->mTexHeight/32)];
@@ -158,32 +158,32 @@ int GameStateLoading::Load(int stage) {
 				}
 			}
 
-			JTexture* muzzleFlashTexture = mRenderer->LoadTexture("gfx/muzzleflash.png", true);
+			JTexture* muzzleFlashTexture = mRenderer->LoadTexture("gfx/muzzleflash.png");
 			for (int i=0; i<3; i++) {
 				gMuzzleFlashQuads[i] = new JQuad(muzzleFlashTexture,i*32,0,32,32);
 				gMuzzleFlashQuads[i]->SetHotSpot(16.0f,-16.0f);
 			}
 
-			JTexture* healthTexture = mRenderer->LoadTexture("gfx/health.png", true);
+			JTexture* healthTexture = mRenderer->LoadTexture("gfx/health.png");
 			gHealthBorderQuad = new JQuad(healthTexture,0,0,48,48);
 			gHealthFillQuad = new JQuad(healthTexture,48,0,48,48);
 
-			JTexture* ammobarTexture = mRenderer->LoadTexture("gfx/ammo.png", true);
+			JTexture* ammobarTexture = mRenderer->LoadTexture("gfx/ammo.png");
 			gAmmoBarQuad = new JQuad(ammobarTexture,0,0,128,64);
 			gAmmoBarQuad->SetHotSpot(128,64);
 
-			JTexture* damageIndicatorTexture = mRenderer->LoadTexture("gfx/damageindicator.png", true);
+			JTexture* damageIndicatorTexture = mRenderer->LoadTexture("gfx/damageindicator.png");
 			gDamageIndicator = new JQuad(damageIndicatorTexture,0,0,128,32);
 			gDamageIndicator->SetHotSpot(64,125);
 			gDamageIndicator->SetColor(ARGB(128,255,255,255));
 
-			JTexture* scoreIconsTexture = mRenderer->LoadTexture("gfx/scoreicons.png", true);
+			JTexture* scoreIconsTexture = mRenderer->LoadTexture("gfx/scoreicons.png");
 			for (int i=0; i<4; i++) {
 				gScoreIconQuads[i] = new JQuad(scoreIconsTexture,16*i+3,2,10,13);
 				gScoreIconQuads[i]->SetHotSpot(5,6);
 			}
 
-			JTexture* ctfTexture = mRenderer->LoadTexture("gfx/ctf.png", true);
+			JTexture* ctfTexture = mRenderer->LoadTexture("gfx/ctf.png");
 			gFlagQuad = new JQuad(ctfTexture,0,0,32,32);
 			gFlagQuad->SetHotSpot(16,16);
 			gFlagHomeQuad = new JQuad(ctfTexture,32,0,32,32);
@@ -309,7 +309,7 @@ int GameStateLoading::Load(int stage) {
 			//gTTFont->Load("data/tahomabd.ttf",20);
 			//gTTFont->PreCacheASCII();
 
-			gFont = new JLBFont("data/f3", 16, true);
+			gFont = new JLBFont("data/f3", 16);
 			gFont->SetBase(0);
 			//gFontBackdrop = new JLBFont("data/f3backdrop", 16, true);
 			//gFontBackdrop->SetBase(0);
@@ -317,7 +317,7 @@ int GameStateLoading::Load(int stage) {
 			//gHudFont->SetBase(0);
 			//gHudFont->SetBlendMode(BLEND_COLORADD);
 
-			JTexture* particlesTexture = mRenderer->LoadTexture("gfx/particles.png", true);
+			JTexture* particlesTexture = mRenderer->LoadTexture("gfx/particles.png");
 
 			JQuad* quad = new JQuad(particlesTexture,32,0,32,32);
 			quad->SetHotSpot(16.0f, 16.0f);

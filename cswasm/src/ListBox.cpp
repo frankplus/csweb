@@ -97,13 +97,13 @@ void ListBox::Update(float dt) {
 	if (mType == TYPE_TEXT && numItems <= mItemsPerPage) return;
 
 	int dir = 0;
-	if (mEngine->GetButtonState(PSP_CTRL_UP) || mEngine->GetAnalogY()<64) {
-		if (KeyRepeated(PSP_CTRL_UP,dt)) {
+	if (mEngine->GetButtonState(CTRL_UP) || mEngine->GetAnalogY()<64) {
+		if (KeyRepeated(CTRL_UP,dt)) {
 			dir = -1;
 		}
 	}
-	else if (mEngine->GetButtonState(PSP_CTRL_DOWN) || mEngine->GetAnalogY()>192) {
-		if (KeyRepeated(PSP_CTRL_DOWN,dt)) {
+	else if (mEngine->GetButtonState(CTRL_DOWN) || mEngine->GetAnalogY()>192) {
+		if (KeyRepeated(CTRL_DOWN,dt)) {
 			dir = 1;
 		}
 	}
@@ -112,7 +112,7 @@ void ListBox::Update(float dt) {
 	}
 	
 	if (mType == TYPE_LIST) {
-		if (mEngine->GetButtonClick(PSP_CTRL_RIGHT)) {
+		if (mEngine->GetButtonClick(CTRL_RIGHT)) {
 			dir = 0;
 			mItemIndex += mItemsPerPage;
 			if (mItemIndex > numItems-1) {
@@ -123,7 +123,7 @@ void ListBox::Update(float dt) {
 				mScrollIndex = numItems-mItemsPerPage;
 			}
 		}
-		else if (mEngine->GetButtonClick(PSP_CTRL_LEFT)) {
+		else if (mEngine->GetButtonClick(CTRL_LEFT)) {
 			dir = 0;
 			mItemIndex -= mItemsPerPage;
 			if (mItemIndex < 0) {
@@ -136,10 +136,10 @@ void ListBox::Update(float dt) {
 		}
 	}
 	else if (mType == TYPE_TEXT) {
-		if (mEngine->GetButtonState(PSP_CTRL_RIGHT) || mEngine->GetAnalogX()>192) {
+		if (mEngine->GetButtonState(CTRL_RIGHT) || mEngine->GetAnalogX()>192) {
 			dir = 1;
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_LEFT) || mEngine->GetAnalogX()<64) {
+		else if (mEngine->GetButtonState(CTRL_LEFT) || mEngine->GetAnalogX()<64) {
 			dir = -1;
 		}
 	}

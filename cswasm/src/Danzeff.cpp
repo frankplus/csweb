@@ -99,34 +99,34 @@ int Danzeff::GetInput(float dt)
 		selected_y = y;
 	}
 	//if they are changing shift then that makes it dirty too
-	if ((!shifted && (mEngine->GetButtonState(PSP_CTRL_RTRIGGER))) || (shifted && !(mEngine->GetButtonState(PSP_CTRL_RTRIGGER))))
+	if ((!shifted && (mEngine->GetButtonState(CTRL_RTRIGGER))) || (shifted && !(mEngine->GetButtonState(CTRL_RTRIGGER))))
 		dirty = true;
 
 	unsigned int pressed = 0; //character they have entered, 0 as that means 'nothing'
-	shifted = (mEngine->GetButtonState(PSP_CTRL_RTRIGGER))?true:false;
+	shifted = (mEngine->GetButtonState(CTRL_RTRIGGER))?true:false;
 
 	if (!holding)
 	{
-		if (mEngine->GetButtonState(PSP_CTRL_CROSS) ||  mEngine->GetButtonState(PSP_CTRL_CIRCLE) || mEngine->GetButtonState(PSP_CTRL_TRIANGLE) || mEngine->GetButtonState(PSP_CTRL_SQUARE)) //pressing a char select button
+		if (mEngine->GetButtonState(CTRL_CROSS) ||  mEngine->GetButtonState(CTRL_CIRCLE) || mEngine->GetButtonState(CTRL_TRIANGLE) || mEngine->GetButtonState(CTRL_SQUARE)) //pressing a char select button
 		{
 			int innerChoice = -1;
-			if (mEngine->GetButtonState(PSP_CTRL_TRIANGLE) && !cross) {
-				if (KeyRepeated(PSP_CTRL_TRIANGLE,dt)) {
+			if (mEngine->GetButtonState(CTRL_TRIANGLE) && !cross) {
+				if (KeyRepeated(CTRL_TRIANGLE,dt)) {
 					innerChoice = 0;
 				}
 			}
-			else if (mEngine->GetButtonState(PSP_CTRL_SQUARE) && !cross) {
-				if (KeyRepeated(PSP_CTRL_SQUARE,dt)) {
+			else if (mEngine->GetButtonState(CTRL_SQUARE) && !cross) {
+				if (KeyRepeated(CTRL_SQUARE,dt)) {
 					innerChoice = 1;
 				}
 			}
-			else if (mEngine->GetButtonState(PSP_CTRL_CROSS) && !cross) {
-				if (KeyRepeated(PSP_CTRL_CROSS,dt)) {
+			else if (mEngine->GetButtonState(CTRL_CROSS) && !cross) {
+				if (KeyRepeated(CTRL_CROSS,dt)) {
 					innerChoice = 2;
 				}
 			}
-			else if (mEngine->GetButtonState(PSP_CTRL_CIRCLE) && !cross) {
-				if (KeyRepeated(PSP_CTRL_CIRCLE,dt)) {
+			else if (mEngine->GetButtonState(CTRL_CIRCLE) && !cross) {
+				if (KeyRepeated(CTRL_CIRCLE,dt)) {
 					innerChoice = 3;
 				}
 			}
@@ -136,47 +136,47 @@ int Danzeff::GetInput(float dt)
 				pressed = modeChar[ mode*2 + shifted][y][x][innerChoice];
 			}
 		}
-		else if (mEngine->GetButtonClick(PSP_CTRL_LTRIGGER)) //toggle mode
+		else if (mEngine->GetButtonClick(CTRL_LTRIGGER)) //toggle mode
 		{
-			if (KeyRepeated(PSP_CTRL_SQUARE,dt)) {
+			if (KeyRepeated(CTRL_SQUARE,dt)) {
 				dirty = true;
 				mode++;
 				mode %= MODE_COUNT;
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_DOWN))
+		else if (mEngine->GetButtonState(CTRL_DOWN))
 		{
-			if (KeyRepeated(PSP_CTRL_DOWN,dt)) {
+			if (KeyRepeated(CTRL_DOWN,dt)) {
 				//pressed = '\n';
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_UP))
+		else if (mEngine->GetButtonState(CTRL_UP))
 		{
-			if (KeyRepeated(PSP_CTRL_UP,dt)) {
+			if (KeyRepeated(CTRL_UP,dt)) {
 				pressed = 8; //backspace
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_LEFT))
+		else if (mEngine->GetButtonState(CTRL_LEFT))
 		{
-			if (KeyRepeated(PSP_CTRL_LEFT,dt)) {
+			if (KeyRepeated(CTRL_LEFT,dt)) {
 				pressed = DANZEFF_LEFT; //LEFT
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_RIGHT))
+		else if (mEngine->GetButtonState(CTRL_RIGHT))
 		{
-			if (KeyRepeated(PSP_CTRL_RIGHT,dt)) {
+			if (KeyRepeated(CTRL_RIGHT,dt)) {
 				pressed = DANZEFF_RIGHT; //RIGHT
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_SELECT))
+		else if (mEngine->GetButtonState(CTRL_SELECT))
 		{
-			if (KeyRepeated(PSP_CTRL_SELECT,dt)) {
+			if (KeyRepeated(CTRL_SELECT,dt)) {
 				pressed = DANZEFF_SELECT; //SELECT
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_START))
+		else if (mEngine->GetButtonState(CTRL_START))
 		{
-			if (KeyRepeated(PSP_CTRL_START,dt)) {
+			if (KeyRepeated(CTRL_START,dt)) {
 				pressed = DANZEFF_START; //START
 			}
 		}
@@ -186,7 +186,7 @@ int Danzeff::GetInput(float dt)
 		}
 	}
 
-	//holding = !mEngine->GetButtonState(PSP_CTRL_RTRIGGER); //RTRIGGER doesn't set holding
+	//holding = !mEngine->GetButtonState(CTRL_RTRIGGER); //RTRIGGER doesn't set holding
 
 	return pressed;
 }

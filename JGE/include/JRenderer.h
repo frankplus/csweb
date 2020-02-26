@@ -99,7 +99,7 @@ public:
 	/// @param mode - Choose to put texture in VRAM (PSP only).
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	JTexture* LoadTexture(const char* filename, int mode = 0);
+	JTexture* LoadTexture(const char* filename);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.

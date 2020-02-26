@@ -20,7 +20,7 @@
 
 JRenderer* JLBFont::mRenderer = NULL;
 
-JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
+JLBFont::JLBFont(const char *fontname, int lineheight)
 {
 	mRenderer = JRenderer::GetInstance();
 	 
@@ -48,7 +48,7 @@ JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 	fileSys->CloseFile();
  	
     sprintf(filename, "%s.png", fontname);
-	mTexture = mRenderer->LoadTexture(filename, useVideoRAM);
+	mTexture = mRenderer->LoadTexture(filename);
 
 	if (mTexture == NULL) return;
 	

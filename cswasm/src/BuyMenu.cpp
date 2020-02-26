@@ -93,16 +93,16 @@ BuyMenu::~BuyMenu()
 void BuyMenu::Update(float dt)
 {
 	int team = mPlayer->mTeam;
-	if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) {
+	if (mEngine->GetButtonClick(CTRL_CIRCLE)) {
 		Disable();
 		//mIsActive = false;
 		return;
 	}
-	if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE) && mCategoryIndex != MAIN) {
+	if (mEngine->GetButtonClick(CTRL_TRIANGLE) && mCategoryIndex != MAIN) {
 		mCategoryIndex = MAIN;
 	}
 
-	if (mEngine->GetButtonClick(PSP_CTRL_CROSS)) {
+	if (mEngine->GetButtonClick(CTRL_CROSS)) {
 		if (mSelectedIndex != -1) {
 			if (mCategoryIndex == MAIN) {
 				mCategoryIndex = mCategories[team][mCategoryIndex].buttons[mSelectedIndex].id;
@@ -143,7 +143,7 @@ void BuyMenu::Update(float dt)
 	}
 	else {
 		int size = mCategories[team][mCategoryIndex].buttons.size();
-		if (mEngine->GetButtonClick(PSP_CTRL_UP)) {
+		if (mEngine->GetButtonClick(CTRL_UP)) {
 			mSelectedIndex--;
 			if (mCategoryIndex == MAIN) {
 				if (mSelectedIndex < -1) mSelectedIndex = size-1;
@@ -152,7 +152,7 @@ void BuyMenu::Update(float dt)
 				if (mSelectedIndex < 0) mSelectedIndex = size-1;
 			}
 		}
-		else if (mEngine->GetButtonClick(PSP_CTRL_DOWN)) {
+		else if (mEngine->GetButtonClick(CTRL_DOWN)) {
 			mSelectedIndex++;
 			if (mCategoryIndex == MAIN) {
 				if (mSelectedIndex >= size) mSelectedIndex = -1;
@@ -454,7 +454,7 @@ void BuyMenu::Enable()
 	}
 	/*mMainController->SetCurr(0);
 	mMainController->SetActive(true);
-	mMainController->mLastKey = PSP_CTRL_UP;
+	mMainController->mLastKey = CTRL_UP;
 	mMainController->mKeyRepeatDelay = JGUI_INITIAL_DELAY;
 	for (int i=PISTOLS; i<=EQUIPMENT; i++) {
 		mControllers[i]->SetCurr(0);
@@ -470,7 +470,7 @@ void BuyMenu::Disable()
 	*cross = true;
 	//mMainController->SetCurr(0);
 	//mMainController->SetActive(true);
-	//mMainController->mLastKey = PSP_CTRL_UP;
+	//mMainController->mLastKey = CTRL_UP;
 	//mMainController->mKeyRepeatDelay = JGUI_INITIAL_DELAY;
 	/*for (int i=PISTOLS; i<=MACHINEGUNS; i++) {
 		mControllers[i]->SetCurr(0);

@@ -75,7 +75,7 @@ JGuiController::JGuiController(int id, JGuiListener* listener, int direction) : 
 	mCursorY = SCREEN_HEIGHT/2;
 	mShowCursor = false;
 
-	mActionButton = PSP_CTRL_CROSS;
+	mActionButton = CTRL_CROSS;
 	mLastKey = 0;
 
 	mStyle = JGUI_STYLE_WRAPPING;
@@ -113,9 +113,9 @@ bool JGuiController::KeyRepeated(u32 key, float dt)
 {
 
 	bool doKey = false;
-	if (mLastKey != PSP_CTRL_UP)
+	if (mLastKey != CTRL_UP)
 	{
-		mLastKey = PSP_CTRL_UP;
+		mLastKey = CTRL_UP;
 		doKey = true;
 		mKeyRepeatDelay = JGUI_INITIAL_DELAY;
 	}
@@ -152,9 +152,9 @@ void JGuiController::Update(float dt)
 	}
 	
 	if (mDirection == JGUI_STYLE_LEFTRIGHT) {
-		if (mEngine->GetButtonState(PSP_CTRL_LEFT) || mEngine->GetAnalogX()<64)
+		if (mEngine->GetButtonState(CTRL_LEFT) || mEngine->GetAnalogX()<64)
 		{
-			if (KeyRepeated(PSP_CTRL_UP, dt))
+			if (KeyRepeated(CTRL_UP, dt))
 			{
 				int n = mCurr;
 				n--;
@@ -166,16 +166,16 @@ void JGuiController::Update(float dt)
 						n = 0;
 				}
 
-				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(CTRL_UP))
 				{
 					mCurr = n;
 					mObjects[mCurr]->Entering();
 				}
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_RIGHT) || mEngine->GetAnalogX()>192)
+		else if (mEngine->GetButtonState(CTRL_RIGHT) || mEngine->GetAnalogX()>192)
 		{
-			if (KeyRepeated(PSP_CTRL_DOWN, dt))
+			if (KeyRepeated(CTRL_DOWN, dt))
 			{
 				int n = mCurr;
 				n++;
@@ -187,7 +187,7 @@ void JGuiController::Update(float dt)
 						n = mCount-1;
 				}
 
-				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(CTRL_DOWN))
 				{
 					mCurr = n;
 					mObjects[mCurr]->Entering();
@@ -198,9 +198,9 @@ void JGuiController::Update(float dt)
 			mLastKey = 0;
 	}
 	else if (mDirection == JGUI_STYLE_UPDOWN) {
-		if (mEngine->GetButtonState(PSP_CTRL_UP) || mEngine->GetAnalogY()<64)
+		if (mEngine->GetButtonState(CTRL_UP) || mEngine->GetAnalogY()<64)
 		{
-			if (KeyRepeated(PSP_CTRL_UP, dt))
+			if (KeyRepeated(CTRL_UP, dt))
 			{
 				int n = mCurr;
 				n--;
@@ -212,16 +212,16 @@ void JGuiController::Update(float dt)
 						n = 0;
 				}
 
-				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(CTRL_UP))
 				{
 					mCurr = n;
 					mObjects[mCurr]->Entering();
 				}
 			}
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_DOWN) || mEngine->GetAnalogY()>192)
+		else if (mEngine->GetButtonState(CTRL_DOWN) || mEngine->GetAnalogY()>192)
 		{
-			if (KeyRepeated(PSP_CTRL_DOWN, dt))
+			if (KeyRepeated(CTRL_DOWN, dt))
 			{
 				int n = mCurr;
 				n++;
@@ -233,7 +233,7 @@ void JGuiController::Update(float dt)
 						n = mCount-1;
 				}
 
-				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+				if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(CTRL_DOWN))
 				{
 					mCurr = n;
 					mObjects[mCurr]->Entering();
@@ -288,7 +288,7 @@ void JGuiController::Reset() {
 	for (int i=0;i<mCount;i++)
 	{
 		if (mObjects[i] != NULL) {
-			mObjects[i]->Leaving(PSP_CTRL_UP);
+			mObjects[i]->Leaving(CTRL_UP);
 		}
 	}
 	mObjects[mDefault]->Entering();
@@ -299,7 +299,7 @@ void JGuiController::SetCurr(int curr) {
 	for (int i=0;i<mCount;i++)
 	{
 		if (mObjects[i] != NULL) {
-			mObjects[i]->Leaving(PSP_CTRL_UP);
+			mObjects[i]->Leaving(CTRL_UP);
 		}
 	}
 	mObjects[curr]->Entering();

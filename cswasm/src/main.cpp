@@ -23,26 +23,71 @@ JGE* g_engine = NULL;
 JApp* g_app = NULL;
 JGameLauncher* g_launcher = NULL;
 
-void JGEControl()
-{
-}
+static u32 gButtons = 0;
+static u32 gOldButtons = 0;
 
 
-bool JGEGetKeyState(int key)
+static u32 gPSPKeyMasks[21] =
 {
-    return false;
-}
+	CTRL_SELECT,
+    CTRL_START,
+    CTRL_UP,
+    CTRL_RIGHT,
+    CTRL_DOWN,
+    CTRL_LEFT,
+    CTRL_LTRIGGER,
+    CTRL_RTRIGGER,
+    CTRL_TRIANGLE,
+    CTRL_CIRCLE,
+    CTRL_CROSS,
+    CTRL_SQUARE,
+    CTRL_HOME,
+    CTRL_HOLD,
+    CTRL_NOTE,
+    CTRL_CIRCLE,
+    CTRL_START,
+	CTRL_W,
+	CTRL_A,
+	CTRL_S,
+	CTRL_D
+};
+
+
+static u32 gWinKeyCodes[21] =
+{
+	SDL_SCANCODE_LCTRL,
+    SDL_SCANCODE_RETURN,
+    SDL_SCANCODE_UP,
+    SDL_SCANCODE_RIGHT,
+    SDL_SCANCODE_DOWN,
+    SDL_SCANCODE_LEFT,
+    SDL_SCANCODE_Q,
+    SDL_SCANCODE_E,
+    SDL_SCANCODE_8,
+    SDL_SCANCODE_6,
+    SDL_SCANCODE_2,
+    SDL_SCANCODE_4,
+    SDL_SCANCODE_F1,
+    SDL_SCANCODE_F2,
+    SDL_SCANCODE_F3,
+    SDL_SCANCODE_SPACE,
+    SDL_SCANCODE_ESCAPE,
+    SDL_SCANCODE_W,
+    SDL_SCANCODE_A,
+    SDL_SCANCODE_S,
+    SDL_SCANCODE_D
+};
 
 
 bool JGEGetButtonState(u32 button)
 {
-    return false;
+	return (gButtons&button)==button;
 }
 
 
 bool JGEGetButtonClick(u32 button)
 {
-    return false;
+	return (gButtons&button)==button && (gOldButtons&button)!=button;
 }
 
 
@@ -76,16 +121,31 @@ int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
 }
 
 void Update(int dt)
-{
-	JGEControl();
-	
+{	
 	g_engine->SetDelta(dt);
 	g_engine->Update();
 	g_engine->mClicked = false;
 }
 
+void process_input() {
+    gOldButtons = gButtons;
+
+    SDL_PumpEvents();
+    const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+	
+	gButtons = 0;
+	for (int i=0;i<21;i++)
+		if (currentKeyStates[gWinKeyCodes[i]])
+        {
+			gButtons |= gPSPKeyMasks[i];
+            printf("clicked: %d \n", gPSPKeyMasks[i]);
+        }
+}
+
 void main_loop() 
 { 
+    process_input();
+
     steady_clock::time_point tickCount = steady_clock::now();   // Get The Tick Count
     milliseconds delta = duration_cast<milliseconds>(tickCount - lastTickCount);
     lastTickCount = tickCount;
@@ -98,12 +158,7 @@ int main()
 {   
     SDL_Window *window;
     SDL_Renderer *renderer;
-    SDL_CreateWindowAndRenderer(640, 480, 0, &window, &renderer);
-
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer);
 
     InitGame();
     u32 fps = 10;

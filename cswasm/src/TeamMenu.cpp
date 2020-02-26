@@ -63,17 +63,17 @@ TeamMenu::~TeamMenu()
 //------------------------------------------------------------------------------------------------
 void TeamMenu::Update(float dt)
 {
-	if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) {
+	if (mEngine->GetButtonClick(CTRL_CIRCLE)) {
 		Disable();
 		//mIsActive = false;
 		//mTeam = CT;
 		return;
 	}
-	if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE) && mCategoryIndex != MAIN1) {
+	if (mEngine->GetButtonClick(CTRL_TRIANGLE) && mCategoryIndex != MAIN1) {
 		mCategoryIndex = MAIN1;
 	}
 
-	if (mEngine->GetButtonClick(PSP_CTRL_CROSS)) {
+	if (mEngine->GetButtonClick(CTRL_CROSS)) {
 		if (mSelectedIndex != -1) {
 			if (mCategoryIndex == MAIN1 && mSelectedIndex != 2) {
 				mCategoryIndex = mCategories[mCategoryIndex].buttons[mSelectedIndex].id;
@@ -117,11 +117,11 @@ void TeamMenu::Update(float dt)
 	}
 	else {
 		int size = mCategories[mCategoryIndex].buttons.size();
-		if (mEngine->GetButtonClick(PSP_CTRL_UP)) {
+		if (mEngine->GetButtonClick(CTRL_UP)) {
 			mSelectedIndex--;
 			if (mSelectedIndex < 0) mSelectedIndex = size-1;
 		}
-		else if (mEngine->GetButtonClick(PSP_CTRL_DOWN)) {
+		else if (mEngine->GetButtonClick(CTRL_DOWN)) {
 			mSelectedIndex++;
 			if (mSelectedIndex >= size) mSelectedIndex = 0;
 		}
@@ -302,7 +302,7 @@ void TeamMenu::Disable()
 	*cross = true;
 	//mMainController->SetCurr(0);
 	//mMainController->SetActive(true);
-	//mMainController->mLastKey = PSP_CTRL_UP;
+	//mMainController->mLastKey = CTRL_UP;
 	//mMainController->mKeyRepeatDelay = JGUI_INITIAL_DELAY;
 	/*for (int i=PISTOLS; i<=MACHINEGUNS; i++) {
 		mControllers[i]->SetCurr(0);

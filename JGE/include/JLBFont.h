@@ -40,7 +40,7 @@ public:
 	/// @param useVideoRAM - Indicate to use video RAM to store the font image or not (PSP only).
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	JLBFont(const char *fontname, int lineheight, bool useVideoRAM=false);
+	JLBFont(const char *fontname, int lineheight);
 
 	~JLBFont();
 

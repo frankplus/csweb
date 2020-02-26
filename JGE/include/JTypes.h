@@ -64,23 +64,27 @@ typedef unsigned int DWORD;
 #define ARGB(a, r, g, b)		((a << 24) | (r << 16) | (g << 8) | b)
 #define RGBA(r, g, b, a)		((a << 24) | (b << 16) | (g << 8) | r)
 
-enum PspCtrlButtons
+enum CtrlButtons
 {
-	PSP_CTRL_SELECT     = 0x000001,
-	PSP_CTRL_START      = 0x000008,
-	PSP_CTRL_UP         = 0x000010,
-	PSP_CTRL_RIGHT      = 0x000020,
-	PSP_CTRL_DOWN      	= 0x000040,
-	PSP_CTRL_LEFT      	= 0x000080,
-	PSP_CTRL_LTRIGGER   = 0x000100,
-	PSP_CTRL_RTRIGGER   = 0x000200,
-	PSP_CTRL_TRIANGLE   = 0x001000,
-	PSP_CTRL_CIRCLE     = 0x002000,
-	PSP_CTRL_CROSS      = 0x004000,
-	PSP_CTRL_SQUARE     = 0x008000,
-	PSP_CTRL_HOME       = 0x010000,
-	PSP_CTRL_HOLD       = 0x020000,
-	PSP_CTRL_NOTE       = 0x800000,
+	CTRL_SELECT     = 0x000001,
+	CTRL_START      = 0x000002,
+	CTRL_UP         = 0x000004,
+	CTRL_RIGHT      = 0x000008,
+	CTRL_DOWN      	= 0x000010,
+	CTRL_LEFT      	= 0x000020,
+	CTRL_LTRIGGER   = 0x000040,
+	CTRL_RTRIGGER   = 0x000080,
+	CTRL_TRIANGLE   = 0x000100,
+	CTRL_CIRCLE     = 0x000200,
+	CTRL_CROSS      = 0x000400,
+	CTRL_SQUARE     = 0x000800,
+	CTRL_HOME       = 0x001000,
+	CTRL_HOLD       = 0x002000,
+	CTRL_NOTE       = 0x004000,
+	CTRL_W			= 0x008000,
+	CTRL_A			= 0x010000,
+	CTRL_S			= 0x020000,
+	CTRL_D			= 0x048000
 };
 
 

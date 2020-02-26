@@ -18,8 +18,6 @@
 
 #include "JTypes.h"
 
-void JGEControl();
-bool JGEGetKeyState(int key);
 bool JGEGetButtonState(u32 button);
 bool JGEGetButtonClick(u32 button);
 

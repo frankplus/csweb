@@ -1134,7 +1134,7 @@ void Game::CheckCollisions()
 //------------------------------------------------------------------------------------------------
 void Game::CheckSpecInput(float dt)
 {
-	if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) {
+	if (mEngine->GetButtonClick(CTRL_CIRCLE)) {
 		if (mSpecState == FREELOOK) {
 			if (mSpec->mState == DEAD) {
 				mSpecState = THIRDPERSON;
@@ -1153,16 +1153,16 @@ void Game::CheckSpecInput(float dt)
 	if (mSpecState == FREELOOK) {
 		float aX = mEngine->GetAnalogX()-127.5f;
 		float aY = mEngine->GetAnalogY()-127.5f;
-		/*if (mEngine->GetButtonState(PSP_CTRL_UP)) {
+		/*if (mEngine->GetButtonState(CTRL_UP)) {
 			mSpecY -= 0.3f*dt;
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_DOWN)) {
+		else if (mEngine->GetButtonState(CTRL_DOWN)) {
 			mSpecY += 0.3f*dt;
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_RIGHT)) {
+		else if (mEngine->GetButtonState(CTRL_RIGHT)) {
 			mSpecX += 0.3f*dt;
 		}
-		else if (mEngine->GetButtonState(PSP_CTRL_LEFT)) {
+		else if (mEngine->GetButtonState(CTRL_LEFT)) {
 			mSpecX -= 0.3f*dt;
 		}*/
 		if (aX >= 20 || aX <= -20 || aY >= 20 || aY <= -20) {
@@ -1170,7 +1170,7 @@ void Game::CheckSpecInput(float dt)
 			mSpecY += aY*0.0023f*dt;
 		}
 
-		if (mEngine->GetButtonClick(PSP_CTRL_CROSS)) {
+		if (mEngine->GetButtonClick(CTRL_CROSS)) {
 			/*if (mSpec->mState != DEAD) {
 				mSpecX = mSpec->mX;
 				mSpecY = mSpec->mY;
@@ -1209,7 +1209,7 @@ void Game::CheckSpecInput(float dt)
 		}
 	}
 	else if (mSpecState == THIRDPERSON) {
-		if (mEngine->GetButtonClick(PSP_CTRL_CROSS)) {
+		if (mEngine->GetButtonClick(CTRL_CROSS)) {
 			bool nextSpecFound = false;
 			int counter = 0;
 			while (!nextSpecFound) {
@@ -2302,7 +2302,7 @@ void Game::Render()
 
 	mHud->Render();
 
-	if (mEngine->GetButtonState(PSP_CTRL_SELECT) || mIsMapChanging) {
+	if (mEngine->GetButtonState(CTRL_SELECT) || mIsMapChanging) {
 		int pages1 = ceil(max2(mNumCTs,mNumTs)/4.0f);
 		if (mGameType == FFA) {
 			pages1 = ceil((mNumCTs+mNumTs)/10.0f);
@@ -2313,11 +2313,11 @@ void Game::Render()
 		if (mScoreState >= pages1+pages2) {
 			mScoreState = pages1+pages2-1;
 		}
-		if (mEngine->GetButtonClick(PSP_CTRL_LEFT)) {
+		if (mEngine->GetButtonClick(CTRL_LEFT)) {
 			mScoreState--;
 			if (mScoreState < 0) mScoreState = pages1+pages2-1;
 		}
-		else if (mEngine->GetButtonClick(PSP_CTRL_RIGHT)) {
+		else if (mEngine->GetButtonClick(CTRL_RIGHT)) {
 			mScoreState++;
 			if (mScoreState >= pages1+pages2) mScoreState = 0;
 		}
@@ -2672,12 +2672,12 @@ void Game::Render()
 	}*/
 		
 	if (mTeamMenu != NULL && mTeamMenu->mIsActive) {
-		if (!mEngine->GetButtonState(PSP_CTRL_SELECT)) {
+		if (!mEngine->GetButtonState(CTRL_SELECT)) {
 			mTeamMenu->Render();
 		}
 	}
 	if (mBuyMenu->mIsActive) {
-		if (!mEngine->GetButtonState(PSP_CTRL_SELECT)) {
+		if (!mEngine->GetButtonState(CTRL_SELECT)) {
 			mBuyMenu->Render();
 		}
 	}

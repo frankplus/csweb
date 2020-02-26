@@ -106,9 +106,9 @@ bool KeyRepeated(u32 key, float dt)
 {
 
 	bool doKey = false;
-	if (gLastKey != PSP_CTRL_UP)
+	if (gLastKey != CTRL_UP)
 	{
-		gLastKey = PSP_CTRL_UP;
+		gLastKey = CTRL_UP;
 		doKey = true;
 		gKeyRepeatDelay = JGUI_INITIAL_DELAY;
 	}

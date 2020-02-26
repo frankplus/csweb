@@ -248,8 +248,8 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	}
 
 	
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	BindTexture(quad->mTex);
 
@@ -526,7 +526,7 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
 }
 
 
-JTexture* JRenderer::LoadTexture(const char* filename, int mode)
+JTexture* JRenderer::LoadTexture(const char* filename)
 {
 	TextureInfo textureInfo;
 	

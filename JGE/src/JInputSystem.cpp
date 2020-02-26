@@ -72,7 +72,7 @@ JInputSystem::~JInputSystem(void)
 //////////////////////////////////////////////////////////////////////////
 void JInputSystem::Update()
 {
-	if (JGE::GetInstance()->GetButtonState(PSP_CTRL_DOWN) && JGE::GetInstance()->GetButtonClick(PSP_CTRL_CROSS))		// exit when the CROSS is pressed
+	if (JGE::GetInstance()->GetButtonState(CTRL_DOWN) && JGE::GetInstance()->GetButtonClick(CTRL_CROSS))		// exit when the CROSS is pressed
 	{
 		JInputSystem::GetInstance()->DisableInputMode();
 		return;
@@ -101,7 +101,7 @@ void JInputSystem::Update()
 	}
 
 	// switch the input type.
-	if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_RTRIGGER))
+	if (JGE::GetInstance()->GetButtonClick(CTRL_RTRIGGER))
 	{	
 		switch(mStatus)
 		{
@@ -224,7 +224,7 @@ void JInputSystem::UpdateInputChi()
 	}
 	else
 	{
-		if((JGE::GetInstance()->GetButtonClick(PSP_CTRL_RIGHT) || JGE::GetInstance()->GetButtonClick(PSP_CTRL_DOWN)) && mPY[0]!=0)
+		if((JGE::GetInstance()->GetButtonClick(CTRL_RIGHT) || JGE::GetInstance()->GetButtonClick(CTRL_DOWN)) && mPY[0]!=0)
 			mStatus = mEnablePYSel?eSelPY:eSelHZ;
 			//mStatus = eSelPY;
 	}
@@ -232,26 +232,26 @@ void JInputSystem::UpdateInputChi()
 
 void JInputSystem::UpdateSelPY()
 {
-	if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_LEFT) || JGE::GetInstance()->GetButtonClick(PSP_CTRL_CROSS))
+	if(JGE::GetInstance()->GetButtonClick(CTRL_LEFT) || JGE::GetInstance()->GetButtonClick(CTRL_CROSS))
 	{
 		mStatus = eInputChi;
 		mPYSelIndex = 0;
 		mPYShowFirstIndex=0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_UP))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_UP))
 	{
 		mPYSelIndex--;
 		if (mPYSelIndex<0)
 			mPYSelIndex = 0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_DOWN))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_DOWN))
 	{
 		PY_index* pyindex=NULL;
 		int len = GetNexPYIndex(mPY,pyindex);
 		if(len>0 && mPYSelIndex < len-1 )
 			mPYSelIndex++;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_RIGHT) || JGE::GetInstance()->GetButtonClick(PSP_CTRL_CIRCLE))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_RIGHT) || JGE::GetInstance()->GetButtonClick(CTRL_CIRCLE))
 		mStatus = eSelHZ;
 }
 
@@ -269,7 +269,7 @@ void JInputSystem::UpdateSelHZ()
 	else
 		return;
 
-	if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_CROSS))
+	if(JGE::GetInstance()->GetButtonClick(CTRL_CROSS))
 	{
 		mStatus = eInputChi;
 		mPYSelIndex = 0;
@@ -278,14 +278,14 @@ void JInputSystem::UpdateSelHZ()
 		mHZShowFirstIndex=0;
 		mPY[0]=0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_TRIANGLE))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_TRIANGLE))
 	{
 		mStatus = mEnablePYSel?eSelPY:eInputChi;
 		//mStatus = eSelPY;
 		mHZSelIndex = 0;
 		mHZShowFirstIndex=0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_CIRCLE))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_CIRCLE))
 	{
 		int inlen = strlen(mpInput);
 		mpInput[inlen]=str[mHZSelIndex*2];
@@ -299,18 +299,18 @@ void JInputSystem::UpdateSelHZ()
 		mHZShowFirstIndex=0;
 		mPY[0]=0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_UP))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_UP))
 	{
 		mHZSelIndex--;
 		if (mHZSelIndex<0)
 			mHZSelIndex = 0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_DOWN))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_DOWN))
 	{
 		if(len>0 && mHZSelIndex < totalLen -1)
 			mHZSelIndex++;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_RIGHT))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_RIGHT))
 	{
 		if(totalLen - mHZSelIndex > mHZSelTableSize)
 		{
@@ -324,7 +324,7 @@ void JInputSystem::UpdateSelHZ()
 		}
 
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_LEFT))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_LEFT))
 	{
 		if(mHZSelIndex>=mHZSelTableSize)
 		{
@@ -702,7 +702,7 @@ void JInputSystem::DrawInputHelp( float x, float y )
 //////////////////////////////////////////////////////////////////////////
 bool JInputSystem::GetInputKey( int& a, int& b, int& c )
 {
-	if(JGE::GetInstance()->GetButtonState(PSP_CTRL_LTRIGGER))
+	if(JGE::GetInstance()->GetButtonState(CTRL_LTRIGGER))
 		a=1;
 	else
 		a=0;
@@ -731,13 +731,13 @@ bool JInputSystem::GetInputKey( int& a, int& b, int& c )
 	if(JGE::GetInstance()->GetAnalogY() > 200 && JGE::GetInstance()->GetAnalogX() > 200)
 		b=8;
 
-	if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_TRIANGLE))
+	if(JGE::GetInstance()->GetButtonClick(CTRL_TRIANGLE))
 		c=0;
-	else if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_SQUARE))
+	else if (JGE::GetInstance()->GetButtonClick(CTRL_SQUARE))
 		c=1;
-	else if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_CIRCLE))
+	else if (JGE::GetInstance()->GetButtonClick(CTRL_CIRCLE))
 		c=3;
-	else if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_CROSS))
+	else if (JGE::GetInstance()->GetButtonClick(CTRL_CROSS))
 		c=2;
 	else 
 		return false;
@@ -887,7 +887,7 @@ void JInputSystem::UpdateSelHZ_H()
 	else
 		return;
 
-	if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_CROSS))
+	if(JGE::GetInstance()->GetButtonClick(CTRL_CROSS))
 	{
 		mStatus = eInputChi;
 		mPYSelIndex = 0;
@@ -896,14 +896,14 @@ void JInputSystem::UpdateSelHZ_H()
 		mHZShowFirstIndex=0;
 		mPY[0]=0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_TRIANGLE))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_TRIANGLE))
 	{
 		mStatus = mEnablePYSel?eSelPY:eInputChi;
 		//mStatus = eSelPY;
 		mHZSelIndex = 0;
 		mHZShowFirstIndex=0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_CIRCLE))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_CIRCLE))
 	{
 		int inlen = strlen(mpInput);
 		mpInput[inlen]=str[mHZSelIndex*2];
@@ -917,18 +917,18 @@ void JInputSystem::UpdateSelHZ_H()
 		mHZShowFirstIndex=0;
 		mPY[0]=0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_LEFT))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_LEFT))
 	{
 		mHZSelIndex--;
 		if (mHZSelIndex<0)
 			mHZSelIndex = 0;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_RIGHT))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_RIGHT))
 	{
 		if(len>0 && mHZSelIndex < totalLen -1)
 			mHZSelIndex++;
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_DOWN))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_DOWN))
 	{
 		if(totalLen - mHZSelIndex > mHZSelTableSize)
 		{
@@ -942,7 +942,7 @@ void JInputSystem::UpdateSelHZ_H()
 		}
 
 	}
-	else if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_UP))
+	else if(JGE::GetInstance()->GetButtonClick(CTRL_UP))
 	{
 		if(mHZSelIndex>=mHZSelTableSize)
 		{

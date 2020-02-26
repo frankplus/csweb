@@ -96,8 +96,8 @@ bool JGE::GetButtonClick(u32 button)
 
 u8 JGE::GetAnalogX()
 {
-	if (JGEGetKeyState('A')) return 0;
-	if (JGEGetKeyState('D')) return 0xff;
+	if (JGEGetButtonState('A')) return 0;
+	if (JGEGetButtonState('D')) return 0xff;
 
 	return 0x80;
 }
@@ -105,8 +105,8 @@ u8 JGE::GetAnalogX()
 
 u8 JGE::GetAnalogY()
 {
-	if (JGEGetKeyState('W')) return 0;
-	if (JGEGetKeyState('S')) return 0xff;
+	if (JGEGetButtonState('W')) return 0;
+	if (JGEGetButtonState('S')) return 0xff;
 
 	return 0x80;
 }

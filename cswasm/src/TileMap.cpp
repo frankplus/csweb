@@ -39,7 +39,7 @@ bool TileMap::Load(char *mapFile, Gun guns[], int gameType)
 	if (file == NULL) return false;
 	fclose(file);
 
-	mTexture = mRenderer->LoadTexture(fileName, true);
+	mTexture = mRenderer->LoadTexture(fileName);
 
 	strcpy(fileName,"maps/");
 	strcat(fileName,mapFile);
@@ -48,7 +48,7 @@ bool TileMap::Load(char *mapFile, Gun guns[], int gameType)
     file = fopen(fileName, "r"); 
 	if (file != NULL) {
 		fclose(file);
-		mOverviewTexture = mRenderer->LoadTexture(fileName, true);
+		mOverviewTexture = mRenderer->LoadTexture(fileName);
 		mOverviewQuad = new JQuad(mOverviewTexture,0,0,64,64);
 	}
 
