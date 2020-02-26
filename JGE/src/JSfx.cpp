@@ -75,12 +75,12 @@ void JSoundSystem::DestroySoundSystem()
 
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
-
+	return new JMusic();
 }
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {
-	
+	return new JSample();
 }
 
 

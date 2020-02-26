@@ -7,7 +7,7 @@
 */
 
 
-#include "..\..\include\hge\hgecolor.h"
+#include "../../include/hge/hgecolor.h"
 #include <math.h>
 
 #ifndef min

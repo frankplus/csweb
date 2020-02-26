@@ -6,12 +6,12 @@
 ** hgeDistortionMesh helper class implementation
 */
 
-#include "..\..\include\JGE.h"
-#include "..\..\include\JTypes.h"
-#include "..\..\include\JRenderer.h"
-#include "..\..\include\JFileSystem.h"
+#include "../../include/JGE.h"
+#include "../../include/JTypes.h"
+#include "../../include/JRenderer.h"
+#include "../../include/JFileSystem.h"
 
-#include "..\..\include\hge\hgedistort.h"
+#include "../../include/hge/hgedistort.h"
 
 
 //HGE *hgeDistortionMesh::hge=0;

@@ -6,47 +6,21 @@
 ** hgeParticleSystem helper class implementation
 */
 
-#include "..\..\include\JGE.h"
-#include "..\..\include\JTypes.h"
-#include "..\..\include\JRenderer.h"
-#include "..\..\include\JFileSystem.h"
+#include "../../include/JGE.h"
+#include "../../include/JTypes.h"
+#include "../../include/JRenderer.h"
+#include "../../include/JFileSystem.h"
 
-#include "..\..\include\hge\hgeparticle.h"
-
-
-//HGE	*hgeParticleSystem::hge=0;
-
-/*
-** Haaf's Game Engine 1.7
-** Copyright (C) 2003-2007, Relish Games
-** hge.relishgames.com
-**
-** Core functions implementation: random number generation
-*/
-
-
-unsigned int g_seed=0;
-
-void Random_Seed(int seed)
-{
-	if(!seed) g_seed=JGE::GetInstance()->GetTime();
-	else g_seed=seed;
-}
-
-int Random_Int(int min, int max)
-{
-	g_seed=214013*g_seed+2531011;
-	return min+(g_seed ^ g_seed>>15)%(max-min+1);
-}
+#include "../../include/hge/hgeparticle.h"
 
 float Random_Float(float min, float max)
 {
-	g_seed=214013*g_seed+2531011;
-	return min+(g_seed>>16)*(1.0f/65535.0f)*(max-min);
+    assert(max > min); 
+    float random = ((float) rand()) / (float) RAND_MAX;
+
+    float range = max - min;  
+    return (random*range) + min;
 }
-
-
-
 
 hgeParticleSystem::hgeParticleSystem(const char *filename, JQuad *sprite)
 {

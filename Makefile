@@ -16,3 +16,5 @@ release:
 
 server:
 	cd cswasm/bin/apps && python3 -m http.server 8080
+
+.PHONY: all clean debug release server

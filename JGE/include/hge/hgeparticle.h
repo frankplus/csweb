@@ -16,6 +16,7 @@
 #include "hgevector.h"
 #include "hgecolor.h"
 #include "hgerect.h"
+#include <cstring>
 
 class JQuad;
 

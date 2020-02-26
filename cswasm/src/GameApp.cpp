@@ -12,9 +12,8 @@
 
 #include "GameApp.h"
 
-#include "GameStateSplash.h"
-// #include "GameStateLoading.h"
-// #include "GameStateMenu.h"
+#include "GameStateLoading.h"
+#include "GameStateMenu.h"
 // #include "GameStateOptions.h"
 // #include "GameStateUpdate.h"
 // #include "GameStateNewGame.h"
@@ -50,16 +49,9 @@ GameApp::~GameApp()
 //-------------------------------------------------------------------------------------
 void GameApp::Create()
 {
-		//FILE *file = fopen("log.txt","w+");
-		//fputs("0",file);
-		//fclose(file);
-
-	mGameStates[GAME_STATE_SPLASH] = new GameStateSplash(this);
-	mGameStates[GAME_STATE_SPLASH]->Create();
-
-	// Create() of the following will be called at 'loading' phase
-	// mGameStates[GAME_STATE_LOADING] = new GameStateLoading(this);
-	// mGameStates[GAME_STATE_MENU] = new GameStateMenu(this);
+	// The following will be called at 'loading' phase
+	mGameStates[GAME_STATE_LOADING] = new GameStateLoading(this);
+	mGameStates[GAME_STATE_MENU] = new GameStateMenu(this);
 	// mGameStates[GAME_STATE_OPTIONS] = new GameStateOptions(this);
 	// mGameStates[GAME_STATE_UPDATE] = new GameStateUpdate(this);
 	// mGameStates[GAME_STATE_NEW_GAME] = new GameStateNewGame(this);
@@ -69,7 +61,7 @@ void GameApp::Create()
 	// mGameStates[GAME_STATE_ONLINE] = new GameStateOnline(this);
 
 	mCurrentState = NULL;
-	mNextState = mGameStates[GAME_STATE_SPLASH];
+	mNextState = mGameStates[GAME_STATE_LOADING];
 }
 
 
@@ -157,7 +149,7 @@ void GameApp::Resume()
 
 void GameApp::LoadGameStates()
 {
-	// mGameStates[GAME_STATE_MENU]->Create();
+	mGameStates[GAME_STATE_MENU]->Create();
 	// mGameStates[GAME_STATE_OPTIONS]->Create();
 	// mGameStates[GAME_STATE_UPDATE]->Create();
 	// mGameStates[GAME_STATE_NEW_GAME]->Create();

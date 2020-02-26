@@ -1,5 +1,6 @@
 #include <chrono>
 #include <stdio.h>
+#include <time.h>
 #include <functional>
 #include <emscripten.h>
 #include <SDL.h>
@@ -62,6 +63,8 @@ int InitGame(GLvoid)
 	
 	lastTickCount = steady_clock::now();
 
+    srand (time(NULL));
+
 	return true;
 }
 
@@ -103,8 +106,8 @@ int main()
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
     InitGame();
-
-    emscripten_set_main_loop(main_loop, -1, true);
+    u32 fps = 10;
+    emscripten_set_main_loop(main_loop, fps, true);
 
     return EXIT_SUCCESS;
 }
