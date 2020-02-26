@@ -4,7 +4,7 @@ GameStateSplash::~GameStateSplash() {}
 
 void GameStateSplash::Create() 
 {
-	mSplashTex = mRenderer->LoadTexture("gfx/splash.png", true);
+	mSplashTex = mRenderer->LoadTexture("gfx/splash.PNG", true);
 	mSplashQuad = new JQuad(mSplashTex, 0.0f, 0.0f, 480.0f, 272.0f);
 }
 
