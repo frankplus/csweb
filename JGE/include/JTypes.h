@@ -84,7 +84,7 @@ enum CtrlButtons
 	CTRL_W			= 0x008000,
 	CTRL_A			= 0x010000,
 	CTRL_S			= 0x020000,
-	CTRL_D			= 0x048000
+	CTRL_D			= 0x040000
 };
 
 

@@ -1,5 +1,5 @@
 CXX      := emcc
-CXXFLAGS := #-pedantic-errors -Wall -Wextra
+CXXFLAGS := -w #-pedantic-errors -Wall -Wextra
 LDFLAGS  := -std=c++11
 BUILD    := ./bin
 OBJ_DIR  := $(BUILD)/objects

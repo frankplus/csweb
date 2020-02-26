@@ -88,6 +88,7 @@
         "valarray": "cpp",
         "variant": "cpp",
         "vector": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "*.inc": "cpp"
     }
 }

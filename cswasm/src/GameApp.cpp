@@ -14,10 +14,10 @@
 
 #include "GameStateLoading.h"
 #include "GameStateMenu.h"
+#include "GameStatePlay.h"
+#include "GameStateNewGame.h"
 // #include "GameStateOptions.h"
 // #include "GameStateUpdate.h"
-// #include "GameStateNewGame.h"
-// #include "GameStatePlay.h"
 // #include "GameStateConnect.h"
 // #include "GameStateLobby.h"
 // #include "GameStateOnline.h"
@@ -52,10 +52,10 @@ void GameApp::Create()
 	// The following will be called at 'loading' phase
 	mGameStates[GAME_STATE_LOADING] = new GameStateLoading(this);
 	mGameStates[GAME_STATE_MENU] = new GameStateMenu(this);
+	mGameStates[GAME_STATE_PLAY] = new GameStatePlay(this);
+	mGameStates[GAME_STATE_NEW_GAME] = new GameStateNewGame(this);
 	// mGameStates[GAME_STATE_OPTIONS] = new GameStateOptions(this);
 	// mGameStates[GAME_STATE_UPDATE] = new GameStateUpdate(this);
-	// mGameStates[GAME_STATE_NEW_GAME] = new GameStateNewGame(this);
-	// mGameStates[GAME_STATE_PLAY] = new GameStatePlay(this);
 	// mGameStates[GAME_STATE_CONNECT] = new GameStateConnect(this);
 	// mGameStates[GAME_STATE_LOBBY] = new GameStateLobby(this);
 	// mGameStates[GAME_STATE_ONLINE] = new GameStateOnline(this);
@@ -150,10 +150,10 @@ void GameApp::Resume()
 void GameApp::LoadGameStates()
 {
 	mGameStates[GAME_STATE_MENU]->Create();
+	mGameStates[GAME_STATE_NEW_GAME]->Create();
+	mGameStates[GAME_STATE_PLAY]->Create();
 	// mGameStates[GAME_STATE_OPTIONS]->Create();
 	// mGameStates[GAME_STATE_UPDATE]->Create();
-	// mGameStates[GAME_STATE_NEW_GAME]->Create();
-	// mGameStates[GAME_STATE_PLAY]->Create();
 	// mGameStates[GAME_STATE_CONNECT]->Create();
 	// mGameStates[GAME_STATE_LOBBY]->Create();
 	// mGameStates[GAME_STATE_ONLINE]->Create();

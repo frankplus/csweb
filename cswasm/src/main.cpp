@@ -44,7 +44,7 @@ static u32 gPSPKeyMasks[21] =
     CTRL_HOME,
     CTRL_HOLD,
     CTRL_NOTE,
-    CTRL_CIRCLE,
+    CTRL_CROSS,
     CTRL_START,
 	CTRL_W,
 	CTRL_A,
@@ -63,10 +63,10 @@ static u32 gWinKeyCodes[21] =
     SDL_SCANCODE_LEFT,
     SDL_SCANCODE_Q,
     SDL_SCANCODE_E,
-    SDL_SCANCODE_8,
-    SDL_SCANCODE_6,
-    SDL_SCANCODE_2,
-    SDL_SCANCODE_4,
+    SDL_SCANCODE_U,
+    SDL_SCANCODE_K,
+    SDL_SCANCODE_J,
+    SDL_SCANCODE_H,
     SDL_SCANCODE_F1,
     SDL_SCANCODE_F2,
     SDL_SCANCODE_F3,
@@ -138,7 +138,6 @@ void process_input() {
 		if (currentKeyStates[gWinKeyCodes[i]])
         {
 			gButtons |= gPSPKeyMasks[i];
-            printf("clicked: %d \n", gPSPKeyMasks[i]);
         }
 }
 
@@ -161,7 +160,7 @@ int main()
     SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer);
 
     InitGame();
-    u32 fps = 10;
+    u32 fps = -1;
     emscripten_set_main_loop(main_loop, fps, true);
 
     return EXIT_SUCCESS;
