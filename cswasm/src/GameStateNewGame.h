@@ -21,7 +21,7 @@ public:
 	void Render(float x, float y, bool selected) {
 		JRenderer *renderer = JRenderer::GetInstance();
 		if (match && !selected) {
-			renderer->FillRect(0,y,SCREEN_WIDTH,25,ARGB(100,0,128,255));
+			renderer->FillRect(0,y,SCREEN_WIDTH_F,25,ARGB(100,0,128,255));
 		}
 		gFont->DrawShadowedString(name,x,y+3);
 	}

@@ -71,8 +71,8 @@ JGuiController::JGuiController(int id, JGuiListener* listener, int direction) : 
 	mCurr = 0;
 	mDefault = 0;
 
-	mCursorX = SCREEN_WIDTH/2;
-	mCursorY = SCREEN_HEIGHT/2;
+	mCursorX = SCREEN_WIDTH_F/2;
+	mCursorY = SCREEN_HEIGHT_F/2;
 	mShowCursor = false;
 
 	mActionButton = CTRL_CROSS;

@@ -28,11 +28,13 @@
 #define SAFE_DELETE(x)			if (x) { delete x; x = NULL; }
 #define SAFE_DELETE_ARRAY(x)	if (x) { delete [] x; x = NULL; }
 
-
-#define SCREEN_WIDTH 			480
-#define SCREEN_HEIGHT 			272
+// Screen dimensions
+#define SCREEN_WIDTH 			960 
+#define SCREEN_HEIGHT 			544 
+// Screen resolution 
 #define SCREEN_WIDTH_F 			480.0f
 #define SCREEN_HEIGHT_F			272.0f
+// Half of screen resolution 
 #define SCREEN_WIDTH_2			240.0f
 #define SCREEN_HEIGHT_2			136.0f
 

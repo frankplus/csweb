@@ -18,11 +18,11 @@ void GameStateMenu::Create()
 	//mGuiController->SetShadingBackground(10, 45, 80, 100, ARGB(255,0,0,0));
 	if (mGuiController)
 	{
-		mGuiController->Add(new MenuItem(1, gFont, "singleplayer", SCREEN_WIDTH-20, 130, TYPE_MAIN, JGETEXT_RIGHT, true));
-		mGuiController->Add(new MenuItem(2, gFont, "multiplayer", SCREEN_WIDTH-20, 155, TYPE_MAIN, JGETEXT_RIGHT));
-		mGuiController->Add(new MenuItem(3, gFont, "settings", SCREEN_WIDTH-20, 180, TYPE_MAIN, JGETEXT_RIGHT));
-		mGuiController->Add(new MenuItem(4, gFont, "credits", SCREEN_WIDTH-20, 205, TYPE_MAIN, JGETEXT_RIGHT));
-		mGuiController->Add(new MenuItem(5, gFont, "quit", SCREEN_WIDTH-20, 230, TYPE_MAIN, JGETEXT_RIGHT));
+		mGuiController->Add(new MenuItem(1, gFont, "singleplayer", SCREEN_WIDTH_F-20, 130, TYPE_MAIN, JGETEXT_RIGHT, true));
+		mGuiController->Add(new MenuItem(2, gFont, "multiplayer", SCREEN_WIDTH_F-20, 155, TYPE_MAIN, JGETEXT_RIGHT));
+		mGuiController->Add(new MenuItem(3, gFont, "settings", SCREEN_WIDTH_F-20, 180, TYPE_MAIN, JGETEXT_RIGHT));
+		mGuiController->Add(new MenuItem(4, gFont, "credits", SCREEN_WIDTH_F-20, 205, TYPE_MAIN, JGETEXT_RIGHT));
+		mGuiController->Add(new MenuItem(5, gFont, "quit", SCREEN_WIDTH_F-20, 230, TYPE_MAIN, JGETEXT_RIGHT));
 	}
 }
 
@@ -112,7 +112,7 @@ void GameStateMenu::Update(float dt)
 void GameStateMenu::Render()
 {
 	mRenderer->ClearScreen(ARGB(255,255,255,255));
-	//mRenderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(255,255,255,255));
+	//mRenderer->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(255,255,255,255));
 	if (mStage == STAGE_INIT)
 	{
 		int alpha = (int)mAlpha;
@@ -125,9 +125,9 @@ void GameStateMenu::Render()
 	if (mStage == STAGE_MENU)
 	{
 		mRenderer->RenderQuad(gLogoQuad, 0.0f, 0.0f);
-		mRenderer->FillRect(0,128,SCREEN_WIDTH,125,ARGB(100,0,0,0));
+		mRenderer->FillRect(0,128,SCREEN_WIDTH_F,125,ARGB(100,0,0,0));
 		int i = mGuiController->GetCurr();
-		mRenderer->FillRect(0,128+i*25,SCREEN_WIDTH,25,ARGB(255,0,0,0));
+		mRenderer->FillRect(0,128+i*25,SCREEN_WIDTH_F,25,ARGB(255,0,0,0));
 		mGuiController->Render();
 
 		gFont->SetScale(0.75f);
@@ -152,14 +152,14 @@ void GameStateMenu::Render()
 		gFont->DrawString(info,10+mInfoX,133+i*25);
 
 		gFont->SetColor(ARGB(255,255,255,255));
-		gFont->DrawShadowedString("Official Website: http://cspsp.appspot.com", 5, SCREEN_HEIGHT-15);
+		gFont->DrawShadowedString("Official Website: http://cspsp.appspot.com", 5, SCREEN_HEIGHT_F-15);
 
 		gFont->SetBase(0);
 		gFont->SetColor(ARGB(255,200,200,200));
 		gFont->SetScale(0.6f);
 		char buffer[10];
 		sprintf(buffer,"%.2f",VERSION);
-		gFont->DrawString(buffer,SCREEN_WIDTH-4,SCREEN_HEIGHT-12,JGETEXT_RIGHT);
+		gFont->DrawString(buffer,SCREEN_WIDTH_F-4,SCREEN_HEIGHT_F-12,JGETEXT_RIGHT);
 	}
 	else if (mStage == STAGE_CREDITS)
 	{
@@ -179,7 +179,7 @@ void GameStateMenu::Render()
 			if (y > -20.0f && y < SCREEN_HEIGHT_F)
 			{
 				//alpha = (int)((y/SCREEN_HEIGHT_F)*255.0f);
-				alpha = (int)((SCREEN_HEIGHT-abs((int)(y-SCREEN_HEIGHT_2)))*255/(SCREEN_HEIGHT_2));
+				alpha = (int)((SCREEN_HEIGHT_F-abs((int)(y-SCREEN_HEIGHT_2)))*255/(SCREEN_HEIGHT_2));
 				if (alpha < 0)
 					alpha = 0;
 				//scale = 1.0f + (alpha/255.0f);//*0.5f;

@@ -12,7 +12,7 @@ GameStateNewGame::~GameStateNewGame()
 
 void GameStateNewGame::Create()
 {
-	mMapsListBox = new ListBox(0,65,SCREEN_WIDTH,175,25,7);
+	mMapsListBox = new ListBox(0,65,SCREEN_WIDTH_F,175,25,7);
 
 	strcpy(mSearchString,"");
 	mMatch = true;
@@ -126,12 +126,12 @@ void GameStateNewGame::Update(float dt)
 void GameStateNewGame::Render()
 {
 	mRenderer->ClearScreen(ARGB(255,255,255,255));
-	//mRenderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(255,255,255,255));
+	//mRenderer->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(255,255,255,255));
 	mRenderer->RenderQuad(gBgQuad, 0.0f, 0.0f);
-	//mEngine->FillRect(15,15,SCREEN_WIDTH-30,SCREEN_HEIGHT-30,ARGB(150,0,0,0));
+	//mEngine->FillRect(15,15,SCREEN_WIDTH_F-30,SCREEN_HEIGHT_F-30,ARGB(150,0,0,0));
 
-	mRenderer->FillRect(0,65,SCREEN_WIDTH,175,ARGB(100,0,0,0));
-	mRenderer->FillRect(0,35,SCREEN_WIDTH,30,ARGB(175,0,0,0));
+	mRenderer->FillRect(0,65,SCREEN_WIDTH_F,175,ARGB(100,0,0,0));
+	mRenderer->FillRect(0,35,SCREEN_WIDTH_F,30,ARGB(175,0,0,0));
 	mRenderer->DrawLine(90,35,90,65,ARGB(255,255,255,255));
 
 	gFont->SetColor(ARGB(255,255,255,255));
@@ -159,7 +159,7 @@ void GameStateNewGame::Render()
 	gFont->SetScale(0.75f);
 	if (gDanzeff->mIsActive) {
 		gFont->DrawShadowedString("[START] Enter    [SELECT] Cancel",SCREEN_WIDTH_2,SCREEN_HEIGHT_F-20,JGETEXT_CENTER);
-		gDanzeff->Render(SCREEN_WIDTH-175,SCREEN_HEIGHT-175);
+		gDanzeff->Render(SCREEN_WIDTH_F-175,SCREEN_HEIGHT_F-175);
 	}
 	else {
 		gFont->DrawShadowedString("[X] Select     [[]] Search     [O] Return to Menu",SCREEN_WIDTH_2,SCREEN_HEIGHT_F-20,JGETEXT_CENTER);

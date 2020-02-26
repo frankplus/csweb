@@ -43,7 +43,7 @@ void GameStatePlay::Create()
 		mGuiController->Add(new MenuItem(2, gFont, "restart round", SCREEN_WIDTH_2, 125, TYPE_MAIN, JGETEXT_CENTER));
 		mGuiController->Add(new MenuItem(3, gFont, "change teams", SCREEN_WIDTH_2, 150, TYPE_MAIN, JGETEXT_CENTER));
 		mGuiController->Add(new MenuItem(4, gFont, "leave game", SCREEN_WIDTH_2, 175, TYPE_MAIN, JGETEXT_CENTER));
-		//mGuiController->Add(new MenuItem(4, gFont, "quit", SCREEN_WIDTH-20, 240, TYPE_MAIN, JGETEXT_RIGHT));
+		//mGuiController->Add(new MenuItem(4, gFont, "quit", SCREEN_WIDTH_F-20, 240, TYPE_MAIN, JGETEXT_RIGHT));
 	}
 
 	mMusic = mSoundSystem->LoadMusic("sfx/Raindrops.mp3");

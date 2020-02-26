@@ -1706,8 +1706,8 @@ void Game::Render()
 		int height = 44*(mPlayer->mHealth/100.0f);
 		if (height < 1) height = 1;
 		gHealthFillQuad->SetTextureRect(48,44-height+2,48,height);
-		mRenderer->RenderQuad(gHealthBorderQuad,10,SCREEN_HEIGHT-58);
-		mRenderer->RenderQuad(gHealthFillQuad,10,SCREEN_HEIGHT-58+44-height+2);
+		mRenderer->RenderQuad(gHealthBorderQuad,10,SCREEN_HEIGHT_F-58);
+		mRenderer->RenderQuad(gHealthFillQuad,10,SCREEN_HEIGHT_F-58+44-height+2);
 
 		gFont->SetColor(ARGB(255,255,255,255));
 		gFont->SetScale(0.7f);
@@ -1724,9 +1724,9 @@ void Game::Render()
 		sprintf(buffer,"%02d:%02d.%02d",minutes,seconds%60,centiseconds);
 
 		//gHudFont->SetColor(ARGB(230,255,64,64));
-		//gHudFont->DrawString(buffer, SCREEN_WIDTH_2, SCREEN_HEIGHT-30, JGETEXT_CENTER);
+		//gHudFont->DrawString(buffer, SCREEN_WIDTH_2, SCREEN_HEIGHT_F-30, JGETEXT_CENTER);
 
-		gFont->DrawShadowedString(buffer, SCREEN_WIDTH_2, SCREEN_HEIGHT-25, JGETEXT_CENTER);
+		gFont->DrawShadowedString(buffer, SCREEN_WIDTH_2, SCREEN_HEIGHT_F-25, JGETEXT_CENTER);
 
 		/*if (mPlayer->GetCurrentGun() != NULL) {
 			gHudFont->SetColor(ARGB(230,255,200,0));
@@ -1734,29 +1734,29 @@ void Game::Render()
 			}
 			else if (mPlayer->mGunIndex == GRENADE) {
 				sprintf(buffer,"%i",mPlayer->GetCurrentGun()->mClipAmmo); 
-				gHudFont->DrawString(buffer, SCREEN_WIDTH-10, SCREEN_HEIGHT-30, JGETEXT_RIGHT);
+				gHudFont->DrawString(buffer, SCREEN_WIDTH_F-10, SCREEN_HEIGHT_F-30, JGETEXT_RIGHT);
 			}
 			else {
 				sprintf(buffer,"%i",mPlayer->GetCurrentGun()->mClipAmmo); 
-				gHudFont->DrawString(buffer, SCREEN_WIDTH-80, SCREEN_HEIGHT-30, JGETEXT_RIGHT);
+				gHudFont->DrawString(buffer, SCREEN_WIDTH_F-80, SCREEN_HEIGHT_F-30, JGETEXT_RIGHT);
 
-				gHudFont->DrawString("|", SCREEN_WIDTH-70, SCREEN_HEIGHT-30, JGETEXT_CENTER);
+				gHudFont->DrawString("|", SCREEN_WIDTH_F-70, SCREEN_HEIGHT_F-30, JGETEXT_CENTER);
 
 				sprintf(buffer,"%i",mPlayer->GetCurrentGun()->mRemainingAmmo); 
-				gHudFont->DrawString(buffer, SCREEN_WIDTH-10, SCREEN_HEIGHT-30, JGETEXT_RIGHT);
+				gHudFont->DrawString(buffer, SCREEN_WIDTH_F-10, SCREEN_HEIGHT_F-30, JGETEXT_RIGHT);
 			}
 		}
 	
 		gHudFont->SetColor(ARGB(230,0,255,0));
 		sprintf(buffer,"$%i",mPlayer->mMoney); 
-		gHudFont->DrawString(buffer, SCREEN_WIDTH-10, SCREEN_HEIGHT-60, JGETEXT_RIGHT);*/
+		gHudFont->DrawString(buffer, SCREEN_WIDTH_F-10, SCREEN_HEIGHT_F-60, JGETEXT_RIGHT);*/
 
-		mRenderer->RenderQuad(gAmmoBarQuad,SCREEN_WIDTH-10,SCREEN_HEIGHT-10);
-		//mRenderer->FillRect(SCREEN_WIDTH-(10+40+4),SCREEN_HEIGHT-(10+64+3*32),38,3*32,ARGB(150,100,100,100));
+		mRenderer->RenderQuad(gAmmoBarQuad,SCREEN_WIDTH_F-10,SCREEN_HEIGHT_F-10);
+		//mRenderer->FillRect(SCREEN_WIDTH_F-(10+40+4),SCREEN_HEIGHT_F-(10+64+3*32),38,3*32,ARGB(150,100,100,100));
 		int index = mPlayer->mGunIndex;
 		if (mPlayer->mGuns[index] != NULL) {
 			JQuad* quad = mPlayer->mGuns[index]->mGun->mGroundQuad;
-			mRenderer->RenderQuad(quad,SCREEN_WIDTH-(22+10),SCREEN_HEIGHT-(22+10+20),0.0f,1.4f,1.4f);
+			mRenderer->RenderQuad(quad,SCREEN_WIDTH_F-(22+10),SCREEN_HEIGHT_F-(22+10+20),0.0f,1.4f,1.4f);
 		}
 		int y = 0;
 		for (int i=0; i<4; i++) {
@@ -1777,10 +1777,10 @@ void Game::Render()
 					ARGB(200,100,100,100),
 					ARGB(200,100,100,100)
 				};*/
-				mRenderer->FillRect(SCREEN_WIDTH-(22+10+18),SCREEN_HEIGHT-(64+10+20+20*y),36,19,ARGB(200,100,100,100));
+				mRenderer->FillRect(SCREEN_WIDTH_F-(22+10+18),SCREEN_HEIGHT_F-(64+10+20+20*y),36,19,ARGB(200,100,100,100));
 				JQuad* quad = mPlayer->mGuns[index]->mGun->mGroundQuad;
 				//quad->SetColor(ARGB(alpha,255,255,255));
-				mRenderer->RenderQuad(quad,SCREEN_WIDTH-(22+10),SCREEN_HEIGHT-(64+10+10+20*y));
+				mRenderer->RenderQuad(quad,SCREEN_WIDTH_F-(22+10),SCREEN_HEIGHT_F-(64+10+10+20*y));
 				//quad->SetColor(ARGB(255,255,255,255));
 				y++;
 			}
@@ -1788,7 +1788,7 @@ void Game::Render()
 		GunObject *currentGun = mPlayer->GetCurrentGun();
 		if (currentGun != NULL) {
 			if (mPlayer->mState == ATTACKING || mPlayer->mState == SWITCHING) {
-				mRenderer->FillRect(SCREEN_WIDTH-(44+10),SCREEN_HEIGHT-(8+10+20),40,4,ARGB(255,50,50,50));
+				mRenderer->FillRect(SCREEN_WIDTH_F-(44+10),SCREEN_HEIGHT_F-(8+10+20),40,4,ARGB(255,50,50,50));
 				float width = 40.0f;
 				float delay = currentGun->mGun->mDelay;
 				if (mPlayer->mState == SWITCHING) {
@@ -1798,22 +1798,22 @@ void Game::Render()
 				if (delay > EPSILON) {
 					width *= mPlayer->mStateTime/delay;
 				}
-				mRenderer->FillRect(SCREEN_WIDTH-(44+10)-width+40,SCREEN_HEIGHT-(8+10+20),width,4,ARGB(255,150,150,150));
+				mRenderer->FillRect(SCREEN_WIDTH_F-(44+10)-width+40,SCREEN_HEIGHT_F-(8+10+20),width,4,ARGB(255,150,150,150));
 			}
 			else if (mPlayer->mState == RELOADING) {
-				mRenderer->FillRect(SCREEN_WIDTH-(44+10),SCREEN_HEIGHT-(8+10+20),40,4,ARGB(255,50,50,50));
+				mRenderer->FillRect(SCREEN_WIDTH_F-(44+10),SCREEN_HEIGHT_F-(8+10+20),40,4,ARGB(255,50,50,50));
 			}
 			else {
-				mRenderer->FillRect(SCREEN_WIDTH-(44+10),SCREEN_HEIGHT-(8+10+20),40,4,ARGB(255,150,150,150));
+				mRenderer->FillRect(SCREEN_WIDTH_F-(44+10),SCREEN_HEIGHT_F-(8+10+20),40,4,ARGB(255,150,150,150));
 			}
 
 			gFont->SetColor(ARGB(255,255,255,255));
 			gFont->SetScale(0.7f);
 			if (mPlayer->mGunIndex == KNIFE) {
-				//mRenderer->FillRect(SCREEN_WIDTH-10-128+4,SCREEN_HEIGHT-29,120,15,ARGB(255,50,50,50));
-				mRenderer->FillRect(SCREEN_WIDTH-14-120,SCREEN_HEIGHT-29,120,15,ARGB(255,255,255,255));
-				gFont->DrawShadowedString("-", SCREEN_WIDTH-14-50, SCREEN_HEIGHT-45, JGETEXT_RIGHT);
-				gFont->DrawShadowedString("-|", SCREEN_WIDTH-14-50-25, SCREEN_HEIGHT-45, JGETEXT_RIGHT);
+				//mRenderer->FillRect(SCREEN_WIDTH_F-10-128+4,SCREEN_HEIGHT_F-29,120,15,ARGB(255,50,50,50));
+				mRenderer->FillRect(SCREEN_WIDTH_F-14-120,SCREEN_HEIGHT_F-29,120,15,ARGB(255,255,255,255));
+				gFont->DrawShadowedString("-", SCREEN_WIDTH_F-14-50, SCREEN_HEIGHT_F-45, JGETEXT_RIGHT);
+				gFont->DrawShadowedString("-|", SCREEN_WIDTH_F-14-50-25, SCREEN_HEIGHT_F-45, JGETEXT_RIGHT);
 			}
 			else {
 				if (mPlayer->mState == RELOADING) {
@@ -1821,9 +1821,9 @@ void Game::Render()
 					if (currentGun->mGun->mReloadDelay > EPSILON) {
 						width *= mPlayer->mStateTime/(currentGun->mGun->mReloadDelay);
 					}
-					mRenderer->FillRect(SCREEN_WIDTH-10-128+4,SCREEN_HEIGHT-29,120,15,ARGB(255,50,50,50));
-					mRenderer->FillRect(SCREEN_WIDTH-14-width,SCREEN_HEIGHT-29,width,15,ARGB(255,255,255,255));
-					gFont->DrawShadowedString("reloading", SCREEN_WIDTH-10-64,SCREEN_HEIGHT-28,JGETEXT_CENTER);
+					mRenderer->FillRect(SCREEN_WIDTH_F-10-128+4,SCREEN_HEIGHT_F-29,120,15,ARGB(255,50,50,50));
+					mRenderer->FillRect(SCREEN_WIDTH_F-14-width,SCREEN_HEIGHT_F-29,width,15,ARGB(255,255,255,255));
+					gFont->DrawShadowedString("reloading", SCREEN_WIDTH_F-10-64,SCREEN_HEIGHT_F-28,JGETEXT_CENTER);
 				}
 				else {
 					int clip = currentGun->mGun->mClip;
@@ -1835,21 +1835,21 @@ void Game::Render()
 							if (i <= currentGun->mClipAmmo) {
 								color = ARGB(255,255,255,255);
 							}
-							mRenderer->FillRect(SCREEN_WIDTH-14-(w+1)*i,SCREEN_HEIGHT-29,w,15,color);
+							mRenderer->FillRect(SCREEN_WIDTH_F-14-(w+1)*i,SCREEN_HEIGHT_F-29,w,15,color);
 						}
 					}
 					else {
 						float width = ((float)currentGun->mClipAmmo/clip)*120;
-						mRenderer->FillRect(SCREEN_WIDTH-10-128+4,SCREEN_HEIGHT-29,120,15,ARGB(255,50,50,50));
-						mRenderer->FillRect(SCREEN_WIDTH-14-width,SCREEN_HEIGHT-29,width,15,ARGB(255,255,255,255));
+						mRenderer->FillRect(SCREEN_WIDTH_F-10-128+4,SCREEN_HEIGHT_F-29,120,15,ARGB(255,50,50,50));
+						mRenderer->FillRect(SCREEN_WIDTH_F-14-width,SCREEN_HEIGHT_F-29,width,15,ARGB(255,255,255,255));
 					}
 				}
 
 				sprintf(buffer,"%d",currentGun->mRemainingAmmo); 
-				gFont->DrawShadowedString(buffer, SCREEN_WIDTH-14-50, SCREEN_HEIGHT-45, JGETEXT_RIGHT);
+				gFont->DrawShadowedString(buffer, SCREEN_WIDTH_F-14-50, SCREEN_HEIGHT_F-45, JGETEXT_RIGHT);
 
 				sprintf(buffer,"%d|",currentGun->mClipAmmo); 
-				gFont->DrawShadowedString(buffer, SCREEN_WIDTH-14-50-25, SCREEN_HEIGHT-45, JGETEXT_RIGHT);
+				gFont->DrawShadowedString(buffer, SCREEN_WIDTH_F-14-50-25, SCREEN_HEIGHT_F-45, JGETEXT_RIGHT);
 
 			}
 		}
@@ -2080,9 +2080,9 @@ void Game::Render()
 		gFont->SetScale(0.9f);
 		if (mSpecState != NONE) {
 			mRenderer->FillRect(0, 0, 480, 35, ARGB(200,0,0,0));
-			mRenderer->FillRect(0, SCREEN_HEIGHT-35, 480, 35, ARGB(200,0,0,0));
-			//mRenderer->DrawLine(0,35,SCREEN_WIDTH,35,ARGB(255,255,255,255));
-			//mRenderer->DrawLine(0,SCREEN_HEIGHT-35,SCREEN_WIDTH,SCREEN_HEIGHT-35,ARGB(255,255,255,255));
+			mRenderer->FillRect(0, SCREEN_HEIGHT_F-35, 480, 35, ARGB(200,0,0,0));
+			//mRenderer->DrawLine(0,35,SCREEN_WIDTH_F,35,ARGB(255,255,255,255));
+			//mRenderer->DrawLine(0,SCREEN_HEIGHT_F-35,SCREEN_WIDTH_F,SCREEN_HEIGHT_F-35,ARGB(255,255,255,255));
 				
 			int seconds = (int)floorf(mRoundTimer);
 			int minutes = (int)floorf(seconds/60.0f);
@@ -2110,7 +2110,7 @@ void Game::Render()
 			gFont->DrawString("Freelook", 15, 245.0f);
 
 			gFont->SetScale(0.75f);
-			gFont->DrawString("[X] Follow Nearest Player",SCREEN_WIDTH-15,247.0f,JGETEXT_RIGHT);
+			gFont->DrawString("[X] Follow Nearest Player",SCREEN_WIDTH_F-15,247.0f,JGETEXT_RIGHT);
 			gFont->SetScale(0.9f);
 		}
 		else if (mSpecState == THIRDPERSON) { 
@@ -2137,7 +2137,7 @@ void Game::Render()
 
 			gFont->SetColor(ARGB(255,255,255,255));
 			gFont->SetScale(0.75f);
-			gFont->DrawString("[X] Next Player",SCREEN_WIDTH-15,247.0f,JGETEXT_RIGHT);
+			gFont->DrawString("[X] Next Player",SCREEN_WIDTH_F-15,247.0f,JGETEXT_RIGHT);
 			gFont->SetScale(0.9f);
 		}
 	}
@@ -2689,8 +2689,8 @@ void Game::Render()
 		//gFont->DrawString("PAUSED", 240.0f, 20.0f, JGETEXT_CENTER);
 		
 		//mEngine->FillRect(150, 110, 180, 90, ARGB(128, 0, 0, 0));
-		//mRenderer->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(128, 0, 0, 0));
-		mRenderer->FillRect(0,100-2,SCREEN_WIDTH,100,ARGB(150,0,0,0));
+		//mRenderer->FillRect(0, 0, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, ARGB(128, 0, 0, 0));
+		mRenderer->FillRect(0,100-2,SCREEN_WIDTH_F,100,ARGB(150,0,0,0));
 		int i = mGuiController->GetCurr();
 		
 		if (mIsOnline && mGuiController->GetCount() == 3) { 
@@ -2698,7 +2698,7 @@ void Game::Render()
 				i += 1; // skip space if no admin menu
 			}
 		}
-		mRenderer->FillRect(0,100-2+i*25,SCREEN_WIDTH,25,ARGB(255,0,0,0));
+		mRenderer->FillRect(0,100-2+i*25,SCREEN_WIDTH_F,25,ARGB(255,0,0,0));
 		//gFont->SetBase(128);
 		mGuiController->Render();
 		//gFont->SetBase(0);
@@ -2715,16 +2715,16 @@ void Game::Render()
 		strcat(buffer,"say: ");
 		strcat(buffer,mChatString);
 		if (mPlayer->mState != DEAD) {
-			gFont->DrawShadowedString(buffer,60,SCREEN_HEIGHT-60);
-			gFont->DrawShadowedString("|",60+gFont->GetStringWidth(buffer),SCREEN_HEIGHT-60);
+			gFont->DrawShadowedString(buffer,60,SCREEN_HEIGHT_F-60);
+			gFont->DrawShadowedString("|",60+gFont->GetStringWidth(buffer),SCREEN_HEIGHT_F-60);
 		}
 		else {
-			gFont->DrawShadowedString(buffer,10,SCREEN_HEIGHT-60);
-			gFont->DrawShadowedString("|",10+gFont->GetStringWidth(buffer),SCREEN_HEIGHT-60);
+			gFont->DrawShadowedString(buffer,10,SCREEN_HEIGHT_F-60);
+			gFont->DrawShadowedString("|",10+gFont->GetStringWidth(buffer),SCREEN_HEIGHT_F-60);
 		}
 		gFont->SetColor(ARGB(255,0,0,0));
-		gFont->DrawString("[START] Enter  [SELECT] Cancel",SCREEN_WIDTH-100,200,JGETEXT_CENTER);
-		gDanzeff->Render(SCREEN_WIDTH-175,50);
+		gFont->DrawString("[START] Enter  [SELECT] Cancel",SCREEN_WIDTH_F-100,200,JGETEXT_CENTER);
+		gDanzeff->Render(SCREEN_WIDTH_F-175,50);
 	}
 
 	/*gFont->printf(50,100,"FPS:%6.2f", mEngine->GetFPS());	

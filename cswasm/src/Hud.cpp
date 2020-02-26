@@ -134,7 +134,7 @@ void Hud::Render()
 	else {
 		startindex = mMessageEvents.size()-mMessageEventCounter;
 	}
-	ystart = SCREEN_HEIGHT-60-mMessageEvents.size()*15.0f;
+	ystart = SCREEN_HEIGHT_F-60-mMessageEvents.size()*15.0f;
 	for(unsigned int i=startindex; i<mMessageEvents.size(); i++) {
 		int alpha = 255;//55+i/9.0f*200;
 
@@ -200,7 +200,7 @@ void Hud::Render()
 
 	if (mEventTime > 0.0f && mEventPerson != NULL) {
 		char buffer[256];
-		float y = SCREEN_HEIGHT-50;
+		float y = SCREEN_HEIGHT_F-50;
 
 		float scale = 0.75f;
 		if (mEventTime > 1950) {
