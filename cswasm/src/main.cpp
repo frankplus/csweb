@@ -3,6 +3,7 @@
 #include <time.h>
 #include <functional>
 #include <emscripten.h>
+#include <emscripten/html5.h>
 #include <SDL.h>
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL_opengles2.h>
@@ -17,11 +18,14 @@
 using namespace std;
 using namespace chrono;
 
-steady_clock::time_point lastTickCount;
+SDL_Window *window;
+SDL_Renderer *renderer;
 
 JGE* g_engine = NULL;
 JApp* g_app = NULL;
 JGameLauncher* g_launcher = NULL;
+
+steady_clock::time_point lastTickCount;
 
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
@@ -96,8 +100,6 @@ int InitGame(GLvoid)
     g_launcher = new JGameLauncher();
 	u32 flags = g_launcher->GetInitFlags();
 
-	if ((flags&JINIT_FLAG_ENABLE3D)!=0)
-		JRenderer::Set3DFlag(true);
 	g_engine = JGE::GetInstance();
 	
 	g_app = g_launcher->GetGameApp();
@@ -153,15 +155,25 @@ void main_loop()
     DrawGLScene();	// Draw The Scene
 }
 
+EM_BOOL windowSizeChanged(int eventType, const EmscriptenUiEvent *e, void *userData)
+{
+    double width, height;
+    emscripten_get_element_css_size("#canvas", &width, &height);
+    SDL_SetWindowSize(window, width, height);
+    glViewport (0, 0, (GLsizei)width, (GLsizei)height);
+    return true;
+}
+
 int main()
 {   
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer);
+    double width, height;
+    emscripten_get_element_css_size("#canvas", &width, &height);
+    SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);
+    glViewport (0, 0, (GLsizei)width, (GLsizei)height);
 
     InitGame();
-    u32 fps = -1;
-    emscripten_set_main_loop(main_loop, fps, true);
+    emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, 0, 1, windowSizeChanged);
+    emscripten_set_main_loop(main_loop, -1, true);
 
     return EXIT_SUCCESS;
 }

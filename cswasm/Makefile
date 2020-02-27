@@ -37,7 +37,6 @@ release: all
 
 clean:
 	-@rm -rvf $(OBJ_DIR)/*
-	-@rm -rvf $(APP_DIR)/*
 
 test:
 	emcc test_main.cpp $(LDFLAGS) $(EMCC_FLAGS) $(CXXFLAGS) -g -o $(APP_DIR)/$(TARGET)

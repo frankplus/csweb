@@ -91,9 +91,6 @@ void JTexture::UpdateBits(int x, int y, int width, int height, PIXEL_TYPE* bits)
 //////////////////////////////////////////////////////////////////////////
 
 JRenderer* JRenderer::mInstance = NULL;
-bool JRenderer::m3DEnabled = false;
-
-void JRenderer::Set3DFlag(bool flag) { m3DEnabled = flag; }
 
 JRenderer* JRenderer::GetInstance()
 {
@@ -826,7 +823,6 @@ void JRenderer::Enable2D()
 
 	mCurrentRenderMode = MODE_2D;
 
-	glViewport (0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);	// Reset The Current Viewport
 	glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
 	glLoadIdentity ();													// Reset The Projection Matrix
 	
@@ -836,28 +832,6 @@ void JRenderer::Enable2D()
 	glLoadIdentity ();													// Reset The Modelview Matrix
 
 	glDisable (GL_DEPTH_TEST);
-}
-
-
-void JRenderer::Enable3D()
-{
-	if (!m3DEnabled)
-		return;
-
-	if (mCurrentRenderMode == MODE_3D)
-		return;
-
-	mCurrentRenderMode = MODE_3D;
-
-	glViewport (0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);		// Reset The Current Viewport
-	glMatrixMode (GL_PROJECTION);												// Select The Projection Matrix
-	glLoadIdentity ();															// Reset The Projection Matrix
-	gluPerspective (mFOV, (GLfloat)SCREEN_WIDTH/(GLfloat)SCREEN_HEIGHT,	// Calculate The Aspect Ratio Of The Window
-					0.5f, 1000.0f);		
-	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
-	glLoadIdentity ();													// Reset The Modelview Matrix
-
-	glEnable (GL_DEPTH_TEST);
 }
 
 
@@ -903,12 +877,6 @@ void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start
 		}
 	glEnd();
 
-}
-
-
-void JRenderer::SetFOV(float fov)
-{
-	mFOV = fov;
 }
 
 
