@@ -6,10 +6,9 @@ OBJ_DIR  := $(BUILD)/objects
 LIB_DIR  := $(BUILD)/lib
 TARGET   := libjge.a
 INCLUDE  := 
-SRC_DIR      := src
+SRC_DIR  := src
+HEADERS_DIR := include
 EMCC_FLAGS := -s USE_LIBPNG=1
-
-OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/*/*.cpp)
 OBJECTS := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
@@ -26,7 +25,7 @@ $(LIB_DIR)/$(TARGET): $(OBJECTS)
 
 .PHONY: all build clean debug release
 
-debug: EMCC_FLAGS += -g4
+debug: EMCC_FLAGS += -g4 --source-map-base -v -s ASSERTIONS=1  -s SAFE_HEAP=1 -s STACK_OVERFLOW_CHECK=1 -s DEMANGLE_SUPPORT=1
 debug: all
 
 release: EMCC_FLAGS += -O3

@@ -6,19 +6,20 @@ OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
 TARGET   := index.html
 INCLUDE := -I../JGE/include 
-SRC      := $(wildcard src/*.cpp)
+SRC_DIR      := src
 EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_LIBPNG=1 -s LEGACY_GL_EMULATION=1 -s ALLOW_MEMORY_GROWTH=1 --preload-file ./bin/assets@/
-LIBS 	 := -L../JGE/build/lib -ljge
+LIBS 	 := ../JGE/build/lib/libjge.a
 
-OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
+SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJECTS := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: build $(APP_DIR)/$(TARGET)
 
-$(OBJ_DIR)/%.o: %.cpp
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) $(EMCC_FLAGS) $(INCLUDE) -o $@ -c $<
 
-$(APP_DIR)/$(TARGET): $(OBJECTS)
+$(APP_DIR)/$(TARGET): $(OBJECTS) $(LIBS)
 	@mkdir -p $(@D)
 	$(CXX) $(OBJECTS) $(LDFLAGS) $(EMCC_FLAGS) $(LIBS) -o $(APP_DIR)/$(TARGET)
 
@@ -28,7 +29,7 @@ build:
 	@mkdir -p $(APP_DIR)
 	@mkdir -p $(OBJ_DIR)
 
-debug: EMCC_FLAGS += -g4 --source-map-base -v -s ASSERTIONS=1 
+debug: EMCC_FLAGS += -g4 --source-map-base -v -s ASSERTIONS=1  -s SAFE_HEAP=1 -s STACK_OVERFLOW_CHECK=1 -s DEMANGLE_SUPPORT=1
 debug: all
 
 release: EMCC_FLAGS += -O3
