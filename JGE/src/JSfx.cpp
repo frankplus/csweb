@@ -21,7 +21,8 @@ JSample::JSample()
 
 JSample::~JSample()
 {
-
+	Mix_FreeChunk( mSample );
+	mSample = NULL;
 }
 
 JSoundSystem* JSoundSystem::mInstance = NULL;
@@ -63,7 +64,8 @@ JSoundSystem::~JSoundSystem()
 
 void JSoundSystem::InitSoundSystem()
 {
-
+	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+		printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
 }
 
 
@@ -80,7 +82,12 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {
-	return new JSample();
+	JSample *sample = new JSample();
+	sample->mSample = Mix_LoadWAV( fileName );
+	if( sample->mSample == NULL )
+		printf( "Failed to load %s! SDL_mixer Error: %s\n", fileName, Mix_GetError() );
+
+	return sample;
 }
 
 
@@ -92,7 +99,10 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 
 void JSoundSystem::PlaySample(JSample *sample)
 {
-
+	int chan = Mix_PlayChannel( -1, sample->mSample, 0 );
+	if(chan == -1)
+		printf("failed to play sample %d \n", sample->mSample);
+	
 }
 
 void JSoundSystem::StopSample(int voice)

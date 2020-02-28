@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <SDL2/SDL_mixer.h>
 
 #include "JTypes.h"
 
@@ -38,6 +39,7 @@ public:
 	int mVoice;
 	int mVolume;
 	int mPanning;
+	Mix_Chunk *mSample;
 };
 
 

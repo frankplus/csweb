@@ -15,6 +15,8 @@
 #include <JGameLauncher.h>
 // #include <JFileSystem.h>
 
+#include <JSoundSystem.h>
+
 using namespace std;
 using namespace chrono;
 
@@ -166,6 +168,11 @@ EM_BOOL windowSizeChanged(int eventType, const EmscriptenUiEvent *e, void *userD
 
 int main()
 {   
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_AUDIO ) < 0 )
+        printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+
+    // initialize window
     double width, height;
     emscripten_get_element_css_size("#canvas", &width, &height);
     SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);

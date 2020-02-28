@@ -4,10 +4,10 @@ LDFLAGS  := -std=c++11
 BUILD    := ./bin
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
-TARGET   := index.html
+TARGET   := index.js
 INCLUDE := -I../JGE/include 
 SRC_DIR      := src
-EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_LIBPNG=1 -s LEGACY_GL_EMULATION=1 -s ALLOW_MEMORY_GROWTH=1 --preload-file ./bin/assets@/
+EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_LIBPNG=1 -s LEGACY_GL_EMULATION=1 -s ALLOW_MEMORY_GROWTH=1 --use-preload-plugins --preload-file ./bin/assets@/
 LIBS 	 := ../JGE/build/lib/libjge.a
 
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
