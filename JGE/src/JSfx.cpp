@@ -64,14 +64,14 @@ JSoundSystem::~JSoundSystem()
 
 void JSoundSystem::InitSoundSystem()
 {
-	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+	if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 512 ) < 0 )
 		printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
 }
 
 
 void JSoundSystem::DestroySoundSystem()
 {
-
+	Mix_CloseAudio();
 }
 
 
@@ -101,7 +101,7 @@ void JSoundSystem::PlaySample(JSample *sample)
 {
 	int chan = Mix_PlayChannel( -1, sample->mSample, 0 );
 	if(chan == -1)
-		printf("failed to play sample %d \n", sample->mSample);
+		printf("failed to play sound sample \n");
 	
 }
 
