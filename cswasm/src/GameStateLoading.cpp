@@ -336,8 +336,7 @@ int GameStateLoading::Load(int stage) {
 
 			
 			gSfxManager = new SfxManager();
-			//mParticles = new JParticleSystem(500);
-			//mParticles->SetQuad(mParticlesQuad);
+			
 			gDanzeff = new Danzeff();
 
 			gSocket = new Socket();

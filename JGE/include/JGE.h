@@ -26,7 +26,6 @@ bool JGEGetButtonClick(u32 button);
 class JApp;
 class JResourceManager;
 class JFileSystem;
-class JParticleSystem;
 class JMotionSystem;
 class JMusic;
 

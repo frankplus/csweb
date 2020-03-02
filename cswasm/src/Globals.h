@@ -20,6 +20,8 @@
 #include "Wlan.h"
 #include "HttpManager.h"
 
+using namespace std;
+
 enum {
 	PARTICLE_EXPLOSION = 0,
 	PARTICLE_FLASH,

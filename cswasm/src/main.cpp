@@ -27,7 +27,7 @@ JGE* g_engine = NULL;
 JApp* g_app = NULL;
 JGameLauncher* g_launcher = NULL;
 
-steady_clock::time_point lastTickCount;
+unsigned int lastTickCount;
 
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
@@ -110,7 +110,7 @@ int InitGame(GLvoid)
 	
 	JRenderer::GetInstance()->Enable2D();
 	
-	lastTickCount = steady_clock::now();
+	lastTickCount = SDL_GetTicks();
 
     srand (time(NULL));
 
@@ -149,10 +149,10 @@ void main_loop()
 { 
     process_input();
 
-    steady_clock::time_point tickCount = steady_clock::now();   // Get The Tick Count
-    milliseconds delta = duration_cast<milliseconds>(tickCount - lastTickCount);
+    unsigned int tickCount = SDL_GetTicks();   // Get The Tick Count
+    unsigned int delta = tickCount - lastTickCount;
+    Update(delta);	// Update frame
     lastTickCount = tickCount;
-    Update(delta.count());	// Update frame
     
     DrawGLScene();	// Draw The Scene
 }

@@ -46,9 +46,6 @@ void JGE::Init()
 	JRenderer::GetInstance();
 	JFileSystem::GetInstance();
 	JSoundSystem::GetInstance();
-	//JParticleSystem::GetInstance();
-
-	//InitSfx();
 }
 
 void JGE::Run()

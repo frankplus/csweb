@@ -71,10 +71,6 @@ JGuiController::JGuiController(int id, JGuiListener* listener, int direction) : 
 	mCurr = 0;
 	mDefault = 0;
 
-	mCursorX = SCREEN_WIDTH_F/2;
-	mCursorY = SCREEN_HEIGHT_F/2;
-	mShowCursor = false;
-
 	mActionButton = CTRL_CROSS;
 	mLastKey = 0;
 
@@ -279,7 +275,6 @@ void JGuiController::Remove(int id)
 
 void JGuiController::SetActionButton(u32 button) { mActionButton = button; }
 void JGuiController::SetStyle(int style) { mStyle = style;	}
-void JGuiController::SetCursor(JSprite* cursor) { mCursor = cursor; }
 bool JGuiController::IsActive() { return mActive; }
 void JGuiController::SetActive(bool flag) { mActive = flag; }
 

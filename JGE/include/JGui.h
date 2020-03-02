@@ -13,7 +13,6 @@
 #define _JGUI_H
 
 #include "JGE.h"
-#include "JSprite.h"
 
 #define MAX_GUIOBJECT			1024
 
@@ -73,11 +72,6 @@ private:
 	int mDefault;
 	int mStyle;
 	int mDirection;
-
-	JSprite* mCursor;
-	bool mShowCursor;
-	int mCursorX;
-	int mCursorY;
 	
 	int mBgX;
 	int mBgY;
@@ -105,7 +99,6 @@ public:
 
 	void SetActionButton(u32 button);
 	void SetStyle(int style);
-	void SetCursor(JSprite* cursor);
 	
 	bool IsActive();
 	void SetActive(bool flag);

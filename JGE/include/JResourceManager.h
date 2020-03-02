@@ -22,7 +22,6 @@ using namespace std;
 #define INVALID_ID				-1
 
 class JRenderer;
-class JParticleEffect;
 class JMotionEmitter;
 class JSample;
 class JMusic;
@@ -63,14 +62,6 @@ public:
 	JSample* GetSample(const string &sampleName);
 	JSample* GetSample(int id);
 
-// 	int RegisterParticleEffect(const string &effectName);
-// 	JParticleEffect* GetParticleEffect(const string &effectName);
-// 	JParticleEffect* GetParticleEffect(int id);
-// 
-// 	int RegisterMotionEmitter(const string &emitterName);
-// 	JMotionEmitter* GetMotionEmitter(const string &emitterName);
-// 	JMotionEmitter* GetMotionEmitter(int id);
-
 private:
 
 	//JRenderer *mRenderer;
@@ -82,12 +73,6 @@ private:
 
 	vector<JQuad *> mQuadList;
 	map<string, int> mQuadMap;
-
-// 	vector<JParticleEffect *> mParticleEffectList;
-// 	map<string, int> mParticleEffectMap;
-// 
-// 	vector<JMotionEmitter *> mMotionEmitterList;
-// 	map<string, int> mMotionEmitterMap;
 
 	vector<JFont *> mFontList;
 	map<string, int> mFontMap;
