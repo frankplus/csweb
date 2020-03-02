@@ -1,13 +1,3 @@
-//-------------------------------------------------------------------------------------
-//
-// JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
-//
-// Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
-// Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
-//-------------------------------------------------------------------------------------
-
 #ifndef _JRENDERER_H_
 #define _JRENDERER_H_
 
@@ -17,8 +7,8 @@
 #include <stdarg.h>
 
 #include "JTypes.h"
-
 #include "Vector2D.h"
+#include "../include/JSpriteRenderer.h"
 
 #define SINF(x)		sinf(x*DEG2RAD)
 #define COSF(x)		cosf(x*DEG2RAD)
@@ -83,7 +73,7 @@ public:
 	/// @param mode - Choose to put texture in VRAM (PSP only)
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	JTexture* CreateTexture(int width, int height, int mode = 0);
+	JTexture* CreateTexture(int width, int height);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Clear entire screen to a particular color.
@@ -94,34 +84,12 @@ public:
 	void ClearScreen(PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Enable VSync for the smoothness of moving objects. (PSP only)
-	/// 
-	/// @param flag - true to enable, false to disable.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void EnableVSync(bool flag);
-
-	//////////////////////////////////////////////////////////////////////////
 	/// Enable bi-linear filtering for better looking on-screen images.
 	/// 
 	/// @param flag - true to enable, false to disable.
 	/// 
 	//////////////////////////////////////////////////////////////////////////
 	void EnableTextureFilter(bool flag);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Remove all textures from VRAM (PSP only)
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void ResetPrivateVRAM();
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Enable/disable swizzle optimization. (PSP only)
-	/// 
-	/// @param s - 1 to enable, 0 to disable.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void SetSwizzle(int s) { mSwizzle = s; }
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Bind texture to be used for the rendering followed.
@@ -394,6 +362,8 @@ public:
 private:
 
 	static JRenderer* mInstance;
+
+	JSpriteRenderer *mSpriteRenderer;
 
 	GLuint mCurrentTex;
 

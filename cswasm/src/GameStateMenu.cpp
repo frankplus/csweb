@@ -44,29 +44,14 @@ void GameStateMenu::Start()
 	mStage = STAGE_MENU;
 	mAlpha = 0.0f;
 	mInfoX = -400.0f;
-	//gLogoQuad->SetHotSpot(64.0f, 32.0f);
-	mRenderer->EnableVSync(true);
 
 	gFont->SetBase(0);
-	/**mMusic = mEngine->LoadMusic("sfx/Expedite.mp3");
-	if (mMusic)
-	{
-		mEngine->PlayMusic(mMusic);
-		mEngine->SetVolume(64);
-	}**/
 }
 
 
 void GameStateMenu::End()
 {
-	mRenderer->EnableVSync(false);
 
-	/**if (mMusic)
-	{
-		mEngine->StopMusic();
-		mEngine->FreeMusic(mMusic);		// need to free the music to stop it, bug in mikmodlib
-		mMusic = NULL;
-	}**/
 }
 
 
@@ -79,8 +64,6 @@ void GameStateMenu::Update(float dt)
 		{
 			mAlpha = 255.0f;
 			mStage = STAGE_MENU;
-
-			//mEngine->EnableVSync(false);
 		}
 	}
 	else

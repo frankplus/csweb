@@ -119,8 +119,6 @@ void Game::End()
 		delete mBuyMenu;
 	}
 
-	mRenderer->EnableVSync(false);
-
 	mHud->Reset();
 
 	for (int i=0; i<3; i++) {

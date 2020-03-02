@@ -9,9 +9,6 @@ GameStateLoading::~GameStateLoading() {
 void GameStateLoading::Start()
 {
 	mStage = 0;
-	mRenderer->ResetPrivateVRAM();
-
-	mRenderer->EnableVSync(true);
 
 	JTexture* bgTexture = JResourceManager::LoadTextureFromFile("gfx/bg.png");					// load bg
 	gBgQuad = new JQuad(bgTexture, 0.0f, 0.0f, 480.0f, 272.0f);
@@ -22,8 +19,7 @@ void GameStateLoading::Start()
 
 void GameStateLoading::End()
 {
-	mRenderer->EnableVSync(false);
-
+	
 }
 
 

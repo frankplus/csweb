@@ -98,8 +98,6 @@ void GameStatePlay::Destroy()
 
 void GameStatePlay::Start()
 {
-	mRenderer->EnableVSync(true);
-
 	mMovementStyle = ABSOLUTE1;
 	char* movement = GetConfig("data/config.txt","movement");
 	if (movement != NULL) {

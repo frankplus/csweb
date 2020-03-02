@@ -39,13 +39,13 @@ void GameStateNewGame::Destroy()
 
 void GameStateNewGame::Start()
 {
-	mRenderer->EnableVSync(true);
+
 }
 
 
 void GameStateNewGame::End()
 {
-	mRenderer->EnableVSync(false);
+	
 }
 
 

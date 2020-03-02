@@ -1,6 +1,7 @@
 #include "../include/JGE.h"
 #include "../include/JRenderer.h"
 #include "../include/JAssert.h"
+#include "../include/JResourceManager.h"
 
 JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 		:mTex(tex), mX(x), mY(y), mWidth(width), mHeight(height)
@@ -132,11 +133,20 @@ void JRenderer::InitRenderer()
 	mCurrTexBlendSrc = BLEND_SRC_ALPHA;
 	mCurrTexBlendDest = BLEND_ONE_MINUS_SRC_ALPHA;
 
-//	mLineWidth = 1.0f;
 	mCurrentTex = -1;
 	mFOV = 75.0f;
 
 	mCurrentRenderMode = MODE_UNKNOWN;
+
+	// Load shaders
+	JResourceManager::LoadShader("sprite.vert", "sprite.frag", nullptr, "sprite");
+	// glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(this->Width),
+	// 	static_cast<GLfloat>(this->Height), 0.0f, -1.0f, 1.0f);
+	// JResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
+	// JResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
+	// Set render-specific controls
+	JShader spriteShader = JResourceManager::GetShader("sprite");
+	mSpriteRenderer = new JSpriteRenderer(spriteShader);
 }
 
 void JRenderer::DestroyRenderer()
@@ -473,7 +483,7 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 	glColor4ub(255, 255, 255, 255);
 }
 
-JTexture* JRenderer::CreateTexture(int width, int height, int mode )
+JTexture* JRenderer::CreateTexture(int width, int height )
 {
 	int size = width * height * sizeof(PIXEL_TYPE);			// RGBA
 
@@ -507,15 +517,6 @@ JTexture* JRenderer::CreateTexture(int width, int height, int mode )
 	}
 	else
 		return NULL;
-}
-
-
-void JRenderer::EnableVSync(bool flag)
-{
-//	if (flag)
-//		hge->System_SetState(HGE_FPS, 60);	// HGEFPS_VSYNC
-//	else
-//		hge->System_SetState(HGE_FPS, HGEFPS_UNLIMITED);
 }
 
 
@@ -554,12 +555,6 @@ void JRenderer::SetTexBlendDest(int dest)
 		mCurrTexBlendDest = dest;
 		glBlendFunc(mCurrTexBlendSrc, mCurrTexBlendDest);
 	}
-}
-
-
-void JRenderer::ResetPrivateVRAM()
-{
-
 }
 
 
