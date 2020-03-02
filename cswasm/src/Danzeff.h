@@ -10,6 +10,7 @@
 
 #include "JGE.h"
 #include "JRenderer.h"
+#include "JResourceManager.h"
 #include <string>
 
 #define DANZEFF_LEFT   1

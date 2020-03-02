@@ -24,7 +24,6 @@ bool JGEGetButtonClick(u32 button);
 #include "Vector2D.h"
 
 class JApp;
-class JResourceManager;
 class JFileSystem;
 class JMotionSystem;
 class JMusic;

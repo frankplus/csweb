@@ -20,15 +20,9 @@
 
 #include "Vector2D.h"
 
-#define USING_MATH_TABLE
+#define SINF(x)		sinf(x*DEG2RAD)
+#define COSF(x)		cosf(x*DEG2RAD)
 
-#ifdef USING_MATCH_TABLE
-	#define SINF(x)		mSinTable[x]
-	#define COSF(x)		mCosTable[x]
-#else
-	#define SINF(x)		sinf(x*DEG2RAD)
-	#define COSF(x)		cosf(x*DEG2RAD)
-#endif
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -80,24 +74,6 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void RenderQuad(JQuad* quad, VertexColor* points);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Taking a screen shot.
-	/// 
-	/// @note This function works on PSP only. A PNG file will be saved in 
-	/// the current folder of the game applicaton.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void ScreenShot(const char* filename);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Load a texture from file.
-	/// 
-	/// @param filename - Name of file.
-	/// @param mode - Choose to put texture in VRAM (PSP only).
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	JTexture* LoadTexture(const char* filename);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.
@@ -415,29 +391,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void FillRoundRect(float x, float y, float w, float h, float radius, PIXEL_TYPE color);
 
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Set custom image filter to be used at texture loading.
-	///
-	/// @param imageFilter - Custom image filter.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void SetImageFilter(JImageFilter* imageFilter);
-
 private:
-
-	struct TextureInfo
-	{
-		u8 *mBits;
-		int mWidth;
-		int mHeight;
-		int mTexWidth;
-		int mTexHeight;
-		bool mVRAM;
-	};
-
-	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0);
-	void LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0);
 
 	static JRenderer* mInstance;
 
@@ -455,16 +409,9 @@ private:
 	int mCurrTexBlendSrc;
 	int mCurrTexBlendDest;
 
-	JImageFilter* mImageFilter;
-
 	int mCurrentRenderMode;
 	
 	float mFOV;
-
-#ifdef USING_MATH_TABLE
-	float mSinTable[360];
-	float mCosTable[360];
-#endif
 };
 
 

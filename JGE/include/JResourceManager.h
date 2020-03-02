@@ -1,87 +1,50 @@
-//-------------------------------------------------------------------------------------
-//
-// JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
-//
-// Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
-// Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-// 
-//-------------------------------------------------------------------------------------
+#ifndef RESOURCEMANAGER_H
+#define RESOURCEMANAGER_H
 
-#ifndef _RESOURCE_MANAGER_H_
-#define _RESOURCE_MANAGER_H_
-
-#include <stdio.h>
-#include <vector>
 #include <map>
 #include <string>
 
-using namespace std;
+#include <GL/glew.h>
 
+#include "JShader.h"
+#include "JTypes.h"
 
-#define INVALID_ID				-1
-
-class JRenderer;
-class JMotionEmitter;
-class JSample;
-class JMusic;
-class JTexture;
-class JQuad;
 
 class JResourceManager
 {
 public:
-	JResourceManager();
-	~JResourceManager();
+	static JTexture* LoadTextureFromFile(const char* filename);
 
-	//void SetResourceRoot(const string& resourceRoot);
-	bool LoadResource(const string& resourceName);
-
-	void RemoveAll();
-	void RemoveGraphics();
-	void RemoveSound();
-	void RemoveFont();
+	// Loads (and generates) a shader program from file loading vertex, fragment (and geometry) shader's source code. If gShaderFile is not nullptr, it also loads a geometry shader
+	static JShader LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name);
 	
-	int CreateTexture(const string &textureName);
-	JTexture* GetTexture(const string &textureName);
-	JTexture* GetTexture(int id);
+	// Retrieves a stored sader
+	static JShader GetShader(std::string name);
 
-	int CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height);
-	JQuad* GetQuad(const string &quadName);
-	JQuad* GetQuad(int id);
-
-	int LoadFont(const string &fontName);
-	JFont* GetFont(const string &fontName);
-	JFont* GetFont(int id);
-
-	int LoadMusic(const string &musicName);
-	JMusic* GetMusic(const string &musicName);
-	JMusic* GetMusic(int id);
-
-	int LoadSample(const string &sampleName);
-	JSample* GetSample(const string &sampleName);
-	JSample* GetSample(int id);
+	// Properly de-allocates all loaded resources
+	static void Clear();
 
 private:
+	struct TextureInfo
+	{
+		u8 *mBits;
+		int mWidth;
+		int mHeight;
+		int mTexWidth;
+		int mTexHeight;
+		bool mVRAM;
+	};
 
-	//JRenderer *mRenderer;
-	
-	//string mResourceRoot;
+	// Resource storage
+	static std::map<std::string, JShader>    Shaders;
 
-	vector<JTexture *> mTextureList;
-	map<string, int> mTextureMap;
+	// Private constructor, that is we do not want any actual resource manager objects. Its members and functions should be publicly available (static).
+	JResourceManager() { }
 
-	vector<JQuad *> mQuadList;
-	map<string, int> mQuadMap;
+	static void LoadPNG(TextureInfo &textureInfo, const char *filename);
 
-	vector<JFont *> mFontList;
-	map<string, int> mFontMap;
-
-	vector<JMusic *> mMusicList;
-	map<string, int> mMusicMap;
-
-	vector<JSample *> mSampleList;
-	map<string, int> mSampleMap;
+	// Loads and generates a shader from file
+	static JShader LoadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile = nullptr);
 };
 
 #endif

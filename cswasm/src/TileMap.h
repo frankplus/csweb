@@ -2,6 +2,7 @@
 #define _TILEMAP_H_
 
 #include "JRenderer.h"
+#include "JResourceManager.h"
 #include "Node.h"
 #include "GunObject.h"
 #include "Collision.h"

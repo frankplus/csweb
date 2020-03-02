@@ -48,7 +48,7 @@ JLBFont::JLBFont(const char *fontname, int lineheight)
 	fileSys->CloseFile();
  	
     sprintf(filename, "%s.png", fontname);
-	mTexture = mRenderer->LoadTexture(filename);
+	mTexture = JResourceManager::LoadTextureFromFile(filename);
 
 	if (mTexture == NULL) return;
 	

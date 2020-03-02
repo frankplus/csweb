@@ -101,41 +101,11 @@ Person::Person(JQuad* quads[], JQuad* deadquad, std::vector<Bullet*>* bullets, s
 	mHasFlag = false;
 
 	mInvincibleTime = 0.0f;
-	/*JTexture* texture = mRenderer->LoadTexture("gfx/playerparts.png");
-	mPartQuads[BODY] = new JQuad(texture,0,0,32,16);
-	mPartQuads[BODY]->SetHotSpot(16,8);
-
-	mPartQuads[5] = new JQuad(texture,16,16,16,16);
-	mPartQuads[5]->SetHotSpot(8,8);
-
-	mPartQuads[RIGHTARM] = new JQuad(texture,0,16,16,8);
-	mPartQuads[RIGHTARM]->SetHotSpot(4.5f,3.5f);
-
-	mPartQuads[RIGHTHAND] = new JQuad(texture,0,24,16,8);
-	mPartQuads[RIGHTHAND]->SetHotSpot(3.5f,3.5f);
-
-	mPartQuads[LEFTARM] = new JQuad(texture,0,16,16,8);
-	mPartQuads[LEFTARM]->SetHotSpot(4.5f,3.5f);
-	mPartQuads[LEFTARM]->SetVFlip(true);
-
-	mPartQuads[LEFTHAND] = new JQuad(texture,0,24,16,8);
-	mPartQuads[LEFTHAND]->SetHotSpot(3.5f,3.5f);
-	mPartQuads[LEFTHAND]->SetVFlip(true);*/
 }
 
 //------------------------------------------------------------------------------------------------
 Person::~Person()
 {
-	//mPeople.clear();
-
-	/*if (mGuns[PRIMARY])
-		delete mGuns[PRIMARY];
-
-	if (mGuns[SECONDARY])
-		delete mGuns[SECONDARY];
-
-	if (mGuns[KNIFE])
-		delete mGuns[KNIFE];*/
 	for (int i=0; i<5; i++) {
 		if (mGuns[i]) {
 			delete mGuns[i];
@@ -147,15 +117,12 @@ Person::~Person()
 		}
 	}
 
-	//delete mKeyFrame;
-
 	mNodes.clear();
 	
 	if (mSoundId != -1) {
 		mSoundSystem->StopSample(mSoundId);
 		mSoundId = -1;
 	}
-	//JGERelease();
 }
 
 //------------------------------------------------------------------------------------------------
@@ -168,7 +135,6 @@ void Person::PreUpdate(float dt)
 	float dx = mOldX-mX;
 	float dy = mOldY-mY;
 
-	//UpdateAngle(mWalkAngle,mAngle, 0.01*dt);
 	float speed = sqrtf(dx*dx+dy*dy)/dt;
 	if (speed > 0.15f) speed = 0.15f;
 	if (mMoveState == NOTMOVING || speed < 0.03f) {
@@ -180,8 +146,7 @@ void Person::PreUpdate(float dt)
 			}
 		}
 	}
-	else {//if (mMoveState == MOVING) {
-		//float speed = sqrtf(dx*dx+dy*dy)/dt;
+	else {
 		if (mWalkState == WALK1 || mWalkState == WALK3) {
 			mWalkTime += dt*speed/0.1f;
 			if (mWalkTime >= WALKTIME) {
@@ -204,7 +169,6 @@ void Person::PreUpdate(float dt)
 	if (d > 2+rand()%2) {
 		mWalkX = mX;
 		mWalkY = mY;
-		//gSfxManager->PlaySample(gWalkSounds[rand()%2],mX,mY);
 	}
 	else if (speed > 0.06f) {
 		mStepTime += dt;
@@ -213,15 +177,6 @@ void Person::PreUpdate(float dt)
 			mStepTime = 0.0f;
 		}
 	}
-	//if (fabs(dx) >= EPSILON || fabs(dy) >= EPSILON) {
-		/*if (speed > 0.06f) {
-			mStepTime += dt;
-			if (mStepTime > 480.0f + rand()%50 - 25.0f) {
-				gSfxManager->PlaySample(gWalkSounds[rand()%2],mX,mY);
-				mStepTime = 0.0f;
-			}
-		}*/
-	//}
 }
 
 //------------------------------------------------------------------------------------------------

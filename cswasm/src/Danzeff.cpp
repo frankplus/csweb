@@ -26,7 +26,7 @@ Danzeff::Danzeff()
 	int a;
 	for (a = 0; a < guiStringsSize; a++)
 	{
-		keyBits[a] = mRenderer->LoadTexture(guiStrings[a]);
+		keyBits[a] = JResourceManager::LoadTextureFromFile(guiStrings[a]);
 		if (keyBits[a] == NULL)
 		{
 			//ERROR! out of memory.

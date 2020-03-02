@@ -31,6 +31,7 @@
 #include "GameApp.h"
 #include "JGE.h"
 #include "JRenderer.h"
+#include "JResourceManager.h"
 #include "JSoundSystem.h"
 
 #define FADING_SPEED		0.35f

@@ -13,7 +13,6 @@
 #include "../include/JRenderer.h"
 #include "../include/JSoundSystem.h"
 #include "../include/Vector2D.h"
-#include "../include/JResourceManager.h"
 #include "../include/JFileSystem.h"
 
 
