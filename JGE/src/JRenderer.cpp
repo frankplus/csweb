@@ -300,6 +300,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	uv[2] = Vector2D(quad->mTX1, quad->mTY0);
 	uv[3] = Vector2D(quad->mTX0, quad->mTY0);
 
+	glm::vec2 hotspot = glm::vec2(quad->mHotSpotX, quad->mHotSpotY);
 	glm::vec4 spriteRect = glm::vec4(quad->mX, quad->mY, quad->mWidth, quad->mHeight);
 	glm::vec2 position = glm::vec2(xo, yo);
 	glm::vec2 scale = glm::vec2(xScale, yScale);
@@ -307,7 +308,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, scale, angle);
+	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle);
 
 
 	// glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

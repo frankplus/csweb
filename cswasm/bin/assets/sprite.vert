@@ -23,11 +23,11 @@ varying vec2 TexCoords;
 void main()
 {
     TexCoords = vertex.zw;
-    gl_Position = model * vec4(vertex.xy, 0.0, 1.0); 
+    gl_Position = projection * model * vec4(vertex.xy, 0.0, 1.0); 
     
     // (texCoordX  * spriteWidth / textureWidth) + texSourceX
     TexCoords.x = (vertex.z * (spriteRect[2]/textureSize[0])) + spriteRect[0]/textureSize[0];
     // inverting v component
-    TexCoords.y = ((1.0 - vertex.w) * (spriteRect[3]/textureSize[1])) + spriteRect[1]/textureSize[1];
+    TexCoords.y = (vertex.w * (spriteRect[3]/textureSize[1])) + spriteRect[1]/textureSize[1];
     
 }

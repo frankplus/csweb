@@ -11,15 +11,16 @@ JSpriteRenderer::~JSpriteRenderer()
 	
 }
 
-void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::vec2 position, glm::vec2 scale, GLfloat rotate)
+void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::vec2 position, glm::vec2 hotspot, glm::vec2 scale, GLfloat rotate)
 {
 	this->shader.Use();
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
-	model = glm::translate(model, glm::vec3(0.5 * scale.x, 0.5 * scale.y, 0.0f));
+	model = glm::translate(model, glm::vec3(hotspot, 0.0f));
 	model = glm::rotate(model, rotate, glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::translate(model, glm::vec3(-0.5 * scale.x, -0.5 * scale.y, 0.0f));
+	model = glm::translate(model, glm::vec3(-hotspot, 0.0f));
 	model = glm::scale(model, glm::vec3(scale, 1.0f));
+	model = glm::scale(model, glm::vec3(spriteRect[2], spriteRect[3], 1.0f));
 
 	this->shader.SetMatrix4("model", model);
 	this->shader.SetVector4f("spriteRect", spriteRect);
@@ -40,12 +41,12 @@ void JSpriteRenderer::initRenderData()
 	GLuint VBO;
 	GLfloat vertices[] = {
 		// Pos // Tex
-		-1.0f, 1.0f, 0.0f, 1.0f,
-		1.0f, -1.0f, 1.0f, 0.0f,
-		-1.0f, -1.0f, 0.0f, 0.0f,
-		-1.0f, 1.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 0.0f, 1.0f,
+		1.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 1.0f,
 		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, -1.0f, 1.0f, 0.0f
+		1.0f, 0.0f, 1.0f, 0.0f
 	};
 	glGenVertexArrays(1, &this->quadVAO);
 	glGenBuffers(1, &VBO);
