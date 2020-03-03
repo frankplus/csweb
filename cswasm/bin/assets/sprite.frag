@@ -6,9 +6,12 @@ precision mediump float;
 
 varying vec2 TexCoords;
 uniform sampler2D image;
+uniform vec4 color;
 
 void main()
 {
     // read the fragment color from texture
-    gl_FragColor = texture2D(image, TexCoords);
+    vec4 texColor = texture2D(image, TexCoords);
+
+    gl_FragColor = texColor * color;
 }

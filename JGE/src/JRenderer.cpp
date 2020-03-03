@@ -207,11 +207,13 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	glm::vec4 spriteRect = glm::vec4(quad->mX, quad->mY, quad->mWidth, quad->mHeight);
 	glm::vec2 position = glm::vec2(xo, yo);
 	glm::vec2 scale = glm::vec2(xScale, yScale);
+	glm::vec4 color = glm::vec4(quad->mColor->r, quad->mColor->g, quad->mColor->b, quad->mColor->a) / 255.f;
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle, quad->mHFlipped, quad->mVFlipped);
+	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle, 
+								quad->mHFlipped, quad->mVFlipped, color);
 }
 
 
@@ -235,7 +237,8 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	JColor col;
 	col.color = color;
-	shader.SetVector4f("color", col.r, col.g, col.b, col.a);
+	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f;
+	shader.SetVector4f("color", my_color);
 
 	GLuint VBO, EBO;
 	glGenBuffers(1, &VBO);

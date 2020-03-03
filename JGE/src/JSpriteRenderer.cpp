@@ -13,7 +13,7 @@ JSpriteRenderer::~JSpriteRenderer()
 
 void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::vec2 position, 
 								glm::vec2 hotspot, glm::vec2 scale, GLfloat rotate, 
-								bool hFlipped, bool vFlipped)
+								bool hFlipped, bool vFlipped, glm::vec4 color)
 {
 	this->shader.Use();
 	glm::mat4 model = glm::mat4(1.0f);
@@ -28,6 +28,7 @@ void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::v
 	this->shader.SetVector2f("textureSize", texture->mWidth, texture->mHeight);
 	this->shader.SetInteger("hFlipped", hFlipped);
 	this->shader.SetInteger("vFlipped", vFlipped);
+	this->shader.SetVector4f("color", color);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture->mTexId);
