@@ -53,12 +53,6 @@ void GameStateLoading::Render()
 	mRenderer->RenderQuad(gBgQuad,0,0);
 	mRenderer->RenderQuad(gLogoQuad,0,0);
 	mRenderer->FillRect(SCREEN_WIDTH_F*p,0,SCREEN_WIDTH_F*(1-p),SCREEN_HEIGHT_F,ARGB(200,0,0,0));
-
-	/*mRenderer->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(255-(int)(p*255),0,0,0));
-	mRenderer->FillRect(SCREEN_WIDTH_2-200,SCREEN_HEIGHT_2-4,400,8,ARGB(255,100,100,100));
-	mRenderer->FillRect(SCREEN_WIDTH_2-200,SCREEN_HEIGHT_2-4,400*p,8,ARGB(255,255,255,255));*/
-
-
 }
 
 int GameStateLoading::Load(int stage) {

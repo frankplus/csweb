@@ -55,16 +55,6 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void RenderQuad(JQuad* quad, float xo, float yo, float angle=0.0f, float xScale=1.0f, float yScale=1.0f);
 
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Render a textured quad with new texture mapping information.
-	///
-	/// @param quad - Quad with texturing information.
-	/// @param points - Array of vertices with new texture mapping information.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void RenderQuad(JQuad* quad, VertexColor* points);
-
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.
 	/// 
@@ -172,8 +162,8 @@ public:
 	/// @param color - Array of colors.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	void FillRect(float x, float y, float width, float height, JColor* color);
-	void FillRect(float x, float y, float width, float height, PIXEL_TYPE* color);
+	// void FillRect(float x, float y, float width, float height, JColor* color);
+	// void FillRect(float x, float y, float width, float height, PIXEL_TYPE* color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw a rectangle.

@@ -132,7 +132,10 @@ void JRenderer::InitRenderer()
 		static_cast<GLfloat>(SCREEN_HEIGHT_F), 0.0f, -1.0f, 1.0f);
 	JResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
 	JResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
-	// Set render-specific controls
+
+	JResourceManager::LoadShader("simple.vert", "simple.frag", nullptr, "simple");
+	JResourceManager::GetShader("simple").Use().SetMatrix4("projection", projection);
+
 	JShader spriteShader = JResourceManager::GetShader("sprite");
 	mSpriteRenderer = new JSpriteRenderer(spriteShader);
 }
@@ -200,23 +203,6 @@ void Swap(float *a, float *b)
 
 void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float xScale, float yScale)
 {
-	// float width = quad->mWidth;
-	// float height = quad->mHeight;
-	// float x = -quad->mHotSpotX;
-	// float y = quad->mHotSpotY;
-
-	// Vector2D pt[4];
-	// pt[3] = Vector2D(x, y);
-	// pt[2] = Vector2D(x+width, y);
-	// pt[1] = Vector2D(x+width, y-height);
-	// pt[0] = Vector2D(x, y-height);
-
-	// Vector2D uv[4];
-	// uv[0] = Vector2D(quad->mTX0, quad->mTY1);
-	// uv[1] = Vector2D(quad->mTX1, quad->mTY1);
-	// uv[2] = Vector2D(quad->mTX1, quad->mTY0);
-	// uv[3] = Vector2D(quad->mTX0, quad->mTY0);
-
 	glm::vec2 hotspot = glm::vec2(quad->mHotSpotX, quad->mHotSpotY);
 	glm::vec4 spriteRect = glm::vec4(quad->mX, quad->mY, quad->mWidth, quad->mHeight);
 	glm::vec2 position = glm::vec2(xo, yo);
@@ -226,140 +212,45 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle, quad->mHFlipped, quad->mVFlipped);
-
-/*
-	if (quad->mHFlipped)
-	{
-		Swap(&uv[0].x, &uv[1].x);
-		Swap(&uv[2].x, &uv[3].x);
-	}
-	
-	if (quad->mVFlipped)
-	{
-		Swap(&uv[0].y, &uv[2].y);
-		Swap(&uv[1].y, &uv[3].y);
-	}
-
-	
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	BindTexture(quad->mTex);
-
-
-	////glRasterPos2f(x, y);
-	
-
-	yo = SCREEN_HEIGHT_F - yo;
-
-	glPushMatrix();
-	glTranslatef(xo, yo, 0.0f);
-	glRotatef(-angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
-	glScalef(xScale, yScale, 1.0f);
-
-	glBegin(GL_QUADS);
-		// bottom left corner
-		glColor4ub(quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a);
-		glTexCoord2f(uv[0].x, uv[0].y); glVertex2f(pt[0].x, pt[0].y);		
-
-		// bottom right corner
-		glColor4ub(quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a);
-		glTexCoord2f(uv[1].x, uv[1].y); glVertex2f(pt[1].x, pt[1].y);	
-		
-		// top right corner
-		glColor4ub(quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a);
-		glTexCoord2f(uv[2].x, uv[2].y); glVertex2f(pt[2].x, pt[2].y);	
-
-		// top left corner
-		glColor4ub(quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a);
-		glTexCoord2f(uv[3].x, uv[3].y); glVertex2f(pt[3].x, pt[3].y);		
-	glEnd();
-	
-	glPopMatrix();
-
-	//glDisable(GL_BLEND);
-	
-	// default color
-	glColor4ub(255, 255, 255, 255);
-*/
-}
-
-
-void JRenderer::RenderQuad(JQuad* quad, VertexColor* pt)
-{
-
-	// for (int i=0;i<4;i++)
-	// {
-	// 	pt[i].y = SCREEN_HEIGHT_F - pt[i].y;
-	// 	quad->mColor[i].color = pt[i].color;
-	// }
-
-	// Vector2D uv[4];
-	// uv[0] = Vector2D(quad->mTX0, quad->mTY1);
-	// uv[1] = Vector2D(quad->mTX1, quad->mTY1);
-	// uv[2] = Vector2D(quad->mTX1, quad->mTY0);
-	// uv[3] = Vector2D(quad->mTX0, quad->mTY0);
-
-	// BindTexture(quad->mTex);
-
-	// glRasterPos2f(pt[0].x, pt[0].y);
-	
-	// //float w = quad->mWidth;
-	// //float h = quad->mHeight;
-
-	// glBegin(GL_QUADS);
-	// 	// bottom left corner
-	// 	glColor4ub(quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a);
-	// 	glTexCoord2f(uv[0].x, uv[0].y); glVertex2f(pt[0].x, pt[0].y);		
-
-	// 	// bottom right corner
-	// 	glColor4ub(quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a);
-	// 	glTexCoord2f(uv[1].x, uv[1].y); glVertex2f(pt[1].x, pt[1].y);	
-		
-	// 	// top right corner
-	// 	glColor4ub(quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a);
-	// 	glTexCoord2f(uv[2].x, uv[2].y); glVertex2f(pt[2].x, pt[2].y);	
-
-	// 	// top left corner
-	// 	glColor4ub(quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a);
-	// 	glTexCoord2f(uv[3].x, uv[3].y); glVertex2f(pt[3].x, pt[3].y);		
-	// glEnd();
-	
-	// //glDisable(GL_BLEND);
-	
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
 }
 
 
 void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE color)
 {
-	// y = SCREEN_HEIGHT_F - y - height;
-	
-	// JColor col;
-	// col.color = color;
+	JShader shader = JResourceManager::GetShader("simple").Use();
 
-	// glDisable(GL_TEXTURE_2D);
-	// glColor4ub(col.r, col.g, col.b, col.a);
-	// glBegin(GL_QUADS);
-	// 	// top left corner
-	// 	glVertex2f(x, y+height);		
+	GLfloat vertices[] = {
+		x+width,  y,  // Top Right
+		x+width, y+height,  // Bottom Right
+		x, y+height,  // Bottom Left
+		x,  y   // Top Left 
+	};
 
-	// 	// bottom left corner
-	// 	glVertex2f(x, y);		
+	GLuint indices[] = {  
+		0, 1, 3,   // First Triangle
+		1, 2, 3    // Second Triangle
+	};
 
-	// 	// bottom right corner
-	// 	glVertex2f(x+width, y);	
-		
-	// 	// top right corner
-	// 	glVertex2f(x+width, y+height);	
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	JColor col;
+	col.color = color;
+	shader.SetVector4f("color", col.r, col.g, col.b, col.a);
 
-	// glEnd();
-	
-	// glEnable(GL_TEXTURE_2D);
+	GLuint VBO, EBO;
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
 
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
+	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(vertexLocation);
+
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 
@@ -393,50 +284,6 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 	// // default color
 	// glColor4ub(255, 255, 255, 255);
 }
-
-
-void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE* colors)
-{
-	JColor col[4];
-	for (int i=0;i<4;i++)
-		col[i].color = colors[i];
-
-	FillRect(x, y, width, height, col);
-}
-
-
-void JRenderer::FillRect(float x, float y, float width, float height, JColor* colors)
-{
-	// y = SCREEN_HEIGHT_F - y - height;
-	
-	// glDisable(GL_TEXTURE_2D);
-	// glBegin(GL_QUADS);
-	// 	// top left corner
-	// 	glColor4ub(colors[0].r, colors[0].g, colors[0].b, colors[0].a);
-	// 	glVertex2f(x, y+height);		
-
-	// 	// bottom left corner
-	// 	glColor4ub(colors[2].r, colors[2].g, colors[2].b, colors[2].a);
-	// 	glVertex2f(x, y);		
-
-	// 	// bottom right corner
-	// 	glColor4ub(colors[3].r, colors[3].g, colors[3].b, colors[3].a);
-	// 	glVertex2f(x+width, y);	
-		
-	// 	// top right corner
-	// 	glColor4ub(colors[1].r, colors[1].g, colors[1].b, colors[1].a);
-	// 	glVertex2f(x+width, y+height);	
-
-	// glEnd();
-	
-	// glEnable(GL_TEXTURE_2D);
-
-	// //glDisable(GL_BLEND);
-	
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
-}
-
 
 void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE color)
 {
