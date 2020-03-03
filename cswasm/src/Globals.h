@@ -122,5 +122,4 @@ void EncodeText(char* dest, char* text);
 
 void DrawShadowedString(const char *string, float x, float y, int align = JGETEXT_LEFT);
 
-void UpdateIcon(JTexture* texture, unsigned char* data);
 #endif

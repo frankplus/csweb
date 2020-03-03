@@ -88,7 +88,6 @@ JTexture* JResourceManager::LoadTextureFromFile(const char* filename)
 
 		if (texid != 0)
 		{
-
 			// OpenGL texture has (0,0) at lower-left
 			// Pay attention when doing texture mapping!!!
 
@@ -101,10 +100,7 @@ JTexture* JResourceManager::LoadTextureFromFile(const char* filename)
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
 
 			ret = true;
-
 		}
-
-
 	}
 
 	delete [] textureInfo.mBits;

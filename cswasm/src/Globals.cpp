@@ -293,19 +293,3 @@ void DrawShadowedString(const char *string, float x, float y, int align) {
 	gFont->SetColor(color);
 	gFont->DrawString(string,x,y,align);
 }
-
-void UpdateIcon(JTexture* texture, unsigned char* data) {
-	DWORD bits[100];
-	int i=0;
-	for (int y=0; y<10; y++) {
-		for (int x=0; x<10; x++) {
-			int a = 255;
-			if (data[i] == 255 && data[i+2] == 255 && data[i+1] == 0) {
-				a = 0;
-			}
-			bits[(9-y)*10+x] = ARGB(a,data[i+2],data[i+1],data[i]);
-			i += 3;
-		}
-	}
-	texture->UpdateBits(0,0,10,10,bits);
-}

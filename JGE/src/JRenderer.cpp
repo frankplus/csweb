@@ -70,14 +70,6 @@ JTexture::~JTexture()
 		glDeleteTextures(1, &mTexId);
 }
 
-
-void JTexture::UpdateBits(int x, int y, int width, int height, PIXEL_TYPE* bits)
-{
-	JRenderer::GetInstance()->BindTexture(this);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, width, height, GL_RGBA, GL_UNSIGNED_BYTE, bits);
-
-}
-
 //////////////////////////////////////////////////////////////////////////
 
 JRenderer* JRenderer::mInstance = NULL;
@@ -157,32 +149,6 @@ void JRenderer::EndScene()
 	glFlush ();
 }
 
-void JRenderer::BindTexture(JTexture *tex)
-{
-
-	if (mCurrentTex != tex->mTexId)
-	{
-		mCurrentTex = tex->mTexId;
-		glBindTexture(GL_TEXTURE_2D, tex->mTexId);
-
-		//if (mCurrentTextureFilter != tex->mFilter)
-		{
-			//mCurrentTextureFilter = tex->mFilter;
-			if (mCurrentTextureFilter == TEX_FILTER_LINEAR)
-			{
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-			}
-			else if (mCurrentTextureFilter == TEX_FILTER_NEAREST)
-			{
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-			}
-		}
-	}
-}
-
-
 void JRenderer::EnableTextureFilter(bool flag)
 {
 	if (flag)
@@ -213,7 +179,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle, 
-								quad->mHFlipped, quad->mVFlipped, color);
+								quad->mHFlipped, quad->mVFlipped, color, mCurrentTextureFilter);
 }
 
 

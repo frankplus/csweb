@@ -11,9 +11,25 @@ JSpriteRenderer::~JSpriteRenderer()
 	
 }
 
+void JSpriteRenderer::BindTexture(JTexture *tex, int textureFilter)
+{
+	glBindTexture(GL_TEXTURE_2D, tex->mTexId);
+
+	if (textureFilter == TEX_FILTER_LINEAR)
+	{
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	}
+	else if (textureFilter == TEX_FILTER_NEAREST)
+	{
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+	}
+}
+
 void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::vec2 position, 
 								glm::vec2 hotspot, glm::vec2 scale, GLfloat rotate, 
-								bool hFlipped, bool vFlipped, glm::vec4 color)
+								bool hFlipped, bool vFlipped, glm::vec4 color, int textureFilter)
 {
 	this->shader.Use();
 	glm::mat4 model = glm::mat4(1.0f);
@@ -31,7 +47,7 @@ void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::v
 	this->shader.SetVector4f("color", color);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture->mTexId);
+	BindTexture(texture, textureFilter);
 	glBindVertexArray(this->quadVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glBindVertexArray(0);
