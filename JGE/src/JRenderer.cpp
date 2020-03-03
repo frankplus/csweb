@@ -117,24 +117,6 @@ JRenderer::~JRenderer()
 
 }
 
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
-
-const char *vertexShaderSource = 
-    "attribute vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
-const char *fragmentShaderSource = 
-    "void main()\n"
-    "{\n"
-    "   gl_FragColor = vec4(1.0, 0.5, 0.2, 1.0);\n"
-    "}\n\0";
-
-int shaderProgram;
-unsigned int VBO, VAO;
-
 void JRenderer::InitRenderer()
 {
 	mCurrentTextureFilter = TEX_FILTER_NONE;
@@ -153,71 +135,6 @@ void JRenderer::InitRenderer()
 	// Set render-specific controls
 	JShader spriteShader = JResourceManager::GetShader("sprite");
 	mSpriteRenderer = new JSpriteRenderer(spriteShader);
-
-
-	// TEST STUFF
-	// int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    // glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    // glCompileShader(vertexShader);
-    // // check for shader compile errors
-    // int success;
-    // char infoLog[512];
-    // glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    // if (!success)
-    // {
-    //     glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-    //     std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    // }
-    // // fragment shader
-    // int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    // glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    // glCompileShader(fragmentShader);
-    // // check for shader compile errors
-    // glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    // if (!success)
-    // {
-    //     glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-    //     std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-    // }
-    // // link shaders
-    // shaderProgram = glCreateProgram();
-    // glAttachShader(shaderProgram, vertexShader);
-    // glAttachShader(shaderProgram, fragmentShader);
-    // glLinkProgram(shaderProgram);
-    // // check for linking errors
-    // glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    // if (!success) {
-    //     glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-    //     std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-    // }
-    // glDeleteShader(vertexShader);
-    // glDeleteShader(fragmentShader);
-
-    // // set up vertex data (and buffer(s)) and configure vertex attributes
-    // // ------------------------------------------------------------------
-    // float vertices[] = {
-    //     -0.5f, -0.5f, 0.0f, // left  
-    //      0.5f, -0.5f, 0.0f, // right 
-    //      0.0f,  0.5f, 0.0f  // top   
-    // }; 
-
-    // glGenVertexArrays(1, &VAO);
-    // glGenBuffers(1, &VBO);
-    // // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-    // glBindVertexArray(VAO);
-
-    // glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    // glEnableVertexAttribArray(0);
-
-    // // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
-    // glBindBuffer(GL_ARRAY_BUFFER, 0); 
-
-    // // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-    // // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-    // glBindVertexArray(0); 
 }
 
 void JRenderer::DestroyRenderer()
@@ -283,22 +200,22 @@ void Swap(float *a, float *b)
 
 void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float xScale, float yScale)
 {
-	float width = quad->mWidth;
-	float height = quad->mHeight;
-	float x = -quad->mHotSpotX;
-	float y = quad->mHotSpotY;
+	// float width = quad->mWidth;
+	// float height = quad->mHeight;
+	// float x = -quad->mHotSpotX;
+	// float y = quad->mHotSpotY;
 
-	Vector2D pt[4];
-	pt[3] = Vector2D(x, y);
-	pt[2] = Vector2D(x+width, y);
-	pt[1] = Vector2D(x+width, y-height);
-	pt[0] = Vector2D(x, y-height);
+	// Vector2D pt[4];
+	// pt[3] = Vector2D(x, y);
+	// pt[2] = Vector2D(x+width, y);
+	// pt[1] = Vector2D(x+width, y-height);
+	// pt[0] = Vector2D(x, y-height);
 
-	Vector2D uv[4];
-	uv[0] = Vector2D(quad->mTX0, quad->mTY1);
-	uv[1] = Vector2D(quad->mTX1, quad->mTY1);
-	uv[2] = Vector2D(quad->mTX1, quad->mTY0);
-	uv[3] = Vector2D(quad->mTX0, quad->mTY0);
+	// Vector2D uv[4];
+	// uv[0] = Vector2D(quad->mTX0, quad->mTY1);
+	// uv[1] = Vector2D(quad->mTX1, quad->mTY1);
+	// uv[2] = Vector2D(quad->mTX1, quad->mTY0);
+	// uv[3] = Vector2D(quad->mTX0, quad->mTY0);
 
 	glm::vec2 hotspot = glm::vec2(quad->mHotSpotX, quad->mHotSpotY);
 	glm::vec4 spriteRect = glm::vec4(quad->mX, quad->mY, quad->mWidth, quad->mHeight);
@@ -308,16 +225,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle);
-
-
-	// glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	// glClear(GL_COLOR_BUFFER_BIT);
-
-	// // draw our first triangle
-	// glUseProgram(shaderProgram);
-	// glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-	// glDrawArrays(GL_TRIANGLES, 0, 3);
+	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle, quad->mHFlipped, quad->mVFlipped);
 
 /*
 	if (quad->mHFlipped)

@@ -11,20 +11,23 @@ JSpriteRenderer::~JSpriteRenderer()
 	
 }
 
-void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::vec2 position, glm::vec2 hotspot, glm::vec2 scale, GLfloat rotate)
+void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::vec2 position, 
+								glm::vec2 hotspot, glm::vec2 scale, GLfloat rotate, 
+								bool hFlipped, bool vFlipped)
 {
 	this->shader.Use();
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
-	model = glm::translate(model, glm::vec3(hotspot, 0.0f));
 	model = glm::rotate(model, rotate, glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::translate(model, glm::vec3(-hotspot, 0.0f));
 	model = glm::scale(model, glm::vec3(scale, 1.0f));
+	model = glm::translate(model, glm::vec3(-hotspot, 0.0f));
 	model = glm::scale(model, glm::vec3(spriteRect[2], spriteRect[3], 1.0f));
 
 	this->shader.SetMatrix4("model", model);
 	this->shader.SetVector4f("spriteRect", spriteRect);
 	this->shader.SetVector2f("textureSize", texture->mWidth, texture->mHeight);
+	this->shader.SetInteger("hFlipped", hFlipped);
+	this->shader.SetInteger("vFlipped", vFlipped);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture->mTexId);
