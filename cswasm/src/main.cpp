@@ -6,7 +6,7 @@
 #include <emscripten/html5.h>
 #include <SDL.h>
 #define GL_GLEXT_PROTOTYPES 1
-#include <SDL_opengles2.h>
+#include <GL/glew.h>
 
 #include <JTypes.h>
 #include <JGE.h>

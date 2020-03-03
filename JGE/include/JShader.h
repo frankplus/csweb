@@ -6,7 +6,7 @@
 #include <sstream>
 #include <iostream>
 
-#include <GL/glew.h> // Include glew to get all the required OpenGL headers
+#include <GL/glew.h>
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
@@ -19,7 +19,7 @@ public:
 	// Sets the current JShader as active
 	JShader &Use();
 	// Compiles the shader from given source code
-	void Compile(const GLchar *vertexSource, const GLchar *fragmentSource, const GLchar *geometrySource = nullptr);
+	void Compile(const GLchar *vertexSource, const GLchar *fragmentSource);
 	// Utility functions
 	void SetFloat(const GLchar *name, GLfloat value, GLboolean useShader = false);
 	void SetInteger(const GLchar *name, GLint value, GLboolean useShader = false);

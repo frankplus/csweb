@@ -100,8 +100,8 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 void JSoundSystem::PlaySample(JSample *sample)
 {
 	int chan = Mix_PlayChannel( -1, sample->mSample, 0 );
-	if(chan == -1)
-		printf("failed to play sound sample \n");
+	// if(chan == -1)
+	// 	printf("failed to play sound sample \n");
 	
 }
 

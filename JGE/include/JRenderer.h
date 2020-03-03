@@ -151,36 +151,6 @@ public:
 	void Enable2D();
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Restrict all rendering to a rectangular area.
-	///
-	/// @note This is just the glScissor() function of OpenGL.
-	/// 
-	/// @param x - Left of the clipping area.
-	/// @param y - Top of the clipping area.
-	/// @param width - Width of the clipping area.
-	/// @param height - Height of the clipping area.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void SetClip(int x, int y, int width, int height);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Reset Modelview Identity.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void LoadIdentity();
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Render triangles.
-	/// 
-	/// @param texture - Texture for the triangles.
-	/// @param tris - List of triangles.
-	/// @param start - starting index (Note: Index of triangles, NOT vertices).
-	/// @param count - Number of triangles (Note: NOT number of vertices).
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void RenderTriangles(JTexture* texture, Vertex3D *tris, int start, int count);
-
-	//////////////////////////////////////////////////////////////////////////
 	/// Fill a rectangular area with a specified color.
 	///
 	/// @param x - Starting x position.
@@ -243,27 +213,6 @@ public:
 	void DrawLine(float x1, float y1, float x2, float y2, float lineWidth, PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Plot a pixel on screen.
-	/// 
-	/// @param x - X position of the pixel.
-	/// @param y - Y position of the pixel.
-	/// @param color - Draw colour.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void Plot(float x, float y, PIXEL_TYPE color);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Plot an array of pixels.
-	/// 
-	/// @param x - Array of X positions.
-	/// @param y - Array of Y positions.
-	/// @param count - Number of pixels to plot.
-	/// @param color - Color of pixel.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void PlotArray(float *x, float *y, int count, PIXEL_TYPE color);
-
-	//////////////////////////////////////////////////////////////////////////
 	/// Draw polygon with filled colour.
 	/// 
 	/// @param x - Array of X positions.
@@ -273,30 +222,6 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void FillPolygon(float* x, float* y, int count, PIXEL_TYPE color);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Draw polygon.
-	/// 
-	/// @param x - Array of X positions.
-	/// @param y - Array of Y positions.
-	/// @param count - Side count of the polygon.
-	/// @param color - Draw colour.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color);
-	
-	//////////////////////////////////////////////////////////////////////////
-	/// Draw symmetric polygon with certain number of sides.
-	/// 
-	/// @param x - X positions of center of the polygon.
-	/// @param y - Y positions of center of the polygon.
-	/// @param size - Size of polygon.
-	/// @param count - Side count of the polygon.
-	/// @param startingAngle - Rotation angle of the polygon.
-	/// @param color - Draw colour.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void DrawPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw solid symmetric polygon with certain number of sides.
@@ -333,32 +258,6 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void DrawCircle(float x, float y, float radius, PIXEL_TYPE color);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Draw a rectangle with round corners.
-	///
-	/// @param x - Starting x position.
-	/// @param y - Starting y position.
-	/// @param w - Width of the rectangle.
-	/// @param h - Height of the rectangle.
-	/// @param radius - Radius of the round corners.
-	/// @param color - Drawing color.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void DrawRoundRect(float x, float y, float w, float h, float radius, PIXEL_TYPE color);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Draw filled rectangle with round corners.
-	///
-	/// @param x - Starting x position.
-	/// @param y - Starting y position.
-	/// @param w - Width of the rectangle.
-	/// @param h - Height of the rectangle.
-	/// @param radius - Radius of the round corners.
-	/// @param color - Filling color.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void FillRoundRect(float x, float y, float w, float h, float radius, PIXEL_TYPE color);
-
 private:
 
 	static JRenderer* mInstance;
@@ -378,10 +277,6 @@ private:
 
 	int mCurrTexBlendSrc;
 	int mCurrTexBlendDest;
-
-	int mCurrentRenderMode;
-	
-	float mFOV;
 };
 
 

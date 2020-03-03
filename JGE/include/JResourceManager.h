@@ -15,7 +15,7 @@ class JResourceManager
 public:
 	static JTexture* LoadTextureFromFile(const char* filename);
 
-	// Loads (and generates) a shader program from file loading vertex, fragment (and geometry) shader's source code. If gShaderFile is not nullptr, it also loads a geometry shader
+	// Loads (and generates) a shader program from file loading vertex, fragment shader's source code.
 	static JShader LoadShader(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile, std::string name);
 	
 	// Retrieves a stored sader

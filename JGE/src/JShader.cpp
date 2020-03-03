@@ -6,7 +6,7 @@ JShader &JShader::Use()
 	return *this;
 }
 
-void JShader::Compile(const GLchar* vertexSource, const GLchar* fragmentSource, const GLchar* geometrySource)
+void JShader::Compile(const GLchar* vertexSource, const GLchar* fragmentSource)
 {
 	GLuint sVertex, sFragment, gShader;
 	// Vertex Shader
@@ -20,26 +20,15 @@ void JShader::Compile(const GLchar* vertexSource, const GLchar* fragmentSource, 
 	glCompileShader(sFragment);
 	checkCompileErrors(sFragment, "FRAGMENT");
 	// If geometry shader source code is given, also compile geometry shader
-	if (geometrySource != nullptr)
-	{
-		gShader = glCreateShader(GL_GEOMETRY_SHADER);
-		glShaderSource(gShader, 1, &geometrySource, NULL);
-		glCompileShader(gShader);
-		checkCompileErrors(gShader, "GEOMETRY");
-	}
 	// Shader Program
 	this->Program = glCreateProgram();
 	glAttachShader(this->Program, sVertex);
 	glAttachShader(this->Program, sFragment);
-	if (geometrySource != nullptr)
-		glAttachShader(this->Program, gShader);
 	glLinkProgram(this->Program);
 	checkCompileErrors(this->Program, "PROGRAM");
 	// Delete the shaders as they're linked into our program now and no longer necessery
 	glDeleteShader(sVertex);
 	glDeleteShader(sFragment);
-	if (geometrySource != nullptr)
-		glDeleteShader(gShader);
 }
 
 void JShader::SetFloat(const GLchar *name, GLfloat value, GLboolean useShader)

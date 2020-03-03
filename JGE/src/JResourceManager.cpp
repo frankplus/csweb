@@ -31,7 +31,6 @@ JShader JResourceManager::LoadShaderFromFile(const GLchar *vShaderFile, const GL
 	// 1. Retrieve the vertex/fragment source code from filePath
 	std::string vertexCode;
 	std::string fragmentCode;
-	std::string geometryCode;
 	try
 	{
 		// Open files
@@ -47,15 +46,6 @@ JShader JResourceManager::LoadShaderFromFile(const GLchar *vShaderFile, const GL
 		// Convert stream into string
 		vertexCode = vShaderStream.str();
 		fragmentCode = fShaderStream.str();
-		// If geometry shader path is present, also load a geometry shader
-		if (gShaderFile != nullptr)
-		{
-			std::ifstream geometryShaderFile(gShaderFile);
-			std::stringstream gShaderStream;
-			gShaderStream << geometryShaderFile.rdbuf();
-			geometryShaderFile.close();
-			geometryCode = gShaderStream.str();
-		}
 	}
 	catch (std::exception e)
 	{
@@ -63,10 +53,9 @@ JShader JResourceManager::LoadShaderFromFile(const GLchar *vShaderFile, const GL
 	}
 	const GLchar *vShaderCode = vertexCode.c_str();
 	const GLchar *fShaderCode = fragmentCode.c_str();
-	const GLchar *gShaderCode = geometryCode.c_str();
 	// 2. Now create shader object from source code
 	JShader shader;
-	shader.Compile(vShaderCode, fShaderCode, gShaderFile != nullptr ? gShaderCode : nullptr);
+	shader.Compile(vShaderCode, fShaderCode);
 	return shader;
 }
 

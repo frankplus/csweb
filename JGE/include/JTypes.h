@@ -39,8 +39,7 @@
 #define SCREEN_HEIGHT_2			136.0f
 
 
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glew.h>
 
 typedef signed char s8;
 typedef signed short s16;
@@ -261,18 +260,16 @@ public:
 	float mTY1;
 	JColor mColor[4];		// up to 4 vertices
 
-	float mX;
-	float mY;
-	float mWidth;
-	float mHeight;
-	float mHotSpotX;
-	float mHotSpotY;
+	float mX; // X position of the quad in texture.
+	float mY; // Y position of the quad in texture.
+	float mWidth; // Width of the quad.
+	float mHeight; // height of the quad.
+	float mHotSpotX; // X pos of anchor point of the quad.
+	float mHotSpotY; // Y pos of anchor point of the quad.
 
-	bool mHFlipped;
-	bool mVFlipped;
+	bool mHFlipped; // horizontally flipped
+	bool mVFlipped; // vertically flipped
 };
-
-//#endif
 
 
 //////////////////////////////////////////////////////////////////////////
