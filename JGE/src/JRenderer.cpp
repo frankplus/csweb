@@ -27,18 +27,6 @@ void JQuad::SetTextureRect(float x, float y, float w, float h)
 	mY = y;
 	mWidth = w;
 	mHeight = h;
-
-	mTX0 = x/mTex->mTexWidth;
-	mTY0 = y/mTex->mTexHeight;
-	mTX1 = (x+w)/mTex->mTexWidth;
-	mTY1 = (y+h)/mTex->mTexHeight;
-
-}
-
-
-void JQuad::GetTextureRect(float *x, float *y, float *w, float *h)  
-{ 
-	*x=mX; *y=mY; *w=mWidth; *h=mHeight; 
 }
 
 void JQuad::SetColor(PIXEL_TYPE color)

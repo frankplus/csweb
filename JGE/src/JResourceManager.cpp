@@ -65,10 +65,14 @@ JTexture* JResourceManager::LoadTextureFromFile(const char* filename)
 	
 	textureInfo.mBits = NULL;
 	
-	LoadPNG(textureInfo, filename);
+	if( !LoadPNG(textureInfo, filename) )
+		printf("Failed to load png %s \n", filename);
 
 	if (textureInfo.mBits == NULL)
+	{
+		printf("Failed to load texture %s \n", filename);
 		return NULL;
+	}
 
 	bool ret = false;
 
@@ -104,13 +108,13 @@ JTexture* JResourceManager::LoadTextureFromFile(const char* filename)
 	}
 
 	delete [] textureInfo.mBits;
-	//delete textureInfo;
 
 	if (!ret)
 	{
 		if (tex)
 			delete tex;
 		tex = NULL;
+		printf("Failed to load texture %s \n", filename);
 	}
 
 	return tex;
@@ -145,11 +149,9 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
 		png_error(png_ptr, "Read Error!");
 }
 
-void JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
+bool JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
 {
 	textureInfo.mBits = NULL;
-
-	bool ret = false;
 
 	DWORD* p32;
 
@@ -161,7 +163,7 @@ void JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
     DWORD* line;
 
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
-	if (!fileSystem->OpenFile(filename)) return;
+	if (!fileSystem->OpenFile(filename)) return false;
 
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (png_ptr == NULL) 
@@ -169,7 +171,7 @@ void JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
         //fclose(fp);
 		fileSystem->CloseFile();
 
-        return;
+        return false;
     }
 
     png_set_error_fn(png_ptr, (png_voidp) NULL, (png_error_ptr) NULL, PNGCustomWarningFn);
@@ -181,7 +183,7 @@ void JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
 
         png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
 
-        return;
+        return false;
     }
     png_init_io(png_ptr, NULL);
 	png_set_read_fn(png_ptr, (png_voidp)fileSystem, PNGCustomReadDataFn);
@@ -203,7 +205,7 @@ void JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
 		fileSystem->CloseFile();
 		
         png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
-        return;
+        return false;
     }
    
 
@@ -257,4 +259,6 @@ void JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
 	textureInfo.mHeight = height;
 	textureInfo.mTexWidth = tw;
 	textureInfo.mTexHeight = th;
+
+	return true;
 }

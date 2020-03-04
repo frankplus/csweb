@@ -41,7 +41,7 @@ private:
 	// Private constructor, that is we do not want any actual resource manager objects. Its members and functions should be publicly available (static).
 	JResourceManager() { }
 
-	static void LoadPNG(TextureInfo &textureInfo, const char *filename);
+	static bool LoadPNG(TextureInfo &textureInfo, const char *filename);
 
 	// Loads and generates a shader from file
 	static JShader LoadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile, const GLchar *gShaderFile = nullptr);

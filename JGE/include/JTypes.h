@@ -224,17 +224,6 @@ public:
 	void SetTextureRect(float x, float y, float w, float h);
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Get UV positions of the quad.
-	/// 
-	/// @return x - X position of the quad in texture.
-	/// @return y - Y position of the quad in texture.
-	/// @return w - Width of the quad.
-	/// @return h - Height of the quad.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void GetTextureRect(float *x, float *y, float *w, float *h);
-
-	//////////////////////////////////////////////////////////////////////////
 	/// Set horizontal flipping.
 	/// 
 	/// @param hflip - flipping flag;
@@ -252,10 +241,6 @@ public:
 
 	JTexture* mTex;
 	
-	float mTX0;
-	float mTY0;
-	float mTX1;
-	float mTY1;
 	JColor mColor;		// up to 4 vertices
 
 	float mX; // X position of the quad in texture.
