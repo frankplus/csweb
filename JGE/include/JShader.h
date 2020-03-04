@@ -6,7 +6,7 @@
 #include <sstream>
 #include <iostream>
 
-#include <GL/glew.h>
+#include <GLES3/gl3.h>
 #include "glm/glm.hpp"
 #include "glm/gtc/type_ptr.hpp"
 

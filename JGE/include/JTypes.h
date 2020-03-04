@@ -38,8 +38,7 @@
 #define SCREEN_WIDTH_2			240.0f
 #define SCREEN_HEIGHT_2			136.0f
 
-
-#include <GL/glew.h>
+#include <GLES3/gl3.h>
 
 typedef signed char s8;
 typedef signed short s16;

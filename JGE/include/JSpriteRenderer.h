@@ -27,4 +27,10 @@ private:
 	/// 
 	//////////////////////////////////////////////////////////////////////////
 	void BindTexture(JTexture *tex, int textureFilter);
+
+	GLint modelLocation;
+	GLint spriteRectLocation;
+	GLint textureSizeLocation;
+	GLint colorLocation;
+	GLint flippedLocation;
 };

@@ -252,6 +252,7 @@ private:
 	int mCurrTexBlendDest;
 
 	GLuint mVAO;
+	GLint colorUniformLoc; // location of color uniform on shader
 
 	void InitVAO();
 };

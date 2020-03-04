@@ -4,6 +4,13 @@ JSpriteRenderer::JSpriteRenderer(JShader & shader)
 {
 	this->shader = shader;
 	initRenderData();
+
+	shader.Use();
+	modelLocation = glGetUniformLocation(shader.Program, "model");
+	spriteRectLocation = glGetUniformLocation(shader.Program, "spriteRect");
+	textureSizeLocation = glGetUniformLocation(shader.Program, "textureSize");
+	colorLocation = glGetUniformLocation(shader.Program, "color");
+	flippedLocation = glGetUniformLocation(shader.Program, "flipped");
 }
 
 JSpriteRenderer::~JSpriteRenderer()
@@ -39,12 +46,11 @@ void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::v
 	model = glm::translate(model, glm::vec3(-hotspot, 0.0f));
 	model = glm::scale(model, glm::vec3(spriteRect[2], spriteRect[3], 1.0f));
 
-	this->shader.SetMatrix4("model", model);
-	this->shader.SetVector4f("spriteRect", spriteRect);
-	this->shader.SetVector2f("textureSize", texture->mWidth, texture->mHeight);
-	this->shader.SetInteger("hFlipped", hFlipped);
-	this->shader.SetInteger("vFlipped", vFlipped);
-	this->shader.SetVector4f("color", color);
+	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
+	glUniform4f(spriteRectLocation, spriteRect.x, spriteRect.y, spriteRect.z, spriteRect.w);
+	glUniform2f(textureSizeLocation, texture->mWidth, texture->mHeight);
+	glUniform2i(flippedLocation, hFlipped, vFlipped);
+	glUniform4f(colorLocation, color.x, color.y, color.z, color.w);
 
 	glActiveTexture(GL_TEXTURE0);
 	BindTexture(texture, textureFilter);
@@ -71,8 +77,7 @@ void JSpriteRenderer::initRenderData()
 	glGenVertexArrays(1, &this->quadVAO);
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices,
-		GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glBindVertexArray(this->quadVAO);
 	GLint vertexLocation = glGetAttribLocation(this->shader.Program, "vertex");
 	glEnableVertexAttribArray(vertexLocation);

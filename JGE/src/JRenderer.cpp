@@ -106,18 +106,25 @@ void JRenderer::InitRenderer()
 	JResourceManager::LoadShader("sprite.vert", "sprite.frag", nullptr, "sprite");
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH_F),
 		static_cast<GLfloat>(SCREEN_HEIGHT_F), 0.0f, -1.0f, 1.0f);
-	JResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
-	JResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
+	JShader spriteShader = JResourceManager::GetShader("sprite");
+	spriteShader.Use();
+	spriteShader.SetInteger("image", 0);
+	spriteShader.SetMatrix4("projection", projection);
 
 	JResourceManager::LoadShader("simple.vert", "simple.frag", nullptr, "simple");
-	JResourceManager::GetShader("simple").Use().SetMatrix4("projection", projection);
+	JShader simpleShader = JResourceManager::GetShader("simple");
+	simpleShader.Use();
+	simpleShader.SetMatrix4("projection", projection);
+	colorUniformLoc = glGetUniformLocation(simpleShader.Program, "color");
 
 	// Load sprite renderer
-	JShader spriteShader = JResourceManager::GetShader("sprite");
 	mSpriteRenderer = new JSpriteRenderer(spriteShader);
 
 	// Load Vertex Array Object
 	JRenderer::InitVAO();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void JRenderer::InitVAO()
@@ -183,9 +190,6 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	glm::vec2 position = glm::vec2(xo, yo);
 	glm::vec2 scale = glm::vec2(xScale, yScale);
 	glm::vec4 color = glm::vec4(quad->mColor.r, quad->mColor.g, quad->mColor.b, quad->mColor.a) / 255.f; // normalize to 0-1
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 	mSpriteRenderer->DrawSprite(quad->mTex, spriteRect, position, hotspot, scale, angle, 
 								quad->mHFlipped, quad->mVFlipped, color, mCurrentTextureFilter);
@@ -208,12 +212,14 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 		1, 2, 3    // Second Triangle
 	};
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//set color normalized to 0-1
 	JColor col;
 	col.color = color;
-	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
-	shader.SetVector4f("color", my_color);
+	glUniform4f(colorUniformLoc, 
+				col.r / 255.f, 
+				col.g / 255.f, 
+				col.b / 255.f, 
+				col.a / 255.f);
 
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
@@ -243,12 +249,14 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 		3, 0  
 	};
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//set color normalized to 0-1
 	JColor col;
 	col.color = color;
-	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
-	shader.SetVector4f("color", my_color);
+	glUniform4f(colorUniformLoc, 
+				col.r / 255.f, 
+				col.g / 255.f, 
+				col.b / 255.f, 
+				col.a / 255.f);
 	
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
@@ -268,12 +276,14 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 		x2,  y2   
 	};
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//set color normalized to 0-1
 	JColor col;
 	col.color = color;
-	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
-	shader.SetVector4f("color", my_color);
+	glUniform4f(colorUniformLoc, 
+				col.r / 255.f, 
+				col.g / 255.f, 
+				col.b / 255.f, 
+				col.a / 255.f);
 
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);

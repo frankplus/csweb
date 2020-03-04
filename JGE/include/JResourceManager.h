@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-#include <GL/glew.h>
+#include <GLES3/gl3.h>
 
 #include "JShader.h"
 #include "JTypes.h"

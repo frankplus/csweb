@@ -5,15 +5,13 @@
 #include <emscripten.h>
 #include <emscripten/html5.h>
 #include <SDL.h>
-#define GL_GLEXT_PROTOTYPES 1
-#include <GL/glew.h>
+#include <GLES3/gl3.h>
 
 #include <JTypes.h>
 #include <JGE.h>
 #include <JApp.h>
 #include <JRenderer.h>
 #include <JGameLauncher.h>
-// #include <JFileSystem.h>
 
 #include <JSoundSystem.h>
 

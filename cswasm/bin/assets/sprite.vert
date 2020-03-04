@@ -13,8 +13,7 @@ uniform vec2 textureSize;
 
 uniform mat4 model; 
 uniform mat4 projection;
-uniform int hFlipped;
-uniform int vFLipped;
+uniform bvec2 flipped;
 
 //the varying statement tells the shader pipeline that this variable
 //has to be passed on to the next stage (so the fragment shader)
@@ -28,8 +27,8 @@ void main()
     
     // (texCoordX  * spriteWidth / textureWidth) + texSourceX
     vec2 v = vec2(vertex.z, vertex.w);
-    if(hFlipped == 1) v.x = 1.0 - v.x;
-    if(vFLipped == 1) v.y = 1.0 - v.y;
+    if(flipped.x == true) v.x = 1.0 - v.x;
+    if(flipped.y == true) v.y = 1.0 - v.y;
     TexCoords.x = (v.x * (spriteRect[2]/textureSize[0])) + spriteRect[0]/textureSize[0];
     TexCoords.y = (v.y * (spriteRect[3]/textureSize[1])) + spriteRect[1]/textureSize[1];
     
