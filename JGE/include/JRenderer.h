@@ -250,6 +250,10 @@ private:
 
 	int mCurrTexBlendSrc;
 	int mCurrTexBlendDest;
+
+	GLuint mVAO;
+
+	void InitVAO();
 };
 
 

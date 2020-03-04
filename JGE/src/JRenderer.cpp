@@ -112,8 +112,35 @@ void JRenderer::InitRenderer()
 	JResourceManager::LoadShader("simple.vert", "simple.frag", nullptr, "simple");
 	JResourceManager::GetShader("simple").Use().SetMatrix4("projection", projection);
 
+	// Load sprite renderer
 	JShader spriteShader = JResourceManager::GetShader("sprite");
 	mSpriteRenderer = new JSpriteRenderer(spriteShader);
+
+	// Load Vertex Array Object
+	JRenderer::InitVAO();
+}
+
+void JRenderer::InitVAO()
+{
+	JShader shader = JResourceManager::GetShader("simple").Use();
+
+	GLuint VBO, EBO;
+	glGenVertexArrays(1, &mVAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+	
+	glBindVertexArray(mVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(GLfloat), NULL, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 8 * sizeof(GLuint), NULL, GL_DYNAMIC_DRAW);
+
+	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
+	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(vertexLocation);
+
+	glBindVertexArray(0);
 }
 
 void JRenderer::DestroyRenderer()
@@ -188,20 +215,9 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
 	shader.SetVector4f("color", my_color);
 
-	GLuint VBO, VAO, EBO;
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &EBO);
-
-	glBindVertexArray(VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
-	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
-	glEnableVertexAttribArray(vertexLocation);
+	glBindVertexArray(mVAO);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), indices);
 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
@@ -233,21 +249,10 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 	col.color = color;
 	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
 	shader.SetVector4f("color", my_color);
-
-	GLuint VBO, VAO, EBO;
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &EBO);
 	
-	glBindVertexArray(VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
-	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
-	glEnableVertexAttribArray(vertexLocation);
+	glBindVertexArray(mVAO);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), indices);
 
 	glDrawElements(GL_LINES, 8, GL_UNSIGNED_INT, 0);
 
@@ -270,17 +275,8 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
 	shader.SetVector4f("color", my_color);
 
-	GLuint VBO, VAO;
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
-
-	glBindVertexArray(VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
-	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
-	glEnableVertexAttribArray(vertexLocation);
+	glBindVertexArray(mVAO);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 
 	glDrawArrays(GL_LINES, 0, 2);
 	
