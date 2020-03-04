@@ -256,7 +256,7 @@ public:
 	float mTY0;
 	float mTX1;
 	float mTY1;
-	JColor mColor[4];		// up to 4 vertices
+	JColor mColor;		// up to 4 vertices
 
 	float mX; // X position of the quad in texture.
 	float mY; // Y position of the quad in texture.

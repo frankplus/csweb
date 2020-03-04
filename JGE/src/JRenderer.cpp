@@ -11,9 +11,8 @@ JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 
 	mHotSpotX = 0.0f;
 	mHotSpotY = 0.0f;
-	//mBlend = BLEND_DEFAULT;		
-	for (int i=0;i<4;i++)
-		mColor[i].color = 0xFFFFFFFF;
+		
+	mColor.color = 0xFFFFFFFF;
 
 	mHFlipped = false;
 	mVFlipped = false;
@@ -44,8 +43,7 @@ void JQuad::GetTextureRect(float *x, float *y, float *w, float *h)
 
 void JQuad::SetColor(PIXEL_TYPE color)
 {
-	for (int i=0;i<4;i++)
-		mColor[i].color = color;
+	mColor.color = color;
 }
 
 
@@ -116,8 +114,6 @@ void JRenderer::InitRenderer()
 	mCurrTexBlendSrc = BLEND_SRC_ALPHA;
 	mCurrTexBlendDest = BLEND_ONE_MINUS_SRC_ALPHA;
 
-	mCurrentTex = -1;
-
 	// Load shaders
 	JResourceManager::LoadShader("sprite.vert", "sprite.frag", nullptr, "sprite");
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(SCREEN_WIDTH_F),
@@ -155,8 +151,6 @@ void JRenderer::EnableTextureFilter(bool flag)
 		mCurrentTextureFilter = TEX_FILTER_LINEAR;
 	else
 		mCurrentTextureFilter = TEX_FILTER_NEAREST;
-
-	mCurrentTex = -1;
 }
 
 void Swap(float *a, float *b)
@@ -173,7 +167,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 	glm::vec4 spriteRect = glm::vec4(quad->mX, quad->mY, quad->mWidth, quad->mHeight);
 	glm::vec2 position = glm::vec2(xo, yo);
 	glm::vec2 scale = glm::vec2(xScale, yScale);
-	glm::vec4 color = glm::vec4(quad->mColor->r, quad->mColor->g, quad->mColor->b, quad->mColor->a) / 255.f;
+	glm::vec4 color = glm::vec4(quad->mColor.r, quad->mColor.g, quad->mColor.b, quad->mColor.a) / 255.f; // normalize to 0-1
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -203,13 +197,15 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	JColor col;
 	col.color = color;
-	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f;
+	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
 	shader.SetVector4f("color", my_color);
 
-	GLuint VBO, EBO;
+	GLuint VBO, VAO, EBO;
 	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &EBO);
 
+	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -220,53 +216,87 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	glEnableVertexAttribArray(vertexLocation);
 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
 }
 
 
 void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE color)
 {
-	// y = SCREEN_HEIGHT_F - y - height;
+	JShader shader = JResourceManager::GetShader("simple").Use();
 
-	// JColor col;
-	// col.color = color;
+	GLfloat vertices[] = {
+		x+width,  y,  // Top Right
+		x+width, y+height,  // Bottom Right
+		x, y+height,  // Bottom Left
+		x,  y   // Top Left 
+	};
 
-	// glDisable(GL_TEXTURE_2D);
-	// glColor4ub(col.r, col.g, col.b, col.a);
-	// glBegin(GL_LINES);
-		
-	// 	glVertex2f(x, y);		
-	// 	glVertex2f(x, y+height);	
+	GLuint indices[] = {  
+		0, 1,
+		1, 2,
+		2, 3, 
+		3, 0  
+	};
 
-	// 	glVertex2f(x, y+height);
-	// 	glVertex2f(x+width, y+height);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	JColor col;
+	col.color = color;
+	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
+	shader.SetVector4f("color", my_color);
 
-	// 	glVertex2f(x+width, y+height);
-	// 	glVertex2f(x+width, y);
+	GLuint VBO, VAO, EBO;
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &EBO);
+	
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	// 	glVertex2f(x+width, y);
-	// 	glVertex2f(x, y);
+	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
+	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(vertexLocation);
 
-	// glEnd();
+	glDrawElements(GL_LINES, 8, GL_UNSIGNED_INT, 0);
 
-	// glEnable(GL_TEXTURE_2D);
-
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
+	glBindVertexArray(0);
 }
 
 void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE color)
 {
-// //	glLineWidth (mLineWidth);
-// 	glDisable(GL_TEXTURE_2D);
-// 	JColor col;
-// 	col.color = color;
-// 	glColor4ub(col.r, col.g, col.b, col.a);
-// 	glBegin(GL_LINES);
-// 		glVertex2f(x1, SCREEN_HEIGHT_F-y1);
-// 		glVertex2f(x2, SCREEN_HEIGHT_F-y2);
-// 	glEnd();
-// 	glEnable(GL_TEXTURE_2D);
-// 	glColor4ub(255, 255, 255, 255);
+	JShader shader = JResourceManager::GetShader("simple").Use();
+
+	GLfloat vertices[] = {
+		x1, y1,  
+		x2,  y2   
+	};
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	JColor col;
+	col.color = color;
+	glm::vec4 my_color = glm::vec4(col.r, col.g, col.b, col.a) / 255.f; // normalize to 0-1
+	shader.SetVector4f("color", my_color);
+
+	GLuint VBO, VAO;
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
+	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(vertexLocation);
+
+	glDrawArrays(GL_LINES, 0, 2);
+	
+	glBindVertexArray(0);
 }
 
 JTexture* JRenderer::CreateTexture(int width, int height )

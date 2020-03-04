@@ -172,7 +172,7 @@ void BuyMenu::Render()
 	if (!mIsActive) return;
 	mRenderer->FillRect(300,25,SCREEN_WIDTH_F-300-10,SCREEN_HEIGHT_F-40,ARGB(200,45,50,50));
 	mRenderer->DrawRect(300,25,SCREEN_WIDTH_F-300-10,SCREEN_HEIGHT_F-40,ARGB(255,255,255,255));
-	//mRenderer->FillCircle(SCREEN_WIDTH_2,SCREEN_HEIGHT_2,SCREEN_HEIGHT_2,ARGB(200,50,50,50));
+
 	gFont->SetColor(ARGB(255,255,255,255));
 	gFont->SetScale(1.0f);
 	gFont->DrawString("Buy Menu", 310, 40);

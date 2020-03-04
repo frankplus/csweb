@@ -1368,8 +1368,7 @@ void Game::UpdateCamera(float dt)
 				b = 0.20f;
 			}
 		}
-		//mCamera->mTX = mPlayer->mX + ((mPlayer->mX-mPlayer->mOldX)*b + cosf(mPlayer->mFacingAngle))/16.6f*a;//dt
-		//mCamera->mTY = mPlayer->mY + ((mPlayer->mY-mPlayer->mOldY)*b + sinf(mPlayer->mFacingAngle))/16.6f*a;//dt
+
 		mCamera->mTX = mSpec->mX + (cosf(mSpec->mAngle)*mSpec->mSpeed*b + cosf(mSpec->mFacingAngle)/16.6f)*a;//dt
 		mCamera->mTY = mSpec->mY + (sinf(mSpec->mAngle)*mSpec->mSpeed*b + sinf(mSpec->mFacingAngle)/16.6f)*a;//dt
 		mSpecX = mSpec->mX;
@@ -1389,43 +1388,8 @@ void Game::Render()
 {
 	char buffer[256];
 
-	/*PIXEL_TYPE colors[] =
-	{
-		ARGB(255,0,0,255),
-		ARGB(255,62,114,189),
-		ARGB(255,255,255,255),
-		ARGB(255,255,255,255)
-	};*/
-	// clear background
-	
+	// clear background	
 	mRenderer->ClearScreen(ARGB(255,255,255,255));
-	//mEngine->FillRect(0.0f, 0.0f, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, ARGB(255,255,255,255));	
-	/**mEngine->RenderQuad(mMario, 80.0f, 80.0f);
-
-	mEngine->RenderQuad(mMario, 400.0f, 80.0f, 1.0f, 1.2f, 1.2f);	// blit with rotation and scaling
-
-	mEngine->RenderQuad(mMario, 80.0f, 200.0f, mAngle, 1.0f, 1.0f);	// blit with rotation
-
-	mMario->SetColor(ARGB(128,255,255,0));								// semi-transparent yellow
-	mEngine->RenderQuad(mMario, 380.0f, 180.0f, 0.0f, mScale, mScale);	// do some color blending ;)
-	mMario->SetColor(ARGB(255,255,255,255));
-	
-	mEngine->RenderQuad(mHello, SCREEN_WIDTH_F/2.0f, SCREEN_HEIGHT_F/2.0f, 0.0f, mScale, mScale);	// Hello world!
-	**/
-
-	/**if (mPlayer->mState != DEAD) {
-		x = mPlayer->GetX();
-		y = mPlayer->GetY();
-	}
-	else {
-		for (int i=1;i<mMap->mNumPeoplePerTeam*2;i++) {
-			if (mPeople[i]->mState != DEAD) {
-				x = mSpec->GetX();
-				y = mSpec->GetY();
-				//break;
-			}
-		}
-	}**/
 	float dx = mCamera->GetX();
 	float dy = mCamera->GetY(); 
 	
@@ -1538,65 +1502,6 @@ void Game::Render()
 	}
 
 	if (mPlayer->mState != DEAD) {
-		/*std::vector<Vector2D> p1;
-		std::vector<Vector2D> p2;
-
-		bool previous = false;
-		for (int i=0; i<mMap->mCollisionLines.size(); i++) {
-
-			Vector2D a(mPlayer->mX,mPlayer->mY);
-			Vector2D b1(mMap->mCollisionLines[i].line.x1,mMap->mCollisionLines[i].line.y1);
-			Vector2D d1 = b1-a;
-			d1.Normalize();
-			Vector2D c1 = b1 + d1*1000;
-
-			Vector2D b2(mMap->mCollisionLines[i].line.x2,mMap->mCollisionLines[i].line.y2);
-			Vector2D d2 = b2-a;
-			d2.Normalize();
-			Vector2D c2 = b2 + d2*1000;
-
-			//b = (a-b).Normalize();
-			if (mGrid->LineOfSight(a.x,a.y,b1.x-d1.x,b1.y-d1.y) || mGrid->LineOfSight(a.x,a.y,b2.x-d2.x,b2.y-d2.y)) {
-				if ((c1-b1).Cross(c2-b2) < 0){
-
-					float xarray[4];
-					float yarray[4];
-
-					xarray[0] = b1.x-(dx-SCREEN_WIDTH_2);
-					yarray[0] = b1.y-(dy-SCREEN_HEIGHT_2);
-
-					xarray[1] = c1.x-(dx-SCREEN_WIDTH_2);
-					yarray[1] = c1.y-(dy-SCREEN_HEIGHT_2);
-
-					xarray[2] = c2.x-(dx-SCREEN_WIDTH_2);
-					yarray[2] = c2.y-(dy-SCREEN_HEIGHT_2);
-
-					xarray[3] = b2.x-(dx-SCREEN_WIDTH_2);
-					yarray[3] = b2.y-(dy-SCREEN_HEIGHT_2);
-
-					mRenderer->FillPolygon(xarray,yarray,4,ARGB(100,0,0,0));
-					
-				}
-				else {
-					float xarray[4];
-					float yarray[4];
-
-					xarray[0] = b1.x-(dx-SCREEN_WIDTH_2);
-					yarray[0] = b1.y-(dy-SCREEN_HEIGHT_2);
-
-					xarray[3] = c1.x-(dx-SCREEN_WIDTH_2);
-					yarray[3] = c1.y-(dy-SCREEN_HEIGHT_2);
-
-					xarray[2] = c2.x-(dx-SCREEN_WIDTH_2);
-					yarray[2] = c2.y-(dy-SCREEN_HEIGHT_2);
-
-					xarray[1] = b2.x-(dx-SCREEN_WIDTH_2);
-					yarray[1] = b2.y-(dy-SCREEN_HEIGHT_2);
-
-					mRenderer->FillPolygon(xarray,yarray,4,ARGB(100,0,0,0));
-				}
-			}
-		}*/
 
 		if (mPlayer->mState != RELOADING) {
 			float angle = mPlayer->GetCurrentGun()->mGun->mViewAngle;
@@ -1628,28 +1533,10 @@ void Game::Render()
 				yarray[5] = y + 500*sinf(facingangle+angle);
 
 				mRenderer->FillPolygon(xarray,yarray,6,ARGB(175,0,0,0));
-				//mRenderer->FillCircle(tx,ty,5,ARGB(255,255,0,0));
 			}
 		}
 
-
-		/*if (mPlayer->mState == RELOADING) {
-			//mRenderer->DrawLine(SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2-5.0f,SCREEN_WIDTH_2+25.0f,SCREEN_HEIGHT_2-5.0f,ARGB(255,255,200,0));
-			//mRenderer->DrawLine(SCREEN_WIDTH_2+25.0f,SCREEN_HEIGHT_2-5.0f,SCREEN_WIDTH_2+25.0f,SCREEN_HEIGHT_2+5.0f,ARGB(255,255,200,0));
-			//mRenderer->DrawLine(SCREEN_WIDTH_2+25.0f,SCREEN_HEIGHT_2+5.0f,SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2+5.0f,ARGB(255,255,200,0));
-			//mRenderer->DrawLine(SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2+5.0f,SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2-5.0f,ARGB(255,255,200,0));
-			mRenderer->DrawRect(SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2-5.0f,50.0f,10.0f,ARGB(255,255,200,0));
-			mRenderer->FillRect(SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2-5.0f,mPlayer->mStateTime/(mPlayer->GetCurrentGun()->mGun->mReloadDelay)*50.0f,10.0f,ARGB(200,255,200,0));
-			gFont->SetColor(ARGB(255,255,200,0));
-			gFont->SetScale(0.5f);
-			gFont->DrawString("RELOADING", SCREEN_WIDTH_2,SCREEN_HEIGHT_2+10.0f, JGETEXT_CENTER);
-		}*/
 		if (mPlayer->mState == ATTACKING && mPlayer->mGunIndex == GRENADE) {
-			/*mRenderer->DrawRect(SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2-5.0f,50.0f,10.0f,ARGB(255,255,200,0));
-			mRenderer->FillRect(SCREEN_WIDTH_2-25.0f,SCREEN_HEIGHT_2-5.0f,mPlayer->mStateTime/(mPlayer->GetCurrentGun()->mGun->mDelay)*50.0f,10.0f,ARGB(200,255,200,0));
-			gFont->SetColor(ARGB(255,255,200,0));
-			gFont->SetScale(0.5f);
-			gFont->DrawString("THROWING", SCREEN_WIDTH_2,SCREEN_HEIGHT_2+10.0f, JGETEXT_CENTER);*/
 
 			float xarray[3];
 			float yarray[3];
@@ -1697,9 +1584,6 @@ void Game::Render()
 	
 	if (mPlayer->mState != DEAD) {
 		sprintf(buffer,"%i",mPlayer->mHealth); 
-		//gHudFont->SetColor(ARGB(230,255,200,0));
-		//gHudFont->SetScale(2.0f);
-		//gHudFont->DrawString(buffer, 10.0f, SCREEN_HEIGHT_F-40.0f, JGETEXT_LEFT);
 		
 		int height = 44*(mPlayer->mHealth/100.0f);
 		if (height < 1) height = 1;
@@ -1721,33 +1605,7 @@ void Game::Render()
 		int centiseconds = (int)floorf((mRoundTimer-seconds)*100);
 		sprintf(buffer,"%02d:%02d.%02d",minutes,seconds%60,centiseconds);
 
-		//gHudFont->SetColor(ARGB(230,255,64,64));
-		//gHudFont->DrawString(buffer, SCREEN_WIDTH_2, SCREEN_HEIGHT_F-30, JGETEXT_CENTER);
-
 		gFont->DrawShadowedString(buffer, SCREEN_WIDTH_2, SCREEN_HEIGHT_F-25, JGETEXT_CENTER);
-
-		/*if (mPlayer->GetCurrentGun() != NULL) {
-			gHudFont->SetColor(ARGB(230,255,200,0));
-			if (mPlayer->mGunIndex == KNIFE) {
-			}
-			else if (mPlayer->mGunIndex == GRENADE) {
-				sprintf(buffer,"%i",mPlayer->GetCurrentGun()->mClipAmmo); 
-				gHudFont->DrawString(buffer, SCREEN_WIDTH_F-10, SCREEN_HEIGHT_F-30, JGETEXT_RIGHT);
-			}
-			else {
-				sprintf(buffer,"%i",mPlayer->GetCurrentGun()->mClipAmmo); 
-				gHudFont->DrawString(buffer, SCREEN_WIDTH_F-80, SCREEN_HEIGHT_F-30, JGETEXT_RIGHT);
-
-				gHudFont->DrawString("|", SCREEN_WIDTH_F-70, SCREEN_HEIGHT_F-30, JGETEXT_CENTER);
-
-				sprintf(buffer,"%i",mPlayer->GetCurrentGun()->mRemainingAmmo); 
-				gHudFont->DrawString(buffer, SCREEN_WIDTH_F-10, SCREEN_HEIGHT_F-30, JGETEXT_RIGHT);
-			}
-		}
-	
-		gHudFont->SetColor(ARGB(230,0,255,0));
-		sprintf(buffer,"$%i",mPlayer->mMoney); 
-		gHudFont->DrawString(buffer, SCREEN_WIDTH_F-10, SCREEN_HEIGHT_F-60, JGETEXT_RIGHT);*/
 
 		mRenderer->RenderQuad(gAmmoBarQuad,SCREEN_WIDTH_F-10,SCREEN_HEIGHT_F-10);
 		//mRenderer->FillRect(SCREEN_WIDTH_F-(10+40+4),SCREEN_HEIGHT_F-(10+64+3*32),38,3*32,ARGB(150,100,100,100));
@@ -1762,24 +1620,18 @@ void Game::Render()
 			if (index >= 5) {
 				index = 0;
 			}
-			//mRenderer->FillRect(80+i*37,5,32,32,ARGB(100,255,200,0));
+
 			if (mPlayer->mGuns[index] != NULL) {
 				
-				//mRenderer->FillRect(80+i*37,37,32,32,ARGB(150,255,200,0));
+
 				int alpha = 255-25*y;
 				float scale = 1.0f;
-				/*PIXEL_TYPE colors[] =
-				{
-					ARGB(200,200,200,200),
-					ARGB(200,200,200,200),
-					ARGB(200,100,100,100),
-					ARGB(200,100,100,100)
-				};*/
+
 				mRenderer->FillRect(SCREEN_WIDTH_F-(22+10+18),SCREEN_HEIGHT_F-(64+10+20+20*y),36,19,ARGB(200,100,100,100));
 				JQuad* quad = mPlayer->mGuns[index]->mGun->mGroundQuad;
-				//quad->SetColor(ARGB(alpha,255,255,255));
+
 				mRenderer->RenderQuad(quad,SCREEN_WIDTH_F-(22+10),SCREEN_HEIGHT_F-(64+10+10+20*y));
-				//quad->SetColor(ARGB(255,255,255,255));
+
 				y++;
 			}
 		}
@@ -1851,17 +1703,6 @@ void Game::Render()
 
 			}
 		}
-		/*if (mSwitchTimer > 0.0f) {
-			for (int i=0; i<5; i++) {
-				mRenderer->FillRect(80+i*37,5,32,32,ARGB(100,255,200,0));
-				if (mPlayer->mGunIndex == i && mPlayer->mGuns[i] != NULL) {
-					mRenderer->FillRect(80+i*37,37,32,32,ARGB(150,255,200,0));
-					mPlayer->GetCurrentGun()->mGun->mGroundQuad->SetColor(ARGB(255,255,128,0));
-					mRenderer->RenderQuad(mPlayer->GetCurrentGun()->mGun->mGroundQuad,96+i*37,53);
-					mPlayer->GetCurrentGun()->mGun->mGroundQuad->SetColor(ARGB(255,255,255,255));
-				}
-			}
-		}*/
 		
 		sprintf(buffer,"$%d",mPlayer->mMoney);
 		gFont->SetScale(1.0f);
@@ -1879,10 +1720,6 @@ void Game::Render()
 		}
 		gFont->DrawShadowedString(buffer,100,10);
 		mRenderer->RenderQuad(gBuyZoneQuad,80,10);
-		
-		//mRenderer->FillCircle(40,40,35,ARGB(175,0,255,0));
-		//mRenderer->DrawLine(5,40,75,40,ARGB(175,153,153,153));
-		//mRenderer->DrawLine(40,5,40,75,ARGB(175,153,153,153));
 
 		float factor = 32/480.0f;
 
@@ -1905,14 +1742,12 @@ void Game::Render()
 			mRenderer->RenderQuad(mMap->mOverviewQuad,10-x+1,10-y+1);
 		}
 		mRenderer->RenderQuad(gRadarQuad,10,10);
-		//mRenderer->FillRect(10,10,64,64,ARGB(128,0,100,0));
-		//mRenderer->DrawRect(10+16,10+23,32,18,ARGB(255,255,255,255));
 
 		for (unsigned int i=0;i<mPeople.size();i++) {
 			if (mPeople[i]->mState == DEAD) continue;
 			if (mPeople[i]->mTeam == NONE) continue;
 			if (mGameType != FFA && mPeople[i]->mTeam != mPlayer->mTeam && mPeople[i]->mRadarTime == 0.0f) continue;
-			//if (mPeople[i] == mPlayer) continue;
+
 
 			float x = 0.0f;
 			float y = 0.0f;
@@ -1948,16 +1783,8 @@ void Game::Render()
 			else {
 				int alpha = mPeople[i]->mRadarTime/1000.0f*255; 
 				if (alpha > 255) alpha = 255;
-				//mRenderer->FillCircle(10+32+x,10+32+y,1.5f,ARGB(alpha,255,0,0));
-				//mRenderer->FillPolygon(10+32+x,10+32+y,5,3,mPeople[i]->mFacingAngle,ARGB(alpha,255,0,0));
 				mRenderer->FillRect(10+32+x-1,10+32+y-1,3,3,ARGB(alpha,255,0,0));
 			}
-			/*if (mPlayer->mTeam == CT) {
-				mRenderer->FillRect(40.5f+cosf(theta)*dist,40.5f+sinf(theta)*dist,3,3,ARGB(255,153,204,255));
-			}
-			else if (mPlayer->mTeam == T) {
-				mRenderer->FillRect(40.5f+cosf(theta)*dist,40.5f+sinf(theta)*dist,3,3,ARGB(255,255,64,64));
-			}*/
 		}
 
 		if (mGameType == CTF) {
@@ -2079,8 +1906,6 @@ void Game::Render()
 		if (mSpecState != NONE) {
 			mRenderer->FillRect(0, 0, 480, 35, ARGB(200,0,0,0));
 			mRenderer->FillRect(0, SCREEN_HEIGHT_F-35, 480, 35, ARGB(200,0,0,0));
-			//mRenderer->DrawLine(0,35,SCREEN_WIDTH_F,35,ARGB(255,255,255,255));
-			//mRenderer->DrawLine(0,SCREEN_HEIGHT_F-35,SCREEN_WIDTH_F,SCREEN_HEIGHT_F-35,ARGB(255,255,255,255));
 				
 			int seconds = (int)floorf(mRoundTimer);
 			int minutes = (int)floorf(seconds/60.0f);
@@ -2861,20 +2686,6 @@ void Game::Buy(int index) {
 			}
 		}
 	}
-	/*else if (index == -2) {
-		if (mPlayer->mGuns[SECONDARY] != NULL) {
-			if (mPlayer->mGuns[SECONDARY]->mRemainingAmmo != (mPlayer->mGuns[SECONDARY]->mGun->mNumClips-1)*mPlayer->mGuns[SECONDARY]->mGun->mClip) {
-				if (mPlayer->mMoney >= 60) {
-					mPlayer->mMoney -= 60;
-					mPlayer->mGuns[SECONDARY]->mRemainingAmmo = (mPlayer->mGuns[SECONDARY]->mGun->mNumClips-1)*mPlayer->mGuns[SECONDARY]->mGun->mClip;
-					gSfxManager->PlaySample(gAmmoSound, mPlayer->mX, mPlayer->mY);
-				}
-				else {
-					hasMoney = false;
-				}
-			}
-		}
-	}*/
 	else {
 		if (mGuns[index].mType == PRIMARY) {
 			if (mPlayer->mMoney >= mGuns[index].mCost) {

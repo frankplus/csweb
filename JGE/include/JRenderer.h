@@ -246,15 +246,6 @@ private:
 
 	JSpriteRenderer *mSpriteRenderer;
 
-	GLuint mCurrentTex;
-
-	bool mVsync;
-
-	int mSwizzle;
-	int mTexCounter;
-
-	//int mTexFilter;
-
 	int mCurrentTextureFilter;
 
 	int mCurrTexBlendSrc;
