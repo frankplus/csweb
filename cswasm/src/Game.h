@@ -57,6 +57,7 @@ struct SortByScore
 class Game: public GameState
 {
 private:
+	void PrintFps();
 
 protected:
 

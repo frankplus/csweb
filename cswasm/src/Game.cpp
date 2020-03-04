@@ -1397,6 +1397,8 @@ void Game::Render()
 	mMap->Render(dx,dy);
 	mRenderer->EnableTextureFilter(true);
 
+	PrintFps();
+
 	float minx = dx-SCREEN_WIDTH_2-1.0f;
 	float miny = dx-SCREEN_HEIGHT_2-1.0f;
 	float maxx = dx+SCREEN_WIDTH_2+1.0f;
@@ -2787,4 +2789,15 @@ void Game::Hash() {
 	{
 		mGrid->HashGunObject(mGunObjects[i]);
 	}
+}
+
+void Game::PrintFps()
+{
+	// Print fps for debug
+	char buffer[256];
+	float fps = mEngine->GetFPS();
+	sprintf(buffer,"%.1f fps",fps);
+	gFont->SetScale(0.75f);
+	gFont->SetColor(ARGB(255,255,255,255));
+	gFont->DrawString(buffer, SCREEN_WIDTH_2, 10);
 }
