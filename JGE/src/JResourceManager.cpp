@@ -260,5 +260,7 @@ bool JResourceManager::LoadPNG(TextureInfo &textureInfo, const char *filename)
 	textureInfo.mTexWidth = tw;
 	textureInfo.mTexHeight = th;
 
+	printf("loaded png %s w=%d h=%d \n", filename, tw, th);
+
 	return true;
 }

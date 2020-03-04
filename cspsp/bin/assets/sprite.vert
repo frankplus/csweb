@@ -29,7 +29,7 @@ void main()
     vec2 v = vec2(vertex.z, vertex.w);
     if(flipped.x == true) v.x = 1.0 - v.x;
     if(flipped.y == true) v.y = 1.0 - v.y;
-    TexCoords.x = (v.x * (spriteRect[2]/textureSize[0])) + spriteRect[0]/textureSize[0];
-    TexCoords.y = (v.y * (spriteRect[3]/textureSize[1])) + spriteRect[1]/textureSize[1];
+    TexCoords.x = (v.x * spriteRect[2] + spriteRect.x) / textureSize.x;
+    TexCoords.y = (v.y * spriteRect[3] + spriteRect.y) / textureSize.y;
     
 }

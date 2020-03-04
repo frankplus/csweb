@@ -8,5 +8,4 @@ menu = analog
 
 name = test
 
-map = Circle
-
+map = de_dust2

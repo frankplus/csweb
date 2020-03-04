@@ -48,7 +48,7 @@ void JSpriteRenderer::DrawSprite(JTexture *texture, glm::vec4 spriteRect, glm::v
 
 	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
 	glUniform4f(spriteRectLocation, spriteRect.x, spriteRect.y, spriteRect.z, spriteRect.w);
-	glUniform2f(textureSizeLocation, texture->mWidth, texture->mHeight);
+	glUniform2f(textureSizeLocation, texture->mTexWidth, texture->mTexHeight);
 	glUniform2i(flippedLocation, hFlipped, vFlipped);
 	glUniform4f(colorLocation, color.x, color.y, color.z, color.w);
 
