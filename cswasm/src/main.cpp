@@ -115,20 +115,6 @@ int InitGame(GLvoid)
 	return true;
 }
 
-int DrawGLScene(GLvoid)									// Here's Where We Do All The Drawing
-{
-	g_engine->Render();
-
-	return true;										// Everything Went OK
-}
-
-void Update(int dt)
-{	
-	g_engine->SetDelta(dt);
-	g_engine->Update();
-	g_engine->mClicked = false;
-}
-
 void process_input() {
     gOldButtons = gButtons;
 
@@ -149,10 +135,13 @@ void main_loop()
 
     unsigned int tickCount = SDL_GetTicks();   // Get The Tick Count
     unsigned int delta = tickCount - lastTickCount;
-    Update(delta);	// Update frame
+	g_engine->SetDelta(delta);
+	g_engine->Update();
+	g_engine->mClicked = false;
     lastTickCount = tickCount;
     
-    DrawGLScene();	// Draw The Scene
+	g_engine->Render();
+    SDL_GL_SwapWindow(window);
 }
 
 EM_BOOL windowSizeChanged(int eventType, const EmscriptenUiEvent *e, void *userData)
