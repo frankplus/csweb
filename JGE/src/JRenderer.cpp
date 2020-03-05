@@ -376,18 +376,25 @@ void JRenderer::Enable2D()
 void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 {
 	JShader shader = JResourceManager::GetShader("simple").Use();
+	
+	// Poligon triangulation
+	using Point = std::array<float, 2>;
+
+	std::vector<Point> polygon;
+
+	for(int i=0; i<count; i++)
+		polygon.push_back({x[i], y[i]});
+
+	std::vector<std::vector<Point>> v =  {polygon};
+	std::vector<GLint> indices = mapbox::earcut<GLint>(v);
 
 	// vertices array
-	int buf_size = 2 * count; // 2 coordinates per vertex
-	GLfloat vertices[buf_size]; 
+	GLfloat vertices[2 * count]; // 2 coordinates per vertex
 	for(int i=0; i<count; i++)
 	{
 		vertices[2*i] = x[i];
 		vertices[2*i + 1] = y[i];
 	}
-
-	if(buf_size > bufferSize)
-		printf("Vertex buffer too small!");
 
 	//set color normalized to 0-1
 	JColor col;
@@ -400,28 +407,11 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, count);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, indices.size()*sizeof(GLint), indices.data());
+
+	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
 	glBindVertexArray(0);
-
-	// JColor col;
-	// col.color = color;
-
-	// glDisable(GL_TEXTURE_2D);
-	// glColor4ub(col.r, col.g, col.b, col.a);
-	// glBegin(GL_TRIANGLE_FAN);
-
-	// for(int i=0; i<count;i++)
-	// {
-	// 	glVertex2f(x[i],SCREEN_HEIGHT_F-y[i]);
-	// }
-
-	// glEnd();
-
-	// glEnable(GL_TEXTURE_2D);
-
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
 }
 
 
