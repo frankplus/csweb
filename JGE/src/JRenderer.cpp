@@ -245,8 +245,6 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 		x,  y   // Top Left 
 	};
 
-	GLuint indices[] = { 0, 1, 2, 3 } ;
-
 	//set color normalized to 0-1
 	JColor col;
 	col.color = color;
@@ -258,9 +256,7 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 	
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), indices);
-
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_LINE_LOOP, 0, 4);
 
 	glBindVertexArray(0);
 }
@@ -329,7 +325,13 @@ JTexture* JRenderer::CreateTexture(int width, int height )
 
 void JRenderer::ClearScreen(PIXEL_TYPE color)
 {
-	FillRect(0.0f, 0.0f, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, color);
+	JColor col;
+	col.color = color;
+	glClearColor(col.r / 255.f, 
+				col.g / 255.f, 
+				col.b / 255.f, 
+				col.a / 255.f);
+	glClear (GL_COLOR_BUFFER_BIT);
 }
 
 
@@ -374,31 +376,18 @@ void JRenderer::Enable2D()
 void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 {
 	JShader shader = JResourceManager::GetShader("simple").Use();
-	
-	// Poligon triangulation
-	using Point = std::array<float, 2>;
-
-	std::vector<Point> polygon;
-
-	for(int i=0; i<count; i++)
-		polygon.push_back({x[i], y[i]});
-
-	std::vector<std::vector<Point>> v =  {polygon};
-	std::vector<GLint> indices = mapbox::earcut<GLint>(v);
 
 	// vertices array
-	int n_vertices = 2 * count;
-	GLfloat vertices[n_vertices]; // 2 coordinates per vertex
+	int buf_size = 2 * count; // 2 coordinates per vertex
+	GLfloat vertices[buf_size]; 
 	for(int i=0; i<count; i++)
 	{
 		vertices[2*i] = x[i];
 		vertices[2*i + 1] = y[i];
 	}
 
-	if(n_vertices > bufferSize)
+	if(buf_size > bufferSize)
 		printf("Vertex buffer too small!");
-	if(indices.size() > elementBufferSize)
-		printf("Element buffer too small!");
 
 	//set color normalized to 0-1
 	JColor col;
@@ -411,9 +400,7 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices.data()), indices.data());
-
-	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, count);
 
 	glBindVertexArray(0);
 
