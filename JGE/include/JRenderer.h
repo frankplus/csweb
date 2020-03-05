@@ -31,13 +31,13 @@ protected:
 
 
 public:
-	void InitRenderer();
-
 	//////////////////////////////////////////////////////////////////////////
 	/// Get the singleton instance
 	///
 	//////////////////////////////////////////////////////////////////////////
 	static JRenderer* GetInstance();
+
+	void InitRenderer();
 
 	static void Destroy();
 
@@ -45,17 +45,12 @@ public:
 	void EndScene();
 
 	//////////////////////////////////////////////////////////////////////////
-	/// Render a textured quad with rotation and scaling.
-	///
-	/// @param quad - Quad with texturing info.
-	/// @param xo - x position.
-	/// @param yo - y position.
-	/// @param angle - Rotation (radian).
-	/// @param xScale - Horizontal rendering scale.
-	/// @param yScale - Vertical rendering scale.
-	///
+	/// Enable bi-linear filtering for better looking on-screen images.
+	/// 
+	/// @param flag - true to enable, false to disable.
+	/// 
 	//////////////////////////////////////////////////////////////////////////
-	void RenderQuad(JQuad* quad, float xo, float yo, float angle=0.0f, float xScale=1.0f, float yScale=1.0f);
+	void EnableTextureFilter(bool flag);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.
@@ -74,14 +69,6 @@ public:
 	/// 
 	//////////////////////////////////////////////////////////////////////////
 	void ClearScreen(PIXEL_TYPE color);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Enable bi-linear filtering for better looking on-screen images.
-	/// 
-	/// @param flag - true to enable, false to disable.
-	/// 
-	//////////////////////////////////////////////////////////////////////////
-	void EnableTextureFilter(bool flag);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set texture blending options.
@@ -135,6 +122,32 @@ public:
 	void Enable2D();
 
 	//////////////////////////////////////////////////////////////////////////
+	/// Render a textured quad with rotation and scaling.
+	///
+	/// @param quad - Quad with texturing info.
+	/// @param xo - x position.
+	/// @param yo - y position.
+	/// @param angle - Rotation (radian).
+	/// @param xScale - Horizontal rendering scale.
+	/// @param yScale - Vertical rendering scale.
+	///
+	//////////////////////////////////////////////////////////////////////////
+	void RenderQuad(JQuad* quad, float xo, float yo, float angle=0.0f, float xScale=1.0f, float yScale=1.0f);
+
+	//////////////////////////////////////////////////////////////////////////
+	/// Draw polygon.
+	/// 
+	/// @param x - Array of X positions.
+	/// @param y - Array of Y positions.
+	/// @param count - Side count of the polygon.
+	/// @param color - Draw colour.
+	/// @param mode - drawing primitive: GL_TRIANGLE_FAN for filled polygon
+	///									 GL_LINE_LOOP for polyline
+	///
+	//////////////////////////////////////////////////////////////////////////
+	void DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color, GLenum mode = GL_LINE_LOOP);
+
+	//////////////////////////////////////////////////////////////////////////
 	/// Fill a rectangular area with a specified color.
 	///
 	/// @param x - Starting x position.
@@ -145,19 +158,6 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void FillRect(float x, float y, float width, float height, PIXEL_TYPE color);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Fill a rectangular area with a single color for each vertex.
-	///
-	/// @param x - Starting x position.
-	/// @param y - Starting y position.
-	/// @param width - Width of the rectangle.
-	/// @param height - Height of the rectangle.
-	/// @param color - Array of colors.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	// void FillRect(float x, float y, float width, float height, JColor* color);
-	// void FillRect(float x, float y, float width, float height, PIXEL_TYPE* color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw a rectangle.
@@ -231,17 +231,6 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void FillConvexPolygon(float* x, float* y, int count, PIXEL_TYPE color);
-	
-	//////////////////////////////////////////////////////////////////////////
-	/// Draw circle with filled colour.
-	/// 
-	/// @param x - X positions of center of the circle.
-	/// @param y - Y positions of center of the circle.
-	/// @param radius - Radius of circle.
-	/// @param color - Filling colour.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void FillCircle(float x, float y, float radius, PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw circle.
@@ -253,6 +242,17 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void DrawCircle(float x, float y, float radius, PIXEL_TYPE color);
+	
+	//////////////////////////////////////////////////////////////////////////
+	/// Draw circle with filled colour.
+	/// 
+	/// @param x - X positions of center of the circle.
+	/// @param y - Y positions of center of the circle.
+	/// @param radius - Radius of circle.
+	/// @param color - Filling colour.
+	///
+	//////////////////////////////////////////////////////////////////////////
+	void FillCircle(float x, float y, float radius, PIXEL_TYPE color);
 
 private:
 

@@ -64,7 +64,7 @@ JSoundSystem::~JSoundSystem()
 
 void JSoundSystem::InitSoundSystem()
 {
-	if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 512 ) < 0 )
+	if( Mix_OpenAudio( 22050, MIX_DEFAULT_FORMAT, 2, 1024 ) < 0 )
 		printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
 }
 
