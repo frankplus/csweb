@@ -387,12 +387,18 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	std::vector<GLint> indices = mapbox::earcut<GLint>(v);
 
 	// vertices array
-	GLfloat vertices[2 * count]; // 2 coordinates per vertex
+	int n_vertices = 2 * count;
+	GLfloat vertices[n_vertices]; // 2 coordinates per vertex
 	for(int i=0; i<count; i++)
 	{
 		vertices[2*i] = x[i];
 		vertices[2*i + 1] = y[i];
 	}
+
+	if(n_vertices > bufferSize)
+		printf("Vertex buffer too small!");
+	if(indices.size() > elementBufferSize)
+		printf("Element buffer too small!");
 
 	//set color normalized to 0-1
 	JColor col;
