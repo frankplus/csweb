@@ -210,11 +210,6 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 		x,  y   // Top Left 
 	};
 
-	GLuint indices[] = {  
-		0, 1, 3,   // First Triangle
-		1, 2, 3    // Second Triangle
-	};
-
 	//set color normalized to 0-1
 	JColor col;
 	col.color = color;
@@ -226,9 +221,7 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), indices);
-
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 	glBindVertexArray(0);
 }
@@ -281,7 +274,6 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 
 	glBindVertexArray(mVAO);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-
 	glDrawArrays(GL_LINES, 0, 2);
 	
 	glBindVertexArray(0);
