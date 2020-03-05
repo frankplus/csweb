@@ -80,7 +80,6 @@ JTexture* JResourceManager::LoadTextureFromFile(const char* filename)
 
  	if (tex)
 	{
-		tex->mFilter = TEX_FILTER_LINEAR;
 		tex->mWidth = textureInfo.mWidth;
 		tex->mHeight = textureInfo.mHeight;
 		tex->mTexWidth = textureInfo.mTexWidth;

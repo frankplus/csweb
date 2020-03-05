@@ -1,6 +1,5 @@
 CXX      := emcc
-CXXFLAGS := -Wall -w
-LDFLAGS  := -std=c++11
+CXXFLAGS := -Wall -w -std=c++11
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects
 LIB_DIR  := $(BUILD)/lib

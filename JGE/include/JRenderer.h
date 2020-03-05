@@ -8,7 +8,7 @@
 
 #include "JTypes.h"
 #include "Vector2D.h"
-#include "../include/JSpriteRenderer.h"
+#include "JSpriteRenderer.h"
 
 #define SINF(x)		sinf(x*DEG2RAD)
 #define COSF(x)		cosf(x*DEG2RAD)
@@ -253,6 +253,8 @@ private:
 
 	GLuint mVAO;
 	GLint colorUniformLoc; // location of color uniform on shader
+	int bufferSize;
+	int elementBufferSize;
 
 	void InitVAO();
 };

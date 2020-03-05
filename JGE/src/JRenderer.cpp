@@ -129,6 +129,9 @@ void JRenderer::InitRenderer()
 
 void JRenderer::InitVAO()
 {
+	bufferSize = 20;
+	elementBufferSize = 20;
+
 	JShader shader = JResourceManager::GetShader("simple").Use();
 
 	GLuint VBO, EBO;
@@ -140,8 +143,8 @@ void JRenderer::InitVAO()
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(GLfloat), NULL, GL_DYNAMIC_DRAW);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 8 * sizeof(GLuint), NULL, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, bufferSize * sizeof(GLfloat), NULL, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementBufferSize * sizeof(GLuint), NULL, GL_DYNAMIC_DRAW);
 
 	GLint vertexLocation = glGetAttribLocation(shader.Program, "vertex");
 	glVertexAttribPointer(vertexLocation, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
@@ -303,7 +306,6 @@ JTexture* JRenderer::CreateTexture(int width, int height )
 
 	if (buffer && tex)
 	{
-		tex->mFilter = TEX_FILTER_LINEAR;
 		tex->mWidth = width;
 		tex->mHeight = height;
 		tex->mTexWidth = width;

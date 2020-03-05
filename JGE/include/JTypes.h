@@ -169,7 +169,6 @@ public:
 	int mHeight;
 	int mTexWidth;
 	int mTexHeight;
-	int mFilter;
 	GLuint mTexId;
 };
 
