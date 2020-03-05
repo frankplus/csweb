@@ -245,12 +245,7 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 		x,  y   // Top Left 
 	};
 
-	GLuint indices[] = {  
-		0, 1,
-		1, 2,
-		2, 3, 
-		3, 0  
-	};
+	GLuint indices[] = { 0, 1, 2, 3 } ;
 
 	//set color normalized to 0-1
 	JColor col;
@@ -265,7 +260,7 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), indices);
 
-	glDrawElements(GL_LINES, 8, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_INT, 0);
 
 	glBindVertexArray(0);
 }
@@ -378,6 +373,44 @@ void JRenderer::Enable2D()
 
 void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 {
+	JShader shader = JResourceManager::GetShader("simple").Use();
+	
+	// Poligon triangulation
+	using Point = std::array<float, 2>;
+
+	std::vector<Point> polygon;
+
+	for(int i=0; i<count; i++)
+		polygon.push_back({x[i], y[i]});
+
+	std::vector<std::vector<Point>> v =  {polygon};
+	std::vector<GLint> indices = mapbox::earcut<GLint>(v);
+
+	// vertices array
+	GLfloat vertices[2 * count]; // 2 coordinates per vertex
+	for(int i=0; i<count; i++)
+	{
+		vertices[2*i] = x[i];
+		vertices[2*i + 1] = y[i];
+	}
+
+	//set color normalized to 0-1
+	JColor col;
+	col.color = color;
+	glUniform4f(colorUniformLoc, 
+				col.r / 255.f, 
+				col.g / 255.f, 
+				col.b / 255.f, 
+				col.a / 255.f);
+	
+	glBindVertexArray(mVAO);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices.data()), indices.data());
+
+	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+
 	// JColor col;
 	// col.color = color;
 

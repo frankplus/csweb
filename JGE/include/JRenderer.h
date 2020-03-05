@@ -5,10 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <array>
 
 #include "JTypes.h"
 #include "Vector2D.h"
 #include "JSpriteRenderer.h"
+#include "earcut.hpp" // https://github.com/mapbox/earcut.hpp
 
 #define SINF(x)		sinf(x*DEG2RAD)
 #define COSF(x)		cosf(x*DEG2RAD)

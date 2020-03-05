@@ -114,7 +114,7 @@ bool TileMap::Load(char *mapFile, Gun guns[], int gameType)
 		s = line;
 		while (s) {
 			sscanf(s,"(%d,%d)", &x, &y);
-			CollisionPoint point = {x,y,true,true};
+			CollisionPoint point = {static_cast<float>(x),static_cast<float>(y),true,true};
 			mCollisionPoints.push_back(point);
 			s = (strchr(s,','))+1;
 			s = (strchr(s,','));
@@ -284,7 +284,7 @@ bool TileMap::Load(char *mapFile, Gun guns[], int gameType)
 						s = line;
 						while (s) {
 							sscanf(s,"(%d,%d)", &x, &y);
-							CollisionPoint point = {x,y,true,true};
+							CollisionPoint point = {static_cast<float>(x),static_cast<float>(y),true,true};
 							mCollisionPoints.push_back(point);
 							s = (strchr(s,','))+1;
 							s = (strchr(s,','));
@@ -304,7 +304,7 @@ bool TileMap::Load(char *mapFile, Gun guns[], int gameType)
 						s = line;
 						while (s) {
 							sscanf(s,"(%d,%d)", &x, &y);
-							CollisionPoint point = {x,y,false,true};
+							CollisionPoint point = {static_cast<float>(x),static_cast<float>(y),false,true};
 							mCollisionPoints.push_back(point);
 							s = (strchr(s,','))+1;
 							s = (strchr(s,','));

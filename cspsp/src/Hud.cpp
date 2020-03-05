@@ -437,7 +437,8 @@ void Hud::SetMessage(char* message) {
 }
 
 void Hud::AddDamageIndicator(float angle) {
-	DamageIndicator damageIndicator = {angle-M_PI_2,1500};
+	angle = static_cast<float>(angle-M_PI_2);
+	DamageIndicator damageIndicator = {angle,1500};
 	mDamageIndicators.push_back(damageIndicator);
 }
 
