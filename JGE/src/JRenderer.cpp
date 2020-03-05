@@ -322,7 +322,7 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 {
 	float vertices_x[] = {x1, x2};
 	float vertices_y[] = {y1, y2};
-	DrawPolygon(vertices_x, vertices_y, 4, color, GL_LINES);
+	DrawPolygon(vertices_x, vertices_y, 2, color, GL_LINES);
 }
 
 void JRenderer::DrawLine(float x1, float y1, float x2, float y2, float lineWidth, PIXEL_TYPE color)
@@ -399,37 +399,25 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 
 void JRenderer::FillPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color)
 {
-	// JColor col;
-	// col.color = color;
+	float angle = -startingAngle*RAD2DEG;
+	float firstAngle = angle;
+	float steps = 360.0f/count;
+	size /= 2;
 
-	// float angle = -startingAngle*RAD2DEG;
-	// float firstAngle = angle;
-	// float steps = 360.0f/count;
-	// size /= 2;
+	float vertices_x[count];
+	float vertices_y[count];
 
-	// glDisable(GL_TEXTURE_2D);
-	// glColor4ub(col.r, col.g, col.b, col.a);
-	// glBegin(GL_TRIANGLE_FAN);
+	for(int i=0; i<count;i++)
+	{
+		vertices_x[i] = x+size*COSF((int)angle);
+		vertices_y[i] = y+size*SINF((int)angle);
 
-	// 	glVertex2f(x, SCREEN_HEIGHT_F-y);
+		angle += steps;
+		if (angle >= 360.0f)
+			angle -= 360.0f;
+	}
 
-	// 	for(int i=0; i<count;i++)
-	// 	{
-	// 		glVertex2f(x+size*COSF((int)angle), SCREEN_HEIGHT_F-y+size*SINF((int)angle));
-	// 		angle += steps;
-	// 		if (angle >= 360.0f)
-	// 			angle -= 360.0f;
-	// 	}
-
-	// 	glVertex2f(x+size*COSF((int)firstAngle), SCREEN_HEIGHT_F-y+size*SINF((int)firstAngle));
-
-
-	// glEnd();
-
-	// glEnable(GL_TEXTURE_2D);
-
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
+	DrawPolygon(vertices_x, vertices_y, count, color, GL_TRIANGLE_FAN);
 }
 
 void JRenderer::FillConvexPolygon(float* x, float* y, int count, PIXEL_TYPE color)

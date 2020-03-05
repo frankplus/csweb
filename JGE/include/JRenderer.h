@@ -139,9 +139,9 @@ public:
 	/// 
 	/// @param x - Array of X positions.
 	/// @param y - Array of Y positions.
-	/// @param count - Side count of the polygon.
+	/// @param count - Number of vertices.
 	/// @param color - Draw colour.
-	/// @param mode - drawing primitive: GL_TRIANGLE_FAN for filled polygon
+	/// @param mode - drawing primitive: GL_TRIANGLE_FAN for convex filled polygon
 	///									 GL_LINE_LOOP for polyline
 	///
 	//////////////////////////////////////////////////////////////////////////
