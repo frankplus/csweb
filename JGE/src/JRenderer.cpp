@@ -127,8 +127,8 @@ JRenderer::~JRenderer()
 
 void JRenderer::InitVAO()
 {
-	bufferSize = 20;
-	elementBufferSize = 20;
+	bufferSize = 360;
+	elementBufferSize = 360;
 
 	JShader shader = JResourceManager::GetShader("simple").Use();
 
@@ -285,7 +285,7 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color, GLe
 	}
 
 	if(buf_size > bufferSize)
-		printf("Vertex buffer too small!");
+		printf("Vertex buffer too small! \n");
 
 	//set color normalized to 0-1
 	JColor col;
@@ -303,11 +303,32 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color, GLe
 	glBindVertexArray(0);
 }
 
+void JRenderer::DrawPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color, GLenum mode)
+{
+	float angle = -startingAngle*RAD2DEG;
+	float steps = 360.0f/count;
+
+	float vertices_x[count];
+	float vertices_y[count];
+
+	for(int i=0; i<count;i++)
+	{
+		vertices_x[i] = x+size*COSF((int)angle);
+		vertices_y[i] = y+size*SINF((int)angle);
+
+		angle += steps;
+		if (angle >= 360.0f)
+			angle -= 360.0f;
+	}
+
+	DrawPolygon(vertices_x, vertices_y, count, color, mode);
+}
+
 void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE color)
 {
 	float vertices_x[] = {x, x+width, x+width, x};
 	float vertices_y[] = {y, y, y+height, y+height};
-	FillConvexPolygon(vertices_x, vertices_y, 4, color);
+	FillPolygon(vertices_x, vertices_y, 4, color);
 }
 
 
@@ -352,125 +373,67 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, float lineWidth
 	FillPolygon(x, y, 4, color);
 }
 
-void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
+void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color, bool convex)
 {
-	JShader shader = JResourceManager::GetShader("simple").Use();
-	
-	// Poligon triangulation
-	using Point = std::array<float, 2>;
-
-	std::vector<Point> polygon;
-
-	for(int i=0; i<count; i++)
-		polygon.push_back({x[i], y[i]});
-
-	std::vector<std::vector<Point>> v =  {polygon};
-	std::vector<GLint> indices = mapbox::earcut<GLint>(v);
-
-	// vertices array
-	int buf_size = 2 * count; // 2 coordinates per vertex
-	GLfloat vertices[buf_size]; 
-	for(int i=0; i<count; i++)
+	if(convex)
+		DrawPolygon(x, y, count, color, GL_TRIANGLE_FAN);
+	else
 	{
-		vertices[2*i] = x[i];
-		vertices[2*i + 1] = y[i];
+		JShader shader = JResourceManager::GetShader("simple").Use();
+		
+		// Poligon triangulation
+		using Point = std::array<float, 2>;
+
+		std::vector<Point> polygon;
+
+		for(int i=0; i<count; i++)
+			polygon.push_back({x[i], y[i]});
+
+		std::vector<std::vector<Point>> v =  {polygon};
+		std::vector<GLint> indices = mapbox::earcut<GLint>(v);
+
+		// vertices array
+		int buf_size = 2 * count; // 2 coordinates per vertex
+		GLfloat vertices[buf_size]; 
+		for(int i=0; i<count; i++)
+		{
+			vertices[2*i] = x[i];
+			vertices[2*i + 1] = y[i];
+		}
+
+		if(buf_size > bufferSize)
+			printf("Vertex buffer too small!");
+
+		//set color normalized to 0-1
+		JColor col;
+		col.color = color;
+		glUniform4f(colorUniformLoc, 
+					col.r / 255.f, 
+					col.g / 255.f, 
+					col.b / 255.f, 
+					col.a / 255.f);
+		
+		glBindVertexArray(mVAO);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+		glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, indices.size()*sizeof(GLint), indices.data());
+
+		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+
+		glBindVertexArray(0);
 	}
-
-	if(buf_size > bufferSize)
-		printf("Vertex buffer too small!");
-
-	//set color normalized to 0-1
-	JColor col;
-	col.color = color;
-	glUniform4f(colorUniformLoc, 
-				col.r / 255.f, 
-				col.g / 255.f, 
-				col.b / 255.f, 
-				col.a / 255.f);
-	
-	glBindVertexArray(mVAO);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, indices.size()*sizeof(GLint), indices.data());
-
-	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-
-	glBindVertexArray(0);
 }
 
 void JRenderer::FillPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color)
 {
-	float angle = -startingAngle*RAD2DEG;
-	float firstAngle = angle;
-	float steps = 360.0f/count;
-	size /= 2;
-
-	float vertices_x[count];
-	float vertices_y[count];
-
-	for(int i=0; i<count;i++)
-	{
-		vertices_x[i] = x+size*COSF((int)angle);
-		vertices_y[i] = y+size*SINF((int)angle);
-
-		angle += steps;
-		if (angle >= 360.0f)
-			angle -= 360.0f;
-	}
-
-	DrawPolygon(vertices_x, vertices_y, count, color, GL_TRIANGLE_FAN);
-}
-
-void JRenderer::FillConvexPolygon(float* x, float* y, int count, PIXEL_TYPE color)
-{
-	DrawPolygon(x, y, count, color, GL_TRIANGLE_FAN);
+	DrawPolygon(x, y, size, count, startingAngle, color, GL_TRIANGLE_FAN);
 }
 
 void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
 {
-	// JColor col;
-	// col.color = color;
-
-	// glDisable(GL_TEXTURE_2D);
-	// glColor4ub(col.r, col.g, col.b, col.a);
-	// glBegin(GL_LINE_STRIP);
-
-	// 	for(int i=0; i<360;i+=2)
-	// 	{
-	// 		glVertex2f(x+radius*COSF(i), SCREEN_HEIGHT_F-y+radius*SINF(i));
-	// 	}
-
-	// 	glVertex2f(x+radius*COSF(0), SCREEN_HEIGHT_F-y+radius*SINF(0));
-
-	// glEnd();
-
-	// glEnable(GL_TEXTURE_2D);
-
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
+	DrawPolygon(x, y, radius, 180, 0, color);
 }
 
 void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
 {
-	// JColor col;
-	// col.color = color;
-
-	// glDisable(GL_TEXTURE_2D);
-	// glColor4ub(col.r, col.g, col.b, col.a);
-	// glBegin(GL_TRIANGLE_FAN);
-
-	// 	glVertex2f(x, SCREEN_HEIGHT_F-y);
-
-	// 	for(int i=0; i<360;i+=2)
-	// 	{
-	// 		glVertex2f(x+radius*COSF(i), SCREEN_HEIGHT_F-y+radius*SINF(i));
-	// 	}
-
-	// 	glVertex2f(x+radius*COSF(0), SCREEN_HEIGHT_F-y+radius*SINF(0));
-
-	// glEnd();
-
-	// glEnable(GL_TEXTURE_2D);
-
-	// // default color
-	// glColor4ub(255, 255, 255, 255);
+	FillPolygon(x, y, radius, 180, 0, color);
 }

@@ -148,6 +148,21 @@ public:
 	void DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color, GLenum mode = GL_LINE_LOOP);
 
 	//////////////////////////////////////////////////////////////////////////
+	/// Draw symmetric polygon with certain number of sides.
+	/// 
+	/// @param x - X positions of center of the polygon.
+	/// @param y - Y positions of center of the polygon.
+	/// @param size - Size of polygon.
+	/// @param count - Side count of the polygon.
+	/// @param startingAngle - Rotation angle of the polygon.
+	/// @param color - Draw colour.
+	/// @param mode - drawing primitive: GL_TRIANGLE_FAN for filled polygon
+	///									 GL_LINE_LOOP for polyline
+	///
+	//////////////////////////////////////////////////////////////////////////
+	void DrawPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color, GLenum mode = GL_LINE_LOOP);
+
+	//////////////////////////////////////////////////////////////////////////
 	/// Fill a rectangular area with a specified color.
 	///
 	/// @param x - Starting x position.
@@ -203,9 +218,10 @@ public:
 	/// @param y - Array of Y positions.
 	/// @param count - Side count of the polygon.
 	/// @param color - Filling colour.
+	/// @param convex - More efficient if enabled but cannot draw concave polygons: 
 	///
 	//////////////////////////////////////////////////////////////////////////
-	void FillPolygon(float* x, float* y, int count, PIXEL_TYPE color);
+	void FillPolygon(float* x, float* y, int count, PIXEL_TYPE color, bool convex = true);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw solid symmetric polygon with certain number of sides.
@@ -219,18 +235,6 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void FillPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color);
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Draw a convex polygon with filled colour.
-	/// This is more efficient than FillPolygon but cannot draw concave polygons.
-	/// 
-	/// @param x - Array of X positions.
-	/// @param y - Array of Y positions.
-	/// @param count - Side count of the polygon.
-	/// @param color - Filling colour.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void FillConvexPolygon(float* x, float* y, int count, PIXEL_TYPE color);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw circle.

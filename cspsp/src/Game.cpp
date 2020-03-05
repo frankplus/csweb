@@ -1534,7 +1534,7 @@ void Game::Render()
 				xarray[5] = x + 500*cosf(facingangle+angle);
 				yarray[5] = y + 500*sinf(facingangle+angle);
 
-				mRenderer->FillConvexPolygon(xarray,yarray,6,ARGB(175,0,0,0));
+				mRenderer->FillPolygon(xarray,yarray,6,ARGB(175,0,0,0));
 			}
 		}
 
@@ -1554,7 +1554,7 @@ void Game::Render()
 			xarray[2] = x + 50*cosf(mPlayer->mFacingAngle-angle);
 			yarray[2] = y + 50*sinf(mPlayer->mFacingAngle-angle);
 
-			mRenderer->FillConvexPolygon(xarray,yarray,3,ARGB(150,0,0,0));
+			mRenderer->FillPolygon(xarray,yarray,3,ARGB(150,0,0,0));
 
 			float d = mPlayer->mStateTime/(mPlayer->GetCurrentGun()->mGun->mDelay)*50;
 			xarray[0] = x;
@@ -1564,7 +1564,7 @@ void Game::Render()
 			xarray[2] = x + d*cosf(mPlayer->mFacingAngle-angle);
 			yarray[2] = y + d*sinf(mPlayer->mFacingAngle-angle);
 
-			mRenderer->FillConvexPolygon(xarray,yarray,3,ARGB(255,255,255,255));
+			mRenderer->FillPolygon(xarray,yarray,3,ARGB(255,255,255,255));
 		}
 
 		float x = mPlayer->mX-(dx-SCREEN_WIDTH_2); //+sinf(mPlayer->mFacingAngle)*1.5f
@@ -1777,10 +1777,10 @@ void Game::Render()
 			}
 
 			if (mPeople[i] == mPlayer) {
-				mRenderer->FillPolygon(10+32+x,10+32+y,5,3,mPlayer->mFacingAngle,ARGB(255,255,255,255));
+				mRenderer->FillPolygon(10+32+x,10+32+y,2.5,3,mPlayer->mFacingAngle,ARGB(255,255,255,255));
 			}
 			else if (mGameType != FFA && mPeople[i]->mTeam == mPlayer->mTeam) {
-				mRenderer->FillPolygon(10+32+x,10+32+y,5,3,mPeople[i]->mFacingAngle,ARGB(255,0,255,0));
+				mRenderer->FillPolygon(10+32+x,10+32+y,2.5,3,mPeople[i]->mFacingAngle,ARGB(255,0,255,0));
 			}
 			else {
 				int alpha = mPeople[i]->mRadarTime/1000.0f*255; 
