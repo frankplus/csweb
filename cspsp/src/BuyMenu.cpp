@@ -227,8 +227,6 @@ void BuyMenu::Render()
 				mRenderer->RenderQuad(mGuns[id].mGroundQuad,x+25,y+12,0,1.4f,1.4f);
 				gFont->DrawShadowedString(mCategories[team][mCategoryIndex].buttons[i].name,x+50,y+3);
 			}
-			//mRenderer->FillPolygon(x,y,150,3,M_PI-theta,ARGB(200,255,255,255));
-			//mRenderer->FillRect(x-75,y-25,150,50,ARGB(200,255,255,255));
 		}
 		else {
 			gFont->SetScale(0.75f);
@@ -253,11 +251,7 @@ void BuyMenu::Render()
 				mRenderer->RenderQuad(mGuns[id].mGroundQuad,x+25,y+12);
 				gFont->DrawShadowedString(mCategories[team][mCategoryIndex].buttons[i].name,x+50,y+6);
 			}
-
-			//mRenderer->FillPolygon(x,y,150,3,M_PI-theta,ARGB(200,50,50,50));
-			//mRenderer->FillRect(x-75,y-25,150,50,ARGB(200,50,50,50));
 		}
-		//mRenderer->FillRect(x-50,y-10,100,20,ARGB(200,50,50,50));
 		
 		theta -= step;
 	}

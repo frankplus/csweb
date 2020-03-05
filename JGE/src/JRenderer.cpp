@@ -167,7 +167,7 @@ void JRenderer::BeginScene()
 
 void JRenderer::EndScene()
 {
-	glFlush ();
+	// glFlush ();
 }
 
 void JRenderer::EnableTextureFilter(bool flag)
@@ -201,29 +201,9 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 
 void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE color)
 {
-	JShader shader = JResourceManager::GetShader("simple").Use();
-
-	GLfloat vertices[] = {
-		x+width,  y,  // Top Right
-		x+width, y+height,  // Bottom Right
-		x, y+height,  // Bottom Left
-		x,  y   // Top Left 
-	};
-
-	//set color normalized to 0-1
-	JColor col;
-	col.color = color;
-	glUniform4f(colorUniformLoc, 
-				col.r / 255.f, 
-				col.g / 255.f, 
-				col.b / 255.f, 
-				col.a / 255.f);
-
-	glBindVertexArray(mVAO);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
-	glBindVertexArray(0);
+	float vertices_x[] = {x, x+width, x+width, x};
+	float vertices_y[] = {y, y, y+height, y+height};
+	FillConvexPolygon(vertices_x, vertices_y, 4, color);
 }
 
 
@@ -381,12 +361,16 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	std::vector<GLint> indices = mapbox::earcut<GLint>(v);
 
 	// vertices array
-	GLfloat vertices[2 * count]; // 2 coordinates per vertex
+	int buf_size = 2 * count; // 2 coordinates per vertex
+	GLfloat vertices[buf_size]; 
 	for(int i=0; i<count; i++)
 	{
 		vertices[2*i] = x[i];
 		vertices[2*i + 1] = y[i];
 	}
+
+	if(buf_size > bufferSize)
+		printf("Vertex buffer too small!");
 
 	//set color normalized to 0-1
 	JColor col;
@@ -402,6 +386,38 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, indices.size()*sizeof(GLint), indices.data());
 
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+
+	glBindVertexArray(0);
+}
+
+void JRenderer::FillConvexPolygon(float* x, float* y, int count, PIXEL_TYPE color)
+{
+	JShader shader = JResourceManager::GetShader("simple").Use();
+
+	// vertices array
+	int buf_size = 2 * count; // 2 coordinates per vertex
+	GLfloat vertices[buf_size]; 
+	for(int i=0; i<count; i++)
+	{
+		vertices[2*i] = x[i];
+		vertices[2*i + 1] = y[i];
+	}
+
+	if(buf_size > bufferSize)
+		printf("Vertex buffer too small!");
+
+	//set color normalized to 0-1
+	JColor col;
+	col.color = color;
+	glUniform4f(colorUniformLoc, 
+				col.r / 255.f, 
+				col.g / 255.f, 
+				col.b / 255.f, 
+				col.a / 255.f);
+	
+	glBindVertexArray(mVAO);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, count);
 
 	glBindVertexArray(0);
 }

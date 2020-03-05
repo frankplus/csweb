@@ -219,6 +219,18 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void FillPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color);
+
+	//////////////////////////////////////////////////////////////////////////
+	/// Draw a convex polygon with filled colour.
+	/// This is more efficient than FillPolygon but cannot draw concave polygons.
+	/// 
+	/// @param x - Array of X positions.
+	/// @param y - Array of Y positions.
+	/// @param count - Side count of the polygon.
+	/// @param color - Filling colour.
+	///
+	//////////////////////////////////////////////////////////////////////////
+	void FillConvexPolygon(float* x, float* y, int count, PIXEL_TYPE color);
 	
 	//////////////////////////////////////////////////////////////////////////
 	/// Draw circle with filled colour.

@@ -226,8 +226,6 @@ void TeamMenu::Render()
 				mRenderer->DrawRect(x,y,200,25,ARGB(255,255,255,255));
 				gFont->DrawShadowedString(mCategories[mCategoryIndex].buttons[i].name,x+10,y+3);
 			}
-			//mRenderer->FillPolygon(x,y,150,3,M_PI-theta,ARGB(200,255,255,255));
-			//mRenderer->FillRect(x-75,y-25,150,50,ARGB(200,255,255,255));
 		}
 		else {
 			gFont->SetScale(0.75f);
@@ -258,10 +256,7 @@ void TeamMenu::Render()
 				mRenderer->DrawRect(x,y,200,25,ARGB(255,255,255,255));
 				gFont->DrawShadowedString(mCategories[mCategoryIndex].buttons[i].name,x+10,y+6);
 			}
-			//mRenderer->FillPolygon(x,y,150,3,M_PI-theta,ARGB(200,50,50,50));
-			//mRenderer->FillRect(x-75,y-25,150,50,ARGB(200,50,50,50));
 		}
-		//mRenderer->FillRect(x-50,y-10,100,20,ARGB(200,50,50,50));
 		
 		theta -= step;
 	}

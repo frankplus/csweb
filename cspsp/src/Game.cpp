@@ -1534,7 +1534,7 @@ void Game::Render()
 				xarray[5] = x + 500*cosf(facingangle+angle);
 				yarray[5] = y + 500*sinf(facingangle+angle);
 
-				mRenderer->FillPolygon(xarray,yarray,6,ARGB(175,0,0,0));
+				mRenderer->FillConvexPolygon(xarray,yarray,6,ARGB(175,0,0,0));
 			}
 		}
 
@@ -1554,7 +1554,7 @@ void Game::Render()
 			xarray[2] = x + 50*cosf(mPlayer->mFacingAngle-angle);
 			yarray[2] = y + 50*sinf(mPlayer->mFacingAngle-angle);
 
-			mRenderer->FillPolygon(xarray,yarray,3,ARGB(150,0,0,0));
+			mRenderer->FillConvexPolygon(xarray,yarray,3,ARGB(150,0,0,0));
 
 			float d = mPlayer->mStateTime/(mPlayer->GetCurrentGun()->mGun->mDelay)*50;
 			xarray[0] = x;
@@ -1564,7 +1564,7 @@ void Game::Render()
 			xarray[2] = x + d*cosf(mPlayer->mFacingAngle-angle);
 			yarray[2] = y + d*sinf(mPlayer->mFacingAngle-angle);
 
-			mRenderer->FillPolygon(xarray,yarray,3,ARGB(255,255,255,255));
+			mRenderer->FillConvexPolygon(xarray,yarray,3,ARGB(255,255,255,255));
 		}
 
 		float x = mPlayer->mX-(dx-SCREEN_WIDTH_2); //+sinf(mPlayer->mFacingAngle)*1.5f

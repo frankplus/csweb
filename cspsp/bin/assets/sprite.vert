@@ -1,4 +1,4 @@
-attribute vec4 vertex;
+attribute vec2 vertex;
 
 // array that contains information on
 // sprite
@@ -23,10 +23,10 @@ varying vec2 TexCoords;
 //the shader entry point is the main method
 void main()
 {
-    gl_Position = projection * model * vec4(vertex.xy, 0.0, 1.0); 
+    gl_Position = projection * model * vec4(vertex, 0.0, 1.0); 
     
     // (texCoordX  * spriteWidth / textureWidth) + texSourceX
-    vec2 v = vec2(vertex.z, vertex.w);
+    vec2 v = vertex;
     if(flipped.x == true) v.x = 1.0 - v.x;
     if(flipped.y == true) v.y = 1.0 - v.y;
     TexCoords.x = (v.x * spriteRect[2] + spriteRect.x) / textureSize.x;
