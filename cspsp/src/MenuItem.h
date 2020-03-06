@@ -65,7 +65,6 @@ public:
 
 	virtual void Entering();
 	virtual bool Leaving(u32 key);
-	virtual bool ButtonPressed();
 };
 
 #endif

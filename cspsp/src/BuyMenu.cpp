@@ -409,29 +409,6 @@ void BuyMenu::Render()
 		
 
 	}
-
-	//gFont->printf(SCREEN_WIDTH_2,SCREEN_HEIGHT_2,"%f",angle);
-	/*if (mMainController->IsActive()) {
-		mMainController->Render();
-	}
-	else {
-		gFont->DrawString("[^] Return", 220, 90);
-		for (int i=PISTOLS; i<=EQUIPMENT; i++) {
-			if (mControllers[i]->IsActive()) {
-				mControllers[i]->Render();
-			}
-		}
-	}*/
-	
-	/*for (int i=PISTOLS; i<=EQUIPMENT; i++) {
-		if (mControllers[i]->IsActive()) {
-			int id = mControllers[i]->GetGuiObject(mControllers[i]->GetCurr())->GetId();
-			mRenderer->RenderQuad(mGuns[id].mGroundQuad,236,126);
-			char buffer[16];
-			sprintf(buffer,"Price: $%i",mGuns[id].mCost);
-			gFont->DrawString(buffer,220,142);
-		}
-	}*/
 }
 
 //------------------------------------------------------------------------------------------------

@@ -24,19 +24,12 @@ JGuiObject::JGuiObject(int id, bool hasFocus): mId(id), mHasFocus(hasFocus)
 
 JGuiObject::~JGuiObject() 
 { 
-//	JGERelease(); 
 };
 
 
 bool JGuiObject::Leaving(u32 key) 
 {
 	return true; 
-}
-
-
-bool JGuiObject::ButtonPressed() 
-{ 
-	return false; 
 }
 
 
@@ -74,7 +67,7 @@ JGuiController::JGuiController(int id, JGuiListener* listener, int direction) : 
 	mActionButton = CTRL_CROSS;
 	mLastKey = 0;
 
-	mStyle = JGUI_STYLE_WRAPPING;
+	mWrapping = true;
 	mDirection = direction;
 
 	mActive = true;
@@ -86,19 +79,11 @@ JGuiController::~JGuiController()
 	for (int i=0;i<mCount;i++)
 		if (mObjects[i]!=NULL)
 			delete mObjects[i];
-
-//	JGERelease();
 }
 
 
 void JGuiController::Render(float x, float y)
 {
-//	if (mShadingBg != NULL)
-//		jge->Gfx_BlendRect(mShadingBg, mShadingColor);
-
-//	if (mBg != NULL)
-//		jge->Gfx_DrawImage(mBg, mBgX, mBgY);
-
 	for (int i=0;i<mCount;i++)
 		if (mObjects[i]!=NULL)
 			mObjects[i]->Render(x, y);
@@ -137,7 +122,7 @@ void JGuiController::Update(float dt)
 
 	if (mEngine->GetButtonClick(mActionButton))
 	{
-		if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed())
+		if (mObjects[mCurr] != NULL)
 		{
 			if (mListener != NULL)
 			{
@@ -156,7 +141,7 @@ void JGuiController::Update(float dt)
 				n--;
 				if (n<0)
 				{
-					if ((mStyle&JGUI_STYLE_WRAPPING))
+					if (mWrapping)
 						n = mCount-1;
 					else
 						n = 0;
@@ -177,7 +162,7 @@ void JGuiController::Update(float dt)
 				n++;
 				if (n>mCount-1)
 				{
-					if ((mStyle&JGUI_STYLE_WRAPPING))
+					if (mWrapping)
 						n = 0;
 					else
 						n = mCount-1;
@@ -202,7 +187,7 @@ void JGuiController::Update(float dt)
 				n--;
 				if (n<0)
 				{
-					if ((mStyle&JGUI_STYLE_WRAPPING))
+					if (mWrapping)
 						n = mCount-1;
 					else
 						n = 0;
@@ -223,7 +208,7 @@ void JGuiController::Update(float dt)
 				n++;
 				if (n>mCount-1)
 				{
-					if ((mStyle&JGUI_STYLE_WRAPPING))
+					if (mWrapping)
 						n = 0;
 					else
 						n = mCount-1;
@@ -247,10 +232,8 @@ void JGuiController::Add(JGuiObject* ctrl)
 	if (mCount<MAX_GUIOBJECT)
 	{
 		mObjects[mCount++] = ctrl;
-		if (ctrl->HasFocus()) {
+		if (ctrl->HasFocus())
 			mDefault = mCount;
-			//mCurr = mCount;
-		}
 	}
 }
 
@@ -274,20 +257,13 @@ void JGuiController::Remove(int id)
 }
 
 void JGuiController::SetActionButton(u32 button) { mActionButton = button; }
-void JGuiController::SetStyle(int style) { mStyle = style;	}
+void JGuiController::SetWrapping(bool flag) { mWrapping = flag; }
 bool JGuiController::IsActive() { return mActive; }
 void JGuiController::SetActive(bool flag) { mActive = flag; }
 
 
 void JGuiController::Reset() { 
-	for (int i=0;i<mCount;i++)
-	{
-		if (mObjects[i] != NULL) {
-			mObjects[i]->Leaving(CTRL_UP);
-		}
-	}
-	mObjects[mDefault]->Entering();
-	mCurr = mDefault;
+	SetCurr(mDefault);
 }
 
 void JGuiController::SetCurr(int curr) { 
@@ -317,22 +293,3 @@ JGuiObject* JGuiController::GetGuiObject(int index) {
 		return NULL;
 	}
 }
-
-
-//void JGuiController::SetImageBackground(const JTexture* tex, int x, int y)
-//{
-//	mBg = tex;
-//	mBgX = x;
-//	mBgY = y;
-//}
-//
-//
-//void JGuiController::SetShadingBackground(int x, int y, int width, int height, PIXEL_TYPE color)
-//{
-//	if (mShadingBg)
-//		delete mShadingBg;
-//	
-//	mShadingBg = new Rect(x, y, width, height);
-//	mShadingColor = color;
-//}
-//

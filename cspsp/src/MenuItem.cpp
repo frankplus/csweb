@@ -150,9 +150,3 @@ bool MenuItem::Leaving(u32 key)
 	mTargetScale = 1.0f;
 	return true;
 }
-
-
-bool MenuItem::ButtonPressed()
-{
-	return true;
-}
