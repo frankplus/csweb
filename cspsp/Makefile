@@ -7,7 +7,7 @@ APP_DIR  := $(BUILD)/apps
 TARGET   := index.js
 INCLUDE := -I../JGE/include 
 SRC_DIR      := src
-EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_LIBPNG=1 -s ALLOW_MEMORY_GROWTH=1 -s MAX_WEBGL_VERSION=2 --use-preload-plugins --preload-file ./bin/assets@/ #-s LEGACY_GL_EMULATION=1
+EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_LIBPNG=1 -s ALLOW_MEMORY_GROWTH=1 --use-preload-plugins --preload-file ./bin/assets@/ #-s LEGACY_GL_EMULATION=1
 LIBS 	 := ../JGE/build/lib/libjge.a
 
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
@@ -39,4 +39,4 @@ clean:
 	-@rm -rvf $(OBJ_DIR)/*
 
 test:
-	emcc test_main.cpp $(LDFLAGS) $(EMCC_FLAGS) $(CXXFLAGS) -g -o $(APP_DIR)/$(TARGET)
+	emcc test_main_fullscreen.c $(EMCC_FLAGS) $(CXXFLAGS) -g -o $(APP_DIR)/test.js

@@ -150,11 +150,44 @@ EM_BOOL windowSizeChanged(int eventType, const EmscriptenUiEvent *e, void *userD
     emscripten_get_element_css_size("#canvas", &width, &height);
     SDL_SetWindowSize(window, width, height);
     glViewport (0, 0, (GLsizei)width, (GLsizei)height);
+    printf("window resized %f %f\n", width, height);
     return true;
+}
+
+int on_button_click(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData)
+{
+    EmscriptenFullscreenChangeEvent fsce;
+    EMSCRIPTEN_RESULT ret = emscripten_get_fullscreen_status(&fsce);
+    if (!fsce.isFullscreen)
+    {
+        printf("Requesting fullscreen..\n");
+        ret = emscripten_request_fullscreen("#canvas", 1);
+    }
+    else
+    {
+        printf("Exiting fullscreen..\n");
+        ret = emscripten_exit_fullscreen();
+        ret = emscripten_get_fullscreen_status(&fsce);
+        if (fsce.isFullscreen)
+        {
+            fprintf(stderr, "Fullscreen exit did not work!\n");
+        }
+    }
+    return 1;
 }
 
 int main()
 {   
+    EmscriptenWebGLContextAttributes attr;
+    emscripten_webgl_init_context_attributes(&attr);
+    attr.alpha = attr.depth = attr.stencil = attr.antialias = attr.preserveDrawingBuffer = attr.failIfMajorPerformanceCaveat = 0;
+    attr.enableExtensionsByDefault = 1;
+    attr.premultipliedAlpha = 0;
+    attr.majorVersion = 1;
+    attr.minorVersion = 0;
+    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE ctx = emscripten_webgl_create_context("#canvas", &attr);
+    emscripten_webgl_make_context_current(ctx);
+
     //Initialize SDL
     if( SDL_Init( SDL_INIT_AUDIO ) < 0 )
         printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
@@ -167,6 +200,7 @@ int main()
 
     InitGame();
     emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, 0, 1, windowSizeChanged);
+    emscripten_set_click_callback("#fullscreen", (void*)0, 1, on_button_click);
     emscripten_set_main_loop(main_loop, -1, true);
 
     return EXIT_SUCCESS;

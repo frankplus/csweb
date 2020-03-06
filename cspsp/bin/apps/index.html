@@ -8,8 +8,8 @@
   </head>
   <body>
     <div class="game">
-      <button class="controls" onclick="Module.requestFullscreen(true, true)">Fullscreen</button>
-      <div class="info">
+      <input type="button" id="fullscreen" class="controls" value="Fullscreen">
+      <div class="info" id="info">
         <div id='spinner'></div>
         <div id="status">Downloading...</div>
         <div>
@@ -23,6 +23,7 @@
       var statusElement = document.getElementById('status');
       var progressElement = document.getElementById('progress');
       var spinnerElement = document.getElementById('spinner');
+      var infoElement = document.getElementById('info');
 
       var Module = {
         canvas: (function() {
@@ -49,11 +50,17 @@
             progressElement.max = parseInt(m[4])*100;
             progressElement.hidden = false;
             spinnerElement.hidden = false;
+            infoElement.hidden = false;
+            canvas.hidden = true;
           } else {
             progressElement.value = null;
             progressElement.max = null;
             progressElement.hidden = true;
-            if (!text) spinnerElement.style.display = 'none';
+            if (!text) {
+              spinnerElement.style.display = 'none';
+              infoElement.hidden = true;
+            }
+            canvas.hidden = false;
           }
           statusElement.innerHTML = text;
         },
