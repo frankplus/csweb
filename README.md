@@ -15,7 +15,7 @@ Live demo: https://frankinfotech.it/csweb/
 - keyboard support using WASD to move QE to rotate the player, space to conferm/shoot, H to reload, K to change weapon.
 - Working sound engine using SDL_mixer
 
-##TODO
+## TODO
 - implement mouse support to rotate the player
 - implement mouse support for Gui control
 - implement online multiplayer support
