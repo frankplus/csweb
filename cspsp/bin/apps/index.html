@@ -7,21 +7,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div class="emscripten" id="topbar">
-      <div id='spinner'></div>
-      <div id="status">Downloading...</div>
-      <div>
-        <progress value="0" max="100" id="progress" hidden=1></progress>
+    <div class="game">
+      <button class="controls" onclick="Module.requestFullscreen(true, true)">Fullscreen</button>
+      <div class="info">
+        <div id='spinner'></div>
+        <div id="status">Downloading...</div>
+        <div>
+          <progress value="0" max="100" id="progress" hidden=1></progress>
+        </div>
       </div>
-
-      <div class="controls">
-        <input type="button" value="Fullscreen" onclick="Module.requestFullscreen(true, true)">
-      </div>
-
-      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
-
+      <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
     </div>
-
 
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
@@ -95,7 +91,7 @@
       document.getElementById('canvas').addEventListener('click', resumeAudio);
       document.addEventListener('keydown', resumeAudio);
     </script>
-    <script async type="text/javascript" src="build.js"></script>
+    <script async type="text/javascript" src="index.js"></script>
   </body>
 </html>
 

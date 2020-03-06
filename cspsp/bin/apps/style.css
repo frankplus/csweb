@@ -4,7 +4,22 @@ body {
   padding: none;
 }
 
-.emscripten { text-align: center; }     
+.game {
+    text-align: center; 
+}
+
+.info { 
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center; 
+    top: 50px;
+}     
+
+#topbar {
+    height: 80px;
+    background-color: beige;
+}
 
 /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
 #canvas { 
@@ -40,14 +55,9 @@ body {
 }
 
 .controls {
-  /* display: inline-block;
-  float: right;
-  vertical-align: top;
-  margin-top: 30px;
-  margin-right: 20px; */
-  position: absolute;
-  right: 10px;
-  top: 10px;
+    background-color: lightgray;
+    width: 100%;
+    height: 50px;
 }
 
 @-webkit-keyframes rotation {
