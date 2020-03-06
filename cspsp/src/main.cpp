@@ -150,7 +150,7 @@ EM_BOOL windowSizeChanged(int eventType, const EmscriptenUiEvent *e, void *userD
     emscripten_get_element_css_size("#canvas", &width, &height);
     SDL_SetWindowSize(window, width, height);
     glViewport (0, 0, (GLsizei)width, (GLsizei)height);
-    printf("window resized %f %f\n", width, height);
+    // printf("window resized %f %f\n", width, height);
     return true;
 }
 
