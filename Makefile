@@ -16,5 +16,7 @@ release:
 
 server:
 	cd cspsp/bin/apps && python3 -m http.server 8080
+proxy:
+	cd cspsp/bin/apps && node ./proxy.js
 
 .PHONY: all clean debug release server

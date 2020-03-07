@@ -34,20 +34,25 @@ private:
 
 	std::deque<Request> mRequests;
 	std::deque<Response> mResponses;
-	Socket* mSocket;
-	float mTimer;
-	float mReconnectTimer;
 	char mHost[128];
 	int mPort;
 	int mContentSize;
-	int mBufferSize;
 	int mContentType;
-	bool ReadHTTP(char* string, int n);
+
+	HttpManager(){}
 
 public:
-	HttpManager();
-	~HttpManager();
 
+	// Singleton
+	static HttpManager* getInstance()
+	{
+		static HttpManager* instance = new HttpManager();
+		return instance;
+	}
+	HttpManager(HttpManager const&)     = delete;
+	void operator=(HttpManager const&)  = delete;
+
+	void Init();
 	void Connect(char* host, char* hosttext, int port);
 	void Reconnect();
 	void Disconnect();
@@ -57,6 +62,7 @@ public:
 	bool ResponseReady();
 	void ClearRequests();
 
+	void SetResponse(const char* response, int size);
 	void Update(float dt);
 };
 

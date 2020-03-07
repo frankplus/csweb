@@ -4,6 +4,7 @@
 
 #include "GameState.h"
 #include "Game.h"
+#include "HttpManager.h"
 
 class GameStateLoading: public GameState
 {

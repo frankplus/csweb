@@ -316,7 +316,8 @@ int GameStateLoading::Load(int stage) {
 			gDanzeff = new Danzeff();
 
 			gSocket = new Socket();
-			gHttpManager = new HttpManager();
+			gHttpManager = HttpManager::getInstance();
+			gHttpManager->Init();
 
 			gLastKey = 0;
 			gKeyRepeatDelay = 0;

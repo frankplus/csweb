@@ -18,8 +18,8 @@
 #include "GameStateNewGame.h"
 // #include "GameStateOptions.h"
 // #include "GameStateUpdate.h"
-// #include "GameStateConnect.h"
-// #include "GameStateLobby.h"
+#include "GameStateConnect.h"
+#include "GameStateLobby.h"
 // #include "GameStateOnline.h"
 
 JRenderer* GameApp::mRenderer = NULL;
@@ -56,8 +56,8 @@ void GameApp::Create()
 	mGameStates[GAME_STATE_NEW_GAME] = new GameStateNewGame(this);
 	// mGameStates[GAME_STATE_OPTIONS] = new GameStateOptions(this);
 	// mGameStates[GAME_STATE_UPDATE] = new GameStateUpdate(this);
-	// mGameStates[GAME_STATE_CONNECT] = new GameStateConnect(this);
-	// mGameStates[GAME_STATE_LOBBY] = new GameStateLobby(this);
+	mGameStates[GAME_STATE_CONNECT] = new GameStateConnect(this);
+	mGameStates[GAME_STATE_LOBBY] = new GameStateLobby(this);
 	// mGameStates[GAME_STATE_ONLINE] = new GameStateOnline(this);
 
 	mCurrentState = NULL;
@@ -154,8 +154,8 @@ void GameApp::LoadGameStates()
 	mGameStates[GAME_STATE_PLAY]->Create();
 	// mGameStates[GAME_STATE_OPTIONS]->Create();
 	// mGameStates[GAME_STATE_UPDATE]->Create();
-	// mGameStates[GAME_STATE_CONNECT]->Create();
-	// mGameStates[GAME_STATE_LOBBY]->Create();
+	mGameStates[GAME_STATE_CONNECT]->Create();
+	mGameStates[GAME_STATE_LOBBY]->Create();
 	// mGameStates[GAME_STATE_ONLINE]->Create();
 }
 

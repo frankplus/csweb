@@ -16,10 +16,12 @@ void GameStateConnect::Create()
 
 	mConnectionsListBox = new ListBox(0,35,SCREEN_WIDTH,200,25,8);
 
-	std::vector<ConnectionConfig> connections = GetConnectionConfigs();
-	for (int i=0; i<connections.size(); i++) {
-		mConnectionsListBox->AddItem(new ConnectionItem(connections[i]));
-	}
+	char buffer[10];
+	sprintf(buffer,"Connection");
+	ConnectionConfig c;
+	strcpy(c.name,buffer);
+	c.index = 0;
+	mConnectionsListBox->AddItem(new ConnectionItem(c));
 
 	FormatText(mInstructions,instructions,SCREEN_WIDTH-40,0.75f);
 	mStage = STAGE_SELECT;
@@ -121,7 +123,7 @@ void GameStateConnect::Update(float dt)
 		if (mConnectState == 4) {
 			//SocketConnect(gSocket,"74.125.19.118",80);
 			//74.125.53.141
-			gHttpManager->Connect("74.125.53.141","cspsp.appspot.com",80);
+			gHttpManager->Connect("","localhost",2800);
 			//gHttpManager->Connect("127.0.0.1","localhost",8080);
 			mStage = STAGE_LOGIN;
 
