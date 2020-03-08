@@ -1,186 +1,112 @@
 #include "Wlan.h"
+#include <emscripten/websocket.h>
 
-#include <errno.h> /* EINPROGRESS, errno */
-#include <sys/types.h> /* timeval */
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <fcntl.h>
-#include <unistd.h>
+static EMSCRIPTEN_WEBSOCKET_T proxy_socket;
+static char message_buffer[4096];
+static int message_size;
+
+EM_BOOL WebSocketOpen(int eventType, const EmscriptenWebSocketOpenEvent *e, void *userData)
+{
+	printf("open(eventType=%d, userData=%d)\n", eventType, (int)userData);
+	return 0;
+}
+
+EM_BOOL WebSocketClose(int eventType, const EmscriptenWebSocketCloseEvent *e, void *userData)
+{
+	printf("close(eventType=%d, wasClean=%d, code=%d, reason=%s, userData=%d)\n", eventType, e->wasClean, e->code, e->reason, (int)userData);
+	emscripten_websocket_close(e->socket, 0, 0);
+    return 0;
+}
+
+EM_BOOL WebSocketError(int eventType, const EmscriptenWebSocketErrorEvent *e, void *userData)
+{
+	printf("error(eventType=%d, userData=%d)\n", eventType, (int)userData);
+    emscripten_websocket_close(e->socket, 0, 0);
+	return 0;
+}
+
+EM_BOOL WebSocketMessage(int eventType, const EmscriptenWebSocketMessageEvent *e, void *userData)
+{
+	printf("message(eventType=%d, userData=%d, data=%p, numBytes=%d, isText=%d)\n", eventType, (int)userData, e->data, e->numBytes, e->isText);
+	// if (e->isText)
+	// 	printf("text data: \"%s\"\n", e->data);
+	// else
+	{
+		printf("binary data:");
+		for(int i = 0; i < e->numBytes; ++i)
+			printf(" %02X", e->data[i]);
+		printf("\n");
+	}
+    memcpy(message_buffer, e->data, e->numBytes);
+    message_size = e->numBytes;
+	return 0;
+}
 
 
 int WlanInit()
 {
-	// WSADATA wsaData;	// Windows socket
+	if (!emscripten_websocket_is_supported())
+	{
+		printf("WebSockets are not supported, cannot continue!\n");
+        return 1;
+	}
 
-	// // Initialize Winsock
-	// if (WSAStartup(MAKEWORD(2,2), &wsaData) == SOCKET_ERROR) {
-	// }
+	EmscriptenWebSocketCreateAttributes attr;
+	emscripten_websocket_init_create_attributes(&attr);
 
-	// wlanInitialized = true;
-	return 0;
+	attr.url = "ws://localhost:2900";
+
+	proxy_socket = emscripten_websocket_new(&attr);
+	if (proxy_socket <= 0)
+	{
+		printf("WebSocket creation failed, error code %d!\n", (EMSCRIPTEN_RESULT)proxy_socket);
+        return 1;
+	}
+
+	emscripten_websocket_set_onopen_callback(proxy_socket, (void*)42, WebSocketOpen);
+	emscripten_websocket_set_onclose_callback(proxy_socket, (void*)43, WebSocketClose);
+	emscripten_websocket_set_onerror_callback(proxy_socket, (void*)44, WebSocketError);
+	emscripten_websocket_set_onmessage_callback(proxy_socket, (void*)45, WebSocketMessage);
+
+    return 0;
 }
 
 int WlanTerm()
 {
-	// if (!wlanInitialized) return 0;
-	// WSACleanup();
-	// wlanInitialized = false;
-	return 0;
+    return 0;
 }
 
-int SetSockNoBlock(int s, u32 val)
-{ 
-	// unsigned long nonblocking = 1;
-	// ioctlsocket(s, FIONBIO, &nonblocking);
-
-    return 1;
-}
-
-int SocketConnect(Socket* socket, char* host, int port)
+int SocketConnect(Socket* socket, char* host, int port) 
 {
-    printf("SocketConnect %s:%d \n", host, port);
-    socket->sock = ::socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if(socket->sock == -1) {
-        printf("Socket::connect(): failed to create socket \n");
-        return -1;
-    }
-    fcntl(socket->sock, F_SETFL, O_NONBLOCK);
-
-    struct sockaddr_in addr;
-    memset(&addr, 0, sizeof(addr));
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(port);
-    if(inet_pton(AF_INET, host, &addr.sin_addr) != 1) {
-        printf("Socket::connect(): inet_pton failed \n");
-        return -1;
-    }
-
-    const int res = ::connect(socket->sock, (struct sockaddr *)&addr, sizeof(addr));
-    if(res == -1) {
-        if(errno == EINPROGRESS) {
-            printf("Socket::connect(): Connection in progress for fd: %d \n",socket->sock);
-
-            /* Wait for connection to complete */
-            fd_set sockets;
-            FD_ZERO(&sockets);
-            FD_SET(socket->sock, &sockets);
-
-            /* You should probably do other work instead of busy waiting on this...
-               or set a timeout or something */
-            while(select(socket->sock + 1, nullptr, &sockets, nullptr, nullptr) <= 0) {}
-
-        } else {
-            printf("Socket::connect(): connection failed \n");
-            return -1;
-        }
-    } 
-	return 1;
-
-	// socket1->sock = socket(AF_INET, SOCK_STREAM, 0);
-	// if (socket1->sock < 0) ;//error("socket");
-
-	// struct hostent *hp;
-	// hp = gethostbyname(host);
-
-	// socket1->addrTo.sin_family = AF_INET;
-	// socket1->addrTo.sin_addr.s_addr = inet_addr(inet_ntoa(*(struct in_addr*)hp->h_addr));
-	// socket1->addrTo.sin_port = htons(port);
-
-	// SetSockNoBlock(socket1->sock, 1);
-
-	// connect(socket1->sock, (struct sockaddr *)&socket1->addrTo, sizeof socket1->addrTo);
-
-	// return 1;
+    char buf[128];
+    sprintf(buf, "CONNECT %s:%d", host, port);
+    return emscripten_websocket_send_binary(proxy_socket, buf, strlen(buf));
 }
 
 int SocketConnectUdp(Socket* socket, char* host, int port)
-{	
-	return SocketConnect(socket, host, port);
-
-	// socket1->sock = socket(AF_INET, SOCK_DGRAM, 0);
-	// if (socket1->sock < 0) ;//error("socket");
-
-	// socket1->addrTo.sin_family = AF_INET;
-
-	// struct hostent *hp;
-	// hp = gethostbyname(host);
-
-	// bcopy((char *)hp->h_addr, (char *)&socket1->addrTo.sin_addr, hp->h_length);
-
-	// socket1->addrTo.sin_port = htons(port);
-
-	// SetSockNoBlock(socket1->sock, 1);
-
-	// return 1;
+{
+    return SocketConnect(socket, host, port); 
 }
 
 int SocketRecv(Socket* socket, char* buf, int size)
 {
-    /* Wait timeout milliseconds to receive data */
-    fd_set sockets;
-    FD_ZERO(&sockets);
-    FD_SET(socket->sock, &sockets);
-
-    int ret = select(socket->sock + 1, &sockets, nullptr, nullptr, nullptr); //todo set timeout
-    if(ret == 0) {
-        /* Timeout */
-		return -1;
-    } else if(ret < 0) {
-    	printf("Socket::receive(): select failed \n");
-		return -1;
-    }
-
-    ret = recv(socket->sock, buf, size, 0);
-    if(ret < 0) {
-        printf("Socket::receive(): recv failed \n");
-        return -1;
-    }
-
-    return ret;
-
-
-	// struct sockaddr_in addrFrom;
-	// unsigned int len = sizeof (addrFrom); 
-
-	// int count = recv(socket->sock, buf, size, 0);
-	// return count;
+    size = std::min(size, message_size);
+    memcpy(buf, message_buffer, size);
+    return size;
 }
 
 int SocketSend(Socket* socket, char* buf, int size)
 {
-    const int ret = ::send(socket->sock, buf, size, 0);
-    if(ret == -1) {
-        printf("Socket::send(): send failed \n");
-		SocketClose(socket);
-        return -1;
-    }
-
-	return ret;
-
-	// int n = send(socket->sock,buf,size,0);
-	// return n;
+    printf("send data: %.*s\n", size, buf);
+    return emscripten_websocket_send_binary(proxy_socket, buf, size);
 }
-
 
 int SocketSendUdp(Socket* socket, char* buf, int size)
 {
-	return SocketSend(socket, buf, size);
-
-    // int total = 0;        // how many bytes we've sent
-    // int bytesleft = size; // how many we have left to send
-    // int n;
-
-    // while(total < size) {
-    //     n = sendto(socket->sock, buf+total, bytesleft, 0, (sockaddr*)&(socket->addrTo),sizeof(socket->addrTo));
-    //     if (n == -1) { break; }
-    //     total += n;
-    //     bytesleft -= n;
-    // }
-
-	// return 1;
+    return SocketSend(socket, buf, size);
 }
 
 int SocketClose(Socket* socket)
 {
-	return ::close(socket->sock);
+    return 0;
 }

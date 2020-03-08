@@ -46,7 +46,7 @@ int Packet::Length() {
 char Packet::ReadInt8() {
 	char value = 0;
 	if (index >= data.size()) {
-		printf("Invalid ReadInt8");
+		printf("Invalid ReadInt8 \n");
 		return 0;
 	}
     memcpy(&value, &data[index], sizeof(char));
@@ -62,7 +62,7 @@ void Packet::WriteInt8(char value) {
 short int Packet::ReadInt16() {
 	short int value = 0;
 	if (index >= data.size()) {
-		printf("Invalid ReadInt16");
+		printf("Invalid ReadInt16 \n");
 		return 0;
 	}
     memcpy(&value, &data[index], sizeof(short int));
@@ -78,7 +78,7 @@ void Packet::WriteInt16(short int value) {
 int Packet::ReadInt32() {
 	int value = 0;
 	if (index >= data.size()) {
-		printf("Invalid ReadInt32");
+		printf("Invalid ReadInt32 \n");
 		return 0;
 	}
     memcpy(&value, &data[index], sizeof(int));
@@ -94,7 +94,7 @@ void Packet::WriteInt32(int value) {
 float Packet::ReadFloat() {
 	float value = 0.0f;
 	if (index >= data.size()) {
-		printf("Invalid ReadFloat");
+		printf("Invalid ReadFloat \n");
 		return 0.0f;
 	}
     memcpy(&value, &data[index], sizeof(float));

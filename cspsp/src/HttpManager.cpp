@@ -120,8 +120,6 @@ void HttpManager::SetResponse(const char* res, int size)
 	memcpy(response.buffer,res,size);
 	response.size = size;
 	mResponses.push_back(response);
-
-	printf("%.*s \n", size, response);
 }
 
 //------------------------------------------------------------------------------------------------

@@ -17,22 +17,21 @@ var CLIENT_HTTP_LISTEN = 2800;
 
 
 // Http proxy
-var http = require('http'),
-    httpProxy = require('http-proxy');
+var httpProxy = require('http-proxy');
 
 var options = {
-  target: {
-    host: MASTER_SERVER,
-    port: MASTER_PORT
-  },
+	target: {
+		host: MASTER_SERVER,
+		port: MASTER_PORT
+	},
 }
 
-var proxy = httpProxy.createProxyServer(options).listen(CLIENT_HTTP_LISTEN); 
-proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  proxyReq.setHeader('Host', MASTER_SERVER);
+var proxy = httpProxy.createProxyServer(options).listen(CLIENT_HTTP_LISTEN);
+proxy.on('proxyReq', function (proxyReq, req, res, options) {
+	proxyReq.setHeader('Host', MASTER_SERVER);
 });
 
-var enableCors = function(req, res) {
+var enableCors = function (req, res) {
 	if (req.headers['access-control-request-method']) {
 		res.setHeader('access-control-allow-methods', req.headers['access-control-request-method']);
 	}
@@ -48,7 +47,7 @@ var enableCors = function(req, res) {
 };
 
 // set header for CORS
-proxy.on("proxyRes", function(proxyRes, req, res) {
+proxy.on("proxyRes", function (proxyRes, req, res) {
 	enableCors(req, res);
 });
 
@@ -58,22 +57,23 @@ var Buffer = require('buffer').Buffer;
 var dgram = require('dgram');
 var WebSocketServer = require('ws').Server;
 
-var wss = new WebSocketServer({port: CLIENT_WEBSOCKET_LISTEN});
+var wss = new WebSocketServer({ port: CLIENT_WEBSOCKET_LISTEN });
 
-wss.on('connection', function(ws) {
-    //Create a udp socket for this websocket connection
-    var udpClient = dgram.createSocket('udp4');
+wss.on('connection', function (ws) {
+	//Create a udp socket for this websocket connection
+	var udpClient = dgram.createSocket('udp4');
 
-    //When a message is received from udp server send it to the ws client
-    udpClient.on('message', function(msg, rinfo) {
-        ws.send(msg.toString());
-	console.log("UDP: server > client");
-    });
+	//When a message is received from udp server send it to the ws client
+	udpClient.on('message', function (msg, rinfo) {
+		ws.send(msg.toString());
+		console.log("UDP: server > client");
+	});
 
-    //When a message is received from ws client send it to udp server.
-    ws.on('message', function(message) {
-        var msgBuff = new Buffer(message);
-        udpClient.send(msgBuff, 0, msgBuff.length, SERVER_PORT, SERVER_IP);
-	console.log("UDP: client > server");
-    });
+	//When a message is received from ws client send it to udp server.
+	ws.on('message', function (message) {
+		var msgBuff = new Buffer(message);
+		udpClient.send(msgBuff, 0, msgBuff.length, SERVER_PORT, SERVER_IP);
+		console.log("client > server");
+		console.log(message);
+	});
 });
