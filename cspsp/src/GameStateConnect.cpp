@@ -14,7 +14,7 @@ void GameStateConnect::Create()
 
 	//TODO INITIALIZE NETWORK
 
-	mConnectionsListBox = new ListBox(0,35,SCREEN_WIDTH,200,25,8);
+	mConnectionsListBox = new ListBox(0,35,SCREEN_WIDTH_F,200,25,8);
 
 	char buffer[10];
 	sprintf(buffer,"Connection");
@@ -23,7 +23,7 @@ void GameStateConnect::Create()
 	c.index = 0;
 	mConnectionsListBox->AddItem(new ConnectionItem(c));
 
-	FormatText(mInstructions,instructions,SCREEN_WIDTH-40,0.75f);
+	FormatText(mInstructions,instructions,SCREEN_WIDTH_F-40,0.75f);
 	mStage = STAGE_SELECT;
 	strcpy(mSuspendReason,"");
 	mSuspendHours = 0;
@@ -123,7 +123,7 @@ void GameStateConnect::Update(float dt)
 		if (mConnectState == 4) {
 			//SocketConnect(gSocket,"74.125.19.118",80);
 			//74.125.53.141
-			gHttpManager->Connect("","localhost",2800);
+			gHttpManager->Connect("127.0.0.1","cspsp.appspot.com",2800);
 			//gHttpManager->Connect("127.0.0.1","localhost",8080);
 			mStage = STAGE_LOGIN;
 
@@ -328,9 +328,9 @@ void GameStateConnect::Render()
 		gFont->DrawShadowedString("Network Connection",20,10);
 		gFont->SetScale(0.75f);
 
-		mRenderer->FillRect(0,35,SCREEN_WIDTH,200,ARGB(100,0,0,0));
+		mRenderer->FillRect(0,35,SCREEN_WIDTH_F,200,ARGB(100,0,0,0));
 
-		gFont->DrawShadowedString("[X] Select Connection     [O] Return to Menu", SCREEN_WIDTH_2, SCREEN_HEIGHT-20, JGETEXT_CENTER);
+		gFont->DrawShadowedString("[X] Select Connection     [O] Return to Menu", SCREEN_WIDTH_2, SCREEN_HEIGHT_F-20, JGETEXT_CENTER);
 
 		gFont->SetScale(1.0f);
 		if (mConnectionsListBox->IsEmpty()) {
@@ -342,7 +342,7 @@ void GameStateConnect::Render()
 		gFont->SetScale(0.75f);
 
 		if (mStage != STAGE_SELECT) {
-			mRenderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(200,0,0,0));
+			mRenderer->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(200,0,0,0));
 			gFont->SetColor(ARGB(255,255,255,255));
 			gFont->SetScale(0.75f);
 		}
@@ -403,8 +403,8 @@ void GameStateConnect::Render()
 
 	else if (mStage == STAGE_NEWACCOUNT || mStage == STAGE_NEWACCOUNTSUBMIT) {
 		int starty = 115;
-		mRenderer->FillRect(0,starty,SCREEN_WIDTH,100,ARGB(100,0,0,0));
-		mRenderer->FillRect(0,starty+100,SCREEN_WIDTH,30,ARGB(175,0,0,0));
+		mRenderer->FillRect(0,starty,SCREEN_WIDTH_F,100,ARGB(100,0,0,0));
+		mRenderer->FillRect(0,starty+100,SCREEN_WIDTH_F,30,ARGB(175,0,0,0));
 
 		gFont->SetScale(0.75f);
 		for (int i=0; i<mInstructions.size(); i++) {
@@ -412,11 +412,11 @@ void GameStateConnect::Render()
 		}
 
 		if (!gDanzeff->mIsActive) {
-			mRenderer->FillRect(0,starty+index*25,SCREEN_WIDTH,25,ARGB(255,0,0,0));
+			mRenderer->FillRect(0,starty+index*25,SCREEN_WIDTH_F,25,ARGB(255,0,0,0));
 			gFont->DrawShadowedString("[X] Select     [O] Return",SCREEN_WIDTH_2,SCREEN_HEIGHT_F-20,JGETEXT_CENTER);
 		}
 		else {
-			mRenderer->FillRect(0,starty+index*25,SCREEN_WIDTH,25,ARGB(100,0,128,255));
+			mRenderer->FillRect(0,starty+index*25,SCREEN_WIDTH_F,25,ARGB(100,0,128,255));
 			gFont->DrawShadowedString("[START] Enter    [SELECT] Cancel",SCREEN_WIDTH_2,SCREEN_HEIGHT_F-20,JGETEXT_CENTER);
 		}
 
@@ -461,22 +461,22 @@ void GameStateConnect::Render()
 				gFont->DrawShadowedString(temppassword,startx,starty+5+25);
 				gFont->DrawShadowedString("|",startx+gFont->GetStringWidth(temppassword),starty+5+25);
 			}
-			gDanzeff->Render(SCREEN_WIDTH-175,SCREEN_HEIGHT-175);
+			gDanzeff->Render(SCREEN_WIDTH_F-175,SCREEN_HEIGHT_F-175);
 		}
 
 		if (mStage == STAGE_NEWACCOUNTSUBMIT) {
-			mRenderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(200,0,0,0));
+			mRenderer->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(200,0,0,0));
 
 			gFont->SetScale(0.75f);
 			gFont->SetColor(ARGB(255,255,255,255));
 			if (mLoginStatus == 0) {
-				gFont->DrawShadowedString("[O] Cancel", SCREEN_WIDTH_2, SCREEN_HEIGHT-20, JGETEXT_CENTER);
+				gFont->DrawShadowedString("[O] Cancel", SCREEN_WIDTH_2, SCREEN_HEIGHT_F-20, JGETEXT_CENTER);
 
 				gFont->SetScale(1.0f);
 				gFont->DrawShadowedString("Signing in...",SCREEN_WIDTH_2,SCREEN_HEIGHT_2,JGETEXT_CENTER);
 			}
 			/*else if (mNewAccountStatus == 0) {
-				gFont->DrawShadowedString("[X/O] Continue to Online Menu", SCREEN_WIDTH_2, SCREEN_HEIGHT-20, JGETEXT_CENTER);
+				gFont->DrawShadowedString("[X/O] Continue to Online Menu", SCREEN_WIDTH_2, SCREEN_HEIGHT_F-20, JGETEXT_CENTER);
 
 				gFont->SetScale(1.0f);
 				char buffer[128];
@@ -484,13 +484,13 @@ void GameStateConnect::Render()
 				gFont->DrawShadowedString(gName,SCREEN_WIDTH_2,SCREEN_HEIGHT_2+10.0f,JGETEXT_CENTER);
 			}*/
 			else if (mLoginStatus == 5) {
-				gFont->DrawShadowedString("[O] Return", SCREEN_WIDTH_2, SCREEN_HEIGHT-20, JGETEXT_CENTER);
+				gFont->DrawShadowedString("[O] Return", SCREEN_WIDTH_2, SCREEN_HEIGHT_F-20, JGETEXT_CENTER);
 
 				gFont->SetScale(1.0f);
 				gFont->DrawShadowedString("Name already exists / Wrong password",SCREEN_WIDTH_2,SCREEN_HEIGHT_2,JGETEXT_CENTER);
 			}
 			else {
-				gFont->DrawShadowedString("[O] Return", SCREEN_WIDTH_2, SCREEN_HEIGHT-20, JGETEXT_CENTER);
+				gFont->DrawShadowedString("[O] Return", SCREEN_WIDTH_2, SCREEN_HEIGHT_F-20, JGETEXT_CENTER);
 
 				gFont->SetScale(1.0f);
 				gFont->DrawShadowedString("Unspecified error. Please retry.",SCREEN_WIDTH_2,SCREEN_HEIGHT_2,JGETEXT_CENTER);

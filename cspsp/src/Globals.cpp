@@ -38,7 +38,6 @@ JQuad* gMuzzleFlashQuads[3];
 JQuad* gHealthBorderQuad;
 JQuad* gHealthFillQuad;
 JQuad* gAmmoBarQuad;
-JQuad* gIconQuad;
 JQuad* gDamageIndicator;
 JQuad* gScoreIconQuads[4];
 JQuad* gFlagQuad;

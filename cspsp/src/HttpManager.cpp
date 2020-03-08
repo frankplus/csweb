@@ -47,14 +47,30 @@ void HttpManager::Disconnect()
 //------------------------------------------------------------------------------------------------
 void HttpManager::SendRequest(char* page, char *data, int type)
 {
+	string url = "http://" + string(mHost) + ":" + to_string(mPort) + string(page) ;
+	const char *req_type = type == REQUEST_POST ? "POST" : "GET";
+
+	char content_length[10];
+	sprintf(content_length, "%d", strlen(data));
+	static const char* custom_headers[3] = {
+		"Content-Type", "application/x-www-form-urlencoded",
+		nullptr
+	};
+
 	emscripten_fetch_attr_t attr;
 	emscripten_fetch_attr_init(&attr);
-	strcpy(attr.requestMethod, "GET");
+	strcpy(attr.requestMethod, req_type);
 	attr.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
 	attr.onsuccess = downloadSucceeded;
 	attr.onerror = downloadFailed;
-	string url = "http://" + string(mHostText) + ":" + to_string(mPort) + string(page) ;
+	attr.requestData = data;
+	attr.requestDataSize = strlen(data);
+	attr.requestHeaders = attr.requestHeaders;
+	attr.requestHeaders = custom_headers;
+
 	emscripten_fetch(&attr, url.c_str());
+
+	printf("url = %s - data = %s - host = %s \n", url.c_str(), data, mHostText);
 }
 
 //------------------------------------------------------------------------------------------------

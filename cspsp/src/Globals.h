@@ -66,7 +66,6 @@ extern JQuad* gMuzzleFlashQuads[3];
 extern JQuad* gHealthBorderQuad;
 extern JQuad* gHealthFillQuad;
 extern JQuad* gAmmoBarQuad;
-extern JQuad* gIconQuad;
 extern JQuad* gDamageIndicator;
 extern JQuad* gScoreIconQuads[4];
 extern JQuad* gFlagQuad;
