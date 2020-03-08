@@ -97,7 +97,11 @@ int SocketRecv(Socket* socket, char* buf, int size)
 
 int SocketSend(Socket* socket, char* buf, int size)
 {
-    printf("send data: %.*s\n", size, buf);
+    printf("send data:");
+    for(int i = 0; i < size; ++i)
+        printf(" %02X", buf[i]);
+    printf("\n");
+    
     return emscripten_websocket_send_binary(proxy_socket, buf, size);
 }
 
