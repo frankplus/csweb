@@ -121,25 +121,6 @@ void GameStateOnline::Start()
 	mIsChatEnabled = true;
 	mChatTimer = 0.0f;
 
-	/*Gun *gun;
-	if (mPlayer->mGuns[SECONDARY] == NULL) {
-		if (mPlayer->mTeam == CT) {
-			gun = gGuns[2];
-		}
-		else if (mPlayer->mTeam == T) {
-			gun = gGuns[1];
-		}
-		mPlayer->mGuns[SECONDARY] = new GunObject(gun,gun->mClip,gun->mClip*(gun->mNumClips-1));
-	}
-	if (mPlayer->GetCurrentGun() == NULL) {
-		mPlayer->mGunIndex = KNIFE;
-		if (mPlayer->mGuns[SECONDARY] != NULL) {
-			mPlayer->mGunIndex = SECONDARY;
-		}
-		if (mPlayer->mGuns[PRIMARY] != NULL) {
-			mPlayer->mGunIndex = PRIMARY;
-		}
-	}*/
 	SocketConnectUdp(socket,gServerIP,gServerPort);
 
 	mTimer = 0.0f;
@@ -194,46 +175,10 @@ void GameStateOnline::Start()
 	mUdpManager->SendReliable(packet,true);
 	packet.Clear();
 
-	/*Packet packet = Packet();
-	packet.WriteInt8(NEWPLAYER);
-	packet.WriteChar(mPlayer->mName);
-	packet.WriteChar(gName);
-	packet.WriteInt8(mPlayer->mMovementStyle);
-	packet.WriteInt8(NETVERSION);
-	packet.WriteData((char*)gIcon,300);
-	//packet.WriteId(ackcounter++);
-	//packet.SetId(ackcounter);
-	//ackcounter++;
-	mUdpManager->SendReliable(packet,true);
-	packet.Clear();*/
-
-	/*mUdpManager->Update(0);
-	while (mUdpManager->mReliablePackets.size() > 0) {
-		char buffer[256];
-
-		int n = SocketRecv(socket,buffer, sizeof(buffer));
-
-		if (n > 0) {
-			Packet recvpacket = Packet(buffer,n);
-			HandlePacket(recvpacket);
-		}
-	}*/
 	mCamera->mX = 0.0f;
 	mCamera->mY = 0.0f;
 
 	mUpdating = false;
-	/*mUpdateTimer = 0.0f;
-	mUpdating = true;
-	gKills = gKills2/7;
-	gDeaths = gDeaths2/7;
-	char decoding[2000];
-	char data[2000];
-
-	sprintf(data,DecodeText(decoding,"208201222161138215139207206208209215162137201138201201198216205215162137201138216201216215206211211161138215139205213161138215139212212214217161138205"),
-									gKey,gKills,gDeaths,gSessionKey,gServerIP,gServerPort);
-		// key=%s&kills=%d&deaths=%d&session=%s&ip=%s&port=%i
-	strcpy(decoding,"");
-	gHttpManager->SendRequest("/accounts/update.html",data,REQUEST_POST);*/
 
 	mTimeMultiplier = 1.0f;
 	mIsAdmin = false;
@@ -327,15 +272,6 @@ void GameStateOnline::CheckInput(float dt)
 	}
 	if (mEngine->GetButtonState(CTRL_CROSS) && !cross)
 	{
-		//if (!cross2 && mPlayer->mState == NORMAL) {
-			//cross2 = true;
-
-			/*Packet sendpacket = Packet();
-			sendpacket.WriteInt8(STARTFIRE);
-			sendpacket.WriteInt8(((PersonOnline*)mPlayer)->mId);
-			mUdpManager->SendReliable(sendpacket);*/
-			//((PersonOnline*)mPlayer)->mIsFiring = true;
-
 			bool fire = true;
 			if (mPlayer->mGunIndex == SECONDARY) {
 				if (mPlayer->mHasFired) {
@@ -394,37 +330,16 @@ void GameStateOnline::CheckInput(float dt)
 				}
 				//((PersonOnline*)mPlayer)->mHasFired = true;
 			}
-		//}
-		/*if (mPlayer->Fire()) {
-			Packet sendpacket = Packet();
-			sendpacket.WriteInt16(FIRE);
-			sendpacket.WriteInt16(((PersonOnline*)mPlayer)->mId);
-			mUdpManager->SendReliable(sendpacket);
-		}*/
 	}
 	else {
-		//if (cross2) {
-			//cross2 = false;
-
-			/*Packet sendpacket = Packet();
-			sendpacket.WriteInt8(ENDFIRE);
-			sendpacket.WriteInt8(((PersonOnline*)mPlayer)->mId);
-			mUdpManager->SendReliable(sendpacket);	*/
-			//((PersonOnline*)mPlayer)->mIsFiring = false;
-			//((PersonOnline*)mPlayer)->mHasFired = false;
-		//}
 		std::vector<Bullet*> bullets = mPlayer->StopFire();
-		//mSwitchTimer = 0;
 		
 		if (bullets.size() > 0) {
 			Packet sendpacket = Packet();
 			if (bullets.size() == 1) {
 				sendpacket.WriteInt8(NEWGRENADE);
-				//sendpacket.WriteInt16(mBulletCounter);
 				sendpacket.WriteInt16((int)bullets[0]->mX);
 				sendpacket.WriteInt16((int)bullets[0]->mY);
-				//sendpacket.WriteInt16((int)bullets[0]->pX);
-				//sendpacket.WriteInt16((int)bullets[0]->pY);
 
 				int angle = (int)(bullets[0]->mAngle*(65535/(2*M_PI)))-32768;
 				sendpacket.WriteInt16(angle);
@@ -438,10 +353,6 @@ void GameStateOnline::CheckInput(float dt)
 				mUdpManager->SendReliable(sendpacket,true);
 
 				sendpacket.Clear();
-				/*sendpacket.WriteInt8(SWITCHGUN);
-				sendpacket.WriteInt8(((PersonOnline*)mPlayer)->mId);
-				sendpacket.WriteInt8(mPlayer->mGunIndex);
-				mUdpManager->SendReliable(sendpacket,true);*/
 			}
 		}
 	}
@@ -449,9 +360,6 @@ void GameStateOnline::CheckInput(float dt)
 	if (!mEngine->GetButtonState(CTRL_CROSS) && cross) {
 		cross = false;
 	}
-	//if (mTimer > 20) {
-
-
 	
 	mSendMovementTimer += dt;
 
@@ -469,17 +377,7 @@ void GameStateOnline::CheckInput(float dt)
 				if (speed > 0.1f) {
 					speed = 0.1f;
 				}
-				//mPlayer->Move(speed, angle);
-				//sendpacket.WriteInt8((int)(speed*100));
-				//sendpacket.WriteInt8((int)((mPlayer->mAngle*(255/(2*M_PI)))-128));
 			}
-			else {
-				//sendpacket.WriteInt8(0);
-				//sendpacket.WriteInt8(0);
-				//mPlayer->SetMoveState(NOTMOVING);
-			}
-
-			//if (mSendMovementTimer > 30.0f) {
 			
 			Packet sendpacket = Packet();
 			sendpacket.WriteInt8(PLAYERMOVE);//sendpacket.WriteInt8(MOVE);
@@ -602,22 +500,6 @@ void GameStateOnline::CheckCollisions()
 					if (mPeople[j]->mState == DEAD) {
 						//UpdateScores(mBullets[k]->mParent,mPeople[j],mBullets[k]->mParentGun);
 					}
-					/*if (mSpec->mState == DEAD) {
-						if (mSpec == mPlayer) {
-							mSpecX = mBullets[k]->mParent->GetX();
-							mSpecY = mBullets[k]->mParent->GetY();
-							if (mBuyMenu->IsActive) {
-								mBuyMenu->IsActive = false;
-							}
-						}
-						//mPlayerDead = true;
-						mSpec = mBullets[k]->mParent;
-						mSpecIndex = j;
-						if (mSpec->mState == DEAD) {
-							mSpecIndex = (j+1)%mPeople.size();
-							mSpec = mPeople[mSpecIndex];
-						}
-					}*/
 				}
 			}
 		}
@@ -842,24 +724,6 @@ void GameStateOnline::Update(float dt)
 			if (recvpacket.ReadInt8() == NETVERSION) {
 				HandlePacket(recvpacket);
 			}
-
-			/*int type = recvpacket.ReadInt16();
-			((PersonOnline*)mPlayer)->mSX = recvpacket.ReadInt16();
-			((PersonOnline*)mPlayer)->mSY = recvpacket.ReadInt16();
-			((PersonOnline*)mPlayer)->mSFacingAngle = recvpacket.ReadFloat();
-			((PersonOnline*)mPlayer)->mSSpeed = recvpacket.ReadFloat();
-			((PersonOnline*)mPlayer)->mSAngle = recvpacket.ReadFloat();
-			/*float speed = recvpacket.ReadFloat();
-			float angle = recvpacket.ReadFloat();
-			//mPlayer->SetSpeed(recvpacket.ReadFloat());
-			if (speed >= 0.001f) {
-				mPlayer->SetSpeed(speed);
-				mPlayer->SetAngle(angle);
-			} 
-			else {
-				mPlayer->SetMoveState(NOTMOVING);
-			}*/
-			//dx = x;
 		}
 		else {
 			break;
@@ -977,24 +841,6 @@ void GameStateOnline::Update(float dt)
 		}
 	}
 
-	/*for (unsigned int i=0; i<mPeople.size(); i++) {
-		mPeople[i]->Update(dt);
-	}
-	for(unsigned int i=0; i<mGunObjects.size(); i++) {
-		mGunObjects[i]->Update(dt);
-	}
-	for(unsigned int i=0; i<mBullets.size(); i++) {
-		mBullets[i]->Update(dt);
-	}
-	if (mPlayer->mState != DEAD) {
-		mCamera->mTX = mPlayer->GetX() + ((mPlayer->GetX()-mPlayer->mOldX)*0.5f + cosf(mPlayer->mFacingAngle))*500/dt;
-		mCamera->mTY = mPlayer->GetY() + ((mPlayer->GetY()-mPlayer->mOldY)*0.5f + sinf(mPlayer->mFacingAngle))*500/dt;
-	}
-	gSfxManager->mX = mPlayer->GetX();
-	gSfxManager->mY = mPlayer->GetY();
-
-	mCamera->Update(dt);*/
-
 	if (!mUpdating) {
 		mUpdateTimer += dt;
 
@@ -1091,25 +937,6 @@ void GameStateOnline::Render()
 
 	Game::Render();
 
-	/*if (gDanzeff->mIsActive) {
-		gFont->SetScale(0.7f);
-		gFont->SetColor(ARGB(255,255,200,0));
-		char buffer[132];
-		strcpy(buffer,"say: ");
-		strcat(buffer,mChatString);
-		if (mPlayer->mState != DEAD) {
-			gFont->DrawShadowedString(buffer,10,75);
-			gFont->DrawShadowedString("|",10+gFont->GetStringWidth(buffer),75);
-		}
-		else {
-			gFont->DrawShadowedString(buffer,10,40);
-			gFont->DrawShadowedString("|",10+gFont->GetStringWidth(buffer),40);
-		}
-		gFont->SetColor(ARGB(255,0,0,0));
-		gFont->DrawString("[START] Enter  [SELECT] Cancel",SCREEN_WIDTH_F-100,200,JGETEXT_CENTER);
-		gDanzeff->Render(SCREEN_WIDTH_F-175,50);
-	}*/
-
 	if (mIsMapChanging) {
 		char buffer[64];
 		gFont->SetScale(0.75f);
@@ -1133,20 +960,6 @@ void GameStateOnline::Render()
 		mRenderer->DrawLine(0,232,SCREEN_WIDTH_F,232,ARGB(255,255,255,255));
 		gFont->DrawShadowedString("[[]] Kick     [^] Ban     [O] Return",SCREEN_WIDTH_2,SCREEN_HEIGHT_F-20,JGETEXT_CENTER);
 	}
-
-	/*gFont->SetColor(ARGB(255,0,0,0));
-	gFont->SetScale(0.65f);
-	gFont->printf(85,30,"id:%d, up:%d, dl:%d",mUdpManager->mOrderId,mUdpManager->upload,dl);
-	gFont->printf(85,45,"reliable:%d, ordered:%d, buffered:%d",mUdpManager->mReliablePackets.size(),mUdpManager->mOrderedPackets.size(),mUdpManager->mBufferedPackets.size());*/
-	
-
-	//gFont->printf(10,100,"%f",mPlayer->mFacingAngle);
-	//gFont->printf(10,150,"%f",mPlayer->mAngle);
-	//gFont->printf(10,200,"%f",mEngine->GetFPS());
-	//gFont->printf(10,10,"%d",counter);
-	//gFont->printf(10,30,"%f",mPeople[1]->dx);
-	//gFont->printf(10,30,"%f",mClock);
-	//gFont->printf(10,50,"%i",mUdpManager->mOrderId);
 }
 	
 
@@ -1381,28 +1194,6 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 				mPeopleMap[playerid] = mPlayer;
 
 				mTimeMultiplier = timeMultiplier;
-				/*if (!mMap->Load(mapname,mGuns)) {
-					mState = ERROR;
-					mErrorString = "Error: Map could not be loaded";
-					break;
-				}
-
-				mCamera->SetBounds(0.0f,0.0f,mMap->mCols*32.0f,mMap->mRows*32.0f);//mCamera->SetBounds(0+SCREEN_WIDTH_2,0+SCREEN_HEIGHT_2,mMap->mCols*32-SCREEN_WIDTH_2,mMap->mRows*32-SCREEN_HEIGHT_2);
-
-				
-				//mNumRemainingCTs = mMap->mNumRemainingCTs;
-				//mNumRemainingTs = mMap->mNumRemainingTs;
-
-				mTeamMenu->Enable();
-
-				//mIsLoaded = true;
-				mState = PLAYING;*/
-				/*Packet sendpacket = Packet();
-				sendpacket.WriteInt8(PLAYERICON);
-				sendpacket.WriteInt8(playerid);
-				sendpacket.WriteData((char*)gIcon,300);
-				mUdpManager->SendReliable(sendpacket);
-				sendpacket.Clear();*/
 
 				break;
 			}
@@ -1640,19 +1431,6 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 				}
 				if (w < 0) w = 0;
 				mGuns[id].mAmmoBarWidth = w;
-
-				/*char buffer[25];
-				sprintf(buffer,"sfx/%s.wav",name);
-				mGuns[id].mFireSound = mSoundSystem->LoadSample(buffer);
-				sprintf(buffer,"sfx/%sreload.wav",name);
-				mGuns[id].mReloadSound = mSoundSystem->LoadSample(buffer);
-
-				if (mGuns[id].mType == PRIMARY) {
-					mGuns[id].mDryFireSound = gDryFireRifleSound;
-				}
-				else if (mGuns[id].mType == SECONDARY) {
-					mGuns[id].mDryFireSound = gDryFirePistolSound;
-				}*/
 
 				break;
 			}
@@ -1948,24 +1726,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 
 				if (team < 2 && type < 4) {
 					player->SetQuads(gPlayersQuads[team][type],gPlayersDeadQuads[team][type]);
-					//player->mQuad = gPlayersQuads[team][type];
-					//player->mDeadQuad = gPlayersDeadQuads[team][type];
 				}
-				/*if (player->mTeam == CT) {
-					player->mQuad = gPlayersQuads[0];
-					player->mDeadQuad = gPlayersDeadQuads[0];
-				}
-				else if (player->mTeam == T) {
-					player->mQuad = gPlayersQuads[1];
-					player->mDeadQuad = gPlayersDeadQuads[1];
-				}*/
-
-				/*if (player == mPlayer) {
-					delete mBuyMenu;
-					mBuyMenu = new BuyMenu(mPlayer,mGuns);
-					mBuyMenu->cross = &cross;
-					mBuyMenu->mPickUpSound = gPickUpSound;
-				}*/
 
 				char buffer[127];
 				if (mGameType == FFA) {
@@ -2463,24 +2224,6 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 				gunobject->mSAngle = (float)((angle+128)/(255.0f/(2*M_PI)));
 				break;
 			}
-			/*case FIRE: {
-				int id = packet.ReadInt16();
-				//int gunindex = packet.ReadInt16();
-				//float angle = packet.ReadInt16();
-				int ackid = packet.ReadInt16();
-				mUdpManager->SendAck(ackid);
-
-				Person* player = NULL;
-				for (int i=0; i<mPeople.size(); i++) {
-					if (((PersonOnline*)mPeople[i])->mId == id) {
-						player = mPeople[i];
-					}
-				}
-				if (player == NULL) break;
-				player->Fire();
-
-				break;
-			}*/
 			case STARTFIRE: {
 				int id = packet.ReadInt8();
 				//int gunindex = packet.ReadInt16();
@@ -2587,20 +2330,11 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 				}
 				
 				bullet->AddLatency(latency);
-				//bullet->mSX += bullet->mSpeed*cosf(bullet->mAngle)*latency;
-				//bullet->mSY += bullet->mSpeed*sinf(bullet->mAngle)*latency;
 				mBullets.push_back(bullet);
-
-					//player->GetCurrentGun()->mClipAmmo--;
-				//gSfxManager->PlaySample(player->GetCurrentGun()->mGun->mFireSound,player->mX,player->mY);
 
 				break;
 			}
 			case NEWSHOTGUNBULLET: {
-				//int numbullets = packet.ReadInt8();
-				//int px = packet.ReadInt16();
-				//int py = packet.ReadInt16();		
-				//int speed = packet.ReadInt8();
 				int guntype = packet.ReadInt8();
 				int x = packet.ReadInt16();
 				int y = packet.ReadInt16();
@@ -3241,16 +2975,6 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 					else if (fileid == 2) {
 						total = mMapOverviewSize;
 					}
-
-					if (mDownloadAmount < total) {
-						/*Packet sendpacket = Packet();
-						sendpacket.WriteInt8(MAPFILE);
-						sendpacket.WriteChar(mMapName);
-						sendpacket.WriteInt8(mDownloadId);
-						sendpacket.WriteInt32(mDownloadAmount);
-						mUdpManager->SendReliable(sendpacket,true);
-						sendpacket.Clear();	*/
-					}
 					else {
 						if (fileid == 0) {
 							Packet sendpacket = Packet();
@@ -3505,23 +3229,6 @@ GunObject* GameStateOnline::GetGunObject(int id) {
 	return gunobject;
 }
 void GameStateOnline::StopInput(float dt) {
-	/*Packet sendpacket = Packet();
-
-	if (cross2) {
-		cross2 = false;
-		sendpacket.WriteInt8(ENDFIRE);
-		sendpacket.WriteInt8(((PersonOnline*)mPlayer)->mId);
-		mUdpManager->SendReliable(sendpacket);
-		sendpacket.Clear();
-	}
-
-	sendpacket.WriteInt8(MOVE);
-	sendpacket.WriteInt8(((PersonOnline*)mPlayer)->mId);
-	int facingangle = (int)(mPlayer->mFacingAngle*(255/(2*M_PI)))-128;
-	sendpacket.WriteInt8(facingangle);
-	sendpacket.WriteInt8(0);
-	sendpacket.WriteInt8(0);
-	mUdpManager->Send(sendpacket);*/
 	if (mPlayer->mState != DEAD) {
 		mSendMovementTimer += dt;
 
@@ -3567,14 +3274,6 @@ void GameStateOnline::Buy(Person* player, int index) {
 			}
 		}
 	}
-	/*else if (index == -2) {
-		if (player->mGuns[SECONDARY] != NULL) {
-			if (player->mGuns[SECONDARY]->mRemainingAmmo != (player->mGuns[SECONDARY]->mGun->mNumClips-1)*player->mGuns[SECONDARY]->mGun->mClip) {
-				player->mGuns[SECONDARY]->mRemainingAmmo = (player->mGuns[SECONDARY]->mGun->mNumClips-1)*player->mGuns[SECONDARY]->mGun->mClip;
-				gSfxManager->PlaySample(gAmmoSound, player->mX, player->mY);
-			}
-		}
-	}*/
 	else {
 		if (mGuns[index].mType == PRIMARY) {
 			//mPlayer->Drop(PRIMARY);
@@ -3702,17 +3401,11 @@ void GameStateOnline::ClientCorrection(State state, float time) {
 
 			State newstate = {player->mSX,player->mSY,player->mSpeed,player->mAngle};
 			mMoves[index].state = newstate;
-			/*player->mOldX = player->mX;
-			player->mOldY = player->mY;
-			player->mX = player->mSX;
-			player->mY = player->mSY;*/
 		}
 
 		//nvm?
 		//on correction, keep the safe old position
 		player->mOldSX = state.x;
 		player->mOldSY = state.y;
-		//player->mOldSX = tempx;
-		//player->mOldSY = tempy;
 	}
 }
