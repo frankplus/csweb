@@ -107,7 +107,7 @@ void GameStateOnline::Start()
 
 	mHud->mPlayer = mPlayer;
 
-	UpdateIcon(((PersonOnline*)mPlayer)->mIconTexture,gIcon);
+	// UpdateIcon(((PersonOnline*)mPlayer)->mIconTexture,gIcon);
 
 	mSpec = mPlayer;
 	mSpecIndex = 0;
@@ -143,7 +143,6 @@ void GameStateOnline::Start()
 	SocketConnectUdp(socket,gServerIP,gServerPort);
 
 	mTimer = 0.0f;
-	mRenderer->EnableVSync(true);
 
 	mNumPlayers = 0;
 	mNumCTs = 0;
@@ -261,7 +260,7 @@ void GameStateOnline::End()
 		char directory[128];
 		sprintf(directory,"maps/%s",mMapName);
 
-		rmdir(directory);
+		// rmdir(directory);
 	}
 
 
@@ -285,16 +284,16 @@ void GameStateOnline::End()
 
 void GameStateOnline::CheckInput(float dt)
 {
-	if (mEngine->GetButtonState(PSP_CTRL_LTRIGGER))
+	if (mEngine->GetButtonState(CTRL_LTRIGGER))
 	{
 		mPlayer->RotateFacing(-0.005f*dt*mTimeMultiplier);
 	}
-	if (mEngine->GetButtonState(PSP_CTRL_RTRIGGER))
+	if (mEngine->GetButtonState(CTRL_RTRIGGER))
 	{
 		mPlayer->RotateFacing(0.005f*dt*mTimeMultiplier);
 	}
 
-	if (mEngine->GetButtonClick(PSP_CTRL_SQUARE))
+	if (mEngine->GetButtonClick(CTRL_SQUARE))
 	{
 		if (mPlayer->Reload()) {
 			Packet sendpacket = Packet();
@@ -303,7 +302,7 @@ void GameStateOnline::CheckInput(float dt)
 		}
 	}
 
-	if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE))
+	if (mEngine->GetButtonClick(CTRL_CIRCLE))
 	{
 		mPlayer->SwitchNext();
 		/*Packet sendpacket = Packet();
@@ -312,7 +311,7 @@ void GameStateOnline::CheckInput(float dt)
 		mUdpManager->SendReliable(sendpacket,true);*/
 		mSwitchTimer = 1500;
 	}
-	if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE))
+	if (mEngine->GetButtonClick(CTRL_TRIANGLE))
 	{
 		int index = mPlayer->mGunIndex;
 		int gunid = ((GunObjectOnline*)mPlayer->GetCurrentGun())->mId;
@@ -326,7 +325,7 @@ void GameStateOnline::CheckInput(float dt)
 			mUdpManager->SendReliable(sendpacket,true);
 		}
 	}
-	if (mEngine->GetButtonState(PSP_CTRL_CROSS) && !cross)
+	if (mEngine->GetButtonState(CTRL_CROSS) && !cross)
 	{
 		//if (!cross2 && mPlayer->mState == NORMAL) {
 			//cross2 = true;
@@ -447,7 +446,7 @@ void GameStateOnline::CheckInput(float dt)
 		}
 	}
 
-	if (!mEngine->GetButtonState(PSP_CTRL_CROSS) && cross) {
+	if (!mEngine->GetButtonState(CTRL_CROSS) && cross) {
 		cross = false;
 	}
 	//if (mTimer > 20) {
@@ -500,7 +499,7 @@ void GameStateOnline::CheckInput(float dt)
 
 			Input input = {aX,aY,(float)((facingangle+128)/(255.0f/(2*M_PI)))};
 			((PersonOnline*)mPlayer)->ReceiveInput(input,mTime);
-			State movementState = {(int)((PersonOnline*)mPlayer)->mSX,(int)((PersonOnline*)mPlayer)->mSY,mPlayer->mSpeed,mPlayer->mAngle};
+			State movementState = {((PersonOnline*)mPlayer)->mSX,((PersonOnline*)mPlayer)->mSY,mPlayer->mSpeed,mPlayer->mAngle};
 			Move move = {input,movementState,mTime};
 			mMoves[mMovesIndex] = move;
 			AdvanceMoves(mMovesIndex);
@@ -656,14 +655,14 @@ void GameStateOnline::Update(float dt)
 
 
 	if (mState == ERROR) {
-		if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) {
+		if (mEngine->GetButtonClick(CTRL_CIRCLE)) {
 			mParent->SetNextState(GAME_STATE_LOBBY);
 		}
 		return;
 	}
 	if (mState == PLAYING) {
 
-		if (mEngine->GetButtonClick(PSP_CTRL_START)) {
+		if (mEngine->GetButtonClick(CTRL_START)) {
 			if (!gDanzeff->mIsActive && !mIsAdminMenuEnabled) {
 				mGuiController->SetActive(!mGuiController->IsActive());
 			}
@@ -678,10 +677,10 @@ void GameStateOnline::Update(float dt)
 			return; // do nothing
 		}
 		else if (mIsAdminMenuEnabled) {
-			if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) {
+			if (mEngine->GetButtonClick(CTRL_CIRCLE)) {
 				mIsAdminMenuEnabled = false;
 			}
-			else if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)) { // kick
+			else if (mEngine->GetButtonClick(CTRL_SQUARE)) { // kick
 				AdminPlayerItem *item = (AdminPlayerItem*)mAdminPlayersListBox->GetItem();
 				if (item) {
 					char chatstring[32];
@@ -694,7 +693,7 @@ void GameStateOnline::Update(float dt)
 				}
 				mIsAdminMenuEnabled = false;
 			}	
-			else if (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)) { // ban
+			else if (mEngine->GetButtonClick(CTRL_TRIANGLE)) { // ban
 				AdminPlayerItem *item = (AdminPlayerItem*)mAdminPlayersListBox->GetItem();
 				if (item) {
 					char chatstring[32];
@@ -711,7 +710,7 @@ void GameStateOnline::Update(float dt)
 			mAdminPlayersListBox->Update(dt);
 		}
 		else if (mTeamMenu->mIsActive) {
-			if (!mEngine->GetButtonState(PSP_CTRL_SELECT)) {
+			if (!mEngine->GetButtonState(CTRL_SELECT)) {
 				mTeamMenu->Update(dt);
 				if (mTeamMenu->mIsSelected) {
 					//mTeamMenu->Disable();
@@ -742,7 +741,7 @@ void GameStateOnline::Update(float dt)
 			}
 			strcpy(mChatString,gDanzeff->mString.c_str());
 			
-			if (mEngine->GetButtonState(PSP_CTRL_START)) {
+			if (mEngine->GetButtonState(CTRL_START)) {
 				if (strlen(mChatString) > 0) {
 					if (mIsChatEnabled) {
 						Packet sendpacket = Packet();
@@ -760,7 +759,7 @@ void GameStateOnline::Update(float dt)
 				}
 				gDanzeff->Disable();
 			}
-			else if (mEngine->GetButtonState(PSP_CTRL_SELECT)) {
+			else if (mEngine->GetButtonState(CTRL_SELECT)) {
 				gDanzeff->Disable();
 			}
 			
@@ -786,19 +785,19 @@ void GameStateOnline::Update(float dt)
 			StopInput(dt);
 		}
 		else {
-			if (!mEngine->GetButtonState(PSP_CTRL_SELECT)) {
-				if (mEngine->GetButtonClick(PSP_CTRL_UP)) {
+			if (!mEngine->GetButtonState(CTRL_SELECT)) {
+				if (mEngine->GetButtonClick(CTRL_UP)) {
 					gDanzeff->Enable();
 					strcpy(mChatString,"");
 					mIsTeamOnlyChat = false;
 				}
-				else if (mEngine->GetButtonClick(PSP_CTRL_RIGHT)) {
+				else if (mEngine->GetButtonClick(CTRL_RIGHT)) {
 					gDanzeff->Enable();
 					strcpy(mChatString,"");
 					mIsTeamOnlyChat = true;
 				}
 			}
-			if (mEngine->GetButtonClick(PSP_CTRL_DOWN)) {
+			if (mEngine->GetButtonClick(CTRL_DOWN)) {
 				if (mPlayer->mIsInBuyZone) {
 					mBuyMenu->Enable();
 				}
@@ -891,7 +890,7 @@ void GameStateOnline::Update(float dt)
 	mUdpManager->Update(dt);
 
 	if (mState != PLAYING) {
-		if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) {
+		if (mEngine->GetButtonClick(CTRL_CIRCLE)) {
 			mParent->SetNextState(GAME_STATE_LOBBY);
 			return;
 		}
@@ -907,13 +906,13 @@ void GameStateOnline::Update(float dt)
 			
 		}
 		else if (mState == MAP_ERROR) {
-			if (mEngine->GetButtonClick(PSP_CTRL_CROSS)) {
+			if (mEngine->GetButtonClick(CTRL_CROSS)) {
 				mState = DOWNLOADING;
 
 				char directory[128];
 				sprintf(directory,"maps/%s",mMapName);
 
-				_mkdir(directory);
+				// _mkdir(directory);
 
 
 				FILE* file;
@@ -1171,6 +1170,8 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 		//printf("%s\n",(round)?"1":"0");
 		sendpacket = Packet();
 
+		printf("packet type %d \n", type);
+
 		switch (type) {
 			case TIME: {
 				float time = packet.ReadFloat();
@@ -1269,7 +1270,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 					char directory[128];
 					sprintf(directory,"maps/%s",mMapName);
 
-					_mkdir(directory);
+					// _mkdir(directory);
 
 					FILE* file;
 					
@@ -1766,7 +1767,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 						i += 3;
 					}
 				}
-				player->mIconTexture->UpdateBits(0,0,10,10,bits);
+				// player->mIconTexture->UpdateBits(0,0,10,10,bits);
 
 				mPeople.push_back(player);
 				mPeopleMap[id] = player;
@@ -1812,7 +1813,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 						i += 3;
 					}
 				}
-				player->mIconTexture->UpdateBits(0,0,10,10,bits);
+				// player->mIconTexture->UpdateBits(0,0,10,10,bits);
 
 				break;
 			}
@@ -2009,7 +2010,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 				float speedFloat = (float)(speed/100.0f);
 
 				((PersonOnline*)mPlayer)->mLastMoveTime = time;
-				State state = {x,y,speedFloat,angleFloat};
+				State state = {static_cast<float>(x),static_cast<float>(y),speedFloat,angleFloat};
 
 				//player->mSX = x;
 				//player->mSY = y;
@@ -3540,7 +3541,7 @@ void GameStateOnline::StopInput(float dt) {
 
 				Input input = {0,0,(float)((facingangle+128)/(255.0f/(2*M_PI)))};
 				((PersonOnline*)mPlayer)->ReceiveInput(input,mTime);
-				State movementState = {(int)((PersonOnline*)mPlayer)->mSX,(int)((PersonOnline*)mPlayer)->mSY,mPlayer->mSpeed,mPlayer->mAngle};
+				State movementState = {((PersonOnline*)mPlayer)->mSX,((PersonOnline*)mPlayer)->mSY,mPlayer->mSpeed,mPlayer->mAngle};
 				Move move = {input,movementState,mTime};
 				mMoves[mMovesIndex] = move;
 				AdvanceMoves(mMovesIndex);
