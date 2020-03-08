@@ -38,10 +38,7 @@ static int resolverId;
 
 int WlanInit();
 int WlanTerm();
-std::vector<ConnectionConfig> GetConnectionConfigs();
-int UseConnectionConfig(int config, int state);
 char* GetIPAddress();
-int SocketFree(Socket* socket);
 int SetSockNoBlock(int s, u32 val);
 int SocketConnect(Socket* socket, char* host, int port);
 int SocketConnectUdp(Socket* socket, char* host, int port);
