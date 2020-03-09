@@ -1,10 +1,12 @@
 #include "Wlan.h"
 #include <emscripten/websocket.h>
+#include <queue>
+#include <vector>
 
 #define BUFFER_SIZE 4096
 
 static EMSCRIPTEN_WEBSOCKET_T proxy_socket;
-static char message_buffer[BUFFER_SIZE];
+static std::queue<std::vector<char>> messageQueue;
 static int size_available = 0;
 static int writeIndex = 0;
 static int readIndex = 0;
@@ -39,20 +41,9 @@ EM_BOOL WebSocketError(int eventType, const EmscriptenWebSocketErrorEvent *e, vo
 EM_BOOL WebSocketMessage(int eventType, const EmscriptenWebSocketMessageEvent *e, void *userData)
 {
 	// printf("message(eventType=%d, userData=%d, data=%p, numBytes=%d, isText=%d)\n", eventType, (int)userData, e->data, e->numBytes, e->isText);
-
-	for(int i=0; i<e->numBytes; i++)
-	{
-		if(size_available == BUFFER_SIZE)
-		{
-			printf("Network buffer is full! \n");
-			return 1;
-		}
-
-		message_buffer[writeIndex] = e->data[i];
-		writeIndex = (writeIndex + 1) % BUFFER_SIZE;
-		size_available++;
-	}
-
+	
+	std::vector<char> buffer(e->data, e->data + e->numBytes);
+	messageQueue.push(buffer);
 	return 0;
 }
 
@@ -110,18 +101,14 @@ int SocketConnectUdp(Socket* socket, char* host, int port)
 
 int SocketRecv(Socket* socket, char* buf, int size)
 {
-	int read_bytes = 0;
-	for(read_bytes=0; read_bytes<size; read_bytes++)
-	{
-		if(size_available == 0)
-			break;
-
-		buf[read_bytes] = message_buffer[readIndex];
-		readIndex = (readIndex + 1) % BUFFER_SIZE;
-		size_available--;
+	if(messageQueue.size() > 0){
+		std::vector<char> buffer = messageQueue.front();
+		memcpy(buf, buffer.data(), buffer.size());
+		messageQueue.pop();
+		return buffer.size();
 	}
-
-	return read_bytes;
+	
+	return 0;
 }
 
 int SocketSend(Socket* socket, char* buf, int size)
