@@ -65,8 +65,9 @@ wss.on('connection', function (ws) {
 
 	//When a message is received from udp server send it to the ws client
 	udpClient.on('message', function (msg, rinfo) {
-		ws.send(msg.toString());
+		ws.send(msg.subarray());
 		console.log("UDP: server > client");
+		console.log(msg);
 	});
 
 	//When a message is received from ws client send it to udp server.

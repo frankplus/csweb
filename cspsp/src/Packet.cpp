@@ -13,6 +13,11 @@ Packet::Packet(char* buffer, int size)
 	id = -1;
 	data.resize(size);
 	memcpy(&data[0], buffer, size);
+
+	printf("new packet: ");
+    for(int i = 0; i < size; ++i)
+        printf(" %02X", buffer[i]);
+    printf("\n");
 }
 
 Packet::~Packet()

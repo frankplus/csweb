@@ -1,9 +1,20 @@
 #include "Wlan.h"
 #include <emscripten/websocket.h>
 
+#define BUFFER_SIZE 4096
+
 static EMSCRIPTEN_WEBSOCKET_T proxy_socket;
-static char message_buffer[4096];
-static int message_size;
+static char message_buffer[BUFFER_SIZE];
+static int size_available = 0;
+static int writeIndex = 0;
+static int readIndex = 0;
+
+void printBinaryBuffer(char* buf, int size)
+{
+    for(int i = 0; i < size; ++i)
+        printf(" %02X", buf[i]);
+    printf("\n");
+}
 
 EM_BOOL WebSocketOpen(int eventType, const EmscriptenWebSocketOpenEvent *e, void *userData)
 {
@@ -27,18 +38,21 @@ EM_BOOL WebSocketError(int eventType, const EmscriptenWebSocketErrorEvent *e, vo
 
 EM_BOOL WebSocketMessage(int eventType, const EmscriptenWebSocketMessageEvent *e, void *userData)
 {
-	printf("message(eventType=%d, userData=%d, data=%p, numBytes=%d, isText=%d)\n", eventType, (int)userData, e->data, e->numBytes, e->isText);
-	// if (e->isText)
-	// 	printf("text data: \"%s\"\n", e->data);
-	// else
+	// printf("message(eventType=%d, userData=%d, data=%p, numBytes=%d, isText=%d)\n", eventType, (int)userData, e->data, e->numBytes, e->isText);
+
+	for(int i=0; i<e->numBytes; i++)
 	{
-		printf("binary data:");
-		for(int i = 0; i < e->numBytes; ++i)
-			printf(" %02X", e->data[i]);
-		printf("\n");
+		if(size_available == BUFFER_SIZE)
+		{
+			printf("Network buffer is full! \n");
+			return 1;
+		}
+
+		message_buffer[writeIndex] = e->data[i];
+		writeIndex = (writeIndex + 1) % BUFFER_SIZE;
+		size_available++;
 	}
-    memcpy(message_buffer, e->data, e->numBytes);
-    message_size = e->numBytes;
+
 	return 0;
 }
 
@@ -78,9 +92,15 @@ int WlanTerm()
 
 int SocketConnect(Socket* socket, char* host, int port) 
 {
-    char buf[128];
-    sprintf(buf, "CONNECT %s:%d", host, port);
-    return emscripten_websocket_send_binary(proxy_socket, buf, strlen(buf));
+    // char buf[128];
+    // sprintf(buf, "CONNECT %s:%d", host, port);
+    // return emscripten_websocket_send_binary(proxy_socket, buf, strlen(buf));
+
+	size_available = 0;
+	writeIndex = 0;
+	readIndex = 0;
+
+	return 1;
 }
 
 int SocketConnectUdp(Socket* socket, char* host, int port)
@@ -90,18 +110,22 @@ int SocketConnectUdp(Socket* socket, char* host, int port)
 
 int SocketRecv(Socket* socket, char* buf, int size)
 {
-    size = std::min(size, message_size);
-    memcpy(buf, message_buffer, size);
-    return size;
+	int read_bytes = 0;
+	for(read_bytes=0; read_bytes<size; read_bytes++)
+	{
+		if(size_available == 0)
+			break;
+
+		buf[read_bytes] = message_buffer[readIndex];
+		readIndex = (readIndex + 1) % BUFFER_SIZE;
+		size_available--;
+	}
+
+	return read_bytes;
 }
 
 int SocketSend(Socket* socket, char* buf, int size)
-{
-    printf("send data:");
-    for(int i = 0; i < size; ++i)
-        printf(" %02X", buf[i]);
-    printf("\n");
-    
+{   
     return emscripten_websocket_send_binary(proxy_socket, buf, size);
 }
 
