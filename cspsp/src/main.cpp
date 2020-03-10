@@ -198,6 +198,19 @@ int main()
     SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);
     glViewport (0, 0, (GLsizei)width, (GLsizei)height);
 
+    // load IDBFS persistent storage
+    EM_ASM(
+        FS.mkdir('/persistent_data');
+        FS.mount(IDBFS, {}, '/persistent_data');
+        Module.syncdone = 0;
+
+        // sync from persisted state into memory
+        FS.syncfs(true, function(err) {
+            if(!err)
+                Module.syncdone = 1;
+        });
+    );
+
     InitGame();
     emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, 0, 1, windowSizeChanged);
     emscripten_set_click_callback("#fullscreen", (void*)0, 1, on_button_click);

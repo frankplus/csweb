@@ -983,11 +983,6 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 		//printf("%s\n",(round)?"1":"0");
 		sendpacket = Packet();
 
-		// if(type < packet_type_map.size())
-		// 	printf("packet type %02X = %s \n", type, packet_type_map[type]);
-		// else
-		// 	printf("unrecognized packet type %02X temp=%02X \n", type, temp);
-
 		switch (type) {
 			case TIME: {
 				float time = packet.ReadFloat();

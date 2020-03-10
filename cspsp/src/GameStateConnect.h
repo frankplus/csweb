@@ -1,9 +1,9 @@
 #ifndef _GAME_STATE_CONNECT_H_
 #define _GAME_STATE_CONNECT_H_
 
+#include <vector>
 #include "JGui.h"
 #include "GameState.h"
-#include <vector>
 #include "Wlan.h"
 #include "ListBox.h"
 
@@ -19,6 +19,9 @@ static char instructions[] =
 to sign in.\n\n\
 Otherwise, you can create an account. Make sure to remember your password\
 though (also, *DO NOT* use a password that you use for anything else)!";
+
+
+#define ID_LEN 127
 
 class ConnectionItem : public ListItem 
 {
@@ -39,9 +42,7 @@ class GameStateConnect:	public GameState
 {
 private:
 	//Socket* socket;
-	char id[2000];
-	char psid[128];
-	char encodedKey[256];
+	char id[ID_LEN];
 	char name[16];
 	char password[16];
 	char* tempname;
@@ -65,6 +66,10 @@ private:
 	bool mArePluginsModified;
 	bool mArePluginsLoaded;
 	char mErrorString[64];
+
+	void GenerateToken(char* token, int len);
+	int StoreToken(char* token);
+	int ReadToken(char* token, int len);
 
 
 

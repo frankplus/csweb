@@ -1,5 +1,9 @@
 #include "GameStateConnect.h"
 
+#undef T // due to conflict emscripten.h with game.h 
+#include <emscripten.h>
+#include <math.h>
+
 GameStateConnect::GameStateConnect(GameApp* parent): GameState(parent) 
 {
 	mStage = STAGE_CONNECTING;
@@ -95,25 +99,13 @@ void GameStateConnect::Update(float dt)
 		//gHttpManager->Connect("127.0.0.1","localhost",8080);
 		mStage = STAGE_LOGIN;
 
-		strcpy(id,"");
-		strcpy(psid,"");
-		strcpy(encodedKey,"");
-
-		FILE *file = fopen("MEMSTICK_PRO.IND", "r");
-		strcpy(id,"E06F4A74CA7CA08D552B1300B3650C64AC31FA5CDAA624F2C6C57C492401B863ECEE7314608AED3E7438AE09FAA9A1409E03577672700249000000010004000108056F8AD91D559EC64C8C5BA3282157AA247DA4D22C98D55D36708DFC0FF598E1163E1F4124AE271D0BB32B893DE4C7326CC96173C66A5E65360603ACEB93DD42C6D8C8138DA35DDF3E3490F6A82D5D86C29D3502B141284004C80BD9C8BA38221065923E324B5F0EC165ED6CFF7D9F2C420B84DFDA6E96C0AEE29927BCAF1E6EC5DAF161F2902432905CA42CCDD8FF345916DD5935A4EB4603BA7BE5D1AD804D9F4A9D2A2266B674334B0406917F77000000010004000108056F8AD91D559E9AA7579C521C76FFF9546AE3A65208F003E21C1033EC57BCBC4A79147F358E114F16FEE2928CE0F397413560A685A14E7D99C2DE88AB2596412A0053C7BB57A3CE474DD19AF99D014128F5AE15CED42306485FD029853B552F7EFDD67A2DE7A1A4E25537B2459D8786426D5B27EFA5A9311CB8ABABFA0ECE07DB46DD4D743B0A2AE53B501EFAC8BCACC419CF4C2339102F1CB8B96E0EB7B07002E6F97ECECD631A1663F0B6C994FF000000010004000108056F8AD91D559E76FACBE8D8C0F7EF5A3F498223FFB0BE013B02A456E4F1E9A0BA6985B2DCF1429B4EDEB10B50523AB87EAF0A00C95B46E2BE7A445D0B1E6A0A103559D656BBEAB007DFF6BFFC2911"); //last 1 should be a 0
-		strcpy(psid,"00000000000000000000000000000001");
-
-		if (file != NULL) {
-			fgets(encodedKey,256,file);
-			fclose(file);
+		int ret = ReadToken(id, ID_LEN);
+		if(ret < 0) {
+			GenerateToken(id, ID_LEN);
+			StoreToken(id);
 		}
-
-		char decoding[2000];
 		char data[2000];
-
-		sprintf(data,DecodeText(decoding,"206200162137216138213215206200162137216138208201222161138215139218202214216205212210162137201"),
-			id,psid,encodedKey,(int)(VERSION*100));
-		strcpy(decoding,"");
+		sprintf(data,"id=%s&version=%d", id, (int)(VERSION*100));
 
 		gHttpManager->SendRequest("/accounts/login.html",data,REQUEST_POST);
 		mLoginStatus = 0;
@@ -183,13 +175,10 @@ void GameStateConnect::Update(float dt)
 								passwordtemp += password[i];
 							}
 						}
-						char decoding[2000];
-						char data[2000];
 
-						sprintf(data,DecodeText(decoding,"211197210201162137216138213197216215220211215200162137216138206200162137216138213215206200162137216138208201222161138215139218202214216205212210162137201"),
-							nametemp.c_str(),passwordtemp.c_str(),id,psid,encodedKey,(int)(VERSION*100));
-							// name=%s&password=%s&id=%s&psid=%s&key=%s&version=%d
-						strcpy(decoding,"");
+						char data[2000];
+						sprintf(data,"name=%s&password=%s&id=%s&version=%d",
+							nametemp.c_str(),passwordtemp.c_str(),id,(int)(VERSION*100));
 
 						gHttpManager->SendRequest("/accounts/login.html",data,REQUEST_POST);
 					}
@@ -489,17 +478,6 @@ int GameStateConnect::CheckLogin(char* buffer)
 		gKills2 = gKills*7;
 		gDeaths2 = gDeaths*7;
 
-		FILE *file = fopen("MEMSTICK_PRO.IND", "w");
-		if (file != NULL) {
-			char buffer[256];
-			strcpy(buffer,"");
-			strcat(buffer,gKey);
-			strcat(buffer,salt);
-			char encoding[256];
-			EncodeText(encoding,buffer);
-			fputs(encoding,file);
-			fclose(file);
-		}
 		return 0;
 	}
 	else if (*s == '1') {
@@ -525,4 +503,52 @@ int GameStateConnect::CheckLogin(char* buffer)
 		return 5;
 	}
 	return -1;
+}
+
+void GameStateConnect::GenerateToken(char* token, int len)
+{
+    static const char alphanum[] = "0123456789ABCDEF";
+
+    for (int i = 0; i < len - 1 ; i++) {
+		int index = floor(emscripten_random() * 16);
+        token[i] = alphanum[index];
+		printf("%d ",alphanum[index]);
+    }
+	printf("\n");
+
+    token[len - 1] = 0;
+}
+
+int GameStateConnect::StoreToken(char* token)
+{
+	std::FILE* file = std::fopen("/persistent_data/token.dat","w");
+
+	if(file == NULL)
+		return -1;
+
+	std::fputs(token, file);
+	fclose(file);
+
+	EM_ASM(
+        FS.syncfs(false,function (err) {
+                          assert(!err);
+        });
+	);
+
+	return 0;
+}
+
+int GameStateConnect::ReadToken(char* token, int len)
+{
+	if(emscripten_run_script_int("Module.syncdone") != 1)
+		return -1;
+	
+	std::FILE* file = std::fopen("/persistent_data/token.dat","r");
+
+	if(file == NULL)
+		return -1;
+
+	std::fgets(token, len, file);
+	
+	return 0;
 }

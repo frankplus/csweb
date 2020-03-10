@@ -1,6 +1,6 @@
 CXX      := emcc
 CXXFLAGS := -std=c++11 -w #-pedantic-errors -Wall -Wextra
-LDFLAGS  := -std=c++11 -lwebsocket.js
+LDFLAGS  := -std=c++11 -lwebsocket.js -lidbfs.js
 BUILD    := ./bin
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
