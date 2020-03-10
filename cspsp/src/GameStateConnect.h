@@ -7,7 +7,6 @@
 #include "Wlan.h"
 #include "ListBox.h"
 
-#define STAGE_SELECT 0
 #define STAGE_CONNECTING 1
 #define STAGE_LOGIN 2
 #define STAGE_NEWACCOUNT 3
@@ -48,8 +47,6 @@ private:
 	char* tempname;
 	char* temppassword;
 	int index;
-
-	ListBox *mConnectionsListBox;
 
 	int mStage;
 	int mConnectState;

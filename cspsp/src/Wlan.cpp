@@ -3,13 +3,8 @@
 #include <queue>
 #include <vector>
 
-#define BUFFER_SIZE 4096
-
 static EMSCRIPTEN_WEBSOCKET_T proxy_socket;
 static std::queue<std::vector<char>> messageQueue;
-static int size_available = 0;
-static int writeIndex = 0;
-static int readIndex = 0;
 
 void printBinaryBuffer(char* buf, int size)
 {
@@ -27,14 +22,12 @@ EM_BOOL WebSocketOpen(int eventType, const EmscriptenWebSocketOpenEvent *e, void
 EM_BOOL WebSocketClose(int eventType, const EmscriptenWebSocketCloseEvent *e, void *userData)
 {
 	printf("close(eventType=%d, wasClean=%d, code=%d, reason=%s, userData=%d)\n", eventType, e->wasClean, e->code, e->reason, (int)userData);
-	emscripten_websocket_close(e->socket, 0, 0);
     return 0;
 }
 
 EM_BOOL WebSocketError(int eventType, const EmscriptenWebSocketErrorEvent *e, void *userData)
 {
 	printf("error(eventType=%d, userData=%d)\n", eventType, (int)userData);
-    emscripten_websocket_close(e->socket, 0, 0);
 	return 0;
 }
 
@@ -78,18 +71,19 @@ int WlanInit()
 
 int WlanTerm()
 {
+	emscripten_websocket_close(proxy_socket, 0, 0);
+	emscripten_websocket_delete(proxy_socket);
     return 0;
 }
 
+/*
+	socket parameter is not used as we are using the proxy connection.
+*/
 int SocketConnect(Socket* socket, char* host, int port) 
 {
     // char buf[128];
     // sprintf(buf, "CONNECT %s:%d", host, port);
     // return emscripten_websocket_send_binary(proxy_socket, buf, strlen(buf));
-
-	size_available = 0;
-	writeIndex = 0;
-	readIndex = 0;
 
 	return 1;
 }
@@ -99,6 +93,9 @@ int SocketConnectUdp(Socket* socket, char* host, int port)
     return SocketConnect(socket, host, port); 
 }
 
+/*
+	socket parameter is not used as we are using the proxy connection.
+*/
 int SocketRecv(Socket* socket, char* buf, int size)
 {
 	if(messageQueue.size() > 0){
@@ -107,10 +104,13 @@ int SocketRecv(Socket* socket, char* buf, int size)
 		messageQueue.pop();
 		return buffer.size();
 	}
-	
+
 	return 0;
 }
 
+/*
+	socket parameter is not used as we are using the proxy connection.
+*/
 int SocketSend(Socket* socket, char* buf, int size)
 {   
     return emscripten_websocket_send_binary(proxy_socket, buf, size);

@@ -2,7 +2,7 @@
 
 GameStateConnect::GameStateConnect(GameApp* parent): GameState(parent) 
 {
-	mStage = STAGE_SELECT;
+	mStage = STAGE_CONNECTING;
 }
 
 GameStateConnect::~GameStateConnect() {}
@@ -12,19 +12,8 @@ void GameStateConnect::Create()
 	mArePluginsLoaded = true;
 	mLoginStatus = 0;
 
-	//TODO INITIALIZE NETWORK
-
-	mConnectionsListBox = new ListBox(0,35,SCREEN_WIDTH_F,200,25,8);
-
-	char buffer[10];
-	sprintf(buffer,"Connection");
-	ConnectionConfig c;
-	strcpy(c.name,buffer);
-	c.index = 0;
-	mConnectionsListBox->AddItem(new ConnectionItem(c));
-
 	FormatText(mInstructions,instructions,SCREEN_WIDTH_F-40,0.75f);
-	mStage = STAGE_SELECT;
+	mStage = STAGE_CONNECTING;
 	strcpy(mSuspendReason,"");
 	mSuspendHours = 0;
 
@@ -51,23 +40,22 @@ void GameStateConnect::Destroy()
 		//delete mInstructions[i];
 	}
 	mInstructions.clear();
-
-	delete mConnectionsListBox;
 }
 
 void GameStateConnect::Start()
 {
-	mConnectState = 0;
 	index = 0;
 
 	strcpy(name,"");
 	strcpy(password,"");
 	mLoginStatus = 0;
 
-	mStage = STAGE_SELECT;
+	mStage = STAGE_CONNECTING;
 
 	mInfoX = -400.0f;
 
+	WlanInit();
+	mConnectState = 1;
 }
 
 
@@ -87,9 +75,6 @@ void GameStateConnect::Update(float dt)
 
 	if (mStage != STAGE_NEWACCOUNTSUBMIT) {
 		if (mEngine->GetButtonClick(CTRL_CIRCLE) && !gDanzeff->mIsActive) {
-			if (mStage == STAGE_SELECT) {
-				mParent->SetNextState(GAME_STATE_MENU);
-			}
 
 			WlanTerm();
 
@@ -97,59 +82,41 @@ void GameStateConnect::Update(float dt)
 			mLoginStatus = 0;
 			gHttpManager->ClearRequests();
 
-			mStage = STAGE_SELECT;
+			mParent->SetNextState(GAME_STATE_MENU);
 			return;
 		}
 	}
+	if (mStage == STAGE_CONNECTING) {
+		mConnectState = 4;
 
-	if (mStage == STAGE_SELECT) {
-		if (mEngine->GetButtonClick(CTRL_CROSS)) {
-			ConnectionItem *item = (ConnectionItem*)mConnectionsListBox->GetItem();
-			if (item != NULL) {
-				WlanInit();
-				mConnectState = 1;
-				mConnectId = item->config.index;
-				mStage = STAGE_CONNECTING;
-			}
+		//SocketConnect(gSocket,"74.125.19.118",80);
+		//74.125.53.141
+		gHttpManager->Connect("127.0.0.1","cspsp.appspot.com",2800);
+		//gHttpManager->Connect("127.0.0.1","localhost",8080);
+		mStage = STAGE_LOGIN;
+
+		strcpy(id,"");
+		strcpy(psid,"");
+		strcpy(encodedKey,"");
+
+		FILE *file = fopen("MEMSTICK_PRO.IND", "r");
+		strcpy(id,"E06F4A74CA7CA08D552B1300B3650C64AC31FA5CDAA624F2C6C57C492401B863ECEE7314608AED3E7438AE09FAA9A1409E03577672700249000000010004000108056F8AD91D559EC64C8C5BA3282157AA247DA4D22C98D55D36708DFC0FF598E1163E1F4124AE271D0BB32B893DE4C7326CC96173C66A5E65360603ACEB93DD42C6D8C8138DA35DDF3E3490F6A82D5D86C29D3502B141284004C80BD9C8BA38221065923E324B5F0EC165ED6CFF7D9F2C420B84DFDA6E96C0AEE29927BCAF1E6EC5DAF161F2902432905CA42CCDD8FF345916DD5935A4EB4603BA7BE5D1AD804D9F4A9D2A2266B674334B0406917F77000000010004000108056F8AD91D559E9AA7579C521C76FFF9546AE3A65208F003E21C1033EC57BCBC4A79147F358E114F16FEE2928CE0F397413560A685A14E7D99C2DE88AB2596412A0053C7BB57A3CE474DD19AF99D014128F5AE15CED42306485FD029853B552F7EFDD67A2DE7A1A4E25537B2459D8786426D5B27EFA5A9311CB8ABABFA0ECE07DB46DD4D743B0A2AE53B501EFAC8BCACC419CF4C2339102F1CB8B96E0EB7B07002E6F97ECECD631A1663F0B6C994FF000000010004000108056F8AD91D559E76FACBE8D8C0F7EF5A3F498223FFB0BE013B02A456E4F1E9A0BA6985B2DCF1429B4EDEB10B50523AB87EAF0A00C95B46E2BE7A445D0B1E6A0A103559D656BBEAB007DFF6BFFC2911"); //last 1 should be a 0
+		strcpy(psid,"00000000000000000000000000000001");
+
+		if (file != NULL) {
+			fgets(encodedKey,256,file);
+			fclose(file);
 		}
-		mConnectionsListBox->Update(dt);
-	}
-	else if (mStage == STAGE_CONNECTING) {
-		mConnectState = 1;
-		if (mEngine->GetButtonClick(CTRL_CROSS)) {
-			mConnectState = 4;
-		}
-		
-		if (mConnectState == 4) {
-			//SocketConnect(gSocket,"74.125.19.118",80);
-			//74.125.53.141
-			gHttpManager->Connect("127.0.0.1","cspsp.appspot.com",2800);
-			//gHttpManager->Connect("127.0.0.1","localhost",8080);
-			mStage = STAGE_LOGIN;
 
-			strcpy(id,"");
-			strcpy(psid,"");
-			strcpy(encodedKey,"");
+		char decoding[2000];
+		char data[2000];
 
-			FILE *file = fopen("MEMSTICK_PRO.IND", "r");
-			strcpy(id,"E06F4A74CA7CA08D552B1300B3650C64AC31FA5CDAA624F2C6C57C492401B863ECEE7314608AED3E7438AE09FAA9A1409E03577672700249000000010004000108056F8AD91D559EC64C8C5BA3282157AA247DA4D22C98D55D36708DFC0FF598E1163E1F4124AE271D0BB32B893DE4C7326CC96173C66A5E65360603ACEB93DD42C6D8C8138DA35DDF3E3490F6A82D5D86C29D3502B141284004C80BD9C8BA38221065923E324B5F0EC165ED6CFF7D9F2C420B84DFDA6E96C0AEE29927BCAF1E6EC5DAF161F2902432905CA42CCDD8FF345916DD5935A4EB4603BA7BE5D1AD804D9F4A9D2A2266B674334B0406917F77000000010004000108056F8AD91D559E9AA7579C521C76FFF9546AE3A65208F003E21C1033EC57BCBC4A79147F358E114F16FEE2928CE0F397413560A685A14E7D99C2DE88AB2596412A0053C7BB57A3CE474DD19AF99D014128F5AE15CED42306485FD029853B552F7EFDD67A2DE7A1A4E25537B2459D8786426D5B27EFA5A9311CB8ABABFA0ECE07DB46DD4D743B0A2AE53B501EFAC8BCACC419CF4C2339102F1CB8B96E0EB7B07002E6F97ECECD631A1663F0B6C994FF000000010004000108056F8AD91D559E76FACBE8D8C0F7EF5A3F498223FFB0BE013B02A456E4F1E9A0BA6985B2DCF1429B4EDEB10B50523AB87EAF0A00C95B46E2BE7A445D0B1E6A0A103559D656BBEAB007DFF6BFFC2911"); //last 1 should be a 0
-			strcpy(psid,"00000000000000000000000000000001");
+		sprintf(data,DecodeText(decoding,"206200162137216138213215206200162137216138208201222161138215139218202214216205212210162137201"),
+			id,psid,encodedKey,(int)(VERSION*100));
+		strcpy(decoding,"");
 
-			if (file != NULL) {
-				fgets(encodedKey,256,file);
-				fclose(file);
-			}
-
-			char decoding[2000];
-			char data[2000];
-
-			sprintf(data,DecodeText(decoding,"206200162137216138213215206200162137216138208201222161138215139218202214216205212210162137201"),
-				id,psid,encodedKey,(int)(VERSION*100));
-			strcpy(decoding,"");
-
-			gHttpManager->SendRequest("/accounts/login.html",data,REQUEST_POST);
-			mLoginStatus = 0;
-		}
+		gHttpManager->SendRequest("/accounts/login.html",data,REQUEST_POST);
+		mLoginStatus = 0;
 	}
 	else if (mStage == STAGE_LOGIN) {
 	}
@@ -323,7 +290,7 @@ void GameStateConnect::Render()
 	gFont->SetColor(ARGB(255,255,255,255));
 	gFont->SetScale(0.75f);
 
-	if (mStage == STAGE_SELECT || mStage == STAGE_CONNECTING || mStage == STAGE_LOGIN || mStage == STAGE_SUSPENDED || mStage == STAGE_MAINTENANCE || mStage == STAGE_ERROR) {
+	if (mStage == STAGE_CONNECTING || mStage == STAGE_LOGIN || mStage == STAGE_SUSPENDED || mStage == STAGE_MAINTENANCE || mStage == STAGE_ERROR) {
 		gFont->SetScale(1.0f);
 		gFont->DrawShadowedString("Network Connection",20,10);
 		gFont->SetScale(0.75f);
@@ -333,19 +300,11 @@ void GameStateConnect::Render()
 		gFont->DrawShadowedString("[X] Select Connection     [O] Return to Menu", SCREEN_WIDTH_2, SCREEN_HEIGHT_F-20, JGETEXT_CENTER);
 
 		gFont->SetScale(1.0f);
-		if (mConnectionsListBox->IsEmpty()) {
-			gFont->DrawShadowedString("No network connections.",SCREEN_WIDTH_2,SCREEN_HEIGHT_2,JGETEXT_CENTER);
-		}
-		else {
-			mConnectionsListBox->Render();
-		}
 		gFont->SetScale(0.75f);
 
-		if (mStage != STAGE_SELECT) {
-			mRenderer->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(200,0,0,0));
-			gFont->SetColor(ARGB(255,255,255,255));
-			gFont->SetScale(0.75f);
-		}
+		mRenderer->FillRect(0,0,SCREEN_WIDTH_F,SCREEN_HEIGHT_F,ARGB(200,0,0,0));
+		gFont->SetColor(ARGB(255,255,255,255));
+		gFont->SetScale(0.75f);
 
 		if (mStage == STAGE_CONNECTING) {
 			gFont->DrawShadowedString("[O] Cancel",SCREEN_WIDTH_2,SCREEN_HEIGHT_F-20,JGETEXT_CENTER);
