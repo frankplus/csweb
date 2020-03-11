@@ -1,18 +1,21 @@
-var http = require('http');
+const fs = require('fs');
 
 // IP and PORT of UDP server
-var SERVER_IP = '18.195.223.18'
-var SERVER_PORT = 42693
+const SERVER_IP = '18.195.223.18'
+const SERVER_PORT = 42693
 
 // Listen port of websocket client connection 
-var CLIENT_WEBSOCKET_LISTEN = 2900;
+const CLIENT_WEBSOCKET_LISTEN = 2900;
 
 // Hostname and port of master server
-var MASTER_SERVER = 'cspsp.appspot.com';
-var MASTER_PORT = 80;
+const MASTER_SERVER = 'cspsp.appspot.com';
+const MASTER_PORT = 80;
 
 // Listen port of http client connection
-var CLIENT_HTTP_LISTEN = 2800;
+const CLIENT_HTTP_LISTEN = 2800;
+
+const KEY_PATH = 'frankinfotech.it.key';
+const CRT_PATH = 'frankinfotech.it.crt';
 
 
 
@@ -24,6 +27,10 @@ var options = {
 		host: MASTER_SERVER,
 		port: MASTER_PORT
 	},
+	ssl: {
+		key: fs.readFileSync(KEY_PATH, 'utf8'),
+		cert: fs.readFileSync(CRT_PATH, 'utf8')
+	}
 }
 
 var proxy = httpProxy.createProxyServer(options).listen(CLIENT_HTTP_LISTEN);
@@ -55,9 +62,15 @@ proxy.on("proxyRes", function (proxyRes, req, res) {
 // websocket >> UDP proxy
 var Buffer = require('buffer').Buffer;
 var dgram = require('dgram');
-var WebSocketServer = require('ws').Server;
+const WebSocket = require('ws');
+const https = require('https');
 
-var wss = new WebSocketServer({ port: CLIENT_WEBSOCKET_LISTEN });
+const server = https.createServer({
+	cert: fs.readFileSync(CRT_PATH),
+	key: fs.readFileSync(KEY_PATH)
+  });
+
+var wss = new WebSocket.Server({ server });
 
 wss.on('connection', function (ws) {
 	//Create a udp socket for this websocket connection
@@ -78,3 +91,5 @@ wss.on('connection', function (ws) {
 		// console.log(message);
 	});
 });
+
+server.listen(CLIENT_WEBSOCKET_LISTEN);

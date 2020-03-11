@@ -1,4 +1,4 @@
 ignore/
 cspsp/bin/objects/
 JGE/build/objects/
-cspsp/bin/apps/node_modules
+proxy/node_modules

@@ -47,7 +47,7 @@ void HttpManager::Disconnect()
 //------------------------------------------------------------------------------------------------
 void HttpManager::SendRequest(char* page, char *data, int type)
 {
-	string url = "http://" + string(mHost) + ":" + to_string(mPort) + string(page) ;
+	string url = "https://" + string(mHost) + ":" + to_string(mPort) + string(page) ;
 	const char *req_type = type == REQUEST_POST ? "POST" : "GET";
 
 	char content_length[10];
