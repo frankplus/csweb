@@ -1,4 +1,6 @@
 # CSWEB
+Live demo: https://frankinfotech.it/cspsp/
+
 CSPSP was a homebrew 2D video game based on counter strike originally developed for PSP by 
 @kevinbchen : 
 - [link to the repository](https://github.com/kevinbchen/cspsp) 
@@ -7,7 +9,6 @@ CSPSP was a homebrew 2D video game based on counter strike originally developed 
 This is a porting to run the game on the web using webassembly and emscripten to compile the code. 
 I have rewritten the game engine to support webGL/opengles 3.
 
-Live demo: https://frankinfotech.it/csweb/
 
 ## Features
 - Working rendering using opengles3 drawing polygons, polylines, circles...
@@ -18,4 +19,5 @@ Live demo: https://frankinfotech.it/csweb/
 ## TODO
 - implement mouse support to rotate the player
 - implement mouse support for Gui control
-- implement online multiplayer support
+- add controller support using Gamepad API
+- add keyboard for text typing

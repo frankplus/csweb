@@ -1,4 +1,6 @@
 #include "GameStateOnline.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 GameStateOnline::GameStateOnline(GameApp* parent): Game(parent) 
 {
@@ -776,7 +778,7 @@ void GameStateOnline::Update(float dt)
 				char directory[128];
 				sprintf(directory,"maps/%s",mMapName);
 
-				// _mkdir(directory);
+				mkdir(directory, 0777);
 
 
 				FILE* file;
@@ -1081,7 +1083,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 					char directory[128];
 					sprintf(directory,"maps/%s",mMapName);
 
-					// _mkdir(directory);
+					mkdir(directory, 0777);
 
 					FILE* file;
 					
@@ -2952,10 +2954,15 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 						}
 					}
 
-					if (pos != mDownloadAmount) break;
-					//file = fopen(mapfile,"r+");
+					if (pos != mDownloadAmount) {
+						printf("pos != mDownloadAmount \n");
+						break;
+					}
 
-					if (mMapFile == NULL) break;
+					if (mMapFile == NULL) {
+						printf("could not open map file \n");
+						break;
+					}
 
 					fseek(mMapFile,pos,SEEK_SET);
 					fwrite(data,1,datalength,mMapFile);
@@ -2973,7 +2980,9 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 					else if (fileid == 2) {
 						total = mMapOverviewSize;
 					}
-					else {
+
+					if(mDownloadAmount >= total)
+					{
 						if (fileid == 0) {
 							Packet sendpacket = Packet();
 							sendpacket.WriteInt8(MAPFILE);
@@ -2982,6 +2991,8 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 							sendpacket.WriteInt32(0);
 							mUdpManager->SendReliable(sendpacket,true);
 							sendpacket.Clear();	
+
+							printf("asking for second file\n");
 						}
 						else if (fileid == 1) {
 							Packet sendpacket = Packet();
@@ -2993,7 +3004,10 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 							sendpacket.Clear();	
 						}
 						else if (fileid == 2) {
-							fclose(mMapFile);
+							if(mMapFile == NULL)
+								printf("mMapFile NULL \n");
+							else
+								fclose(mMapFile);
 
 							mState = RECONNECTING;
 							gReconnect = true;
