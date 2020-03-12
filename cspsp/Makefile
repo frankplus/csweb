@@ -7,7 +7,7 @@ APP_DIR  := $(BUILD)/apps
 TARGET   := index.js
 INCLUDE := -I../JGE/include 
 SRC_DIR      := src
-EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_LIBPNG=1 -s ALLOW_MEMORY_GROWTH=1 -s FETCH=1 --use-preload-plugins --preload-file ./bin/assets@/ #-s LEGACY_GL_EMULATION=1
+EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_LIBPNG=1 -s ALLOW_MEMORY_GROWTH=1 -s FETCH=1 --use-preload-plugins --preload-file $(BUILD)/assets@/ 
 LIBS 	 := ../JGE/build/lib/libjge.a
 
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
@@ -19,7 +19,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) $(EMCC_FLAGS) $(INCLUDE) -o $@ -c $<
 
-$(APP_DIR)/$(TARGET): $(OBJECTS) $(LIBS)
+$(APP_DIR)/$(TARGET): $(OBJECTS) $(LIBS) shaders
 	@mkdir -p $(@D)
 	$(CXX) $(OBJECTS) $(LDFLAGS) $(EMCC_FLAGS) $(LIBS) -o $(APP_DIR)/$(TARGET)
 
@@ -38,5 +38,9 @@ release: all
 clean:
 	-@rm -rvf $(OBJ_DIR)/*
 
-test:
+shaders:
+	cp -a ../JGE/shaders/. $(BUILD)/assets/
+
+# test stuff not needed
+test: 
 	emcc test_main_fullscreen.c $(EMCC_FLAGS) $(CXXFLAGS) -g -o $(APP_DIR)/test.js
