@@ -1,0 +1,3 @@
+[submodule "JGE"]
+	path = JGE
+	url = https://github.com/frankplus/JGE
