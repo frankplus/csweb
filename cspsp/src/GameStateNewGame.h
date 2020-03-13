@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <dirent.h>
 #include "GameState.h"
 #include "MenuItem.h"
 #include "ListBox.h"

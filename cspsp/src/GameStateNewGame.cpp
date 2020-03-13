@@ -20,12 +20,24 @@ void GameStateNewGame::Create()
 
 	gFont->SetBase(0);	// using 2nd font
 
-	int y = 20;
+	char *mapsPath = "maps";
 
-	for (int i=0; i<10; i++) {
-		char buffer[10];
-		sprintf(buffer,"test%d",i);
-		mMapsListBox->AddItem(new MapItem(buffer));
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir(mapsPath)) != NULL)
+	{
+		while ((ent = readdir(dir)) != NULL)
+		{
+			if(ent->d_type == DT_DIR && ent->d_name[0] != '.') {
+				mMapsListBox->AddItem(new MapItem(ent->d_name));
+				printf("%s\n", ent->d_name);
+			}
+		}
+		closedir(dir);
+	}
+	else
+	{
+		printf("could not open directory %s \n", mapsPath);
 	}
 
 	mMapsListBox->Sort(MapItem::Compare);

@@ -780,12 +780,9 @@ void GameStatePlay::Render()
 
 void GameStatePlay::NewGame() {
 
-	char* map;
-	map = GetConfig("data/config.txt","map");
+	strcpy(mName,gMapName);
 
-	strcpy(mName,map);
-
-	mMap->Load(map,mGuns);
+	mMap->Load(gMapName,mGuns);
 	//delete map;
 	mCamera->SetBounds(0,0,mMap->mCols*32,mMap->mRows*32);//mCamera->SetBounds(0+SCREEN_WIDTH_2,0+SCREEN_HEIGHT_2,mMap->mCols*32-SCREEN_WIDTH_2,mMap->mRows*32-SCREEN_HEIGHT_2);
 	mNumCTs = mMap->mNumCTs;
