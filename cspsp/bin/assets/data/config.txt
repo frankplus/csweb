@@ -6,6 +6,7 @@ ff = on
 
 menu = analog
 
-name = test
+name = player
 
 map = de_dust2
+
