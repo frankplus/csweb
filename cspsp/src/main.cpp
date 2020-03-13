@@ -1,6 +1,7 @@
 #include <chrono>
 #include <stdio.h>
 #include <time.h>
+#include <map>
 #include <functional>
 #include <emscripten.h>
 #include <emscripten/html5.h>
@@ -45,8 +46,6 @@ static u32 gPSPKeyMasks[21] =
     CTRL_CIRCLE,
     CTRL_CROSS,
     CTRL_SQUARE,
-    CTRL_HOME,
-    CTRL_HOLD,
     CTRL_NOTE,
     CTRL_CROSS,
     CTRL_START,
@@ -72,8 +71,6 @@ static u32 gWinKeyCodes[21] =
     SDL_SCANCODE_J,
     SDL_SCANCODE_H,
     SDL_SCANCODE_F1,
-    SDL_SCANCODE_F2,
-    SDL_SCANCODE_F3,
     SDL_SCANCODE_SPACE,
     SDL_SCANCODE_ESCAPE,
     SDL_SCANCODE_W,
@@ -82,6 +79,20 @@ static u32 gWinKeyCodes[21] =
     SDL_SCANCODE_D
 };
 
+map<int, int> gGamepadMap = {
+    {0, CTRL_CROSS},
+    {1, CTRL_CIRCLE},
+    {2, CTRL_SQUARE},
+    {3, CTRL_TRIANGLE},
+    {4, CTRL_LTRIGGER},
+    {5, CTRL_RTRIGGER},
+    {8, CTRL_SELECT},
+    {9, CTRL_START},
+    {12, CTRL_UP},
+    {13, CTRL_DOWN},
+    {14, CTRL_LEFT},
+    {15, CTRL_RIGHT}
+};
 
 bool JGEGetButtonState(u32 button)
 {
@@ -118,6 +129,7 @@ int InitGame(GLvoid)
 void process_input() {
     gOldButtons = gButtons;
 
+    // keyboard
     SDL_PumpEvents();
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
 	
@@ -127,6 +139,31 @@ void process_input() {
         {
 			gButtons |= gPSPKeyMasks[i];
         }
+
+    // gamepad
+    if(emscripten_sample_gamepad_data() == EMSCRIPTEN_RESULT_SUCCESS)
+    {
+        int numGamepads = emscripten_get_num_gamepads();
+        for(int id=0; id<numGamepads; id++)
+        {
+            EmscriptenGamepadEvent ge;
+            int ret = emscripten_get_gamepad_status(id, &ge);
+            if (ret == EMSCRIPTEN_RESULT_SUCCESS)
+            {
+                map<int,int>::iterator it = gGamepadMap.begin();
+                while(it != gGamepadMap.end()) 
+                {
+                    if(ge.digitalButton[it->first])
+                    {
+                        printf("button clicked: %d\n", it->first);
+                        gButtons |= it->second;
+                    }
+
+                    it++;
+                }
+            }
+        }
+    }
 }
 
 void main_loop() 
