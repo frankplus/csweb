@@ -28,55 +28,25 @@ JGameLauncher* g_launcher = NULL;
 
 unsigned int lastTickCount;
 
-static u32 gButtons = 0;
-static u32 gOldButtons = 0;
+u32 gButtons = 0;
+u32 gOldButtons = 0;
+double analogX = 0; 
+double analogY = 0; 
 
-
-static u32 gPSPKeyMasks[21] =
-{
-	CTRL_SELECT,
-    CTRL_START,
-    CTRL_UP,
-    CTRL_RIGHT,
-    CTRL_DOWN,
-    CTRL_LEFT,
-    CTRL_LTRIGGER,
-    CTRL_RTRIGGER,
-    CTRL_TRIANGLE,
-    CTRL_CIRCLE,
-    CTRL_CROSS,
-    CTRL_SQUARE,
-    CTRL_NOTE,
-    CTRL_CROSS,
-    CTRL_START,
-	CTRL_W,
-	CTRL_A,
-	CTRL_S,
-	CTRL_D
-};
-
-
-static u32 gWinKeyCodes[21] =
-{
-	SDL_SCANCODE_LCTRL,
-    SDL_SCANCODE_RETURN,
-    SDL_SCANCODE_UP,
-    SDL_SCANCODE_RIGHT,
-    SDL_SCANCODE_DOWN,
-    SDL_SCANCODE_LEFT,
-    SDL_SCANCODE_Q,
-    SDL_SCANCODE_E,
-    SDL_SCANCODE_U,
-    SDL_SCANCODE_K,
-    SDL_SCANCODE_J,
-    SDL_SCANCODE_H,
-    SDL_SCANCODE_F1,
-    SDL_SCANCODE_SPACE,
-    SDL_SCANCODE_ESCAPE,
-    SDL_SCANCODE_W,
-    SDL_SCANCODE_A,
-    SDL_SCANCODE_S,
-    SDL_SCANCODE_D
+map<int, int> gKeyboardMap = {
+    {SDL_SCANCODE_B, CTRL_TRIANGLE},
+    {SDL_SCANCODE_N, CTRL_CIRCLE},
+    {SDL_SCANCODE_SPACE, CTRL_CROSS},
+    {SDL_SCANCODE_R, CTRL_SQUARE},
+    {SDL_SCANCODE_UP, CTRL_UP},
+    {SDL_SCANCODE_DOWN, CTRL_DOWN},
+    {SDL_SCANCODE_LEFT, CTRL_LEFT},
+    {SDL_SCANCODE_RIGHT, CTRL_RIGHT},
+    {SDL_SCANCODE_Q, CTRL_LTRIGGER},
+    {SDL_SCANCODE_E, CTRL_RTRIGGER},
+    {SDL_SCANCODE_ESCAPE, CTRL_START},
+    {SDL_SCANCODE_TAB, CTRL_SELECT},
+    {SDL_SCANCODE_LCTRL, CTRL_NOTE}
 };
 
 map<int, int> gGamepadMap = {
@@ -105,6 +75,24 @@ bool JGEGetButtonClick(u32 button)
 	return (gButtons&button)==button && (gOldButtons&button)!=button;
 }
 
+u8 JGEGetAnalogX()
+{
+    const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+    if(currentKeyStates[SDL_SCANCODE_D]) return 0xff;
+    if(currentKeyStates[SDL_SCANCODE_A]) return 0;
+    if(analogX > -0.01 && analogX < 0.01) return 0x80;
+    return (analogX+1) * 127.0;
+}
+
+u8 JGEGetAnalogY()
+{
+    const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+    if(currentKeyStates[SDL_SCANCODE_W]) return 0;
+    if(currentKeyStates[SDL_SCANCODE_S]) return 0xff;
+    if(analogY > -0.01 && analogY < 0.01) return 0x80;
+    return (analogY+1) * 127.0;
+}
+
 
 int InitGame(GLvoid)
 {
@@ -128,17 +116,19 @@ int InitGame(GLvoid)
 
 void process_input() {
     gOldButtons = gButtons;
+    gButtons = 0;
 
     // keyboard
     SDL_PumpEvents();
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
-	
-	gButtons = 0;
-	for (int i=0;i<21;i++)
-		if (currentKeyStates[gWinKeyCodes[i]])
-        {
-			gButtons |= gPSPKeyMasks[i];
-        }
+    map<int,int>::iterator it = gKeyboardMap.begin();
+    while(it != gKeyboardMap.end()) 
+    {
+        if(currentKeyStates[it->first])
+            gButtons |= it->second;
+
+        it++;
+    }
 
     // gamepad
     if(emscripten_sample_gamepad_data() == EMSCRIPTEN_RESULT_SUCCESS)
@@ -150,17 +140,19 @@ void process_input() {
             int ret = emscripten_get_gamepad_status(id, &ge);
             if (ret == EMSCRIPTEN_RESULT_SUCCESS)
             {
+                // digital buttons
                 map<int,int>::iterator it = gGamepadMap.begin();
                 while(it != gGamepadMap.end()) 
                 {
                     if(ge.digitalButton[it->first])
-                    {
-                        printf("button clicked: %d\n", it->first);
                         gButtons |= it->second;
-                    }
 
                     it++;
                 }
+
+                // analogs
+                analogX = ge.axis[0];
+                analogY = ge.axis[1];
             }
         }
     }

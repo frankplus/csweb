@@ -1,4 +1,4 @@
-movement = relative
+movement = absolute
 
 music = off
 
