@@ -45,9 +45,16 @@ map<int, int> gKeyboardMap = {
     {SDL_SCANCODE_RIGHT, CTRL_RIGHT},
     {SDL_SCANCODE_Q, CTRL_LTRIGGER},
     {SDL_SCANCODE_E, CTRL_RTRIGGER},
-    {SDL_SCANCODE_ESCAPE, CTRL_START},
+    {SDL_SCANCODE_RETURN, CTRL_START},
     {SDL_SCANCODE_TAB, CTRL_SELECT},
-    {SDL_SCANCODE_LCTRL, CTRL_NOTE}
+    {SDL_SCANCODE_M, CTRL_NOTE},
+    {SDL_SCANCODE_LCTRL, CTRL_CROSS}
+};
+
+map<int, int> gMouseMap = {
+    {SDL_BUTTON_LEFT, CTRL_CROSS},
+    {SDL_BUTTON_RIGHT, CTRL_CIRCLE},
+    {SDL_BUTTON_MIDDLE, CTRL_TRIANGLE},
 };
 
 map<int, int> gGamepadMap = {
@@ -97,7 +104,6 @@ u8 JGEGetAnalogY()
 void JGEGetMouseMovement(int *x, int *y)
 {
     SDL_GetRelativeMouseState(x, y);
-    printf("mouse move x=%d y=%d \n", *x, *y);
 }
 
 
@@ -121,20 +127,33 @@ int InitGame(GLvoid)
 	return true;
 }
 
-void process_input() {
+void process_input()
+{
     gOldButtons = gButtons;
-    gButtons = 0;
+    SDL_Event event;
 
-    // keyboard
-    SDL_PumpEvents();
-    const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
-    map<int,int>::iterator it = gKeyboardMap.begin();
-    while(it != gKeyboardMap.end()) 
+    while( SDL_PollEvent( &event ) )
     {
-        if(currentKeyStates[it->first])
-            gButtons |= it->second;
+        switch( event.type )
+        {
+            case SDL_KEYDOWN:
+                gButtons |= gKeyboardMap[event.key.keysym.scancode];
+                break;
 
-        it++;
+            case SDL_KEYUP:
+                gButtons &= ~gKeyboardMap[event.key.keysym.scancode];
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                gButtons |= gMouseMap[event.button.button];
+                break;
+            case SDL_MOUSEBUTTONUP:
+                gButtons &= ~gMouseMap[event.button.button];
+                break; 
+
+            default:
+                break;
+        }
     }
 
     // gamepad
@@ -253,8 +272,7 @@ int main()
         });
     );
 
-    // initialize mouse
-    // emscripten_request_pointerlock("#canvas", true);
+    SDL_StartTextInput();
 
     InitGame();
     emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, 0, 1, windowSizeChanged);

@@ -597,9 +597,11 @@ void GameStatePlay::Update(float dt)
 		//ResetRound();
 		if (mPlayer->mMovementStyle == RELATIVE1) {
 			mPlayer->mMovementStyle = ABSOLUTE1;
+			printf("movement style: absolute \n");
 		}
 		else if (mPlayer->mMovementStyle == ABSOLUTE1) {
 			mPlayer->mMovementStyle = RELATIVE1;
+			printf("movement style: relative \n");
 		}
 	}
 	//float dt = mEngine->GetDelta();	// get number of milliseconds passed since last frame
