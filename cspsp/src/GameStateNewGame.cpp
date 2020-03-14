@@ -27,18 +27,13 @@ void GameStateNewGame::Create()
 	if ((dir = opendir(mapsPath)) != NULL)
 	{
 		while ((ent = readdir(dir)) != NULL)
-		{
-			if(ent->d_type == DT_DIR && ent->d_name[0] != '.') {
+			if(ent->d_type == DT_DIR && ent->d_name[0] != '.') 
 				mMapsListBox->AddItem(new MapItem(ent->d_name));
-				printf("%s\n", ent->d_name);
-			}
-		}
+
 		closedir(dir);
 	}
 	else
-	{
 		printf("could not open directory %s \n", mapsPath);
-	}
 
 	mMapsListBox->Sort(MapItem::Compare);
 }

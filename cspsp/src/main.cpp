@@ -6,6 +6,7 @@
 #include <emscripten.h>
 #include <emscripten/html5.h>
 #include <SDL.h>
+#include <SDL_mouse.h>
 #include <GLES3/gl3.h>
 
 #include <JTypes.h>
@@ -81,7 +82,7 @@ u8 JGEGetAnalogX()
     if(currentKeyStates[SDL_SCANCODE_D]) return 0xff;
     if(currentKeyStates[SDL_SCANCODE_A]) return 0;
     if(analogX > -0.01 && analogX < 0.01) return 0x80;
-    return (analogX+1) * 127.0;
+    return (analogX+1) * 127.0; // convert from [-1,1] range to [0,255] range
 }
 
 u8 JGEGetAnalogY()
@@ -90,7 +91,13 @@ u8 JGEGetAnalogY()
     if(currentKeyStates[SDL_SCANCODE_W]) return 0;
     if(currentKeyStates[SDL_SCANCODE_S]) return 0xff;
     if(analogY > -0.01 && analogY < 0.01) return 0x80;
-    return (analogY+1) * 127.0;
+    return (analogY+1) * 127.0; // convert from [-1,1] range to [0,255] range
+}
+
+void JGEGetMouseMovement(int *x, int *y)
+{
+    SDL_GetRelativeMouseState(x, y);
+    printf("mouse move x=%d y=%d \n", *x, *y);
 }
 
 
@@ -183,7 +190,7 @@ EM_BOOL windowSizeChanged(int eventType, const EmscriptenUiEvent *e, void *userD
     return true;
 }
 
-int on_button_click(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData)
+int on_fullscreen_click(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData)
 {
     EmscriptenFullscreenChangeEvent fsce;
     EMSCRIPTEN_RESULT ret = emscripten_get_fullscreen_status(&fsce);
@@ -205,17 +212,23 @@ int on_button_click(int eventType, const EmscriptenMouseEvent *mouseEvent, void 
     return 1;
 }
 
+int on_canvas_click(int eventType, const EmscriptenMouseEvent *mouseEvent, void *userData)
+{
+    emscripten_request_pointerlock("#canvas", true);
+    return 1;
+}
+
 int main()
 {   
-    EmscriptenWebGLContextAttributes attr;
-    emscripten_webgl_init_context_attributes(&attr);
-    attr.alpha = attr.depth = attr.stencil = attr.antialias = attr.preserveDrawingBuffer = attr.failIfMajorPerformanceCaveat = 0;
-    attr.enableExtensionsByDefault = 1;
-    attr.premultipliedAlpha = 0;
-    attr.majorVersion = 1;
-    attr.minorVersion = 0;
-    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE ctx = emscripten_webgl_create_context("#canvas", &attr);
-    emscripten_webgl_make_context_current(ctx);
+    // EmscriptenWebGLContextAttributes attr;
+    // emscripten_webgl_init_context_attributes(&attr);
+    // attr.alpha = attr.depth = attr.stencil = attr.antialias = attr.preserveDrawingBuffer = attr.failIfMajorPerformanceCaveat = 0;
+    // attr.enableExtensionsByDefault = 1;
+    // attr.premultipliedAlpha = 0;
+    // attr.majorVersion = 1;
+    // attr.minorVersion = 0;
+    // EMSCRIPTEN_WEBGL_CONTEXT_HANDLE ctx = emscripten_webgl_create_context("#canvas", &attr);
+    // emscripten_webgl_make_context_current(ctx);
 
     //Initialize SDL
     if( SDL_Init( SDL_INIT_AUDIO ) < 0 )
@@ -240,9 +253,13 @@ int main()
         });
     );
 
+    // initialize mouse
+    // emscripten_request_pointerlock("#canvas", true);
+
     InitGame();
     emscripten_set_resize_callback(EMSCRIPTEN_EVENT_TARGET_WINDOW, 0, 1, windowSizeChanged);
-    emscripten_set_click_callback("#fullscreen", (void*)0, 1, on_button_click);
+    emscripten_set_click_callback("#fullscreen", (void*)0, true, on_fullscreen_click);
+    emscripten_set_click_callback("#canvas", (void*)0, true, on_canvas_click);
     emscripten_set_main_loop(main_loop, -1, true);
 
     return EXIT_SUCCESS;

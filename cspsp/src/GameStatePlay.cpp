@@ -200,68 +200,9 @@ void GameStatePlay::End()
 
 void GameStatePlay::CheckInput(float dt)
 {
-	/**
-	bool up = mEngine->GetButtonState(CTRL_UP);
-	bool down = mEngine->GetButtonState(CTRL_DOWN);
-	bool right = mEngine->GetButtonState(CTRL_RTRIGGER);
-	bool left = mEngine->GetButtonState(CTRL_LTRIGGER);
-	if (up && (right || left))
-	{
-		if (right) {
-			mPlayer->Move(.1f, M_PI/4);
-		}
-		if (left) {
-			mPlayer->Move(.1f, -M_PI/4);
-		}
-	}
-	else if (down && (right || left))
-	{
-		if (right) {
-			mPlayer->Move(-.1f, -M_PI/4);
-		}
-		if (left) {
-			mPlayer->Move(-.1f, M_PI/4);
-		}
-	}
-	else if (right)
-	{
-		mPlayer->Move(.1f, M_PI/2);
-	}
-	else if (left)
-	{
-		mPlayer->Move(-.1f, M_PI/2);
-	}
-	else if (up)
-	{
-		mPlayer->Move(.1f,0);
-	}
-	else if (down)
-	{
-		mPlayer->Move(-.1f,0);
-	}
-	else {
-		mPlayer->SetSpeed(0.0f);
-	}**/
 
 	float aX = mEngine->GetAnalogX()-127.5f;
 	float aY = mEngine->GetAnalogY()-127.5f;
-
-	/**if (mEngine->GetButtonState(CTRL_UP))
-	{
-		mPlayer->Move(0.1f, 0);
-	}
-	else if (mEngine->GetButtonState(CTRL_DOWN)) 
-	{
-		mPlayer->Move(0.1f, M_PI);
-	}
-	else if (mEngine->GetButtonState(CTRL_RIGHT)) 
-	{
-		mPlayer->Move(0.1f, M_PI_2);
-	}
-	else if (mEngine->GetButtonState(CTRL_LEFT)) 
-	{
-		mPlayer->Move(0.1f, -M_PI_2);
-	}**/
 	
 	if (aX >= 20 || aX <= -20 || aY >= 20 || aY <= -20) {
 		float angle = atan2f(aX,-aY);
@@ -284,21 +225,11 @@ void GameStatePlay::CheckInput(float dt)
 		mPlayer->RotateFacing(0.005f*dt);
 	}
 
-	/*if (mPlayer->mGunIndex == PRIMARY || mPlayer->mGunIndex == KNIFE) {
-		if (mEngine->GetButtonState(CTRL_CROSS) && !cross)
-		{
-			mPlayer->Fire();
-			mSwitchTimer = 0;
-		}
-	}
-	else if (mPlayer->mGunIndex == SECONDARY || mPlayer->mGunIndex == GRENADE) {
-		if (mEngine->GetButtonClick(CTRL_CROSS))
-		{
-			mPlayer->Fire();
-			mSwitchTimer = 0;
-		}
+	// rotate with mouse
+	int deltaMouseX, deltaMouseY;
+	mEngine->GetMouseMovement(&deltaMouseX, &deltaMouseY);
+	mPlayer->RotateFacing((float)deltaMouseX / SCREEN_WIDTH_F);
 
-	}*/
 
 	if (mEngine->GetButtonClick(CTRL_SQUARE))
 	{
