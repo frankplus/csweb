@@ -71,7 +71,7 @@ KeyFrameAnim* gKeyFrameAnims[11];
 ParticleEngine* gParticleEngine;
 hgeParticleSystem* gParticleSystems[3];
 SfxManager* gSfxManager;
-Danzeff* gDanzeff;
+JTextInput* gDanzeff;
 Socket* gSocket;
 HttpManager* gHttpManager;
 

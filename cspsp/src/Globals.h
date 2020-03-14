@@ -15,7 +15,7 @@
 #include "BuyMenu.h"
 #include "Camera.h"
 #include "Hud.h"
-#include "Danzeff.h"
+#include "JTextInput.h"
 #include "HGE/hgeparticle.h"
 #include "Wlan.h"
 #include "HttpManager.h"
@@ -98,7 +98,7 @@ extern KeyFrameAnim* gKeyFrameAnims[11];
 extern ParticleEngine* gParticleEngine;
 extern hgeParticleSystem* gParticleSystems[3];
 extern SfxManager* gSfxManager;
-extern Danzeff* gDanzeff;
+extern JTextInput* gDanzeff;
 extern Socket* gSocket;
 extern HttpManager* gHttpManager;
 

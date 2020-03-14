@@ -3,6 +3,7 @@
 #include <time.h>
 #include <map>
 #include <functional>
+#include <string>
 #include <emscripten.h>
 #include <emscripten/html5.h>
 #include <SDL.h>
@@ -33,6 +34,7 @@ u32 gButtons = 0;
 u32 gOldButtons = 0;
 double analogX = 0; 
 double analogY = 0; 
+string textInput = "";
 
 map<int, int> gKeyboardMap = {
     {SDL_SCANCODE_B, CTRL_TRIANGLE},
@@ -106,6 +108,10 @@ void JGEGetMouseMovement(int *x, int *y)
     SDL_GetRelativeMouseState(x, y);
 }
 
+string JGEGetTextInput()
+{
+    return textInput;
+}
 
 int InitGame(GLvoid)
 {
@@ -130,6 +136,7 @@ int InitGame(GLvoid)
 void process_input()
 {
     gOldButtons = gButtons;
+    textInput = "";
     SDL_Event event;
 
     while( SDL_PollEvent( &event ) )
@@ -150,6 +157,9 @@ void process_input()
             case SDL_MOUSEBUTTONUP:
                 gButtons &= ~gMouseMap[event.button.button];
                 break; 
+            case SDL_TEXTINPUT:
+                textInput = event.text.text;
+                break;
 
             default:
                 break;
@@ -172,6 +182,8 @@ void process_input()
                 {
                     if(ge.digitalButton[it->first])
                         gButtons |= it->second;
+                    else
+                        gButtons &= ~it->second;
 
                     it++;
                 }

@@ -313,7 +313,7 @@ int GameStateLoading::Load(int stage) {
 			
 			gSfxManager = new SfxManager();
 			
-			gDanzeff = new Danzeff();
+			gDanzeff = new JTextInput();
 
 			gSocket = new Socket();
 			gHttpManager = HttpManager::getInstance();
