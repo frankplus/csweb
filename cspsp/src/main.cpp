@@ -37,10 +37,10 @@ double analogY = 0;
 string textInput = "";
 
 map<int, int> gKeyboardMap = {
-    {SDL_SCANCODE_B, CTRL_TRIANGLE},
-    {SDL_SCANCODE_N, CTRL_CIRCLE},
+    {SDL_SCANCODE_LALT, CTRL_TRIANGLE},
+    {SDL_SCANCODE_BACKSPACE, CTRL_CIRCLE},
     {SDL_SCANCODE_SPACE, CTRL_CROSS},
-    {SDL_SCANCODE_R, CTRL_SQUARE},
+    {SDL_SCANCODE_LCTRL, CTRL_SQUARE},
     {SDL_SCANCODE_UP, CTRL_UP},
     {SDL_SCANCODE_DOWN, CTRL_DOWN},
     {SDL_SCANCODE_LEFT, CTRL_LEFT},
@@ -49,14 +49,14 @@ map<int, int> gKeyboardMap = {
     {SDL_SCANCODE_E, CTRL_RTRIGGER},
     {SDL_SCANCODE_RETURN, CTRL_START},
     {SDL_SCANCODE_TAB, CTRL_SELECT},
-    {SDL_SCANCODE_M, CTRL_NOTE},
-    {SDL_SCANCODE_LCTRL, CTRL_CROSS}
+    {SDL_SCANCODE_RALT, CTRL_NOTE},
+    {SDL_SCANCODE_R, CTRL_SQUARE}
 };
 
 map<int, int> gMouseMap = {
     {SDL_BUTTON_LEFT, CTRL_CROSS},
     {SDL_BUTTON_RIGHT, CTRL_CIRCLE},
-    {SDL_BUTTON_MIDDLE, CTRL_TRIANGLE},
+    {SDL_BUTTON_MIDDLE, CTRL_TRIANGLE}
 };
 
 map<int, int> gGamepadMap = {
@@ -138,17 +138,22 @@ void process_input()
     gOldButtons = gButtons;
     textInput = "";
     SDL_Event event;
+    map<int,int>::iterator it;
 
     while( SDL_PollEvent( &event ) )
     {
         switch( event.type )
         {
             case SDL_KEYDOWN:
-                gButtons |= gKeyboardMap[event.key.keysym.scancode];
+                it = gKeyboardMap.find(event.key.keysym.scancode);
+                if(it != gKeyboardMap.end())
+                    gButtons |= it->second;
                 break;
 
             case SDL_KEYUP:
-                gButtons &= ~gKeyboardMap[event.key.keysym.scancode];
+                it = gKeyboardMap.find(event.key.keysym.scancode);
+                if(it != gKeyboardMap.end())
+                    gButtons &= ~it->second;
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
