@@ -37,10 +37,9 @@ double analogY = 0;
 string textInput = "";
 
 map<int, int> gKeyboardMap = {
-    {SDL_SCANCODE_LALT, CTRL_TRIANGLE},
+    {SDL_SCANCODE_LCTRL, CTRL_TRIANGLE},
     {SDL_SCANCODE_BACKSPACE, CTRL_CIRCLE},
     {SDL_SCANCODE_SPACE, CTRL_CROSS},
-    {SDL_SCANCODE_LCTRL, CTRL_SQUARE},
     {SDL_SCANCODE_UP, CTRL_UP},
     {SDL_SCANCODE_DOWN, CTRL_DOWN},
     {SDL_SCANCODE_LEFT, CTRL_LEFT},
@@ -136,40 +135,40 @@ int InitGame(GLvoid)
 void process_input()
 {
     gOldButtons = gButtons;
+    gButtons = 0;
     textInput = "";
     SDL_Event event;
-    map<int,int>::iterator it;
 
     while( SDL_PollEvent( &event ) )
     {
         switch( event.type )
         {
-            case SDL_KEYDOWN:
-                it = gKeyboardMap.find(event.key.keysym.scancode);
-                if(it != gKeyboardMap.end())
-                    gButtons |= it->second;
-                break;
-
-            case SDL_KEYUP:
-                it = gKeyboardMap.find(event.key.keysym.scancode);
-                if(it != gKeyboardMap.end())
-                    gButtons &= ~it->second;
-                break;
-
-            case SDL_MOUSEBUTTONDOWN:
-                gButtons |= gMouseMap[event.button.button];
-                break;
-            case SDL_MOUSEBUTTONUP:
-                gButtons &= ~gMouseMap[event.button.button];
-                break; 
             case SDL_TEXTINPUT:
                 textInput = event.text.text;
                 break;
-
             default:
                 break;
         }
     }
+
+    // keyboard
+    const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+    map<int,int>::iterator it = gKeyboardMap.begin();
+    while(it != gKeyboardMap.end()) 
+    {
+        if(currentKeyStates[it->first])
+            gButtons |= it->second;
+
+        it++;
+    }
+
+    //mouse buttons
+    if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) 
+        gButtons |= gMouseMap[SDL_BUTTON_LEFT];
+    if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT)) 
+        gButtons |= gMouseMap[SDL_BUTTON_RIGHT];
+    if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_MIDDLE)) 
+        gButtons |= gMouseMap[SDL_BUTTON_MIDDLE];
 
     // gamepad
     if(emscripten_sample_gamepad_data() == EMSCRIPTEN_RESULT_SUCCESS)
@@ -187,8 +186,6 @@ void process_input()
                 {
                     if(ge.digitalButton[it->first])
                         gButtons |= it->second;
-                    else
-                        gButtons &= ~it->second;
 
                     it++;
                 }
@@ -256,15 +253,15 @@ int on_canvas_click(int eventType, const EmscriptenMouseEvent *mouseEvent, void 
 
 int main()
 {   
-    // EmscriptenWebGLContextAttributes attr;
-    // emscripten_webgl_init_context_attributes(&attr);
-    // attr.alpha = attr.depth = attr.stencil = attr.antialias = attr.preserveDrawingBuffer = attr.failIfMajorPerformanceCaveat = 0;
-    // attr.enableExtensionsByDefault = 1;
-    // attr.premultipliedAlpha = 0;
-    // attr.majorVersion = 1;
-    // attr.minorVersion = 0;
-    // EMSCRIPTEN_WEBGL_CONTEXT_HANDLE ctx = emscripten_webgl_create_context("#canvas", &attr);
-    // emscripten_webgl_make_context_current(ctx);
+    EmscriptenWebGLContextAttributes attr;
+    emscripten_webgl_init_context_attributes(&attr);
+    attr.alpha = attr.depth = attr.stencil = attr.antialias = attr.preserveDrawingBuffer = attr.failIfMajorPerformanceCaveat = 0;
+    attr.enableExtensionsByDefault = 1;
+    attr.premultipliedAlpha = 0;
+    attr.majorVersion = 1;
+    attr.minorVersion = 0;
+    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE ctx = emscripten_webgl_create_context("#canvas", &attr);
+    emscripten_webgl_make_context_current(ctx);
 
     //Initialize SDL
     if( SDL_Init( SDL_INIT_AUDIO ) < 0 )
