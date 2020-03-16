@@ -2,10 +2,6 @@
 
 const fs = require('fs');
 
-// IP and PORT of UDP server
-const SERVER_IP = '18.195.223.18'
-const SERVER_PORT = 42693
-
 // Listen port of websocket client connection 
 const CLIENT_WEBSOCKET_LISTEN = 2900;
 
@@ -74,9 +70,15 @@ const server = https.createServer({
 
 var wss = new WebSocket.Server({ server });
 
+// var wss = new WebSocket.Server({ port: CLIENT_WEBSOCKET_LISTEN }); <-- no ssl
+
 wss.on('connection', function (ws) {
 	//Create a udp socket for this websocket connection
 	var udpClient = dgram.createSocket('udp4');
+
+	// IP and PORT of UDP server
+	var SERVER_IP = '52.59.187.247';
+	var SERVER_PORT = 42692;
 
 	//When a message is received from udp server send it to the ws client
 	udpClient.on('message', function (msg, rinfo) {
@@ -88,9 +90,18 @@ wss.on('connection', function (ws) {
 	//When a message is received from ws client send it to udp server.
 	ws.on('message', function (message) {
 		var msgBuff = new Buffer(message);
-		udpClient.send(msgBuff, 0, msgBuff.length, SERVER_PORT, SERVER_IP);
-		// console.log("client > server");
-		// console.log(message);
+
+		if(message.toString('utf8', 0, 4) == "CONN") {
+			var split = message.toString().split(" ");
+			SERVER_IP = split[1];
+			SERVER_PORT = parseInt(split[2]);
+			// console.log(SERVER_IP);
+		}
+		else{
+			udpClient.send(msgBuff, 0, msgBuff.length, SERVER_PORT, SERVER_IP);
+			// console.log("client > server");
+			// console.log(message);
+		}
 	});
 });
 

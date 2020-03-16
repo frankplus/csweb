@@ -83,10 +83,9 @@ int WlanTerm()
 */
 int SocketConnect(Socket* socket, char* host, int port) 
 {
-    // char buf[128];
-    // sprintf(buf, "CONNECT %s:%d", host, port);
-    // return emscripten_websocket_send_binary(proxy_socket, buf, strlen(buf));
-
+	char buffer[32];
+	sprintf(buffer, "CONN %s %d", host, port);
+	return emscripten_websocket_send_binary(proxy_socket, buffer, strlen(buffer));
 	return 1;
 }
 
