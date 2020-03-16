@@ -243,7 +243,8 @@ void GameStateOnline::CheckInput(float dt)
 	// rotate with mouse
 	int deltaMouseX, deltaMouseY;
 	mEngine->GetMouseMovement(&deltaMouseX, &deltaMouseY);
-	mPlayer->RotateFacing((float)deltaMouseX / SCREEN_WIDTH_F);
+	if(deltaMouseX != 0 || deltaMouseY != 0)
+		mPlayer->MoveCursor(deltaMouseX, deltaMouseY);
 
 	if (mEngine->GetButtonClick(CTRL_SQUARE))
 	{

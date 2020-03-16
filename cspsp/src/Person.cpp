@@ -101,6 +101,8 @@ Person::Person(JQuad* quads[], JQuad* deadquad, std::vector<Bullet*>* bullets, s
 	mHasFlag = false;
 
 	mInvincibleTime = 0.0f;
+
+	mCursorX = mCursorY = 0;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -503,6 +505,11 @@ void Person::Render(float x, float y)
 			mRenderer->DrawCircle(mX-offsetX,mY-offsetY,17,ARGB(200,0,0,0));
 			mRenderer->DrawCircle(mX-offsetX,mY-offsetY,16,ARGB(255,255,255,255));
 		}
+
+		// draw cursor
+		if(abs(mCursorX) > 10 || abs(mCursorY) > 10)
+			mRenderer->FillPolygon(SCREEN_WIDTH_2+mCursorX, SCREEN_HEIGHT_2+mCursorY, 
+									3, 3, -mFacingAngle, ARGB(128,0,128,0));
 	}	
 	else {
 		if (mFadeTime > 0) {
@@ -885,6 +892,39 @@ void Person::RotateFacing(float theta)
 		thetaTemp += M_PI*2.0f;
 	}
 	mFacingAngle = thetaTemp;
+}
+
+void Person::MoveCursor(int deltaCursorX, int deltaCursorY)
+{
+	mCursorX += deltaCursorX;
+	mCursorY += deltaCursorY;
+
+	const double radius = 2000;
+
+	double distanceFromCenter = pow(mCursorX, 2) + pow(mCursorY, 2);
+	if(distanceFromCenter > radius)
+	{
+		double t = sqrt(radius / distanceFromCenter);
+		mCursorX *= t;
+		mCursorY *= t;
+	}
+
+	double angle;
+	if(mCursorX == 0)
+	{
+		if(mCursorY > 0)
+			angle = M_PI_2;
+		else
+			angle = -M_PI_2;
+	}
+	else
+		angle = atan((double) mCursorY/mCursorX);
+
+	if(mCursorX < 0)
+		angle += M_PI;
+
+	mRotation = angle - M_PI_2;
+	mFacingAngle = angle;
 }
 
 //------------------------------------------------------------------------------------------------

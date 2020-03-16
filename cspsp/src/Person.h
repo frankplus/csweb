@@ -69,6 +69,8 @@ enum {
 class Person
 {
 private:
+	int mCursorX;
+	int mCursorY;
 
 protected:
 	static JRenderer* mRenderer;
@@ -175,6 +177,7 @@ public:
 	bool PickUp(GunObject* gunobject);
 	virtual bool Drop(int index, float speed = 0.35f);
 	void RotateFacing(float theta);
+	void MoveCursor(int deltaCursorX, int deltaCursorY);
 	void SetMoveState(int state);
 	void SetState(int state);
 	void SetAnimation(int animation);
