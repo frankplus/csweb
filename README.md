@@ -1,5 +1,5 @@
 # CSWEB
-Live demo: https://frankinfotech.it/cspsp/
+Live demo: https://frankplus.github.io
 
 CSPSP was a homebrew 2D video game based on counter strike originally developed for PSP by 
 @kevinbchen : 
@@ -16,8 +16,5 @@ I have rewritten the game engine to support webGL/opengles 3.
 - keyboard support using WASD to move QE to rotate the player, space to conferm/shoot, H to reload, K to change weapon.
 - Working sound engine using SDL_mixer
 
-## TODO
-- implement mouse support to rotate the player
-- implement mouse support for Gui control
-- add controller support using Gamepad API
-- add keyboard for text typing
+# TODO
+better support for smartphone touchscreen
