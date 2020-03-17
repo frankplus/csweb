@@ -241,6 +241,8 @@ private:
 	int mPlayerInfoDeaths;
 	char mPlayerInfoServerName[128];
 	char mPlayerInfoServerMap[32];
+	JTexture* mPlayerInfoIconTexture;
+	JQuad* mPlayerInfoIconQuad;
 
 
 public:

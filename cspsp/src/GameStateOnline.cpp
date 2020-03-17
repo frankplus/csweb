@@ -109,7 +109,7 @@ void GameStateOnline::Start()
 
 	mHud->mPlayer = mPlayer;
 
-	// UpdateIcon(((PersonOnline*)mPlayer)->mIconTexture,gIcon);
+	UpdateIcon(((PersonOnline*)mPlayer)->mIconTexture,gIcon);
 
 	mSpec = mPlayer;
 	mSpecIndex = 0;
@@ -1551,7 +1551,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 						i += 3;
 					}
 				}
-				// player->mIconTexture->UpdateBits(0,0,10,10,bits);
+				player->mIconTexture->UpdateBits(10,10,bits);
 
 				mPeople.push_back(player);
 				mPeopleMap[id] = player;
@@ -1597,7 +1597,7 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 						i += 3;
 					}
 				}
-				// player->mIconTexture->UpdateBits(0,0,10,10,bits);
+				player->mIconTexture->UpdateBits(10,10,bits);
 
 				break;
 			}
@@ -2997,8 +2997,6 @@ void GameStateOnline::HandlePacket(Packet &packet, bool sendack) {
 							sendpacket.WriteInt32(0);
 							mUdpManager->SendReliable(sendpacket,true);
 							sendpacket.Clear();	
-
-							printf("asking for second file\n");
 						}
 						else if (fileid == 1) {
 							Packet sendpacket = Packet();

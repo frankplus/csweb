@@ -115,6 +115,9 @@ int GameStateLoading::Load(int stage) {
 					gDecalQuads[i]->SetColor(ARGB(255,200,0,0));
 				}
 			}
+
+			gIconTexture = mRenderer->CreateTexture(10,10);
+			gIconQuad = new JQuad(gIconTexture,0,0,10,10);
 			break;
 		}
 		case 1: {

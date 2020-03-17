@@ -473,7 +473,7 @@ int GameStateConnect::CheckLogin(char* buffer)
 			s = strstr(s,"\r\n") + 2;
 		}
 		memcpy(gIcon,s,300);
-		// gIconTexture not used
+		UpdateIcon(gIconTexture,gIcon);
 
 		gKills2 = gKills*7;
 		gDeaths2 = gDeaths*7;

@@ -573,6 +573,7 @@ void GameStateLobby::Render()
 		//char buffer[128];
 		sprintf(buffer,"%s!",gDisplayName);
 		gFont->DrawShadowedString("Welcome to CSPSP online,",15,15);
+		mRenderer->RenderQuad(gIconQuad,15,32);
 		gFont->DrawShadowedString(buffer,30,30);
 
 		mRenderer->DrawLine(85,60,85,115,ARGB(255,255,255,255));
@@ -1088,6 +1089,7 @@ bool GameStateLobby::LoadPlayerInfo(char* buffer)
 	s += strlen("GETINFO") + 2;
 
 	if (mCurrentPlayerInfo != NULL) {
+		UpdateIcon(mPlayerInfoIconTexture,(unsigned char*)&s[0]);
 		s += 300;
 
 		char infobuffer[512];

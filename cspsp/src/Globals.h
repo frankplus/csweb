@@ -66,6 +66,8 @@ extern JQuad* gMuzzleFlashQuads[3];
 extern JQuad* gHealthBorderQuad;
 extern JQuad* gHealthFillQuad;
 extern JQuad* gAmmoBarQuad;
+extern JQuad* gIconQuad;
+extern JTexture* gIconTexture;
 extern JQuad* gDamageIndicator;
 extern JQuad* gScoreIconQuads[4];
 extern JQuad* gFlagQuad;
@@ -120,4 +122,5 @@ void EncodeText(char* dest, char* text);
 
 void DrawShadowedString(const char *string, float x, float y, int align = JGETEXT_LEFT);
 
+void UpdateIcon(JTexture* texture, unsigned char* data);
 #endif
