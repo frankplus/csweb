@@ -6,7 +6,7 @@
 #include <stdlib.h> 
 #include <vector>
 
-#define PROXY_IP "frankinfotech.it"
+#define PROXY_IP "localhost"
 #define PROXY_PORT 2900
 
 struct ConnectionConfig {

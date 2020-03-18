@@ -15,14 +15,14 @@ var dgram = require('dgram');
 const WebSocket = require('ws');
 const https = require('https');
 
-const server = https.createServer({
-	cert: fs.readFileSync(CRT_PATH),
-	key: fs.readFileSync(KEY_PATH)
-  });
+// const server = https.createServer({
+// 	cert: fs.readFileSync(CRT_PATH),
+// 	key: fs.readFileSync(KEY_PATH)
+//   });
 
-var wss = new WebSocket.Server({ server });
+// var wss = new WebSocket.Server({ server });
 
-// var wss = new WebSocket.Server({ port: CLIENT_WEBSOCKET_LISTEN }); // no ssl
+var wss = new WebSocket.Server({ port: CLIENT_WEBSOCKET_LISTEN }); // no ssl
 
 wss.on('connection', function (ws) {
 	//Create a udp socket for this websocket connection
@@ -60,4 +60,4 @@ wss.on('connection', function (ws) {
 	});
 });
 
-server.listen(CLIENT_WEBSOCKET_LISTEN);
+// server.listen(CLIENT_WEBSOCKET_LISTEN);

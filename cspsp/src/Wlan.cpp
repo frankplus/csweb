@@ -55,7 +55,7 @@ int WlanInit()
 	emscripten_websocket_init_create_attributes(&attr);
 
 	char url[64];
-	sprintf(url, "wss://%s:%d", PROXY_IP, PROXY_PORT);
+	sprintf(url, "ws://%s:%d", PROXY_IP, PROXY_PORT);
 	attr.url = url;
 
 	proxy_socket = emscripten_websocket_new(&attr);

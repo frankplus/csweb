@@ -119,24 +119,15 @@ var Module = typeof Module !== 'undefined' ? Module : {};
         if (!check) throw msg + new Error().stack;
       }
   Module['FS_createPath']('/', 'maps', true, true);
-Module['FS_createPath']('/maps', 'lasertag2', true, true);
 Module['FS_createPath']('/maps', 'cs_italy', true, true);
 Module['FS_createPath']('/maps', 'Guano', true, true);
-Module['FS_createPath']('/maps', 'iceworld', true, true);
-Module['FS_createPath']('/maps', 'river', true, true);
-Module['FS_createPath']('/maps', 'Small_Forest', true, true);
 Module['FS_createPath']('/maps', 'fy_poolday', true, true);
-Module['FS_createPath']('/maps', 'lasertag', true, true);
-Module['FS_createPath']('/maps', 'louismap', true, true);
+Module['FS_createPath']('/maps', 'fy_nade2', true, true);
 Module['FS_createPath']('/maps', 'CastleVonbrown', true, true);
-Module['FS_createPath']('/maps', 'fy_dodgeball', true, true);
-Module['FS_createPath']('/maps', 'winter', true, true);
-Module['FS_createPath']('/maps', 'Small_Train_Yard', true, true);
+Module['FS_createPath']('/maps', 'riverbig', true, true);
 Module['FS_createPath']('/maps', 'de_dust2', true, true);
 Module['FS_createPath']('/maps', 'Circle', true, true);
-Module['FS_createPath']('/maps', 'flagrunner', true, true);
 Module['FS_createPath']('/maps', 'fy_nade', true, true);
-Module['FS_createPath']('/maps', 'Office2D', true, true);
 Module['FS_createPath']('/maps', 'Silent_Forest', true, true);
 Module['FS_createPath']('/', 'sfx', true, true);
 Module['FS_createPath']('/', 'data', true, true);
@@ -221,7 +212,7 @@ Module['FS_createPath']('/gfx', 'danzeff', true, true);
     }
   
    }
-   loadPackage({"files": [{"start": 0, "audio": 0, "end": 12292, "filename": "/.DS_Store"}, {"start": 12292, "audio": 0, "end": 29253, "filename": "/x.png"}, {"start": 29253, "audio": 0, "end": 30284, "filename": "/sprite.vert"}, {"start": 30284, "audio": 0, "end": 951940, "filename": "/x.bmp"}, {"start": 951940, "audio": 0, "end": 952291, "filename": "/sprite.frag"}, {"start": 952291, "audio": 0, "end": 960487, "filename": "/maps/.DS_Store"}, {"start": 960487, "audio": 0, "end": 964071, "filename": "/maps/lasertag2/Thumbs.db"}, {"start": 964071, "audio": 0, "end": 966112, "filename": "/maps/lasertag2/map.txt"}, {"start": 966112, "audio": 0, "end": 973504, "filename": "/maps/lasertag2/tile.png"}, {"start": 973504, "audio": 0, "end": 973871, "filename": "/maps/lasertag2/overview.png"}, {"start": 973871, "audio": 0, "end": 996500, "filename": "/maps/cs_italy/map.txt"}, {"start": 996500, "audio": 0, "end": 1099528, "filename": "/maps/cs_italy/tile.png"}, {"start": 1099528, "audio": 0, "end": 1132046, "filename": "/maps/cs_italy/overview.png"}, {"start": 1132046, "audio": 0, "end": 1135630, "filename": "/maps/Guano/Thumbs.db"}, {"start": 1135630, "audio": 0, "end": 1139642, "filename": "/maps/Guano/map.txt"}, {"start": 1139642, "audio": 0, "end": 1190462, "filename": "/maps/Guano/tile.png"}, {"start": 1190462, "audio": 0, "end": 1200217, "filename": "/maps/Guano/overview.png"}, {"start": 1200217, "audio": 0, "end": 1205849, "filename": "/maps/iceworld/Thumbs.db"}, {"start": 1205849, "audio": 0, "end": 1207762, "filename": "/maps/iceworld/map.txt"}, {"start": 1207762, "audio": 0, "end": 1215354, "filename": "/maps/iceworld/tile.PNG"}, {"start": 1215354, "audio": 0, "end": 1221486, "filename": "/maps/iceworld/overview.png"}, {"start": 1221486, "audio": 0, "end": 1231214, "filename": "/maps/river/Thumbs.db"}, {"start": 1231214, "audio": 0, "end": 1233751, "filename": "/maps/river/map.txt"}, {"start": 1233751, "audio": 0, "end": 1323979, "filename": "/maps/river/tile.png"}, {"start": 1323979, "audio": 0, "end": 1326623, "filename": "/maps/river/overview.png"}, {"start": 1326623, "audio": 0, "end": 1330207, "filename": "/maps/Small_Forest/Thumbs.db"}, {"start": 1330207, "audio": 0, "end": 1331061, "filename": "/maps/Small_Forest/map.txt"}, {"start": 1331061, "audio": 0, "end": 1344591, "filename": "/maps/Small_Forest/tile.png"}, {"start": 1344591, "audio": 0, "end": 1345526, "filename": "/maps/Small_Forest/overview.png"}, {"start": 1345526, "audio": 0, "end": 1349110, "filename": "/maps/fy_poolday/Thumbs.db"}, {"start": 1349110, "audio": 0, "end": 1351435, "filename": "/maps/fy_poolday/map.txt"}, {"start": 1351435, "audio": 0, "end": 1351960, "filename": "/maps/fy_poolday/tile.png"}, {"start": 1351960, "audio": 0, "end": 1352421, "filename": "/maps/fy_poolday/overview.png"}, {"start": 1352421, "audio": 0, "end": 1356005, "filename": "/maps/lasertag/Thumbs.db"}, {"start": 1356005, "audio": 0, "end": 1356787, "filename": "/maps/lasertag/map.txt"}, {"start": 1356787, "audio": 0, "end": 1364081, "filename": "/maps/lasertag/tile.png"}, {"start": 1364081, "audio": 0, "end": 1364204, "filename": "/maps/lasertag/overview.png"}, {"start": 1364204, "audio": 0, "end": 1367788, "filename": "/maps/louismap/Thumbs.db"}, {"start": 1367788, "audio": 0, "end": 1371137, "filename": "/maps/louismap/map.txt"}, {"start": 1371137, "audio": 0, "end": 1406121, "filename": "/maps/louismap/tile.png"}, {"start": 1406121, "audio": 0, "end": 1409377, "filename": "/maps/louismap/overview.png"}, {"start": 1409377, "audio": 0, "end": 1418593, "filename": "/maps/CastleVonbrown/Thumbs.db"}, {"start": 1418593, "audio": 0, "end": 1422586, "filename": "/maps/CastleVonbrown/map.txt"}, {"start": 1422586, "audio": 0, "end": 1741759, "filename": "/maps/CastleVonbrown/tile.png"}, {"start": 1741759, "audio": 0, "end": 1748525, "filename": "/maps/CastleVonbrown/overview.png"}, {"start": 1748525, "audio": 0, "end": 1756205, "filename": "/maps/fy_dodgeball/Thumbs.db"}, {"start": 1756205, "audio": 0, "end": 1760737, "filename": "/maps/fy_dodgeball/map.txt"}, {"start": 1760737, "audio": 0, "end": 1938115, "filename": "/maps/fy_dodgeball/tile.png"}, {"start": 1938115, "audio": 0, "end": 1940392, "filename": "/maps/fy_dodgeball/overview.png"}, {"start": 1940392, "audio": 0, "end": 1943976, "filename": "/maps/winter/Thumbs.db"}, {"start": 1943976, "audio": 0, "end": 1946729, "filename": "/maps/winter/map.txt"}, {"start": 1946729, "audio": 0, "end": 1960921, "filename": "/maps/winter/tile.png"}, {"start": 1960921, "audio": 0, "end": 1964992, "filename": "/maps/winter/overview.png"}, {"start": 1964992, "audio": 0, "end": 1984448, "filename": "/maps/Small_Train_Yard/Thumbs.db"}, {"start": 1984448, "audio": 0, "end": 1986103, "filename": "/maps/Small_Train_Yard/map.txt"}, {"start": 1986103, "audio": 0, "end": 2788306, "filename": "/maps/Small_Train_Yard/tile.png"}, {"start": 2788306, "audio": 0, "end": 2791733, "filename": "/maps/Small_Train_Yard/overview.png"}, {"start": 2791733, "audio": 0, "end": 2802485, "filename": "/maps/de_dust2/Thumbs.db"}, {"start": 2802485, "audio": 0, "end": 2810895, "filename": "/maps/de_dust2/map.txt"}, {"start": 2810895, "audio": 0, "end": 3053407, "filename": "/maps/de_dust2/tile.png"}, {"start": 3053407, "audio": 0, "end": 3067952, "filename": "/maps/de_dust2/overview.png"}, {"start": 3067952, "audio": 0, "end": 3073584, "filename": "/maps/Circle/Thumbs.db"}, {"start": 3073584, "audio": 0, "end": 3077862, "filename": "/maps/Circle/map.txt"}, {"start": 3077862, "audio": 0, "end": 3194256, "filename": "/maps/Circle/tile.png"}, {"start": 3194256, "audio": 0, "end": 3198964, "filename": "/maps/Circle/overview.png"}, {"start": 3198964, "audio": 0, "end": 3204330, "filename": "/maps/flagrunner/map.txt"}, {"start": 3204330, "audio": 0, "end": 3207846, "filename": "/maps/flagrunner/tile.png"}, {"start": 3207846, "audio": 0, "end": 3210869, "filename": "/maps/flagrunner/overview.png"}, {"start": 3210869, "audio": 0, "end": 3214453, "filename": "/maps/fy_nade/Thumbs.db"}, {"start": 3214453, "audio": 0, "end": 3219266, "filename": "/maps/fy_nade/map.txt"}, {"start": 3219266, "audio": 0, "end": 3221104, "filename": "/maps/fy_nade/tile.png"}, {"start": 3221104, "audio": 0, "end": 3221701, "filename": "/maps/fy_nade/overview.png"}, {"start": 3221701, "audio": 0, "end": 3225797, "filename": "/maps/Office2D/Thumbs.db"}, {"start": 3225797, "audio": 0, "end": 3233081, "filename": "/maps/Office2D/map.txt"}, {"start": 3233081, "audio": 0, "end": 3293929, "filename": "/maps/Office2D/tile.png"}, {"start": 3293929, "audio": 0, "end": 3299124, "filename": "/maps/Office2D/overview.png"}, {"start": 3299124, "audio": 0, "end": 3305780, "filename": "/maps/Silent_Forest/Thumbs.db"}, {"start": 3305780, "audio": 0, "end": 3309078, "filename": "/maps/Silent_Forest/map.txt"}, {"start": 3309078, "audio": 0, "end": 3322608, "filename": "/maps/Silent_Forest/tile.png"}, {"start": 3322608, "audio": 0, "end": 3325130, "filename": "/maps/Silent_Forest/overview.png"}, {"start": 3325130, "audio": 1, "end": 3351106, "filename": "/sfx/ak47.wav"}, {"start": 3351106, "audio": 1, "end": 3357626, "filename": "/sfx/hit3.wav"}, {"start": 3357626, "audio": 1, "end": 3364360, "filename": "/sfx/ammo.wav"}, {"start": 3364360, "audio": 1, "end": 3398824, "filename": "/sfx/tmpreload.wav"}, {"start": 3398824, "audio": 1, "end": 3406474, "filename": "/sfx/hit2.wav"}, {"start": 3406474, "audio": 1, "end": 3450764, "filename": "/sfx/p228reload.wav"}, {"start": 3450764, "audio": 1, "end": 3493526, "filename": "/sfx/m4a1reload.wav"}, {"start": 3493526, "audio": 1, "end": 3534016, "filename": "/sfx/awp.wav"}, {"start": 3534016, "audio": 1, "end": 3539644, "filename": "/sfx/tmp.wav"}, {"start": 3539644, "audio": 1, "end": 3545466, "filename": "/sfx/deploy.wav"}, {"start": 3545466, "audio": 1, "end": 3577870, "filename": "/sfx/deaglereload.wav"}, {"start": 3577870, "audio": 1, "end": 3584890, "filename": "/sfx/hit1.wav"}, {"start": 3584890, "audio": 1, "end": 3611276, "filename": "/sfx/rounddraw.wav"}, {"start": 3611276, "audio": 1, "end": 3640196, "filename": "/sfx/hegrenade3.wav"}, {"start": 3640196, "audio": 1, "end": 3669032, "filename": "/sfx/hegrenade2.wav"}, {"start": 3669032, "audio": 1, "end": 3689940, "filename": "/sfx/glock.wav"}, {"start": 3689940, "audio": 1, "end": 3742288, "filename": "/sfx/sg552reload.wav"}, {"start": 3742288, "audio": 1, "end": 3771124, "filename": "/sfx/hegrenade1.wav"}, {"start": 3771124, "audio": 1, "end": 3825744, "filename": "/sfx/augreload.wav"}, {"start": 3825744, "audio": 1, "end": 3842704, "filename": "/sfx/usp.wav"}, {"start": 3842704, "audio": 1, "end": 3851498, "filename": "/sfx/mac10.wav"}, {"start": 3851498, "audio": 1, "end": 3880174, "filename": "/sfx/elite.wav"}, {"start": 3880174, "audio": 1, "end": 3905560, "filename": "/sfx/deagle.wav"}, {"start": 3905560, "audio": 1, "end": 3918234, "filename": "/sfx/fiveseven.wav"}, {"start": 3918234, "audio": 1, "end": 3930518, "filename": "/sfx/ricochet4.wav"}, {"start": 3930518, "audio": 1, "end": 3945980, "filename": "/sfx/ump.wav"}, {"start": 3945980, "audio": 1, "end": 3960642, "filename": "/sfx/pickup.wav"}, {"start": 3960642, "audio": 1, "end": 3997036, "filename": "/sfx/twin.wav"}, {"start": 3997036, "audio": 1, "end": 4079410, "filename": "/sfx/elitereload.wav"}, {"start": 4079410, "audio": 1, "end": 4168008, "filename": "/sfx/m3reload.wav"}, {"start": 4168008, "audio": 1, "end": 4181292, "filename": "/sfx/knifehit.wav"}, {"start": 4181292, "audio": 1, "end": 4216646, "filename": "/sfx/m3.wav"}, {"start": 4216646, "audio": 1, "end": 4260996, "filename": "/sfx/ak47reload.wav"}, {"start": 4260996, "audio": 1, "end": 4302664, "filename": "/sfx/p90reload.wav"}, {"start": 4302664, "audio": 1, "end": 6438676, "filename": "/sfx/Raindrops.mp3"}, {"start": 6438676, "audio": 1, "end": 6448936, "filename": "/sfx/ricochet3.wav"}, {"start": 6448936, "audio": 1, "end": 6556596, "filename": "/sfx/m249reload.wav"}, {"start": 6556596, "audio": 1, "end": 6597162, "filename": "/sfx/mac10reload.wav"}, {"start": 6597162, "audio": 1, "end": 6639528, "filename": "/sfx/sg550.wav"}, {"start": 6639528, "audio": 1, "end": 6650224, "filename": "/sfx/hitindicator.wav"}, {"start": 6650224, "audio": 1, "end": 6660440, "filename": "/sfx/walk2.wav"}, {"start": 6660440, "audio": 1, "end": 6675848, "filename": "/sfx/p228.wav"}, {"start": 6675848, "audio": 1, "end": 6689144, "filename": "/sfx/ricochet2.wav"}, {"start": 6689144, "audio": 1, "end": 6720402, "filename": "/sfx/flashbang.wav"}, {"start": 6720402, "audio": 1, "end": 6744894, "filename": "/sfx/sg552.wav"}, {"start": 6744894, "audio": 1, "end": 6766546, "filename": "/sfx/xm1014.wav"}, {"start": 6766546, "audio": 1, "end": 6777420, "filename": "/sfx/walk1.wav"}, {"start": 6777420, "audio": 1, "end": 6777478, "filename": "/sfx/knifereload.wav"}, {"start": 6777478, "audio": 1, "end": 6788750, "filename": "/sfx/ricochet1.wav"}, {"start": 6788750, "audio": 1, "end": 6846154, "filename": "/sfx/scout.wav"}, {"start": 6846154, "audio": 1, "end": 6893418, "filename": "/sfx/fivesevenreload.wav"}, {"start": 6893418, "audio": 1, "end": 6914662, "filename": "/sfx/die1.wav"}, {"start": 6914662, "audio": 1, "end": 6925422, "filename": "/sfx/grenadebounce.wav"}, {"start": 6925422, "audio": 1, "end": 6947068, "filename": "/sfx/die3.wav"}, {"start": 6947068, "audio": 1, "end": 6988680, "filename": "/sfx/galilreload.wav"}, {"start": 6988680, "audio": 1, "end": 7060468, "filename": "/sfx/galil.wav"}, {"start": 7060468, "audio": 1, "end": 7094932, "filename": "/sfx/glockreload.wav"}, {"start": 7094932, "audio": 1, "end": 7138348, "filename": "/sfx/famasreload.wav"}, {"start": 7138348, "audio": 1, "end": 7193516, "filename": "/sfx/xm1014reload.wav"}, {"start": 7193516, "audio": 1, "end": 7237292, "filename": "/sfx/die2.wav"}, {"start": 7237292, "audio": 1, "end": 7240220, "filename": "/sfx/knife.wav"}, {"start": 7240220, "audio": 1, "end": 7272188, "filename": "/sfx/scoutreload.wav"}, {"start": 7272188, "audio": 1, "end": 7314096, "filename": "/sfx/umpreload.wav"}, {"start": 7314096, "audio": 1, "end": 7375916, "filename": "/sfx/famas.wav"}, {"start": 7375916, "audio": 1, "end": 7446636, "filename": "/sfx/g3sg1reload.wav"}, {"start": 7446636, "audio": 1, "end": 7479766, "filename": "/sfx/g3sg1.wav"}, {"start": 7479766, "audio": 1, "end": 7528480, "filename": "/sfx/sg550reload.wav"}, {"start": 7528480, "audio": 1, "end": 7552226, "filename": "/sfx/mp5.wav"}, {"start": 7552226, "audio": 1, "end": 7593606, "filename": "/sfx/uspreload.wav"}, {"start": 7593606, "audio": 1, "end": 7596322, "filename": "/sfx/pinpull.wav"}, {"start": 7596322, "audio": 1, "end": 7621590, "filename": "/sfx/m249.wav"}, {"start": 7621590, "audio": 1, "end": 7624652, "filename": "/sfx/dryfire_rifle.wav"}, {"start": 7624652, "audio": 1, "end": 7638676, "filename": "/sfx/p90.wav"}, {"start": 7638676, "audio": 1, "end": 7680134, "filename": "/sfx/ctwin.wav"}, {"start": 7680134, "audio": 1, "end": 7705024, "filename": "/sfx/aug.wav"}, {"start": 7705024, "audio": 1, "end": 7707644, "filename": "/sfx/dryfire_pistol.wav"}, {"start": 7707644, "audio": 1, "end": 7729978, "filename": "/sfx/smokegrenade.wav"}, {"start": 7729978, "audio": 1, "end": 7761666, "filename": "/sfx/fireinthehole.wav"}, {"start": 7761666, "audio": 1, "end": 7810216, "filename": "/sfx/awpreload.wav"}, {"start": 7810216, "audio": 1, "end": 7847988, "filename": "/sfx/mp5reload.wav"}, {"start": 7847988, "audio": 1, "end": 7866692, "filename": "/sfx/m4a1.wav"}, {"start": 7866692, "audio": 0, "end": 7867704, "filename": "/data/animations.txt"}, {"start": 7867704, "audio": 0, "end": 7873852, "filename": "/data/.DS_Store"}, {"start": 7873852, "audio": 0, "end": 7875337, "filename": "/data/guns.txt"}, {"start": 7875337, "audio": 0, "end": 7875422, "filename": "/data/config.txt"}, {"start": 7875422, "audio": 0, "end": 7877340, "filename": "/data/rapmet.prx"}, {"start": 7877340, "audio": 0, "end": 7879388, "filename": "/data/f3.dat"}, {"start": 7879388, "audio": 0, "end": 7889475, "filename": "/data/f3.png"}, {"start": 7889475, "audio": 0, "end": 7891523, "filename": "/data/f3backdrop.dat"}, {"start": 7891523, "audio": 0, "end": 7891546, "filename": "/data/favorites.txt"}, {"start": 7891546, "audio": 0, "end": 7908336, "filename": "/data/f3backdrop.png"}, {"start": 7908336, "audio": 0, "end": 7910942, "filename": "/data/idstorage.prx"}, {"start": 7910942, "audio": 0, "end": 7922603, "filename": "/gfx/decals.png"}, {"start": 7922603, "audio": 0, "end": 7922731, "filename": "/gfx/smoke.psi"}, {"start": 7922731, "audio": 0, "end": 7935333, "filename": "/gfx/particles.png"}, {"start": 7935333, "audio": 0, "end": 7941481, "filename": "/gfx/.DS_Store"}, {"start": 7941481, "audio": 0, "end": 7944603, "filename": "/gfx/health.png"}, {"start": 7944603, "audio": 0, "end": 7949746, "filename": "/gfx/damageindicator.png"}, {"start": 7949746, "audio": 0, "end": 7952707, "filename": "/gfx/radar.png"}, {"start": 7952707, "audio": 0, "end": 7978386, "filename": "/gfx/playersdead.png"}, {"start": 7978386, "audio": 0, "end": 7991816, "filename": "/gfx/gunsground.png"}, {"start": 7991816, "audio": 0, "end": 7998009, "filename": "/gfx/muzzleflash.png"}, {"start": 7998009, "audio": 0, "end": 8009614, "filename": "/gfx/players.png"}, {"start": 8009614, "audio": 0, "end": 8009742, "filename": "/gfx/explosion.psi"}, {"start": 8009742, "audio": 0, "end": 8012785, "filename": "/gfx/ammo.png"}, {"start": 8012785, "audio": 0, "end": 8018925, "filename": "/gfx/guns.png"}, {"start": 8018925, "audio": 0, "end": 8021798, "filename": "/gfx/buyzone.png"}, {"start": 8021798, "audio": 0, "end": 8139508, "filename": "/gfx/splash.png"}, {"start": 8139508, "audio": 0, "end": 8142447, "filename": "/gfx/scoreicons.png"}, {"start": 8142447, "audio": 0, "end": 8152852, "filename": "/gfx/logo.png"}, {"start": 8152852, "audio": 0, "end": 8152980, "filename": "/gfx/flash.psi"}, {"start": 8152980, "audio": 0, "end": 8157255, "filename": "/gfx/ctf.png"}, {"start": 8157255, "audio": 0, "end": 8170523, "filename": "/gfx/controls.png"}, {"start": 8170523, "audio": 0, "end": 8170651, "filename": "/gfx/dust.psi"}, {"start": 8170651, "audio": 0, "end": 8306505, "filename": "/gfx/bg.png"}, {"start": 8306505, "audio": 0, "end": 8316368, "filename": "/gfx/danzeff/keys.png"}, {"start": 8316368, "audio": 0, "end": 8323666, "filename": "/gfx/danzeff/nums.png"}, {"start": 8323666, "audio": 0, "end": 8347240, "filename": "/gfx/danzeff/nums_s_c.png"}, {"start": 8347240, "audio": 0, "end": 8373200, "filename": "/gfx/danzeff/keys_s_c.png"}, {"start": 8373200, "audio": 0, "end": 8382793, "filename": "/gfx/danzeff/nums_c.png"}, {"start": 8382793, "audio": 0, "end": 8407037, "filename": "/gfx/danzeff/keys_s.png"}, {"start": 8407037, "audio": 0, "end": 8418005, "filename": "/gfx/danzeff/keys_c.png"}, {"start": 8418005, "audio": 0, "end": 8436123, "filename": "/gfx/danzeff/nums_s.png"}], "remote_package_size": 8436123, "package_uuid": "a6fcd7d5-b2d7-4fd8-976e-b6ab4a9d2ecd"});
+   loadPackage({"files": [{"start": 0, "audio": 0, "end": 12292, "filename": "/.DS_Store"}, {"start": 12292, "audio": 0, "end": 12380, "filename": "/simple.frag"}, {"start": 12380, "audio": 0, "end": 13463, "filename": "/sprite.vert"}, {"start": 13463, "audio": 0, "end": 13588, "filename": "/simple.vert"}, {"start": 13588, "audio": 0, "end": 14001, "filename": "/sprite.frag"}, {"start": 14001, "audio": 0, "end": 28341, "filename": "/maps/.DS_Store"}, {"start": 28341, "audio": 0, "end": 51490, "filename": "/maps/cs_italy/map.txt"}, {"start": 51490, "audio": 0, "end": 204296, "filename": "/maps/cs_italy/tile.png"}, {"start": 204296, "audio": 0, "end": 236814, "filename": "/maps/cs_italy/overview.png"}, {"start": 236814, "audio": 0, "end": 240398, "filename": "/maps/Guano/Thumbs.db"}, {"start": 240398, "audio": 0, "end": 244410, "filename": "/maps/Guano/map.txt"}, {"start": 244410, "audio": 0, "end": 295230, "filename": "/maps/Guano/tile.png"}, {"start": 295230, "audio": 0, "end": 304985, "filename": "/maps/Guano/overview.png"}, {"start": 304985, "audio": 0, "end": 308569, "filename": "/maps/fy_poolday/Thumbs.db"}, {"start": 308569, "audio": 0, "end": 310894, "filename": "/maps/fy_poolday/map.txt"}, {"start": 310894, "audio": 0, "end": 311419, "filename": "/maps/fy_poolday/tile.png"}, {"start": 311419, "audio": 0, "end": 311880, "filename": "/maps/fy_poolday/overview.png"}, {"start": 311880, "audio": 0, "end": 317832, "filename": "/maps/fy_nade2/map.txt"}, {"start": 317832, "audio": 0, "end": 319804, "filename": "/maps/fy_nade2/tile.png"}, {"start": 319804, "audio": 0, "end": 320493, "filename": "/maps/fy_nade2/overview.png"}, {"start": 320493, "audio": 0, "end": 329709, "filename": "/maps/CastleVonbrown/Thumbs.db"}, {"start": 329709, "audio": 0, "end": 333702, "filename": "/maps/CastleVonbrown/map.txt"}, {"start": 333702, "audio": 0, "end": 652875, "filename": "/maps/CastleVonbrown/tile.png"}, {"start": 652875, "audio": 0, "end": 659641, "filename": "/maps/CastleVonbrown/overview.png"}, {"start": 659641, "audio": 0, "end": 667803, "filename": "/maps/riverbig/map.txt"}, {"start": 667803, "audio": 0, "end": 758031, "filename": "/maps/riverbig/tile.png"}, {"start": 758031, "audio": 0, "end": 772294, "filename": "/maps/riverbig/overview.png"}, {"start": 772294, "audio": 0, "end": 783046, "filename": "/maps/de_dust2/Thumbs.db"}, {"start": 783046, "audio": 0, "end": 791456, "filename": "/maps/de_dust2/map.txt"}, {"start": 791456, "audio": 0, "end": 1033968, "filename": "/maps/de_dust2/tile.png"}, {"start": 1033968, "audio": 0, "end": 1048513, "filename": "/maps/de_dust2/overview.png"}, {"start": 1048513, "audio": 0, "end": 1054145, "filename": "/maps/Circle/Thumbs.db"}, {"start": 1054145, "audio": 0, "end": 1058423, "filename": "/maps/Circle/map.txt"}, {"start": 1058423, "audio": 0, "end": 1174817, "filename": "/maps/Circle/tile.png"}, {"start": 1174817, "audio": 0, "end": 1179525, "filename": "/maps/Circle/overview.png"}, {"start": 1179525, "audio": 0, "end": 1183109, "filename": "/maps/fy_nade/Thumbs.db"}, {"start": 1183109, "audio": 0, "end": 1187922, "filename": "/maps/fy_nade/map.txt"}, {"start": 1187922, "audio": 0, "end": 1189760, "filename": "/maps/fy_nade/tile.png"}, {"start": 1189760, "audio": 0, "end": 1190357, "filename": "/maps/fy_nade/overview.png"}, {"start": 1190357, "audio": 0, "end": 1197013, "filename": "/maps/Silent_Forest/Thumbs.db"}, {"start": 1197013, "audio": 0, "end": 1200311, "filename": "/maps/Silent_Forest/map.txt"}, {"start": 1200311, "audio": 0, "end": 1213841, "filename": "/maps/Silent_Forest/tile.png"}, {"start": 1213841, "audio": 0, "end": 1216363, "filename": "/maps/Silent_Forest/overview.png"}, {"start": 1216363, "audio": 0, "end": 1228133, "filename": "/maps/Silent_Forest/tile1.png"}, {"start": 1228133, "audio": 0, "end": 1264305, "filename": "/maps/Silent_Forest/tile2.png"}, {"start": 1264305, "audio": 1, "end": 1290281, "filename": "/sfx/ak47.wav"}, {"start": 1290281, "audio": 1, "end": 1296801, "filename": "/sfx/hit3.wav"}, {"start": 1296801, "audio": 1, "end": 1303535, "filename": "/sfx/ammo.wav"}, {"start": 1303535, "audio": 1, "end": 1337999, "filename": "/sfx/tmpreload.wav"}, {"start": 1337999, "audio": 1, "end": 1345649, "filename": "/sfx/hit2.wav"}, {"start": 1345649, "audio": 1, "end": 1389939, "filename": "/sfx/p228reload.wav"}, {"start": 1389939, "audio": 1, "end": 1432701, "filename": "/sfx/m4a1reload.wav"}, {"start": 1432701, "audio": 1, "end": 1473191, "filename": "/sfx/awp.wav"}, {"start": 1473191, "audio": 1, "end": 1478819, "filename": "/sfx/tmp.wav"}, {"start": 1478819, "audio": 1, "end": 1484641, "filename": "/sfx/deploy.wav"}, {"start": 1484641, "audio": 1, "end": 1517045, "filename": "/sfx/deaglereload.wav"}, {"start": 1517045, "audio": 1, "end": 1524065, "filename": "/sfx/hit1.wav"}, {"start": 1524065, "audio": 1, "end": 1550451, "filename": "/sfx/rounddraw.wav"}, {"start": 1550451, "audio": 1, "end": 1579371, "filename": "/sfx/hegrenade3.wav"}, {"start": 1579371, "audio": 1, "end": 1608207, "filename": "/sfx/hegrenade2.wav"}, {"start": 1608207, "audio": 1, "end": 1629115, "filename": "/sfx/glock.wav"}, {"start": 1629115, "audio": 1, "end": 1681463, "filename": "/sfx/sg552reload.wav"}, {"start": 1681463, "audio": 1, "end": 1710299, "filename": "/sfx/hegrenade1.wav"}, {"start": 1710299, "audio": 1, "end": 1764919, "filename": "/sfx/augreload.wav"}, {"start": 1764919, "audio": 1, "end": 1781879, "filename": "/sfx/usp.wav"}, {"start": 1781879, "audio": 1, "end": 1790673, "filename": "/sfx/mac10.wav"}, {"start": 1790673, "audio": 1, "end": 1819349, "filename": "/sfx/elite.wav"}, {"start": 1819349, "audio": 1, "end": 1844735, "filename": "/sfx/deagle.wav"}, {"start": 1844735, "audio": 1, "end": 1857409, "filename": "/sfx/fiveseven.wav"}, {"start": 1857409, "audio": 1, "end": 1869693, "filename": "/sfx/ricochet4.wav"}, {"start": 1869693, "audio": 1, "end": 1885155, "filename": "/sfx/ump.wav"}, {"start": 1885155, "audio": 1, "end": 1899817, "filename": "/sfx/pickup.wav"}, {"start": 1899817, "audio": 1, "end": 1936211, "filename": "/sfx/twin.wav"}, {"start": 1936211, "audio": 1, "end": 2018585, "filename": "/sfx/elitereload.wav"}, {"start": 2018585, "audio": 1, "end": 2107183, "filename": "/sfx/m3reload.wav"}, {"start": 2107183, "audio": 1, "end": 2120467, "filename": "/sfx/knifehit.wav"}, {"start": 2120467, "audio": 1, "end": 2155821, "filename": "/sfx/m3.wav"}, {"start": 2155821, "audio": 1, "end": 2200171, "filename": "/sfx/ak47reload.wav"}, {"start": 2200171, "audio": 1, "end": 2241839, "filename": "/sfx/p90reload.wav"}, {"start": 2241839, "audio": 1, "end": 4377851, "filename": "/sfx/Raindrops.mp3"}, {"start": 4377851, "audio": 1, "end": 4388111, "filename": "/sfx/ricochet3.wav"}, {"start": 4388111, "audio": 1, "end": 4495771, "filename": "/sfx/m249reload.wav"}, {"start": 4495771, "audio": 1, "end": 4536337, "filename": "/sfx/mac10reload.wav"}, {"start": 4536337, "audio": 1, "end": 4578703, "filename": "/sfx/sg550.wav"}, {"start": 4578703, "audio": 1, "end": 4589399, "filename": "/sfx/hitindicator.wav"}, {"start": 4589399, "audio": 1, "end": 4599615, "filename": "/sfx/walk2.wav"}, {"start": 4599615, "audio": 1, "end": 4615023, "filename": "/sfx/p228.wav"}, {"start": 4615023, "audio": 1, "end": 4628319, "filename": "/sfx/ricochet2.wav"}, {"start": 4628319, "audio": 1, "end": 4659577, "filename": "/sfx/flashbang.wav"}, {"start": 4659577, "audio": 1, "end": 4684069, "filename": "/sfx/sg552.wav"}, {"start": 4684069, "audio": 1, "end": 4705721, "filename": "/sfx/xm1014.wav"}, {"start": 4705721, "audio": 1, "end": 4716595, "filename": "/sfx/walk1.wav"}, {"start": 4716595, "audio": 1, "end": 4716653, "filename": "/sfx/knifereload.wav"}, {"start": 4716653, "audio": 1, "end": 4727925, "filename": "/sfx/ricochet1.wav"}, {"start": 4727925, "audio": 1, "end": 4785329, "filename": "/sfx/scout.wav"}, {"start": 4785329, "audio": 1, "end": 4832593, "filename": "/sfx/fivesevenreload.wav"}, {"start": 4832593, "audio": 1, "end": 4853837, "filename": "/sfx/die1.wav"}, {"start": 4853837, "audio": 1, "end": 4864597, "filename": "/sfx/grenadebounce.wav"}, {"start": 4864597, "audio": 1, "end": 4886243, "filename": "/sfx/die3.wav"}, {"start": 4886243, "audio": 1, "end": 4927855, "filename": "/sfx/galilreload.wav"}, {"start": 4927855, "audio": 1, "end": 4999643, "filename": "/sfx/galil.wav"}, {"start": 4999643, "audio": 1, "end": 5034107, "filename": "/sfx/glockreload.wav"}, {"start": 5034107, "audio": 1, "end": 5077523, "filename": "/sfx/famasreload.wav"}, {"start": 5077523, "audio": 1, "end": 5132691, "filename": "/sfx/xm1014reload.wav"}, {"start": 5132691, "audio": 1, "end": 5176467, "filename": "/sfx/die2.wav"}, {"start": 5176467, "audio": 1, "end": 5179395, "filename": "/sfx/knife.wav"}, {"start": 5179395, "audio": 1, "end": 5211363, "filename": "/sfx/scoutreload.wav"}, {"start": 5211363, "audio": 1, "end": 5253271, "filename": "/sfx/umpreload.wav"}, {"start": 5253271, "audio": 1, "end": 5315091, "filename": "/sfx/famas.wav"}, {"start": 5315091, "audio": 1, "end": 5385811, "filename": "/sfx/g3sg1reload.wav"}, {"start": 5385811, "audio": 1, "end": 5418941, "filename": "/sfx/g3sg1.wav"}, {"start": 5418941, "audio": 1, "end": 5467655, "filename": "/sfx/sg550reload.wav"}, {"start": 5467655, "audio": 1, "end": 5491401, "filename": "/sfx/mp5.wav"}, {"start": 5491401, "audio": 1, "end": 5532781, "filename": "/sfx/uspreload.wav"}, {"start": 5532781, "audio": 1, "end": 5535497, "filename": "/sfx/pinpull.wav"}, {"start": 5535497, "audio": 1, "end": 5560765, "filename": "/sfx/m249.wav"}, {"start": 5560765, "audio": 1, "end": 5563827, "filename": "/sfx/dryfire_rifle.wav"}, {"start": 5563827, "audio": 1, "end": 5577851, "filename": "/sfx/p90.wav"}, {"start": 5577851, "audio": 1, "end": 5619309, "filename": "/sfx/ctwin.wav"}, {"start": 5619309, "audio": 1, "end": 5644199, "filename": "/sfx/aug.wav"}, {"start": 5644199, "audio": 1, "end": 5646819, "filename": "/sfx/dryfire_pistol.wav"}, {"start": 5646819, "audio": 1, "end": 5669153, "filename": "/sfx/smokegrenade.wav"}, {"start": 5669153, "audio": 1, "end": 5700841, "filename": "/sfx/fireinthehole.wav"}, {"start": 5700841, "audio": 1, "end": 5749391, "filename": "/sfx/awpreload.wav"}, {"start": 5749391, "audio": 1, "end": 5787163, "filename": "/sfx/mp5reload.wav"}, {"start": 5787163, "audio": 1, "end": 5805867, "filename": "/sfx/m4a1.wav"}, {"start": 5805867, "audio": 0, "end": 5806879, "filename": "/data/animations.txt"}, {"start": 5806879, "audio": 0, "end": 5813027, "filename": "/data/.DS_Store"}, {"start": 5813027, "audio": 0, "end": 5814512, "filename": "/data/guns.txt"}, {"start": 5814512, "audio": 0, "end": 5814601, "filename": "/data/config.txt"}, {"start": 5814601, "audio": 0, "end": 5816519, "filename": "/data/rapmet.prx"}, {"start": 5816519, "audio": 0, "end": 5818567, "filename": "/data/f3.dat"}, {"start": 5818567, "audio": 0, "end": 5828654, "filename": "/data/f3.png"}, {"start": 5828654, "audio": 0, "end": 5830702, "filename": "/data/f3backdrop.dat"}, {"start": 5830702, "audio": 0, "end": 5830725, "filename": "/data/favorites.txt"}, {"start": 5830725, "audio": 0, "end": 5847515, "filename": "/data/f3backdrop.png"}, {"start": 5847515, "audio": 0, "end": 5850121, "filename": "/data/idstorage.prx"}, {"start": 5850121, "audio": 0, "end": 5861782, "filename": "/gfx/decals.png"}, {"start": 5861782, "audio": 0, "end": 5861910, "filename": "/gfx/smoke.psi"}, {"start": 5861910, "audio": 0, "end": 5874512, "filename": "/gfx/particles.png"}, {"start": 5874512, "audio": 0, "end": 5880660, "filename": "/gfx/.DS_Store"}, {"start": 5880660, "audio": 0, "end": 5883782, "filename": "/gfx/health.png"}, {"start": 5883782, "audio": 0, "end": 5888925, "filename": "/gfx/damageindicator.png"}, {"start": 5888925, "audio": 0, "end": 5891886, "filename": "/gfx/radar.png"}, {"start": 5891886, "audio": 0, "end": 5917565, "filename": "/gfx/playersdead.png"}, {"start": 5917565, "audio": 0, "end": 5930995, "filename": "/gfx/gunsground.png"}, {"start": 5930995, "audio": 0, "end": 5937188, "filename": "/gfx/muzzleflash.png"}, {"start": 5937188, "audio": 0, "end": 5948793, "filename": "/gfx/players.png"}, {"start": 5948793, "audio": 0, "end": 5948921, "filename": "/gfx/explosion.psi"}, {"start": 5948921, "audio": 0, "end": 5951964, "filename": "/gfx/ammo.png"}, {"start": 5951964, "audio": 0, "end": 5958104, "filename": "/gfx/guns.png"}, {"start": 5958104, "audio": 0, "end": 5960977, "filename": "/gfx/buyzone.png"}, {"start": 5960977, "audio": 0, "end": 6078687, "filename": "/gfx/splash.png"}, {"start": 6078687, "audio": 0, "end": 6081626, "filename": "/gfx/scoreicons.png"}, {"start": 6081626, "audio": 0, "end": 6092031, "filename": "/gfx/logo.png"}, {"start": 6092031, "audio": 0, "end": 6092159, "filename": "/gfx/flash.psi"}, {"start": 6092159, "audio": 0, "end": 6096434, "filename": "/gfx/ctf.png"}, {"start": 6096434, "audio": 0, "end": 6109702, "filename": "/gfx/controls.png"}, {"start": 6109702, "audio": 0, "end": 6109830, "filename": "/gfx/dust.psi"}, {"start": 6109830, "audio": 0, "end": 6245684, "filename": "/gfx/bg.png"}, {"start": 6245684, "audio": 0, "end": 6255547, "filename": "/gfx/danzeff/keys.png"}, {"start": 6255547, "audio": 0, "end": 6262845, "filename": "/gfx/danzeff/nums.png"}, {"start": 6262845, "audio": 0, "end": 6286419, "filename": "/gfx/danzeff/nums_s_c.png"}, {"start": 6286419, "audio": 0, "end": 6312379, "filename": "/gfx/danzeff/keys_s_c.png"}, {"start": 6312379, "audio": 0, "end": 6321972, "filename": "/gfx/danzeff/nums_c.png"}, {"start": 6321972, "audio": 0, "end": 6346216, "filename": "/gfx/danzeff/keys_s.png"}, {"start": 6346216, "audio": 0, "end": 6357184, "filename": "/gfx/danzeff/keys_c.png"}, {"start": 6357184, "audio": 0, "end": 6375302, "filename": "/gfx/danzeff/nums_s.png"}], "remote_package_size": 6375302, "package_uuid": "f23dbcd3-6f91-4087-9c4d-9ed54fb3602f"});
   
   })();
   
@@ -486,7 +477,7 @@ if (!Object.getOwnPropertyDescriptor(Module, 'read')) Object.defineProperty(Modu
 if (!Object.getOwnPropertyDescriptor(Module, 'readAsync')) Object.defineProperty(Module, 'readAsync', { configurable: true, get: function() { abort('Module.readAsync has been replaced with plain readAsync') } });
 if (!Object.getOwnPropertyDescriptor(Module, 'readBinary')) Object.defineProperty(Module, 'readBinary', { configurable: true, get: function() { abort('Module.readBinary has been replaced with plain readBinary') } });
 // TODO: add when SDL2 is fixed if (!Object.getOwnPropertyDescriptor(Module, 'setWindowTitle')) Object.defineProperty(Module, 'setWindowTitle', { configurable: true, get: function() { abort('Module.setWindowTitle has been replaced with plain setWindowTitle') } });
-var IDBFS = 'IDBFS is no longer included by default; build with -lidbfs.js';
+
 var PROXYFS = 'PROXYFS is no longer included by default; build with -lproxyfs.js';
 var WORKERFS = 'WORKERFS is no longer included by default; build with -lworkerfs.js';
 var NODEFS = 'NODEFS is no longer included by default; build with -lnodefs.js';
@@ -926,8 +917,8 @@ var wasmMemory;
 // In the wasm backend, we polyfill the WebAssembly object,
 // so this creates a (non-native-wasm) table for us.
 var wasmTable = new WebAssembly.Table({
-  'initial': 1367,
-  'maximum': 1367 + 0,
+  'initial': 1447,
+  'maximum': 1447 + 0,
   'element': 'anyfunc'
 });
 
@@ -1528,11 +1519,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5427088,
+    STACK_BASE = 5436912,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 184208,
-    DYNAMIC_BASE = 5427088,
-    DYNAMICTOP_PTR = 184048;
+    STACK_MAX = 194032,
+    DYNAMIC_BASE = 5436912,
+    DYNAMICTOP_PTR = 193856;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -2048,22 +2039,24 @@ var tempI64;
 // === Body ===
 
 var ASM_CONSTS = {
-  104260: function($0, $1, $2) {var w = $0; var h = $1; var pixels = $2; if (!Module['SDL2']) Module['SDL2'] = {}; var SDL2 = Module['SDL2']; if (SDL2.ctxCanvas !== Module['canvas']) { SDL2.ctx = Module['createContext'](Module['canvas'], false, true); SDL2.ctxCanvas = Module['canvas']; } if (SDL2.w !== w || SDL2.h !== h || SDL2.imageCtx !== SDL2.ctx) { SDL2.image = SDL2.ctx.createImageData(w, h); SDL2.w = w; SDL2.h = h; SDL2.imageCtx = SDL2.ctx; } var data = SDL2.image.data; var src = pixels >> 2; var dst = 0; var num; if (typeof CanvasPixelArray !== 'undefined' && data instanceof CanvasPixelArray) { num = data.length; while (dst < num) { var val = HEAP32[src]; data[dst ] = val & 0xff; data[dst+1] = (val >> 8) & 0xff; data[dst+2] = (val >> 16) & 0xff; data[dst+3] = 0xff; src++; dst += 4; } } else { if (SDL2.data32Data !== data) { SDL2.data32 = new Int32Array(data.buffer); SDL2.data8 = new Uint8Array(data.buffer); } var data32 = SDL2.data32; num = data32.length; data32.set(HEAP32.subarray(src, src + num)); var data8 = SDL2.data8; var i = 3; var j = i + 4*num; if (num % 8 == 0) { while (i < j) { data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; } } else { while (i < j) { data8[i] = 0xff; i = i + 4 | 0; } } } SDL2.ctx.putImageData(SDL2.image, 0, 0); return 0;},  
- 105715: function($0, $1, $2, $3, $4) {var w = $0; var h = $1; var hot_x = $2; var hot_y = $3; var pixels = $4; var canvas = document.createElement("canvas"); canvas.width = w; canvas.height = h; var ctx = canvas.getContext("2d"); var image = ctx.createImageData(w, h); var data = image.data; var src = pixels >> 2; var dst = 0; var num; if (typeof CanvasPixelArray !== 'undefined' && data instanceof CanvasPixelArray) { num = data.length; while (dst < num) { var val = HEAP32[src]; data[dst ] = val & 0xff; data[dst+1] = (val >> 8) & 0xff; data[dst+2] = (val >> 16) & 0xff; data[dst+3] = (val >> 24) & 0xff; src++; dst += 4; } } else { var data32 = new Int32Array(data.buffer); num = data32.length; data32.set(HEAP32.subarray(src, src + num)); } ctx.putImageData(image, 0, 0); var url = hot_x === 0 && hot_y === 0 ? "url(" + canvas.toDataURL() + "), auto" : "url(" + canvas.toDataURL() + ") " + hot_x + " " + hot_y + ", auto"; var urlBuf = _malloc(url.length + 1); stringToUTF8(url, urlBuf, url.length + 1); return urlBuf;},  
- 106704: function($0) {if (Module['canvas']) { Module['canvas'].style['cursor'] = UTF8ToString($0); } return 0;},  
- 106797: function() {if (Module['canvas']) { Module['canvas'].style['cursor'] = 'none'; }},  
- 108022: function() {return screen.width;},  
- 108049: function() {return screen.height;},  
- 108122: function($0) {if (typeof Module['setWindowTitle'] !== 'undefined') { Module['setWindowTitle'](UTF8ToString($0)); } return 0;},  
- 108276: function() {if (typeof(AudioContext) !== 'undefined') { return 1; } else if (typeof(webkitAudioContext) !== 'undefined') { return 1; } return 0;},  
- 108442: function() {if ((typeof(navigator.mediaDevices) !== 'undefined') && (typeof(navigator.mediaDevices.getUserMedia) !== 'undefined')) { return 1; } else if (typeof(navigator.webkitGetUserMedia) !== 'undefined') { return 1; } return 0;},  
- 108668: function($0) {if(typeof(Module['SDL2']) === 'undefined') { Module['SDL2'] = {}; } var SDL2 = Module['SDL2']; if (!$0) { SDL2.audio = {}; } else { SDL2.capture = {}; } if (!SDL2.audioContext) { if (typeof(AudioContext) !== 'undefined') { SDL2.audioContext = new AudioContext(); } else if (typeof(webkitAudioContext) !== 'undefined') { SDL2.audioContext = new webkitAudioContext(); } } return SDL2.audioContext === undefined ? -1 : 0;},  
- 109151: function() {var SDL2 = Module['SDL2']; return SDL2.audioContext.sampleRate;},  
- 109221: function($0, $1, $2, $3) {var SDL2 = Module['SDL2']; var have_microphone = function(stream) { if (SDL2.capture.silenceTimer !== undefined) { clearTimeout(SDL2.capture.silenceTimer); SDL2.capture.silenceTimer = undefined; } SDL2.capture.mediaStreamNode = SDL2.audioContext.createMediaStreamSource(stream); SDL2.capture.scriptProcessorNode = SDL2.audioContext.createScriptProcessor($1, $0, 1); SDL2.capture.scriptProcessorNode.onaudioprocess = function(audioProcessingEvent) { if ((SDL2 === undefined) || (SDL2.capture === undefined)) { return; } audioProcessingEvent.outputBuffer.getChannelData(0).fill(0.0); SDL2.capture.currentCaptureBuffer = audioProcessingEvent.inputBuffer; dynCall('vi', $2, [$3]); }; SDL2.capture.mediaStreamNode.connect(SDL2.capture.scriptProcessorNode); SDL2.capture.scriptProcessorNode.connect(SDL2.audioContext.destination); SDL2.capture.stream = stream; }; var no_microphone = function(error) { }; SDL2.capture.silenceBuffer = SDL2.audioContext.createBuffer($0, $1, SDL2.audioContext.sampleRate); SDL2.capture.silenceBuffer.getChannelData(0).fill(0.0); var silence_callback = function() { SDL2.capture.currentCaptureBuffer = SDL2.capture.silenceBuffer; dynCall('vi', $2, [$3]); }; SDL2.capture.silenceTimer = setTimeout(silence_callback, ($1 / SDL2.audioContext.sampleRate) * 1000); if ((navigator.mediaDevices !== undefined) && (navigator.mediaDevices.getUserMedia !== undefined)) { navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(have_microphone).catch(no_microphone); } else if (navigator.webkitGetUserMedia !== undefined) { navigator.webkitGetUserMedia({ audio: true, video: false }, have_microphone, no_microphone); }},  
- 110873: function($0, $1, $2, $3) {var SDL2 = Module['SDL2']; SDL2.audio.scriptProcessorNode = SDL2.audioContext['createScriptProcessor']($1, 0, $0); SDL2.audio.scriptProcessorNode['onaudioprocess'] = function (e) { if ((SDL2 === undefined) || (SDL2.audio === undefined)) { return; } SDL2.audio.currentOutputBuffer = e['outputBuffer']; dynCall('vi', $2, [$3]); }; SDL2.audio.scriptProcessorNode['connect'](SDL2.audioContext['destination']);},  
- 111283: function($0, $1) {var SDL2 = Module['SDL2']; var numChannels = SDL2.capture.currentCaptureBuffer.numberOfChannels; for (var c = 0; c < numChannels; ++c) { var channelData = SDL2.capture.currentCaptureBuffer.getChannelData(c); if (channelData.length != $1) { throw 'Web Audio capture buffer length mismatch! Destination size: ' + channelData.length + ' samples vs expected ' + $1 + ' samples!'; } if (numChannels == 1) { for (var j = 0; j < $1; ++j) { setValue($0 + (j * 4), channelData[j], 'float'); } } else { for (var j = 0; j < $1; ++j) { setValue($0 + (((j * numChannels) + c) * 4), channelData[j], 'float'); } } }},  
- 111888: function($0, $1) {var SDL2 = Module['SDL2']; var numChannels = SDL2.audio.currentOutputBuffer['numberOfChannels']; for (var c = 0; c < numChannels; ++c) { var channelData = SDL2.audio.currentOutputBuffer['getChannelData'](c); if (channelData.length != $1) { throw 'Web Audio output buffer length mismatch! Destination size: ' + channelData.length + ' samples vs expected ' + $1 + ' samples!'; } for (var j = 0; j < $1; ++j) { channelData[j] = HEAPF32[$0 + ((j*numChannels + c) << 2) >> 2]; } }},  
- 112368: function($0) {var SDL2 = Module['SDL2']; if ($0) { if (SDL2.capture.silenceTimer !== undefined) { clearTimeout(SDL2.capture.silenceTimer); } if (SDL2.capture.stream !== undefined) { var tracks = SDL2.capture.stream.getAudioTracks(); for (var i = 0; i < tracks.length; i++) { SDL2.capture.stream.removeTrack(tracks[i]); } SDL2.capture.stream = undefined; } if (SDL2.capture.scriptProcessorNode !== undefined) { SDL2.capture.scriptProcessorNode.onaudioprocess = function(audioProcessingEvent) {}; SDL2.capture.scriptProcessorNode.disconnect(); SDL2.capture.scriptProcessorNode = undefined; } if (SDL2.capture.mediaStreamNode !== undefined) { SDL2.capture.mediaStreamNode.disconnect(); SDL2.capture.mediaStreamNode = undefined; } if (SDL2.capture.silenceBuffer !== undefined) { SDL2.capture.silenceBuffer = undefined } SDL2.capture = undefined; } else { if (SDL2.audio.scriptProcessorNode != undefined) { SDL2.audio.scriptProcessorNode.disconnect(); SDL2.audio.scriptProcessorNode = undefined; } SDL2.audio = undefined; } if ((SDL2.audioContext !== undefined) && (SDL2.audio === undefined) && (SDL2.capture === undefined)) { SDL2.audioContext.close(); SDL2.audioContext = undefined; }}
+  3236: function() {FS.syncfs(false,function (err) { assert(!err); });},  
+ 13613: function() {FS.mkdir('/persistent_data'); FS.mount(IDBFS, {}, '/persistent_data'); Module.syncdone = 0; FS.syncfs(true, function(err) { if(!err) Module.syncdone = 1; });},  
+ 111316: function($0, $1, $2) {var w = $0; var h = $1; var pixels = $2; if (!Module['SDL2']) Module['SDL2'] = {}; var SDL2 = Module['SDL2']; if (SDL2.ctxCanvas !== Module['canvas']) { SDL2.ctx = Module['createContext'](Module['canvas'], false, true); SDL2.ctxCanvas = Module['canvas']; } if (SDL2.w !== w || SDL2.h !== h || SDL2.imageCtx !== SDL2.ctx) { SDL2.image = SDL2.ctx.createImageData(w, h); SDL2.w = w; SDL2.h = h; SDL2.imageCtx = SDL2.ctx; } var data = SDL2.image.data; var src = pixels >> 2; var dst = 0; var num; if (typeof CanvasPixelArray !== 'undefined' && data instanceof CanvasPixelArray) { num = data.length; while (dst < num) { var val = HEAP32[src]; data[dst ] = val & 0xff; data[dst+1] = (val >> 8) & 0xff; data[dst+2] = (val >> 16) & 0xff; data[dst+3] = 0xff; src++; dst += 4; } } else { if (SDL2.data32Data !== data) { SDL2.data32 = new Int32Array(data.buffer); SDL2.data8 = new Uint8Array(data.buffer); } var data32 = SDL2.data32; num = data32.length; data32.set(HEAP32.subarray(src, src + num)); var data8 = SDL2.data8; var i = 3; var j = i + 4*num; if (num % 8 == 0) { while (i < j) { data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; data8[i] = 0xff; i = i + 4 | 0; } } else { while (i < j) { data8[i] = 0xff; i = i + 4 | 0; } } } SDL2.ctx.putImageData(SDL2.image, 0, 0); return 0;},  
+ 112771: function($0, $1, $2, $3, $4) {var w = $0; var h = $1; var hot_x = $2; var hot_y = $3; var pixels = $4; var canvas = document.createElement("canvas"); canvas.width = w; canvas.height = h; var ctx = canvas.getContext("2d"); var image = ctx.createImageData(w, h); var data = image.data; var src = pixels >> 2; var dst = 0; var num; if (typeof CanvasPixelArray !== 'undefined' && data instanceof CanvasPixelArray) { num = data.length; while (dst < num) { var val = HEAP32[src]; data[dst ] = val & 0xff; data[dst+1] = (val >> 8) & 0xff; data[dst+2] = (val >> 16) & 0xff; data[dst+3] = (val >> 24) & 0xff; src++; dst += 4; } } else { var data32 = new Int32Array(data.buffer); num = data32.length; data32.set(HEAP32.subarray(src, src + num)); } ctx.putImageData(image, 0, 0); var url = hot_x === 0 && hot_y === 0 ? "url(" + canvas.toDataURL() + "), auto" : "url(" + canvas.toDataURL() + ") " + hot_x + " " + hot_y + ", auto"; var urlBuf = _malloc(url.length + 1); stringToUTF8(url, urlBuf, url.length + 1); return urlBuf;},  
+ 113760: function($0) {if (Module['canvas']) { Module['canvas'].style['cursor'] = UTF8ToString($0); } return 0;},  
+ 113853: function() {if (Module['canvas']) { Module['canvas'].style['cursor'] = 'none'; }},  
+ 115078: function() {return screen.width;},  
+ 115105: function() {return screen.height;},  
+ 115178: function($0) {if (typeof Module['setWindowTitle'] !== 'undefined') { Module['setWindowTitle'](UTF8ToString($0)); } return 0;},  
+ 115332: function() {if (typeof(AudioContext) !== 'undefined') { return 1; } else if (typeof(webkitAudioContext) !== 'undefined') { return 1; } return 0;},  
+ 115498: function() {if ((typeof(navigator.mediaDevices) !== 'undefined') && (typeof(navigator.mediaDevices.getUserMedia) !== 'undefined')) { return 1; } else if (typeof(navigator.webkitGetUserMedia) !== 'undefined') { return 1; } return 0;},  
+ 115724: function($0) {if(typeof(Module['SDL2']) === 'undefined') { Module['SDL2'] = {}; } var SDL2 = Module['SDL2']; if (!$0) { SDL2.audio = {}; } else { SDL2.capture = {}; } if (!SDL2.audioContext) { if (typeof(AudioContext) !== 'undefined') { SDL2.audioContext = new AudioContext(); } else if (typeof(webkitAudioContext) !== 'undefined') { SDL2.audioContext = new webkitAudioContext(); } } return SDL2.audioContext === undefined ? -1 : 0;},  
+ 116207: function() {var SDL2 = Module['SDL2']; return SDL2.audioContext.sampleRate;},  
+ 116277: function($0, $1, $2, $3) {var SDL2 = Module['SDL2']; var have_microphone = function(stream) { if (SDL2.capture.silenceTimer !== undefined) { clearTimeout(SDL2.capture.silenceTimer); SDL2.capture.silenceTimer = undefined; } SDL2.capture.mediaStreamNode = SDL2.audioContext.createMediaStreamSource(stream); SDL2.capture.scriptProcessorNode = SDL2.audioContext.createScriptProcessor($1, $0, 1); SDL2.capture.scriptProcessorNode.onaudioprocess = function(audioProcessingEvent) { if ((SDL2 === undefined) || (SDL2.capture === undefined)) { return; } audioProcessingEvent.outputBuffer.getChannelData(0).fill(0.0); SDL2.capture.currentCaptureBuffer = audioProcessingEvent.inputBuffer; dynCall('vi', $2, [$3]); }; SDL2.capture.mediaStreamNode.connect(SDL2.capture.scriptProcessorNode); SDL2.capture.scriptProcessorNode.connect(SDL2.audioContext.destination); SDL2.capture.stream = stream; }; var no_microphone = function(error) { }; SDL2.capture.silenceBuffer = SDL2.audioContext.createBuffer($0, $1, SDL2.audioContext.sampleRate); SDL2.capture.silenceBuffer.getChannelData(0).fill(0.0); var silence_callback = function() { SDL2.capture.currentCaptureBuffer = SDL2.capture.silenceBuffer; dynCall('vi', $2, [$3]); }; SDL2.capture.silenceTimer = setTimeout(silence_callback, ($1 / SDL2.audioContext.sampleRate) * 1000); if ((navigator.mediaDevices !== undefined) && (navigator.mediaDevices.getUserMedia !== undefined)) { navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(have_microphone).catch(no_microphone); } else if (navigator.webkitGetUserMedia !== undefined) { navigator.webkitGetUserMedia({ audio: true, video: false }, have_microphone, no_microphone); }},  
+ 117929: function($0, $1, $2, $3) {var SDL2 = Module['SDL2']; SDL2.audio.scriptProcessorNode = SDL2.audioContext['createScriptProcessor']($1, 0, $0); SDL2.audio.scriptProcessorNode['onaudioprocess'] = function (e) { if ((SDL2 === undefined) || (SDL2.audio === undefined)) { return; } SDL2.audio.currentOutputBuffer = e['outputBuffer']; dynCall('vi', $2, [$3]); }; SDL2.audio.scriptProcessorNode['connect'](SDL2.audioContext['destination']);},  
+ 118339: function($0, $1) {var SDL2 = Module['SDL2']; var numChannels = SDL2.capture.currentCaptureBuffer.numberOfChannels; for (var c = 0; c < numChannels; ++c) { var channelData = SDL2.capture.currentCaptureBuffer.getChannelData(c); if (channelData.length != $1) { throw 'Web Audio capture buffer length mismatch! Destination size: ' + channelData.length + ' samples vs expected ' + $1 + ' samples!'; } if (numChannels == 1) { for (var j = 0; j < $1; ++j) { setValue($0 + (j * 4), channelData[j], 'float'); } } else { for (var j = 0; j < $1; ++j) { setValue($0 + (((j * numChannels) + c) * 4), channelData[j], 'float'); } } }},  
+ 118944: function($0, $1) {var SDL2 = Module['SDL2']; var numChannels = SDL2.audio.currentOutputBuffer['numberOfChannels']; for (var c = 0; c < numChannels; ++c) { var channelData = SDL2.audio.currentOutputBuffer['getChannelData'](c); if (channelData.length != $1) { throw 'Web Audio output buffer length mismatch! Destination size: ' + channelData.length + ' samples vs expected ' + $1 + ' samples!'; } for (var j = 0; j < $1; ++j) { channelData[j] = HEAPF32[$0 + ((j*numChannels + c) << 2) >> 2]; } }},  
+ 119424: function($0) {var SDL2 = Module['SDL2']; if ($0) { if (SDL2.capture.silenceTimer !== undefined) { clearTimeout(SDL2.capture.silenceTimer); } if (SDL2.capture.stream !== undefined) { var tracks = SDL2.capture.stream.getAudioTracks(); for (var i = 0; i < tracks.length; i++) { SDL2.capture.stream.removeTrack(tracks[i]); } SDL2.capture.stream = undefined; } if (SDL2.capture.scriptProcessorNode !== undefined) { SDL2.capture.scriptProcessorNode.onaudioprocess = function(audioProcessingEvent) {}; SDL2.capture.scriptProcessorNode.disconnect(); SDL2.capture.scriptProcessorNode = undefined; } if (SDL2.capture.mediaStreamNode !== undefined) { SDL2.capture.mediaStreamNode.disconnect(); SDL2.capture.mediaStreamNode = undefined; } if (SDL2.capture.silenceBuffer !== undefined) { SDL2.capture.silenceBuffer = undefined } SDL2.capture = undefined; } else { if (SDL2.audio.scriptProcessorNode != undefined) { SDL2.audio.scriptProcessorNode.disconnect(); SDL2.audio.scriptProcessorNode = undefined; } SDL2.audio = undefined; } if ((SDL2.audioContext !== undefined) && (SDL2.audio === undefined) && (SDL2.capture === undefined)) { SDL2.audioContext.close(); SDL2.audioContext = undefined; }}
 };
 
 function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
@@ -2073,7 +2066,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
 
 
 
-// STATICTOP = STATIC_BASE + 183184;
+// STATICTOP = STATIC_BASE + 193008;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -3598,6 +3591,285 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
           return 0;
         }}};
   
+  var IDBFS={dbs:{},indexedDB:function() {
+        if (typeof indexedDB !== 'undefined') return indexedDB;
+        var ret = null;
+        if (typeof window === 'object') ret = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        assert(ret, 'IDBFS used, but indexedDB not supported');
+        return ret;
+      },DB_VERSION:21,DB_STORE_NAME:"FILE_DATA",mount:function(mount) {
+        // reuse all of the core MEMFS functionality
+        return MEMFS.mount.apply(null, arguments);
+      },syncfs:function(mount, populate, callback) {
+        IDBFS.getLocalSet(mount, function(err, local) {
+          if (err) return callback(err);
+  
+          IDBFS.getRemoteSet(mount, function(err, remote) {
+            if (err) return callback(err);
+  
+            var src = populate ? remote : local;
+            var dst = populate ? local : remote;
+  
+            IDBFS.reconcile(src, dst, callback);
+          });
+        });
+      },getDB:function(name, callback) {
+        // check the cache first
+        var db = IDBFS.dbs[name];
+        if (db) {
+          return callback(null, db);
+        }
+  
+        var req;
+        try {
+          req = IDBFS.indexedDB().open(name, IDBFS.DB_VERSION);
+        } catch (e) {
+          return callback(e);
+        }
+        if (!req) {
+          return callback("Unable to connect to IndexedDB");
+        }
+        req.onupgradeneeded = function(e) {
+          var db = e.target.result;
+          var transaction = e.target.transaction;
+  
+          var fileStore;
+  
+          if (db.objectStoreNames.contains(IDBFS.DB_STORE_NAME)) {
+            fileStore = transaction.objectStore(IDBFS.DB_STORE_NAME);
+          } else {
+            fileStore = db.createObjectStore(IDBFS.DB_STORE_NAME);
+          }
+  
+          if (!fileStore.indexNames.contains('timestamp')) {
+            fileStore.createIndex('timestamp', 'timestamp', { unique: false });
+          }
+        };
+        req.onsuccess = function() {
+          db = req.result;
+  
+          // add to the cache
+          IDBFS.dbs[name] = db;
+          callback(null, db);
+        };
+        req.onerror = function(e) {
+          callback(this.error);
+          e.preventDefault();
+        };
+      },getLocalSet:function(mount, callback) {
+        var entries = {};
+  
+        function isRealDir(p) {
+          return p !== '.' && p !== '..';
+        };
+        function toAbsolute(root) {
+          return function(p) {
+            return PATH.join2(root, p);
+          }
+        };
+  
+        var check = FS.readdir(mount.mountpoint).filter(isRealDir).map(toAbsolute(mount.mountpoint));
+  
+        while (check.length) {
+          var path = check.pop();
+          var stat;
+  
+          try {
+            stat = FS.stat(path);
+          } catch (e) {
+            return callback(e);
+          }
+  
+          if (FS.isDir(stat.mode)) {
+            check.push.apply(check, FS.readdir(path).filter(isRealDir).map(toAbsolute(path)));
+          }
+  
+          entries[path] = { 'timestamp': stat.mtime };
+        }
+  
+        return callback(null, { type: 'local', entries: entries });
+      },getRemoteSet:function(mount, callback) {
+        var entries = {};
+  
+        IDBFS.getDB(mount.mountpoint, function(err, db) {
+          if (err) return callback(err);
+  
+          try {
+            var transaction = db.transaction([IDBFS.DB_STORE_NAME], 'readonly');
+            transaction.onerror = function(e) {
+              callback(this.error);
+              e.preventDefault();
+            };
+  
+            var store = transaction.objectStore(IDBFS.DB_STORE_NAME);
+            var index = store.index('timestamp');
+  
+            index.openKeyCursor().onsuccess = function(event) {
+              var cursor = event.target.result;
+  
+              if (!cursor) {
+                return callback(null, { type: 'remote', db: db, entries: entries });
+              }
+  
+              entries[cursor.primaryKey] = { 'timestamp': cursor.key };
+  
+              cursor.continue();
+            };
+          } catch (e) {
+            return callback(e);
+          }
+        });
+      },loadLocalEntry:function(path, callback) {
+        var stat, node;
+  
+        try {
+          var lookup = FS.lookupPath(path);
+          node = lookup.node;
+          stat = FS.stat(path);
+        } catch (e) {
+          return callback(e);
+        }
+  
+        if (FS.isDir(stat.mode)) {
+          return callback(null, { 'timestamp': stat.mtime, 'mode': stat.mode });
+        } else if (FS.isFile(stat.mode)) {
+          // Performance consideration: storing a normal JavaScript array to a IndexedDB is much slower than storing a typed array.
+          // Therefore always convert the file contents to a typed array first before writing the data to IndexedDB.
+          node.contents = MEMFS.getFileDataAsTypedArray(node);
+          return callback(null, { 'timestamp': stat.mtime, 'mode': stat.mode, 'contents': node.contents });
+        } else {
+          return callback(new Error('node type not supported'));
+        }
+      },storeLocalEntry:function(path, entry, callback) {
+        try {
+          if (FS.isDir(entry['mode'])) {
+            FS.mkdir(path, entry['mode']);
+          } else if (FS.isFile(entry['mode'])) {
+            FS.writeFile(path, entry['contents'], { canOwn: true });
+          } else {
+            return callback(new Error('node type not supported'));
+          }
+  
+          FS.chmod(path, entry['mode']);
+          FS.utime(path, entry['timestamp'], entry['timestamp']);
+        } catch (e) {
+          return callback(e);
+        }
+  
+        callback(null);
+      },removeLocalEntry:function(path, callback) {
+        try {
+          var lookup = FS.lookupPath(path);
+          var stat = FS.stat(path);
+  
+          if (FS.isDir(stat.mode)) {
+            FS.rmdir(path);
+          } else if (FS.isFile(stat.mode)) {
+            FS.unlink(path);
+          }
+        } catch (e) {
+          return callback(e);
+        }
+  
+        callback(null);
+      },loadRemoteEntry:function(store, path, callback) {
+        var req = store.get(path);
+        req.onsuccess = function(event) { callback(null, event.target.result); };
+        req.onerror = function(e) {
+          callback(this.error);
+          e.preventDefault();
+        };
+      },storeRemoteEntry:function(store, path, entry, callback) {
+        var req = store.put(entry, path);
+        req.onsuccess = function() { callback(null); };
+        req.onerror = function(e) {
+          callback(this.error);
+          e.preventDefault();
+        };
+      },removeRemoteEntry:function(store, path, callback) {
+        var req = store.delete(path);
+        req.onsuccess = function() { callback(null); };
+        req.onerror = function(e) {
+          callback(this.error);
+          e.preventDefault();
+        };
+      },reconcile:function(src, dst, callback) {
+        var total = 0;
+  
+        var create = [];
+        Object.keys(src.entries).forEach(function (key) {
+          var e = src.entries[key];
+          var e2 = dst.entries[key];
+          if (!e2 || e['timestamp'] > e2['timestamp']) {
+            create.push(key);
+            total++;
+          }
+        });
+  
+        var remove = [];
+        Object.keys(dst.entries).forEach(function (key) {
+          var e = dst.entries[key];
+          var e2 = src.entries[key];
+          if (!e2) {
+            remove.push(key);
+            total++;
+          }
+        });
+  
+        if (!total) {
+          return callback(null);
+        }
+  
+        var errored = false;
+        var db = src.type === 'remote' ? src.db : dst.db;
+        var transaction = db.transaction([IDBFS.DB_STORE_NAME], 'readwrite');
+        var store = transaction.objectStore(IDBFS.DB_STORE_NAME);
+  
+        function done(err) {
+          if (err && !errored) {
+            errored = true;
+            return callback(err);
+          }
+        };
+  
+        transaction.onerror = function(e) {
+          done(this.error);
+          e.preventDefault();
+        };
+  
+        transaction.oncomplete = function(e) {
+          if (!errored) {
+            callback(null);
+          }
+        };
+  
+        // sort paths in ascending order so directory entries are created
+        // before the files inside them
+        create.sort().forEach(function (path) {
+          if (dst.type === 'local') {
+            IDBFS.loadRemoteEntry(store, path, function (err, entry) {
+              if (err) return done(err);
+              IDBFS.storeLocalEntry(path, entry, done);
+            });
+          } else {
+            IDBFS.loadLocalEntry(path, function (err, entry) {
+              if (err) return done(err);
+              IDBFS.storeRemoteEntry(store, path, entry, done);
+            });
+          }
+        });
+  
+        // sort paths in descending order so files are deleted before their
+        // parent directories
+        remove.sort().reverse().forEach(function(path) {
+          if (dst.type === 'local') {
+            IDBFS.removeLocalEntry(path, done);
+          } else {
+            IDBFS.removeRemoteEntry(store, path, done);
+          }
+        });
+      }};
+  
   var ERRNO_MESSAGES={0:"Success",1:"Arg list too long",2:"Permission denied",3:"Address already in use",4:"Address not available",5:"Address family not supported by protocol family",6:"No more processes",7:"Socket already connected",8:"Bad file number",9:"Trying to read unreadable message",10:"Mount device busy",11:"Operation canceled",12:"No children",13:"Connection aborted",14:"Connection refused",15:"Connection reset by peer",16:"File locking deadlock error",17:"Destination address required",18:"Math arg out of domain of func",19:"Quota exceeded",20:"File exists",21:"Bad address",22:"File too large",23:"Host is unreachable",24:"Identifier removed",25:"Illegal byte sequence",26:"Connection already in progress",27:"Interrupted system call",28:"Invalid argument",29:"I/O error",30:"Socket is already connected",31:"Is a directory",32:"Too many symbolic links",33:"Too many open files",34:"Too many links",35:"Message too long",36:"Multihop attempted",37:"File or path name too long",38:"Network interface is not configured",39:"Connection reset by network",40:"Network is unreachable",41:"Too many open files in system",42:"No buffer space available",43:"No such device",44:"No such file or directory",45:"Exec format error",46:"No record locks available",47:"The link has been severed",48:"Not enough core",49:"No message of desired type",50:"Protocol not available",51:"No space left on device",52:"Function not implemented",53:"Socket is not connected",54:"Not a directory",55:"Directory not empty",56:"State not recoverable",57:"Socket operation on non-socket",59:"Not a typewriter",60:"No such device or address",61:"Value too large for defined data type",62:"Previous owner died",63:"Not super-user",64:"Broken pipe",65:"Protocol error",66:"Unknown protocol",67:"Protocol wrong type for socket",68:"Math result not representable",69:"Read only file system",70:"Illegal seek",71:"No such process",72:"Stale file handle",73:"Connection timed out",74:"Text file busy",75:"Cross-device link",100:"Device not a stream",101:"Bad font file fmt",102:"Invalid slot",103:"Invalid request code",104:"No anode",105:"Block device required",106:"Channel number out of range",107:"Level 3 halted",108:"Level 3 reset",109:"Link number out of range",110:"Protocol driver not attached",111:"No CSI structure available",112:"Level 2 halted",113:"Invalid exchange",114:"Invalid request descriptor",115:"Exchange full",116:"No data (for no delay io)",117:"Timer expired",118:"Out of streams resources",119:"Machine is not on the network",120:"Package not installed",121:"The object is remote",122:"Advertise error",123:"Srmount error",124:"Communication error on send",125:"Cross mount point (not really error)",126:"Given log. name not unique",127:"f.d. invalid for this operation",128:"Remote address changed",129:"Can   access a needed shared lib",130:"Accessing a corrupted shared lib",131:".lib section in a.out corrupted",132:"Attempting to link in too many libs",133:"Attempting to exec a shared library",135:"Streams pipe error",136:"Too many users",137:"Socket type not supported",138:"Not supported",139:"Protocol family not supported",140:"Can't send after socket shutdown",141:"Too many references",142:"Host is down",148:"No medium (in tape drive)",156:"Level 2 not synchronized"};
   
   var ERRNO_CODES={EPERM:63,ENOENT:44,ESRCH:71,EINTR:27,EIO:29,ENXIO:60,E2BIG:1,ENOEXEC:45,EBADF:8,ECHILD:12,EAGAIN:6,EWOULDBLOCK:6,ENOMEM:48,EACCES:2,EFAULT:21,ENOTBLK:105,EBUSY:10,EEXIST:20,EXDEV:75,ENODEV:43,ENOTDIR:54,EISDIR:31,EINVAL:28,ENFILE:41,EMFILE:33,ENOTTY:59,ETXTBSY:74,EFBIG:22,ENOSPC:51,ESPIPE:70,EROFS:69,EMLINK:34,EPIPE:64,EDOM:18,ERANGE:68,ENOMSG:49,EIDRM:24,ECHRNG:106,EL2NSYNC:156,EL3HLT:107,EL3RST:108,ELNRNG:109,EUNATCH:110,ENOCSI:111,EL2HLT:112,EDEADLK:16,ENOLCK:46,EBADE:113,EBADR:114,EXFULL:115,ENOANO:104,EBADRQC:103,EBADSLT:102,EDEADLOCK:16,EBFONT:101,ENOSTR:100,ENODATA:116,ETIME:117,ENOSR:118,ENONET:119,ENOPKG:120,EREMOTE:121,ENOLINK:47,EADV:122,ESRMNT:123,ECOMM:124,EPROTO:65,EMULTIHOP:36,EDOTDOT:125,EBADMSG:9,ENOTUNIQ:126,EBADFD:127,EREMCHG:128,ELIBACC:129,ELIBBAD:130,ELIBSCN:131,ELIBMAX:132,ELIBEXEC:133,ENOSYS:52,ENOTEMPTY:55,ENAMETOOLONG:37,ELOOP:32,EOPNOTSUPP:138,EPFNOSUPPORT:139,ECONNRESET:15,ENOBUFS:42,EAFNOSUPPORT:5,EPROTOTYPE:67,ENOTSOCK:57,ENOPROTOOPT:50,ESHUTDOWN:140,ECONNREFUSED:14,EADDRINUSE:3,ECONNABORTED:13,ENETUNREACH:40,ENETDOWN:38,ETIMEDOUT:73,EHOSTDOWN:142,EHOSTUNREACH:23,EINPROGRESS:26,EALREADY:7,EDESTADDRREQ:17,EMSGSIZE:35,EPROTONOSUPPORT:66,ESOCKTNOSUPPORT:137,EADDRNOTAVAIL:4,ENETRESET:39,EISCONN:30,ENOTCONN:53,ETOOMANYREFS:141,EUSERS:136,EDQUOT:19,ESTALE:72,ENOTSUP:138,ENOMEDIUM:148,EILSEQ:25,EOVERFLOW:61,ECANCELED:11,ENOTRECOVERABLE:56,EOWNERDEAD:62,ESTRPIPE:135};var FS={root:null,mounts:[],devices:{},streams:[],nextInode:1,nameTable:null,currentPath:"/",initialized:false,ignorePermissions:true,trackingDelegate:{},tracking:{openFlags:{READ:1,WRITE:2}},ErrnoError:null,genericErrors:{},filesystems:null,syncFSRequests:0,handleFSError:function(e) {
@@ -4840,6 +5112,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
   
         FS.filesystems = {
           'MEMFS': MEMFS,
+          'IDBFS': IDBFS,
         };
       },init:function(input, output, error) {
         assert(!FS.init.initialized, 'FS.init was previously called. If you want to initialize later with custom parameters, remove any earlier calls (note that one is automatically added to the generated code)');
@@ -5440,7 +5713,64 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
         return low;
       },getZero:function() {
         assert(SYSCALLS.get() === 0);
-      }};function ___syscall221(which, varargs) {SYSCALLS.varargs = varargs;
+      }};function ___syscall10(which, varargs) {SYSCALLS.varargs = varargs;
+  try {
+   // unlink
+      var path = SYSCALLS.getStr();
+      FS.unlink(path);
+      return 0;
+    } catch (e) {
+    if (typeof FS === 'undefined' || !(e instanceof FS.ErrnoError)) abort(e);
+    return -e.errno;
+  }
+  }
+
+  function ___syscall220(which, varargs) {SYSCALLS.varargs = varargs;
+  try {
+   // SYS_getdents64
+      var stream = SYSCALLS.getStreamFromFD(), dirp = SYSCALLS.get(), count = SYSCALLS.get();
+      if (!stream.getdents) {
+        stream.getdents = FS.readdir(stream.path);
+      }
+  
+      var struct_size = 280;
+      var pos = 0;
+      var off = FS.llseek(stream, 0, 1);
+  
+      var idx = Math.floor(off / struct_size);
+  
+      while (idx < stream.getdents.length && pos + struct_size <= count) {
+        var id;
+        var type;
+        var name = stream.getdents[idx];
+        if (name[0] === '.') {
+          id = 1;
+          type = 4; // DT_DIR
+        } else {
+          var child = FS.lookupNode(stream.node, name);
+          id = child.id;
+          type = FS.isChrdev(child.mode) ? 2 :  // DT_CHR, character device.
+                 FS.isDir(child.mode) ? 4 :     // DT_DIR, directory.
+                 FS.isLink(child.mode) ? 10 :   // DT_LNK, symbolic link.
+                 8;                             // DT_REG, regular file.
+        }
+        (tempI64 = [id>>>0,(tempDouble=id,(+(Math_abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math_min((+(Math_floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math_ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],SAFE_HEAP_STORE(((dirp + pos)|0), ((tempI64[0])|0), 4),SAFE_HEAP_STORE((((dirp + pos)+(4))|0), ((tempI64[1])|0), 4));
+        (tempI64 = [(idx + 1) * struct_size>>>0,(tempDouble=(idx + 1) * struct_size,(+(Math_abs(tempDouble))) >= 1.0 ? (tempDouble > 0.0 ? ((Math_min((+(Math_floor((tempDouble)/4294967296.0))), 4294967295.0))|0)>>>0 : (~~((+(Math_ceil((tempDouble - +(((~~(tempDouble)))>>>0))/4294967296.0)))))>>>0) : 0)],SAFE_HEAP_STORE((((dirp + pos)+(8))|0), ((tempI64[0])|0), 4),SAFE_HEAP_STORE((((dirp + pos)+(12))|0), ((tempI64[1])|0), 4));
+        SAFE_HEAP_STORE((((dirp + pos)+(16))|0), ((280)|0), 2);
+        SAFE_HEAP_STORE((((dirp + pos)+(18))|0), ((type)|0), 1);
+        stringToUTF8(name, dirp + pos + 19, 256);
+        pos += struct_size;
+        idx += 1;
+      }
+      FS.llseek(stream, idx * struct_size, 0);
+      return pos;
+    } catch (e) {
+    if (typeof FS === 'undefined' || !(e instanceof FS.ErrnoError)) abort(e);
+    return -e.errno;
+  }
+  }
+
+  function ___syscall221(which, varargs) {SYSCALLS.varargs = varargs;
   try {
    // fcntl64
       var stream = SYSCALLS.getStreamFromFD(), cmd = SYSCALLS.get();
@@ -5491,6 +5821,29 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
           return -28;
         }
       }
+    } catch (e) {
+    if (typeof FS === 'undefined' || !(e instanceof FS.ErrnoError)) abort(e);
+    return -e.errno;
+  }
+  }
+
+  function ___syscall39(which, varargs) {SYSCALLS.varargs = varargs;
+  try {
+   // mkdir
+      var path = SYSCALLS.getStr(), mode = SYSCALLS.get();
+      return SYSCALLS.doMkdir(path, mode);
+    } catch (e) {
+    if (typeof FS === 'undefined' || !(e instanceof FS.ErrnoError)) abort(e);
+    return -e.errno;
+  }
+  }
+
+  function ___syscall40(which, varargs) {SYSCALLS.varargs = varargs;
+  try {
+   // rmdir
+      var path = SYSCALLS.getStr();
+      FS.rmdir(path);
+      return 0;
     } catch (e) {
     if (typeof FS === 'undefined' || !(e instanceof FS.ErrnoError)) abort(e);
     return -e.errno;
@@ -5593,6 +5946,11 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
   }
 
   function ___unlock() {}
+
+  function __emscripten_fetch_free(id) {
+    //Note: should just be [id], but indexes off by 1 (see: #8803)
+    delete Fetch.xhrs[id-1];
+  }
 
   function _abort() {
       abort();
@@ -6664,6 +7022,32 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
   
+  function __fillFullscreenChangeEventData(eventStruct, e) {
+      var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+      var isFullscreen = !!fullscreenElement;
+      SAFE_HEAP_STORE(((eventStruct)|0), ((isFullscreen)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(4))|0), ((JSEvents.fullscreenEnabled())|0), 4);
+      // If transitioning to fullscreen, report info about the element that is now fullscreen.
+      // If transitioning to windowed mode, report info about the element that just was fullscreen.
+      var reportedElement = isFullscreen ? fullscreenElement : JSEvents.previousFullscreenElement;
+      var nodeName = JSEvents.getNodeNameForTarget(reportedElement);
+      var id = (reportedElement && reportedElement.id) ? reportedElement.id : '';
+      stringToUTF8(nodeName, eventStruct + 8, 128);
+      stringToUTF8(id, eventStruct + 136, 128);
+      SAFE_HEAP_STORE((((eventStruct)+(264))|0), ((reportedElement ? reportedElement.clientWidth : 0)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(268))|0), ((reportedElement ? reportedElement.clientHeight : 0)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(272))|0), ((screen.width)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(276))|0), ((screen.height)|0), 4);
+      if (isFullscreen) {
+        JSEvents.previousFullscreenElement = fullscreenElement;
+      }
+    }function _emscripten_get_fullscreen_status(fullscreenStatus) {
+      if (!JSEvents.fullscreenEnabled()) return -1;
+      __fillFullscreenChangeEventData(fullscreenStatus);
+      return 0;
+    }
+
+  
   function __fillGamepadEventData(eventStruct, e) {
       SAFE_HEAP_STORE_D(((eventStruct)|0), (+(e.timestamp)), 8);
       for(var i = 0; i < e.axes.length; ++i) {
@@ -6717,7 +7101,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
   function _emscripten_get_sbrk_ptr() {
-      return 184048;
+      return 193856;
     }
 
   function _emscripten_glActiveTexture(x0) { GLctx['activeTexture'](x0) }
@@ -8094,6 +8478,10 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
 
   function _emscripten_glViewport(x0, x1, x2, x3) { GLctx['viewport'](x0, x1, x2, x3) }
 
+  function _emscripten_is_main_browser_thread() {
+      return !ENVIRONMENT_IS_WORKER;
+    }
+
   
   
   
@@ -8152,6 +8540,10 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
       HEAPU8.set(HEAPU8.subarray(src, src+num), dest);
     }
 
+  function _emscripten_random() {
+      return Math.random();
+    }
+
   
   function __emscripten_do_request_fullscreen(target, strategy) {
       if (!JSEvents.fullscreenEnabled()) return -1;
@@ -8177,7 +8569,19 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
       }
   
       return _JSEvents_requestFullscreen(target, strategy);
-    }function _emscripten_request_fullscreen_strategy(target, deferUntilInEventHandler, fullscreenStrategy) {
+    }function _emscripten_request_fullscreen(target, deferUntilInEventHandler) {
+      var strategy = {};
+      // These options perform no added logic, but just bare request fullscreen.
+      strategy.scaleMode = 0;
+      strategy.canvasResolutionScaleMode = 0;
+      strategy.filteringMode = 0;
+      strategy.deferUntilInEventHandler = deferUntilInEventHandler;
+      strategy.canvasResizedCallbackTargetThread = 2;
+  
+      return __emscripten_do_request_fullscreen(target, strategy);
+    }
+
+  function _emscripten_request_fullscreen_strategy(target, deferUntilInEventHandler, fullscreenStrategy) {
       var strategy = {};
       strategy.scaleMode = ((SAFE_HEAP_LOAD(((fullscreenStrategy)|0), 4, 0))|0);
       strategy.canvasResolutionScaleMode = ((SAFE_HEAP_LOAD((((fullscreenStrategy)+(4))|0), 4, 0))|0);
@@ -8271,6 +8675,10 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
       return false;
     }
 
+  function _emscripten_run_script_int(ptr) {
+      return eval(UTF8ToString(ptr))|0;
+    }
+
   function _emscripten_sample_gamepad_data() {
       return (JSEvents.lastGamepadState = (navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : null)))
         ? 0 : -1;
@@ -8307,6 +8715,67 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
 
+  
+  
+  function __fillMouseEventData(eventStruct, e, target) {
+      SAFE_HEAP_STORE(((eventStruct)|0), ((e.screenX)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(4))|0), ((e.screenY)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(8))|0), ((e.clientX)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(12))|0), ((e.clientY)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(16))|0), ((e.ctrlKey)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(20))|0), ((e.shiftKey)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(24))|0), ((e.altKey)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(28))|0), ((e.metaKey)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(32))|0), ((e.button)|0), 2);
+      SAFE_HEAP_STORE((((eventStruct)+(34))|0), ((e.buttons)|0), 2);
+      var movementX = e["movementX"]
+        || (e.screenX-JSEvents.previousScreenX)
+        ;
+      var movementY = e["movementY"]
+        || (e.screenY-JSEvents.previousScreenY)
+        ;
+  
+      SAFE_HEAP_STORE((((eventStruct)+(36))|0), ((movementX)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(40))|0), ((movementY)|0), 4);
+  
+      var rect = __specialEventTargets.indexOf(target) < 0 ? __getBoundingClientRect(target) : {'left':0,'top':0};
+      SAFE_HEAP_STORE((((eventStruct)+(44))|0), ((e.clientX - rect.left)|0), 4);
+      SAFE_HEAP_STORE((((eventStruct)+(48))|0), ((e.clientY - rect.top)|0), 4);
+  
+      // wheel and mousewheel events contain wrong screenX/screenY on chrome/opera
+        // https://github.com/emscripten-core/emscripten/pull/4997
+      // https://bugs.chromium.org/p/chromium/issues/detail?id=699956
+      if (e.type !== 'wheel' && e.type !== 'mousewheel') {
+        JSEvents.previousScreenX = e.screenX;
+        JSEvents.previousScreenY = e.screenY;
+      }
+    }function __registerMouseEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
+      if (!JSEvents.mouseEvent) JSEvents.mouseEvent = _malloc( 64 );
+      target = __findEventTarget(target);
+  
+      var mouseEventHandlerFunc = function(ev) {
+        var e = ev || event;
+  
+        // TODO: Make this access thread safe, or this could update live while app is reading it.
+        __fillMouseEventData(JSEvents.mouseEvent, e, target);
+  
+        if (dynCall_iiii(callbackfunc, eventTypeId, JSEvents.mouseEvent, userData)) e.preventDefault();
+      };
+  
+      var eventHandler = {
+        target: target,
+        allowsDeferredCalls: eventTypeString != 'mousemove' && eventTypeString != 'mouseenter' && eventTypeString != 'mouseleave', // Mouse move events do not allow fullscreen/pointer lock requests to be handled in them!
+        eventTypeString: eventTypeString,
+        callbackfunc: callbackfunc,
+        handlerFunc: mouseEventHandlerFunc,
+        useCapture: useCapture
+      };
+      JSEvents.registerOrRemoveHandler(eventHandler);
+    }function _emscripten_set_click_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
+      __registerMouseEventCallback(target, userData, useCapture, callbackfunc, 4, "click", targetThread);
+      return 0;
+    }
+
   function _emscripten_set_element_css_size(target, width, height) {
       target = __findEventTarget(target);
       if (!target) return -4;
@@ -8323,27 +8792,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
   
-  
-  function __fillFullscreenChangeEventData(eventStruct, e) {
-      var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
-      var isFullscreen = !!fullscreenElement;
-      SAFE_HEAP_STORE(((eventStruct)|0), ((isFullscreen)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(4))|0), ((JSEvents.fullscreenEnabled())|0), 4);
-      // If transitioning to fullscreen, report info about the element that is now fullscreen.
-      // If transitioning to windowed mode, report info about the element that just was fullscreen.
-      var reportedElement = isFullscreen ? fullscreenElement : JSEvents.previousFullscreenElement;
-      var nodeName = JSEvents.getNodeNameForTarget(reportedElement);
-      var id = (reportedElement && reportedElement.id) ? reportedElement.id : '';
-      stringToUTF8(nodeName, eventStruct + 8, 128);
-      stringToUTF8(id, eventStruct + 136, 128);
-      SAFE_HEAP_STORE((((eventStruct)+(264))|0), ((reportedElement ? reportedElement.clientWidth : 0)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(268))|0), ((reportedElement ? reportedElement.clientHeight : 0)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(272))|0), ((screen.width)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(276))|0), ((screen.height)|0), 4);
-      if (isFullscreen) {
-        JSEvents.previousFullscreenElement = fullscreenElement;
-      }
-    }function __registerFullscreenChangeEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
+  function __registerFullscreenChangeEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
       if (!JSEvents.fullscreenChangeEvent) JSEvents.fullscreenChangeEvent = _malloc( 280 );
   
       var fullscreenChangeEventhandlerFunc = function(ev) {
@@ -8462,63 +8911,7 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
 
-  
-  
-  function __fillMouseEventData(eventStruct, e, target) {
-      SAFE_HEAP_STORE(((eventStruct)|0), ((e.screenX)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(4))|0), ((e.screenY)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(8))|0), ((e.clientX)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(12))|0), ((e.clientY)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(16))|0), ((e.ctrlKey)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(20))|0), ((e.shiftKey)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(24))|0), ((e.altKey)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(28))|0), ((e.metaKey)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(32))|0), ((e.button)|0), 2);
-      SAFE_HEAP_STORE((((eventStruct)+(34))|0), ((e.buttons)|0), 2);
-      var movementX = e["movementX"]
-        || (e.screenX-JSEvents.previousScreenX)
-        ;
-      var movementY = e["movementY"]
-        || (e.screenY-JSEvents.previousScreenY)
-        ;
-  
-      SAFE_HEAP_STORE((((eventStruct)+(36))|0), ((movementX)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(40))|0), ((movementY)|0), 4);
-  
-      var rect = __specialEventTargets.indexOf(target) < 0 ? __getBoundingClientRect(target) : {'left':0,'top':0};
-      SAFE_HEAP_STORE((((eventStruct)+(44))|0), ((e.clientX - rect.left)|0), 4);
-      SAFE_HEAP_STORE((((eventStruct)+(48))|0), ((e.clientY - rect.top)|0), 4);
-  
-      // wheel and mousewheel events contain wrong screenX/screenY on chrome/opera
-        // https://github.com/emscripten-core/emscripten/pull/4997
-      // https://bugs.chromium.org/p/chromium/issues/detail?id=699956
-      if (e.type !== 'wheel' && e.type !== 'mousewheel') {
-        JSEvents.previousScreenX = e.screenX;
-        JSEvents.previousScreenY = e.screenY;
-      }
-    }function __registerMouseEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
-      if (!JSEvents.mouseEvent) JSEvents.mouseEvent = _malloc( 64 );
-      target = __findEventTarget(target);
-  
-      var mouseEventHandlerFunc = function(ev) {
-        var e = ev || event;
-  
-        // TODO: Make this access thread safe, or this could update live while app is reading it.
-        __fillMouseEventData(JSEvents.mouseEvent, e, target);
-  
-        if (dynCall_iiii(callbackfunc, eventTypeId, JSEvents.mouseEvent, userData)) e.preventDefault();
-      };
-  
-      var eventHandler = {
-        target: target,
-        allowsDeferredCalls: eventTypeString != 'mousemove' && eventTypeString != 'mouseenter' && eventTypeString != 'mouseleave', // Mouse move events do not allow fullscreen/pointer lock requests to be handled in them!
-        eventTypeString: eventTypeString,
-        callbackfunc: callbackfunc,
-        handlerFunc: mouseEventHandlerFunc,
-        useCapture: useCapture
-      };
-      JSEvents.registerOrRemoveHandler(eventHandler);
-    }function _emscripten_set_mousedown_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
+  function _emscripten_set_mousedown_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
       __registerMouseEventCallback(target, userData, useCapture, callbackfunc, 5, "mousedown", targetThread);
       return 0;
     }
@@ -8809,6 +9202,591 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
     }
 
   
+  var Fetch={xhrs:[],setu64:function(addr, val) {
+      HEAPU32[addr >> 2] = val;
+      HEAPU32[addr + 4 >> 2] = (val / 4294967296)|0;
+    },openDatabase:function(dbname, dbversion, onsuccess, onerror) {
+      try {
+        var openRequest = indexedDB.open(dbname, dbversion);
+      } catch (e) { return onerror(e); }
+  
+      openRequest.onupgradeneeded = function(event) {
+        var db = event.target.result;
+        if (db.objectStoreNames.contains('FILES')) {
+          db.deleteObjectStore('FILES');
+        }
+        db.createObjectStore('FILES');
+      };
+      openRequest.onsuccess = function(event) { onsuccess(event.target.result); };
+      openRequest.onerror = function(error) { onerror(error); };
+    },staticInit:function() {
+      var isMainThread = true;
+  
+      var onsuccess = function(db) {
+        Fetch.dbInstance = db;
+  
+        if (isMainThread) {
+          removeRunDependency('library_fetch_init');
+        }
+      };
+      var onerror = function() {
+        Fetch.dbInstance = false;
+  
+        if (isMainThread) {
+          removeRunDependency('library_fetch_init');
+        }
+      };
+      Fetch.openDatabase('emscripten_filesystem', 1, onsuccess, onerror);
+  
+      if (typeof ENVIRONMENT_IS_FETCH_WORKER === 'undefined' || !ENVIRONMENT_IS_FETCH_WORKER) addRunDependency('library_fetch_init');
+    }};
+  
+  function __emscripten_fetch_xhr(fetch, onsuccess, onerror, onprogress, onreadystatechange) {
+    var url = HEAPU32[fetch + 8 >> 2];
+    if (!url) {
+      onerror(fetch, 0, 'no url specified!');
+      return;
+    }
+    var url_ = UTF8ToString(url);
+  
+    var fetch_attr = fetch + 112;
+    var requestMethod = UTF8ToString(fetch_attr);
+    if (!requestMethod) requestMethod = 'GET';
+    var userData = HEAPU32[fetch_attr + 32 >> 2];
+    var fetchAttributes = HEAPU32[fetch_attr + 52 >> 2];
+    var timeoutMsecs = HEAPU32[fetch_attr + 56 >> 2];
+    var withCredentials = !!HEAPU32[fetch_attr + 60 >> 2];
+    var destinationPath = HEAPU32[fetch_attr + 64 >> 2];
+    var userName = HEAPU32[fetch_attr + 68 >> 2];
+    var password = HEAPU32[fetch_attr + 72 >> 2];
+    var requestHeaders = HEAPU32[fetch_attr + 76 >> 2];
+    var overriddenMimeType = HEAPU32[fetch_attr + 80 >> 2];
+    var dataPtr = HEAPU32[fetch_attr + 84 >> 2];
+    var dataLength = HEAPU32[fetch_attr + 88 >> 2];
+  
+    var fetchAttrLoadToMemory = !!(fetchAttributes & 1);
+    var fetchAttrStreamData = !!(fetchAttributes & 2);
+    var fetchAttrPersistFile = !!(fetchAttributes & 4);
+    var fetchAttrAppend = !!(fetchAttributes & 8);
+    var fetchAttrReplace = !!(fetchAttributes & 16);
+    var fetchAttrSynchronous = !!(fetchAttributes & 64);
+    var fetchAttrWaitable = !!(fetchAttributes & 128);
+  
+    var userNameStr = userName ? UTF8ToString(userName) : undefined;
+    var passwordStr = password ? UTF8ToString(password) : undefined;
+    var overriddenMimeTypeStr = overriddenMimeType ? UTF8ToString(overriddenMimeType) : undefined;
+  
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = withCredentials;
+    xhr.open(requestMethod, url_, !fetchAttrSynchronous, userNameStr, passwordStr);
+    if (!fetchAttrSynchronous) xhr.timeout = timeoutMsecs; // XHR timeout field is only accessible in async XHRs, and must be set after .open() but before .send().
+    xhr.url_ = url_; // Save the url for debugging purposes (and for comparing to the responseURL that server side advertised)
+    assert(!fetchAttrStreamData, 'streaming uses moz-chunked-arraybuffer which is no longer supported; TODO: rewrite using fetch()');
+    xhr.responseType = 'arraybuffer';
+  
+    if (overriddenMimeType) {
+      xhr.overrideMimeType(overriddenMimeTypeStr);
+    }
+    if (requestHeaders) {
+      for(;;) {
+        var key = HEAPU32[requestHeaders >> 2];
+        if (!key) break;
+        var value = HEAPU32[requestHeaders + 4 >> 2];
+        if (!value) break;
+        requestHeaders += 8;
+        var keyStr = UTF8ToString(key);
+        var valueStr = UTF8ToString(value);
+        xhr.setRequestHeader(keyStr, valueStr);
+      }
+    }
+    Fetch.xhrs.push(xhr);
+    var id = Fetch.xhrs.length;
+    HEAPU32[fetch + 0 >> 2] = id;
+    var data = (dataPtr && dataLength) ? HEAPU8.slice(dataPtr, dataPtr + dataLength) : null;
+    // TODO: Support specifying custom headers to the request.
+  
+    xhr.onload = function(e) {
+      var len = xhr.response ? xhr.response.byteLength : 0;
+      var ptr = 0;
+      var ptrLen = 0;
+      if (fetchAttrLoadToMemory && !fetchAttrStreamData) {
+        ptrLen = len;
+        // The data pointer malloc()ed here has the same lifetime as the emscripten_fetch_t structure itself has, and is
+        // freed when emscripten_fetch_close() is called.
+        ptr = _malloc(ptrLen);
+        HEAPU8.set(new Uint8Array(xhr.response), ptr);
+      }
+      HEAPU32[fetch + 12 >> 2] = ptr;
+      Fetch.setu64(fetch + 16, ptrLen);
+      Fetch.setu64(fetch + 24, 0);
+      if (len) {
+        // If the final XHR.onload handler receives the bytedata to compute total length, report that,
+        // otherwise don't write anything out here, which will retain the latest byte size reported in
+        // the most recent XHR.onprogress handler.
+        Fetch.setu64(fetch + 32, len);
+      }
+      HEAPU16[fetch + 40 >> 1] = xhr.readyState;
+      if (xhr.readyState === 4 && xhr.status === 0) {
+        if (len > 0) xhr.status = 200; // If loading files from a source that does not give HTTP status code, assume success if we got data bytes.
+        else xhr.status = 404; // Conversely, no data bytes is 404.
+      }
+      HEAPU16[fetch + 42 >> 1] = xhr.status;
+      if (xhr.statusText) stringToUTF8(xhr.statusText, fetch + 44, 64);
+      if (xhr.status >= 200 && xhr.status < 300) {
+        if (onsuccess) onsuccess(fetch, xhr, e);
+      } else {
+        if (onerror) onerror(fetch, xhr, e);
+      }
+    };
+    xhr.onerror = function(e) {
+      var status = xhr.status; // XXX TODO: Overwriting xhr.status doesn't work here, so don't override anywhere else either.
+      if (xhr.readyState === 4 && status === 0) status = 404; // If no error recorded, pretend it was 404 Not Found.
+      HEAPU32[fetch + 12 >> 2] = 0;
+      Fetch.setu64(fetch + 16, 0);
+      Fetch.setu64(fetch + 24, 0);
+      Fetch.setu64(fetch + 32, 0);
+      HEAPU16[fetch + 40 >> 1] = xhr.readyState;
+      HEAPU16[fetch + 42 >> 1] = status;
+      if (onerror) onerror(fetch, xhr, e);
+    };
+    xhr.ontimeout = function(e) {
+      if (onerror) onerror(fetch, xhr, e);
+    };
+    xhr.onprogress = function(e) {
+      var ptrLen = (fetchAttrLoadToMemory && fetchAttrStreamData && xhr.response) ? xhr.response.byteLength : 0;
+      var ptr = 0;
+      if (fetchAttrLoadToMemory && fetchAttrStreamData) {
+        // The data pointer malloc()ed here has the same lifetime as the emscripten_fetch_t structure itself has, and is
+        // freed when emscripten_fetch_close() is called.
+        ptr = _malloc(ptrLen);
+        HEAPU8.set(new Uint8Array(xhr.response), ptr);
+      }
+      HEAPU32[fetch + 12 >> 2] = ptr;
+      Fetch.setu64(fetch + 16, ptrLen);
+      Fetch.setu64(fetch + 24, e.loaded - ptrLen);
+      Fetch.setu64(fetch + 32, e.total);
+      HEAPU16[fetch + 40 >> 1] = xhr.readyState;
+      if (xhr.readyState >= 3 && xhr.status === 0 && e.loaded > 0) xhr.status = 200; // If loading files from a source that does not give HTTP status code, assume success if we get data bytes
+      HEAPU16[fetch + 42 >> 1] = xhr.status;
+      if (xhr.statusText) stringToUTF8(xhr.statusText, fetch + 44, 64);
+      if (onprogress) onprogress(fetch, xhr, e);
+    };
+    xhr.onreadystatechange = function(e) {
+      HEAPU16[fetch + 40 >> 1] = xhr.readyState;
+      if (xhr.readyState >= 2) {
+        HEAPU16[fetch + 42 >> 1] = xhr.status;
+      }
+      if (onreadystatechange) onreadystatechange(fetch, xhr, e);
+    };
+    try {
+      xhr.send(data);
+    } catch(e) {
+      if (onerror) onerror(fetch, xhr, e);
+    }
+  }
+  
+  function __emscripten_fetch_cache_data(db, fetch, data, onsuccess, onerror) {
+    if (!db) {
+      onerror(fetch, 0, 'IndexedDB not available!');
+      return;
+    }
+  
+    var fetch_attr = fetch + 112;
+    var destinationPath = HEAPU32[fetch_attr + 64 >> 2];
+    if (!destinationPath) destinationPath = HEAPU32[fetch + 8 >> 2];
+    var destinationPathStr = UTF8ToString(destinationPath);
+  
+    try {
+      var transaction = db.transaction(['FILES'], 'readwrite');
+      var packages = transaction.objectStore('FILES');
+      var putRequest = packages.put(data, destinationPathStr);
+      putRequest.onsuccess = function(event) {
+        HEAPU16[fetch + 40 >> 1] = 4; // Mimic XHR readyState 4 === 'DONE: The operation is complete'
+        HEAPU16[fetch + 42 >> 1] = 200; // Mimic XHR HTTP status code 200 "OK"
+        stringToUTF8("OK", fetch + 44, 64);
+        onsuccess(fetch, 0, destinationPathStr);
+      };
+      putRequest.onerror = function(error) {
+        // Most likely we got an error if IndexedDB is unwilling to store any more data for this page.
+        // TODO: Can we identify and break down different IndexedDB-provided errors and convert those
+        // to more HTTP status codes for more information?
+        HEAPU16[fetch + 40 >> 1] = 4; // Mimic XHR readyState 4 === 'DONE: The operation is complete'
+        HEAPU16[fetch + 42 >> 1] = 413; // Mimic XHR HTTP status code 413 "Payload Too Large"
+        stringToUTF8("Payload Too Large", fetch + 44, 64);
+        onerror(fetch, 0, error);
+      };
+    } catch(e) {
+      onerror(fetch, 0, e);
+    }
+  }
+  
+  function __emscripten_fetch_load_cached_data(db, fetch, onsuccess, onerror) {
+    if (!db) {
+      onerror(fetch, 0, 'IndexedDB not available!');
+      return;
+    }
+  
+    var fetch_attr = fetch + 112;
+    var path = HEAPU32[fetch_attr + 64 >> 2];
+    if (!path) path = HEAPU32[fetch + 8 >> 2];
+    var pathStr = UTF8ToString(path);
+  
+    try {
+      var transaction = db.transaction(['FILES'], 'readonly');
+      var packages = transaction.objectStore('FILES');
+      var getRequest = packages.get(pathStr);
+      getRequest.onsuccess = function(event) {
+        if (event.target.result) {
+          var value = event.target.result;
+          var len = value.byteLength || value.length;
+          // The data pointer malloc()ed here has the same lifetime as the emscripten_fetch_t structure itself has, and is
+          // freed when emscripten_fetch_close() is called.
+          var ptr = _malloc(len);
+          HEAPU8.set(new Uint8Array(value), ptr);
+          HEAPU32[fetch + 12 >> 2] = ptr;
+          Fetch.setu64(fetch + 16, len);
+          Fetch.setu64(fetch + 24, 0);
+          Fetch.setu64(fetch + 32, len);
+          HEAPU16[fetch + 40 >> 1] = 4; // Mimic XHR readyState 4 === 'DONE: The operation is complete'
+          HEAPU16[fetch + 42 >> 1] = 200; // Mimic XHR HTTP status code 200 "OK"
+          stringToUTF8("OK", fetch + 44, 64);
+          onsuccess(fetch, 0, value);
+        } else {
+          // Succeeded to load, but the load came back with the value of undefined, treat that as an error since we never store undefined in db.
+          HEAPU16[fetch + 40 >> 1] = 4; // Mimic XHR readyState 4 === 'DONE: The operation is complete'
+          HEAPU16[fetch + 42 >> 1] = 404; // Mimic XHR HTTP status code 404 "Not Found"
+          stringToUTF8("Not Found", fetch + 44, 64);
+          onerror(fetch, 0, 'no data');
+        }
+      };
+      getRequest.onerror = function(error) {
+        HEAPU16[fetch + 40 >> 1] = 4; // Mimic XHR readyState 4 === 'DONE: The operation is complete'
+        HEAPU16[fetch + 42 >> 1] = 404; // Mimic XHR HTTP status code 404 "Not Found"
+        stringToUTF8("Not Found", fetch + 44, 64);
+        onerror(fetch, 0, error);
+      };
+    } catch(e) {
+      onerror(fetch, 0, e);
+    }
+  }
+  
+  function __emscripten_fetch_delete_cached_data(db, fetch, onsuccess, onerror) {
+    if (!db) {
+      onerror(fetch, 0, 'IndexedDB not available!');
+      return;
+    }
+  
+    var fetch_attr = fetch + 112;
+    var path = HEAPU32[fetch_attr + 64 >> 2];
+    if (!path) path = HEAPU32[fetch + 8 >> 2];
+    var pathStr = UTF8ToString(path);
+  
+    try {
+      var transaction = db.transaction(['FILES'], 'readwrite');
+      var packages = transaction.objectStore('FILES');
+      var request = packages.delete(pathStr);
+      request.onsuccess = function(event) {
+        var value = event.target.result;
+        HEAPU32[fetch + 12 >> 2] = 0;
+        Fetch.setu64(fetch + 16, 0);
+        Fetch.setu64(fetch + 24, 0);
+        Fetch.setu64(fetch + 32, 0);
+        HEAPU16[fetch + 40 >> 1] = 4; // Mimic XHR readyState 4 === 'DONE: The operation is complete'
+        HEAPU16[fetch + 42 >> 1] = 200; // Mimic XHR HTTP status code 200 "OK"
+        stringToUTF8("OK", fetch + 44, 64);
+        onsuccess(fetch, 0, value);
+      };
+      request.onerror = function(error) {
+        HEAPU16[fetch + 40 >> 1] = 4; // Mimic XHR readyState 4 === 'DONE: The operation is complete'
+        HEAPU16[fetch + 42 >> 1] = 404; // Mimic XHR HTTP status code 404 "Not Found"
+        stringToUTF8("Not Found", fetch + 44, 64);
+        onerror(fetch, 0, error);
+      };
+    } catch(e) {
+      onerror(fetch, 0, e);
+    }
+  }
+  
+  
+  var _fetch_work_queue=194016;function __emscripten_get_fetch_work_queue() {
+      return _fetch_work_queue;
+    }function _emscripten_start_fetch(fetch, successcb, errorcb, progresscb, readystatechangecb) {
+    if (typeof noExitRuntime !== 'undefined') noExitRuntime = true; // If we are the main Emscripten runtime, we should not be closing down.
+  
+    var fetch_attr = fetch + 112;
+    var requestMethod = UTF8ToString(fetch_attr);
+    var onsuccess = HEAPU32[fetch_attr + 36 >> 2];
+    var onerror = HEAPU32[fetch_attr + 40 >> 2];
+    var onprogress = HEAPU32[fetch_attr + 44 >> 2];
+    var onreadystatechange = HEAPU32[fetch_attr + 48 >> 2];
+    var fetchAttributes = HEAPU32[fetch_attr + 52 >> 2];
+    var fetchAttrLoadToMemory = !!(fetchAttributes & 1);
+    var fetchAttrStreamData = !!(fetchAttributes & 2);
+    var fetchAttrPersistFile = !!(fetchAttributes & 4);
+    var fetchAttrNoDownload = !!(fetchAttributes & 32);
+    var fetchAttrAppend = !!(fetchAttributes & 8);
+    var fetchAttrReplace = !!(fetchAttributes & 16);
+  
+    var reportSuccess = function(fetch, xhr, e) {
+      if (onsuccess) dynCall_vi(onsuccess, fetch);
+      else if (successcb) successcb(fetch);
+    };
+  
+    var reportProgress = function(fetch, xhr, e) {
+      if (onprogress) dynCall_vi(onprogress, fetch);
+      else if (progresscb) progresscb(fetch);
+    };
+  
+    var reportError = function(fetch, xhr, e) {
+      if (onerror) dynCall_vi(onerror, fetch);
+      else if (errorcb) errorcb(fetch);
+    };
+  
+    var reportReadyStateChange = function(fetch, xhr, e) {
+      if (onreadystatechange) dynCall_vi(onreadystatechange, fetch);
+      else if (readystatechangecb) readystatechangecb(fetch);
+    };
+  
+    var performUncachedXhr = function(fetch, xhr, e) {
+      __emscripten_fetch_xhr(fetch, reportSuccess, reportError, reportProgress, reportReadyStateChange);
+    };
+  
+    var cacheResultAndReportSuccess = function(fetch, xhr, e) {
+      var storeSuccess = function(fetch, xhr, e) {
+        if (onsuccess) dynCall_vi(onsuccess, fetch);
+        else if (successcb) successcb(fetch);
+      };
+      var storeError = function(fetch, xhr, e) {
+        if (onsuccess) dynCall_vi(onsuccess, fetch);
+        else if (successcb) successcb(fetch);
+      };
+      __emscripten_fetch_cache_data(Fetch.dbInstance, fetch, xhr.response, storeSuccess, storeError);
+    };
+  
+    var performCachedXhr = function(fetch, xhr, e) {
+      __emscripten_fetch_xhr(fetch, cacheResultAndReportSuccess, reportError, reportProgress, reportReadyStateChange);
+    };
+  
+    if (requestMethod === 'EM_IDB_STORE') {
+      // TODO(?): Here we perform a clone of the data, because storing shared typed arrays to IndexedDB does not seem to be allowed.
+      var ptr = HEAPU32[fetch_attr + 84 >> 2];
+      __emscripten_fetch_cache_data(Fetch.dbInstance, fetch, HEAPU8.slice(ptr, ptr + HEAPU32[fetch_attr + 88 >> 2]), reportSuccess, reportError);
+    } else if (requestMethod === 'EM_IDB_DELETE') {
+      __emscripten_fetch_delete_cached_data(Fetch.dbInstance, fetch, reportSuccess, reportError);
+    } else if (!fetchAttrReplace) {
+      __emscripten_fetch_load_cached_data(Fetch.dbInstance, fetch, reportSuccess, fetchAttrNoDownload ? reportError : (fetchAttrPersistFile ? performCachedXhr : performUncachedXhr));
+    } else if (!fetchAttrNoDownload) {
+      __emscripten_fetch_xhr(fetch, fetchAttrPersistFile ? cacheResultAndReportSuccess : reportSuccess, reportError, reportProgress, reportReadyStateChange);
+    } else {
+      return 0; // todo: free
+    }
+    return fetch;
+  }
+
+  
+  
+  var __emscripten_webgl_power_preferences=['default', 'low-power', 'high-performance'];function _emscripten_webgl_do_create_context(target, attributes) {
+      assert(attributes);
+      var contextAttributes = {};
+      var a = attributes >> 2;
+      contextAttributes['alpha'] = !!HEAP32[a + (0>>2)];
+      contextAttributes['depth'] = !!HEAP32[a + (4>>2)];
+      contextAttributes['stencil'] = !!HEAP32[a + (8>>2)];
+      contextAttributes['antialias'] = !!HEAP32[a + (12>>2)];
+      contextAttributes['premultipliedAlpha'] = !!HEAP32[a + (16>>2)];
+      contextAttributes['preserveDrawingBuffer'] = !!HEAP32[a + (20>>2)];
+      var powerPreference = HEAP32[a + (24>>2)];
+      contextAttributes['powerPreference'] = __emscripten_webgl_power_preferences[powerPreference];
+      contextAttributes['failIfMajorPerformanceCaveat'] = !!HEAP32[a + (28>>2)];
+      contextAttributes.majorVersion = HEAP32[a + (32>>2)];
+      contextAttributes.minorVersion = HEAP32[a + (36>>2)];
+      contextAttributes.enableExtensionsByDefault = HEAP32[a + (40>>2)];
+      contextAttributes.explicitSwapControl = HEAP32[a + (44>>2)];
+      contextAttributes.proxyContextToMainThread = HEAP32[a + (48>>2)];
+      contextAttributes.renderViaOffscreenBackBuffer = HEAP32[a + (52>>2)];
+  
+      var canvas = __findCanvasEventTarget(target);
+  
+  
+  
+      if (!canvas) {
+        return 0;
+      }
+  
+      if (contextAttributes.explicitSwapControl) {
+        return 0;
+      }
+  
+  
+      var contextHandle = GL.createContext(canvas, contextAttributes);
+      return contextHandle;
+    }function _emscripten_webgl_create_context(a0,a1
+  ) {
+  return _emscripten_webgl_do_create_context(a0,a1);
+  }
+
+  function _emscripten_webgl_init_context_attributes(attributes) {
+      assert(attributes);
+      var a = attributes >> 2;
+      for(var i = 0; i < (56>>2); ++i) {
+        HEAP32[a+i] = 0;
+      }
+  
+      HEAP32[a + (0>>2)] =
+      HEAP32[a + (4>>2)] = 
+      HEAP32[a + (12>>2)] = 
+      HEAP32[a + (16>>2)] = 
+      HEAP32[a + (32>>2)] = 
+      HEAP32[a + (40>>2)] = 1;
+  
+    }
+
+  function _emscripten_webgl_make_context_current(contextHandle) {
+      var success = GL.makeContextCurrent(contextHandle);
+      return success ? 0 : -5;
+    }
+
+  function _emscripten_websocket_close(socketId, code, reason) {
+      var socket = WS.sockets[socketId];
+      if (!socket) {
+        return -3;
+      }
+  
+      var reasonStr = reason ? UTF8ToString(reason) : undefined;
+      if (!code) code = undefined;
+      socket.close(code, reasonStr);
+      return 0;
+    }
+
+  function _emscripten_websocket_delete(socketId) {
+      var socket = WS.sockets[socketId];
+      if (!socket) {
+        return -3;
+      }
+  
+      socket.onopen = socket.onerror = socket.onclose = socket.onmessage = null;
+      socket = null;
+      return 0;
+    }
+
+  function _emscripten_websocket_is_supported() {
+      return typeof WebSocket !== 'undefined';
+    }
+
+  
+  var WS={sockets:[null],socketEvent:null};function _emscripten_websocket_new(createAttributes) {
+      if (typeof WebSocket === 'undefined') {
+        return -1;
+      }
+      if (!createAttributes) {
+        return -5;
+      }
+  
+      var url = UTF8ToString(HEAP32[createAttributes>>2]);
+  
+      // TODO: protocols
+      // TODO: createOnMainThread
+      var socket = new WebSocket(url);
+      socket.binaryType = 'arraybuffer';
+      // TODO: While strictly not necessary, this ID would be good to be unique across all threads to avoid confusion.
+      var socketId = WS.sockets.length;
+      WS.sockets[socketId] = socket;
+  
+      return socketId;
+    }
+
+  function _emscripten_websocket_send_binary(socketId, binaryData, dataLength) {
+      var socket = WS.sockets[socketId];
+      if (!socket) {
+        return -3;
+      }
+  
+      socket.send(HEAPU8.subarray((binaryData),(binaryData+dataLength)));
+      return 0;
+    }
+
+  function _emscripten_websocket_set_onclose_callback_on_thread(socketId, userData, callbackFunc, thread) {
+      if (!WS.socketEvent) WS.socketEvent = _malloc(1024); // TODO: sizeof(EmscriptenWebSocketCloseEvent), which is the largest event struct
+  
+      var socket = WS.sockets[socketId];
+      if (!socket) {
+        return -3;
+      }
+  
+      socket.onclose = function(e) {
+        HEAPU32[WS.socketEvent>>2] = socketId;
+        HEAPU32[(WS.socketEvent+4)>>2] = e.wasClean;
+        HEAPU32[(WS.socketEvent+8)>>2] = e.code;
+        stringToUTF8(e.reason, HEAPU32[(WS.socketEvent+10)>>2], 512);
+        dynCall_iiii(callbackFunc, 0/*TODO*/, WS.socketEvent, userData);
+      }
+      return 0;
+    }
+
+  function _emscripten_websocket_set_onerror_callback_on_thread(socketId, userData, callbackFunc, thread) {
+      if (!WS.socketEvent) WS.socketEvent = _malloc(1024); // TODO: sizeof(EmscriptenWebSocketCloseEvent), which is the largest event struct
+  
+      var socket = WS.sockets[socketId];
+      if (!socket) {
+        return -3;
+      }
+  
+      socket.onerror = function(e) {
+        HEAPU32[WS.socketEvent>>2] = socketId;
+        dynCall_iiii(callbackFunc, 0/*TODO*/, WS.socketEvent, userData);
+      }
+      return 0;
+    }
+
+  function _emscripten_websocket_set_onmessage_callback_on_thread(socketId, userData, callbackFunc, thread) {
+      if (!WS.socketEvent) WS.socketEvent = _malloc(1024); // TODO: sizeof(EmscriptenWebSocketCloseEvent), which is the largest event struct
+  
+      var socket = WS.sockets[socketId];
+      if (!socket) {
+        return -3;
+      }
+  
+      socket.onmessage = function(e) {
+        HEAPU32[WS.socketEvent>>2] = socketId;
+        if (typeof e.data === 'string') {
+          var len = lengthBytesUTF8(e.data)+1;
+          var buf = _malloc(len);
+          stringToUTF8(e.data, buf, len);
+          HEAPU32[(WS.socketEvent+12)>>2] = 1; // text data
+        } else {
+          var len = e.data.byteLength;
+          var buf = _malloc(len);
+          HEAP8.set(new Uint8Array(e.data), buf);
+          HEAPU32[(WS.socketEvent+12)>>2] = 0; // binary data
+        }
+        HEAPU32[(WS.socketEvent+4)>>2] = buf;
+        HEAPU32[(WS.socketEvent+8)>>2] = len;
+        dynCall_iiii(callbackFunc, 0/*TODO*/, WS.socketEvent, userData);
+        _free(buf);
+      }
+      return 0;
+    }
+
+  function _emscripten_websocket_set_onopen_callback_on_thread(socketId, userData, callbackFunc, thread) {
+  // TODO:
+  //    if (thread == 2 ||
+  //      (thread == _pthread_self()) return emscripten_websocket_set_onopen_callback_on_calling_thread(socketId, userData, callbackFunc);
+  
+      if (!WS.socketEvent) WS.socketEvent = _malloc(1024); // TODO: sizeof(EmscriptenWebSocketCloseEvent), which is the largest event struct
+  
+      var socket = WS.sockets[socketId];
+      if (!socket) {
+        return -3;
+      }
+  
+      socket.onopen = function(e) {
+        HEAPU32[WS.socketEvent>>2] = socketId;
+        dynCall_iiii(callbackFunc, 0/*TODO*/, WS.socketEvent, userData);
+      }
+      return 0;
+    }
+
+  
   
   var ENV={};
   
@@ -8964,6 +9942,10 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
         GLctx.bufferData(target, data ? HEAPU8.subarray(data, data+size) : size, usage);
     }
 
+  function _glBufferSubData(target, offset, size, data) {
+      GLctx.bufferSubData(target, offset, HEAPU8.subarray(data, data+size));
+    }
+
   function _glClear(x0) { GLctx['clear'](x0) }
 
   function _glClearColor(x0, x1, x2, x3) { GLctx['clearColor'](x0, x1, x2, x3) }
@@ -9016,13 +9998,17 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
   
     }
 
+  function _glDrawElements(mode, count, type, indices) {
+  
+      GLctx.drawElements(mode, count, type, indices);
+  
+    }
+
   function _glEnable(x0) { GLctx['enable'](x0) }
 
   function _glEnableVertexAttribArray(index) {
       GLctx.enableVertexAttribArray(index);
     }
-
-  function _glFlush() { GLctx['flush']() }
 
   function _glGenBuffers(n, buffers) {
       __glGenObject(n, buffers, 'createBuffer', GL.buffers
@@ -9172,6 +10158,10 @@ function _emscripten_asm_const_iii(code, sigPtr, argbuf) {
 
   function _glUniform2f(location, v0, v1) {
       GLctx.uniform2f(GL.uniforms[location], v0, v1);
+    }
+
+  function _glUniform2i(location, v0, v1) {
+      GLctx.uniform2i(GL.uniforms[location], v0, v1);
     }
 
   function _glUniform4f(location, v0, v1, v2, v3) {
@@ -9803,6 +10793,7 @@ if (ENVIRONMENT_IS_NODE) {
 FS.staticInit();Module["FS_createFolder"] = FS.createFolder;Module["FS_createPath"] = FS.createPath;Module["FS_createDataFile"] = FS.createDataFile;Module["FS_createPreloadedFile"] = FS.createPreloadedFile;Module["FS_createLazyFile"] = FS.createLazyFile;Module["FS_createLink"] = FS.createLink;Module["FS_createDevice"] = FS.createDevice;Module["FS_unlink"] = FS.unlink;;
 var GLctx; GL.init();
 for (var i = 0; i < 32; i++) __tempFixedLengthArray.push(new Array(i));;
+Fetch.staticInit();;
 var ASSERTIONS = true;
 
 // Copyright 2017 The Emscripten Authors.  All rights reserved.
@@ -9838,7 +10829,7 @@ function intArrayToString(array) {
 // ASM_LIBRARY EXTERN PRIMITIVES: Int8Array,Int32Array
 
 var asmGlobalArg = {};
-var asmLibraryArg = { "__assert_fail": ___assert_fail, "__cxa_allocate_exception": ___cxa_allocate_exception, "__cxa_atexit": ___cxa_atexit, "__cxa_throw": ___cxa_throw, "__handle_stack_overflow": ___handle_stack_overflow, "__lock": ___lock, "__map_file": ___map_file, "__syscall221": ___syscall221, "__syscall5": ___syscall5, "__syscall54": ___syscall54, "__syscall91": ___syscall91, "__unlock": ___unlock, "abort": _abort, "abs": _abs, "alignfault": alignfault, "clock": _clock, "clock_gettime": _clock_gettime, "dlclose": _dlclose, "dlerror": _dlerror, "dlsym": _dlsym, "eglBindAPI": _eglBindAPI, "eglChooseConfig": _eglChooseConfig, "eglCreateContext": _eglCreateContext, "eglCreateWindowSurface": _eglCreateWindowSurface, "eglDestroyContext": _eglDestroyContext, "eglDestroySurface": _eglDestroySurface, "eglGetConfigAttrib": _eglGetConfigAttrib, "eglGetDisplay": _eglGetDisplay, "eglGetError": _eglGetError, "eglGetProcAddress": _eglGetProcAddress, "eglInitialize": _eglInitialize, "eglMakeCurrent": _eglMakeCurrent, "eglQueryString": _eglQueryString, "eglSwapBuffers": _eglSwapBuffers, "eglSwapInterval": _eglSwapInterval, "eglTerminate": _eglTerminate, "eglWaitGL": _eglWaitGL, "eglWaitNative": _eglWaitNative, "emscripten_asm_const_iii": _emscripten_asm_const_iii, "emscripten_exit_fullscreen": _emscripten_exit_fullscreen, "emscripten_exit_pointerlock": _emscripten_exit_pointerlock, "emscripten_get_device_pixel_ratio": _emscripten_get_device_pixel_ratio, "emscripten_get_element_css_size": _emscripten_get_element_css_size, "emscripten_get_gamepad_status": _emscripten_get_gamepad_status, "emscripten_get_num_gamepads": _emscripten_get_num_gamepads, "emscripten_get_sbrk_ptr": _emscripten_get_sbrk_ptr, "emscripten_glActiveTexture": _emscripten_glActiveTexture, "emscripten_glAttachShader": _emscripten_glAttachShader, "emscripten_glBeginQueryEXT": _emscripten_glBeginQueryEXT, "emscripten_glBindAttribLocation": _emscripten_glBindAttribLocation, "emscripten_glBindBuffer": _emscripten_glBindBuffer, "emscripten_glBindFramebuffer": _emscripten_glBindFramebuffer, "emscripten_glBindRenderbuffer": _emscripten_glBindRenderbuffer, "emscripten_glBindTexture": _emscripten_glBindTexture, "emscripten_glBindVertexArrayOES": _emscripten_glBindVertexArrayOES, "emscripten_glBlendColor": _emscripten_glBlendColor, "emscripten_glBlendEquation": _emscripten_glBlendEquation, "emscripten_glBlendEquationSeparate": _emscripten_glBlendEquationSeparate, "emscripten_glBlendFunc": _emscripten_glBlendFunc, "emscripten_glBlendFuncSeparate": _emscripten_glBlendFuncSeparate, "emscripten_glBufferData": _emscripten_glBufferData, "emscripten_glBufferSubData": _emscripten_glBufferSubData, "emscripten_glCheckFramebufferStatus": _emscripten_glCheckFramebufferStatus, "emscripten_glClear": _emscripten_glClear, "emscripten_glClearColor": _emscripten_glClearColor, "emscripten_glClearDepthf": _emscripten_glClearDepthf, "emscripten_glClearStencil": _emscripten_glClearStencil, "emscripten_glColorMask": _emscripten_glColorMask, "emscripten_glCompileShader": _emscripten_glCompileShader, "emscripten_glCompressedTexImage2D": _emscripten_glCompressedTexImage2D, "emscripten_glCompressedTexSubImage2D": _emscripten_glCompressedTexSubImage2D, "emscripten_glCopyTexImage2D": _emscripten_glCopyTexImage2D, "emscripten_glCopyTexSubImage2D": _emscripten_glCopyTexSubImage2D, "emscripten_glCreateProgram": _emscripten_glCreateProgram, "emscripten_glCreateShader": _emscripten_glCreateShader, "emscripten_glCullFace": _emscripten_glCullFace, "emscripten_glDeleteBuffers": _emscripten_glDeleteBuffers, "emscripten_glDeleteFramebuffers": _emscripten_glDeleteFramebuffers, "emscripten_glDeleteProgram": _emscripten_glDeleteProgram, "emscripten_glDeleteQueriesEXT": _emscripten_glDeleteQueriesEXT, "emscripten_glDeleteRenderbuffers": _emscripten_glDeleteRenderbuffers, "emscripten_glDeleteShader": _emscripten_glDeleteShader, "emscripten_glDeleteTextures": _emscripten_glDeleteTextures, "emscripten_glDeleteVertexArraysOES": _emscripten_glDeleteVertexArraysOES, "emscripten_glDepthFunc": _emscripten_glDepthFunc, "emscripten_glDepthMask": _emscripten_glDepthMask, "emscripten_glDepthRangef": _emscripten_glDepthRangef, "emscripten_glDetachShader": _emscripten_glDetachShader, "emscripten_glDisable": _emscripten_glDisable, "emscripten_glDisableVertexAttribArray": _emscripten_glDisableVertexAttribArray, "emscripten_glDrawArrays": _emscripten_glDrawArrays, "emscripten_glDrawArraysInstancedANGLE": _emscripten_glDrawArraysInstancedANGLE, "emscripten_glDrawBuffersWEBGL": _emscripten_glDrawBuffersWEBGL, "emscripten_glDrawElements": _emscripten_glDrawElements, "emscripten_glDrawElementsInstancedANGLE": _emscripten_glDrawElementsInstancedANGLE, "emscripten_glEnable": _emscripten_glEnable, "emscripten_glEnableVertexAttribArray": _emscripten_glEnableVertexAttribArray, "emscripten_glEndQueryEXT": _emscripten_glEndQueryEXT, "emscripten_glFinish": _emscripten_glFinish, "emscripten_glFlush": _emscripten_glFlush, "emscripten_glFramebufferRenderbuffer": _emscripten_glFramebufferRenderbuffer, "emscripten_glFramebufferTexture2D": _emscripten_glFramebufferTexture2D, "emscripten_glFrontFace": _emscripten_glFrontFace, "emscripten_glGenBuffers": _emscripten_glGenBuffers, "emscripten_glGenFramebuffers": _emscripten_glGenFramebuffers, "emscripten_glGenQueriesEXT": _emscripten_glGenQueriesEXT, "emscripten_glGenRenderbuffers": _emscripten_glGenRenderbuffers, "emscripten_glGenTextures": _emscripten_glGenTextures, "emscripten_glGenVertexArraysOES": _emscripten_glGenVertexArraysOES, "emscripten_glGenerateMipmap": _emscripten_glGenerateMipmap, "emscripten_glGetActiveAttrib": _emscripten_glGetActiveAttrib, "emscripten_glGetActiveUniform": _emscripten_glGetActiveUniform, "emscripten_glGetAttachedShaders": _emscripten_glGetAttachedShaders, "emscripten_glGetAttribLocation": _emscripten_glGetAttribLocation, "emscripten_glGetBooleanv": _emscripten_glGetBooleanv, "emscripten_glGetBufferParameteriv": _emscripten_glGetBufferParameteriv, "emscripten_glGetError": _emscripten_glGetError, "emscripten_glGetFloatv": _emscripten_glGetFloatv, "emscripten_glGetFramebufferAttachmentParameteriv": _emscripten_glGetFramebufferAttachmentParameteriv, "emscripten_glGetIntegerv": _emscripten_glGetIntegerv, "emscripten_glGetProgramInfoLog": _emscripten_glGetProgramInfoLog, "emscripten_glGetProgramiv": _emscripten_glGetProgramiv, "emscripten_glGetQueryObjecti64vEXT": _emscripten_glGetQueryObjecti64vEXT, "emscripten_glGetQueryObjectivEXT": _emscripten_glGetQueryObjectivEXT, "emscripten_glGetQueryObjectui64vEXT": _emscripten_glGetQueryObjectui64vEXT, "emscripten_glGetQueryObjectuivEXT": _emscripten_glGetQueryObjectuivEXT, "emscripten_glGetQueryivEXT": _emscripten_glGetQueryivEXT, "emscripten_glGetRenderbufferParameteriv": _emscripten_glGetRenderbufferParameteriv, "emscripten_glGetShaderInfoLog": _emscripten_glGetShaderInfoLog, "emscripten_glGetShaderPrecisionFormat": _emscripten_glGetShaderPrecisionFormat, "emscripten_glGetShaderSource": _emscripten_glGetShaderSource, "emscripten_glGetShaderiv": _emscripten_glGetShaderiv, "emscripten_glGetString": _emscripten_glGetString, "emscripten_glGetTexParameterfv": _emscripten_glGetTexParameterfv, "emscripten_glGetTexParameteriv": _emscripten_glGetTexParameteriv, "emscripten_glGetUniformLocation": _emscripten_glGetUniformLocation, "emscripten_glGetUniformfv": _emscripten_glGetUniformfv, "emscripten_glGetUniformiv": _emscripten_glGetUniformiv, "emscripten_glGetVertexAttribPointerv": _emscripten_glGetVertexAttribPointerv, "emscripten_glGetVertexAttribfv": _emscripten_glGetVertexAttribfv, "emscripten_glGetVertexAttribiv": _emscripten_glGetVertexAttribiv, "emscripten_glHint": _emscripten_glHint, "emscripten_glIsBuffer": _emscripten_glIsBuffer, "emscripten_glIsEnabled": _emscripten_glIsEnabled, "emscripten_glIsFramebuffer": _emscripten_glIsFramebuffer, "emscripten_glIsProgram": _emscripten_glIsProgram, "emscripten_glIsQueryEXT": _emscripten_glIsQueryEXT, "emscripten_glIsRenderbuffer": _emscripten_glIsRenderbuffer, "emscripten_glIsShader": _emscripten_glIsShader, "emscripten_glIsTexture": _emscripten_glIsTexture, "emscripten_glIsVertexArrayOES": _emscripten_glIsVertexArrayOES, "emscripten_glLineWidth": _emscripten_glLineWidth, "emscripten_glLinkProgram": _emscripten_glLinkProgram, "emscripten_glPixelStorei": _emscripten_glPixelStorei, "emscripten_glPolygonOffset": _emscripten_glPolygonOffset, "emscripten_glQueryCounterEXT": _emscripten_glQueryCounterEXT, "emscripten_glReadPixels": _emscripten_glReadPixels, "emscripten_glReleaseShaderCompiler": _emscripten_glReleaseShaderCompiler, "emscripten_glRenderbufferStorage": _emscripten_glRenderbufferStorage, "emscripten_glSampleCoverage": _emscripten_glSampleCoverage, "emscripten_glScissor": _emscripten_glScissor, "emscripten_glShaderBinary": _emscripten_glShaderBinary, "emscripten_glShaderSource": _emscripten_glShaderSource, "emscripten_glStencilFunc": _emscripten_glStencilFunc, "emscripten_glStencilFuncSeparate": _emscripten_glStencilFuncSeparate, "emscripten_glStencilMask": _emscripten_glStencilMask, "emscripten_glStencilMaskSeparate": _emscripten_glStencilMaskSeparate, "emscripten_glStencilOp": _emscripten_glStencilOp, "emscripten_glStencilOpSeparate": _emscripten_glStencilOpSeparate, "emscripten_glTexImage2D": _emscripten_glTexImage2D, "emscripten_glTexParameterf": _emscripten_glTexParameterf, "emscripten_glTexParameterfv": _emscripten_glTexParameterfv, "emscripten_glTexParameteri": _emscripten_glTexParameteri, "emscripten_glTexParameteriv": _emscripten_glTexParameteriv, "emscripten_glTexSubImage2D": _emscripten_glTexSubImage2D, "emscripten_glUniform1f": _emscripten_glUniform1f, "emscripten_glUniform1fv": _emscripten_glUniform1fv, "emscripten_glUniform1i": _emscripten_glUniform1i, "emscripten_glUniform1iv": _emscripten_glUniform1iv, "emscripten_glUniform2f": _emscripten_glUniform2f, "emscripten_glUniform2fv": _emscripten_glUniform2fv, "emscripten_glUniform2i": _emscripten_glUniform2i, "emscripten_glUniform2iv": _emscripten_glUniform2iv, "emscripten_glUniform3f": _emscripten_glUniform3f, "emscripten_glUniform3fv": _emscripten_glUniform3fv, "emscripten_glUniform3i": _emscripten_glUniform3i, "emscripten_glUniform3iv": _emscripten_glUniform3iv, "emscripten_glUniform4f": _emscripten_glUniform4f, "emscripten_glUniform4fv": _emscripten_glUniform4fv, "emscripten_glUniform4i": _emscripten_glUniform4i, "emscripten_glUniform4iv": _emscripten_glUniform4iv, "emscripten_glUniformMatrix2fv": _emscripten_glUniformMatrix2fv, "emscripten_glUniformMatrix3fv": _emscripten_glUniformMatrix3fv, "emscripten_glUniformMatrix4fv": _emscripten_glUniformMatrix4fv, "emscripten_glUseProgram": _emscripten_glUseProgram, "emscripten_glValidateProgram": _emscripten_glValidateProgram, "emscripten_glVertexAttrib1f": _emscripten_glVertexAttrib1f, "emscripten_glVertexAttrib1fv": _emscripten_glVertexAttrib1fv, "emscripten_glVertexAttrib2f": _emscripten_glVertexAttrib2f, "emscripten_glVertexAttrib2fv": _emscripten_glVertexAttrib2fv, "emscripten_glVertexAttrib3f": _emscripten_glVertexAttrib3f, "emscripten_glVertexAttrib3fv": _emscripten_glVertexAttrib3fv, "emscripten_glVertexAttrib4f": _emscripten_glVertexAttrib4f, "emscripten_glVertexAttrib4fv": _emscripten_glVertexAttrib4fv, "emscripten_glVertexAttribDivisorANGLE": _emscripten_glVertexAttribDivisorANGLE, "emscripten_glVertexAttribPointer": _emscripten_glVertexAttribPointer, "emscripten_glViewport": _emscripten_glViewport, "emscripten_longjmp": _emscripten_longjmp, "emscripten_memcpy_big": _emscripten_memcpy_big, "emscripten_request_fullscreen_strategy": _emscripten_request_fullscreen_strategy, "emscripten_request_pointerlock": _emscripten_request_pointerlock, "emscripten_resize_heap": _emscripten_resize_heap, "emscripten_sample_gamepad_data": _emscripten_sample_gamepad_data, "emscripten_set_blur_callback_on_thread": _emscripten_set_blur_callback_on_thread, "emscripten_set_canvas_element_size": _emscripten_set_canvas_element_size, "emscripten_set_element_css_size": _emscripten_set_element_css_size, "emscripten_set_focus_callback_on_thread": _emscripten_set_focus_callback_on_thread, "emscripten_set_fullscreenchange_callback_on_thread": _emscripten_set_fullscreenchange_callback_on_thread, "emscripten_set_gamepadconnected_callback_on_thread": _emscripten_set_gamepadconnected_callback_on_thread, "emscripten_set_gamepaddisconnected_callback_on_thread": _emscripten_set_gamepaddisconnected_callback_on_thread, "emscripten_set_keydown_callback_on_thread": _emscripten_set_keydown_callback_on_thread, "emscripten_set_keypress_callback_on_thread": _emscripten_set_keypress_callback_on_thread, "emscripten_set_keyup_callback_on_thread": _emscripten_set_keyup_callback_on_thread, "emscripten_set_main_loop": _emscripten_set_main_loop, "emscripten_set_mousedown_callback_on_thread": _emscripten_set_mousedown_callback_on_thread, "emscripten_set_mouseenter_callback_on_thread": _emscripten_set_mouseenter_callback_on_thread, "emscripten_set_mouseleave_callback_on_thread": _emscripten_set_mouseleave_callback_on_thread, "emscripten_set_mousemove_callback_on_thread": _emscripten_set_mousemove_callback_on_thread, "emscripten_set_mouseup_callback_on_thread": _emscripten_set_mouseup_callback_on_thread, "emscripten_set_pointerlockchange_callback_on_thread": _emscripten_set_pointerlockchange_callback_on_thread, "emscripten_set_resize_callback_on_thread": _emscripten_set_resize_callback_on_thread, "emscripten_set_touchcancel_callback_on_thread": _emscripten_set_touchcancel_callback_on_thread, "emscripten_set_touchend_callback_on_thread": _emscripten_set_touchend_callback_on_thread, "emscripten_set_touchmove_callback_on_thread": _emscripten_set_touchmove_callback_on_thread, "emscripten_set_touchstart_callback_on_thread": _emscripten_set_touchstart_callback_on_thread, "emscripten_set_visibilitychange_callback_on_thread": _emscripten_set_visibilitychange_callback_on_thread, "emscripten_set_wheel_callback_on_thread": _emscripten_set_wheel_callback_on_thread, "environ_get": _environ_get, "environ_sizes_get": _environ_sizes_get, "exit": _exit, "fd_close": _fd_close, "fd_read": _fd_read, "fd_seek": _fd_seek, "fd_write": _fd_write, "getTempRet0": _getTempRet0, "gettimeofday": _gettimeofday, "glActiveTexture": _glActiveTexture, "glAttachShader": _glAttachShader, "glBindBuffer": _glBindBuffer, "glBindTexture": _glBindTexture, "glBindVertexArray": _glBindVertexArray, "glBlendFunc": _glBlendFunc, "glBufferData": _glBufferData, "glClear": _glClear, "glClearColor": _glClearColor, "glCompileShader": _glCompileShader, "glCreateProgram": _glCreateProgram, "glCreateShader": _glCreateShader, "glDeleteShader": _glDeleteShader, "glDeleteTextures": _glDeleteTextures, "glDisable": _glDisable, "glDrawArrays": _glDrawArrays, "glEnable": _glEnable, "glEnableVertexAttribArray": _glEnableVertexAttribArray, "glFlush": _glFlush, "glGenBuffers": _glGenBuffers, "glGenTextures": _glGenTextures, "glGenVertexArrays": _glGenVertexArrays, "glGetAttribLocation": _glGetAttribLocation, "glGetProgramInfoLog": _glGetProgramInfoLog, "glGetProgramiv": _glGetProgramiv, "glGetShaderInfoLog": _glGetShaderInfoLog, "glGetShaderiv": _glGetShaderiv, "glGetUniformLocation": _glGetUniformLocation, "glLinkProgram": _glLinkProgram, "glShaderSource": _glShaderSource, "glTexImage2D": _glTexImage2D, "glTexParameteri": _glTexParameteri, "glUniform1i": _glUniform1i, "glUniform2f": _glUniform2f, "glUniform4f": _glUniform4f, "glUniformMatrix4fv": _glUniformMatrix4fv, "glUseProgram": _glUseProgram, "glVertexAttribPointer": _glVertexAttribPointer, "glViewport": _glViewport, "invoke_iii": invoke_iii, "invoke_vii": invoke_vii, "invoke_viiii": invoke_viiii, "memory": wasmMemory, "nanosleep": _nanosleep, "saveSetjmp": _saveSetjmp, "segfault": segfault, "setTempRet0": _setTempRet0, "sigaction": _sigaction, "signal": _signal, "strftime_l": _strftime_l, "table": wasmTable, "testSetjmp": _testSetjmp, "time": _time };
+var asmLibraryArg = { "__assert_fail": ___assert_fail, "__cxa_allocate_exception": ___cxa_allocate_exception, "__cxa_atexit": ___cxa_atexit, "__cxa_throw": ___cxa_throw, "__handle_stack_overflow": ___handle_stack_overflow, "__lock": ___lock, "__map_file": ___map_file, "__syscall10": ___syscall10, "__syscall220": ___syscall220, "__syscall221": ___syscall221, "__syscall39": ___syscall39, "__syscall40": ___syscall40, "__syscall5": ___syscall5, "__syscall54": ___syscall54, "__syscall91": ___syscall91, "__unlock": ___unlock, "_emscripten_fetch_free": __emscripten_fetch_free, "abort": _abort, "abs": _abs, "alignfault": alignfault, "clock": _clock, "clock_gettime": _clock_gettime, "dlclose": _dlclose, "dlerror": _dlerror, "dlsym": _dlsym, "eglBindAPI": _eglBindAPI, "eglChooseConfig": _eglChooseConfig, "eglCreateContext": _eglCreateContext, "eglCreateWindowSurface": _eglCreateWindowSurface, "eglDestroyContext": _eglDestroyContext, "eglDestroySurface": _eglDestroySurface, "eglGetConfigAttrib": _eglGetConfigAttrib, "eglGetDisplay": _eglGetDisplay, "eglGetError": _eglGetError, "eglGetProcAddress": _eglGetProcAddress, "eglInitialize": _eglInitialize, "eglMakeCurrent": _eglMakeCurrent, "eglQueryString": _eglQueryString, "eglSwapBuffers": _eglSwapBuffers, "eglSwapInterval": _eglSwapInterval, "eglTerminate": _eglTerminate, "eglWaitGL": _eglWaitGL, "eglWaitNative": _eglWaitNative, "emscripten_asm_const_iii": _emscripten_asm_const_iii, "emscripten_exit_fullscreen": _emscripten_exit_fullscreen, "emscripten_exit_pointerlock": _emscripten_exit_pointerlock, "emscripten_get_device_pixel_ratio": _emscripten_get_device_pixel_ratio, "emscripten_get_element_css_size": _emscripten_get_element_css_size, "emscripten_get_fullscreen_status": _emscripten_get_fullscreen_status, "emscripten_get_gamepad_status": _emscripten_get_gamepad_status, "emscripten_get_num_gamepads": _emscripten_get_num_gamepads, "emscripten_get_sbrk_ptr": _emscripten_get_sbrk_ptr, "emscripten_glActiveTexture": _emscripten_glActiveTexture, "emscripten_glAttachShader": _emscripten_glAttachShader, "emscripten_glBeginQueryEXT": _emscripten_glBeginQueryEXT, "emscripten_glBindAttribLocation": _emscripten_glBindAttribLocation, "emscripten_glBindBuffer": _emscripten_glBindBuffer, "emscripten_glBindFramebuffer": _emscripten_glBindFramebuffer, "emscripten_glBindRenderbuffer": _emscripten_glBindRenderbuffer, "emscripten_glBindTexture": _emscripten_glBindTexture, "emscripten_glBindVertexArrayOES": _emscripten_glBindVertexArrayOES, "emscripten_glBlendColor": _emscripten_glBlendColor, "emscripten_glBlendEquation": _emscripten_glBlendEquation, "emscripten_glBlendEquationSeparate": _emscripten_glBlendEquationSeparate, "emscripten_glBlendFunc": _emscripten_glBlendFunc, "emscripten_glBlendFuncSeparate": _emscripten_glBlendFuncSeparate, "emscripten_glBufferData": _emscripten_glBufferData, "emscripten_glBufferSubData": _emscripten_glBufferSubData, "emscripten_glCheckFramebufferStatus": _emscripten_glCheckFramebufferStatus, "emscripten_glClear": _emscripten_glClear, "emscripten_glClearColor": _emscripten_glClearColor, "emscripten_glClearDepthf": _emscripten_glClearDepthf, "emscripten_glClearStencil": _emscripten_glClearStencil, "emscripten_glColorMask": _emscripten_glColorMask, "emscripten_glCompileShader": _emscripten_glCompileShader, "emscripten_glCompressedTexImage2D": _emscripten_glCompressedTexImage2D, "emscripten_glCompressedTexSubImage2D": _emscripten_glCompressedTexSubImage2D, "emscripten_glCopyTexImage2D": _emscripten_glCopyTexImage2D, "emscripten_glCopyTexSubImage2D": _emscripten_glCopyTexSubImage2D, "emscripten_glCreateProgram": _emscripten_glCreateProgram, "emscripten_glCreateShader": _emscripten_glCreateShader, "emscripten_glCullFace": _emscripten_glCullFace, "emscripten_glDeleteBuffers": _emscripten_glDeleteBuffers, "emscripten_glDeleteFramebuffers": _emscripten_glDeleteFramebuffers, "emscripten_glDeleteProgram": _emscripten_glDeleteProgram, "emscripten_glDeleteQueriesEXT": _emscripten_glDeleteQueriesEXT, "emscripten_glDeleteRenderbuffers": _emscripten_glDeleteRenderbuffers, "emscripten_glDeleteShader": _emscripten_glDeleteShader, "emscripten_glDeleteTextures": _emscripten_glDeleteTextures, "emscripten_glDeleteVertexArraysOES": _emscripten_glDeleteVertexArraysOES, "emscripten_glDepthFunc": _emscripten_glDepthFunc, "emscripten_glDepthMask": _emscripten_glDepthMask, "emscripten_glDepthRangef": _emscripten_glDepthRangef, "emscripten_glDetachShader": _emscripten_glDetachShader, "emscripten_glDisable": _emscripten_glDisable, "emscripten_glDisableVertexAttribArray": _emscripten_glDisableVertexAttribArray, "emscripten_glDrawArrays": _emscripten_glDrawArrays, "emscripten_glDrawArraysInstancedANGLE": _emscripten_glDrawArraysInstancedANGLE, "emscripten_glDrawBuffersWEBGL": _emscripten_glDrawBuffersWEBGL, "emscripten_glDrawElements": _emscripten_glDrawElements, "emscripten_glDrawElementsInstancedANGLE": _emscripten_glDrawElementsInstancedANGLE, "emscripten_glEnable": _emscripten_glEnable, "emscripten_glEnableVertexAttribArray": _emscripten_glEnableVertexAttribArray, "emscripten_glEndQueryEXT": _emscripten_glEndQueryEXT, "emscripten_glFinish": _emscripten_glFinish, "emscripten_glFlush": _emscripten_glFlush, "emscripten_glFramebufferRenderbuffer": _emscripten_glFramebufferRenderbuffer, "emscripten_glFramebufferTexture2D": _emscripten_glFramebufferTexture2D, "emscripten_glFrontFace": _emscripten_glFrontFace, "emscripten_glGenBuffers": _emscripten_glGenBuffers, "emscripten_glGenFramebuffers": _emscripten_glGenFramebuffers, "emscripten_glGenQueriesEXT": _emscripten_glGenQueriesEXT, "emscripten_glGenRenderbuffers": _emscripten_glGenRenderbuffers, "emscripten_glGenTextures": _emscripten_glGenTextures, "emscripten_glGenVertexArraysOES": _emscripten_glGenVertexArraysOES, "emscripten_glGenerateMipmap": _emscripten_glGenerateMipmap, "emscripten_glGetActiveAttrib": _emscripten_glGetActiveAttrib, "emscripten_glGetActiveUniform": _emscripten_glGetActiveUniform, "emscripten_glGetAttachedShaders": _emscripten_glGetAttachedShaders, "emscripten_glGetAttribLocation": _emscripten_glGetAttribLocation, "emscripten_glGetBooleanv": _emscripten_glGetBooleanv, "emscripten_glGetBufferParameteriv": _emscripten_glGetBufferParameteriv, "emscripten_glGetError": _emscripten_glGetError, "emscripten_glGetFloatv": _emscripten_glGetFloatv, "emscripten_glGetFramebufferAttachmentParameteriv": _emscripten_glGetFramebufferAttachmentParameteriv, "emscripten_glGetIntegerv": _emscripten_glGetIntegerv, "emscripten_glGetProgramInfoLog": _emscripten_glGetProgramInfoLog, "emscripten_glGetProgramiv": _emscripten_glGetProgramiv, "emscripten_glGetQueryObjecti64vEXT": _emscripten_glGetQueryObjecti64vEXT, "emscripten_glGetQueryObjectivEXT": _emscripten_glGetQueryObjectivEXT, "emscripten_glGetQueryObjectui64vEXT": _emscripten_glGetQueryObjectui64vEXT, "emscripten_glGetQueryObjectuivEXT": _emscripten_glGetQueryObjectuivEXT, "emscripten_glGetQueryivEXT": _emscripten_glGetQueryivEXT, "emscripten_glGetRenderbufferParameteriv": _emscripten_glGetRenderbufferParameteriv, "emscripten_glGetShaderInfoLog": _emscripten_glGetShaderInfoLog, "emscripten_glGetShaderPrecisionFormat": _emscripten_glGetShaderPrecisionFormat, "emscripten_glGetShaderSource": _emscripten_glGetShaderSource, "emscripten_glGetShaderiv": _emscripten_glGetShaderiv, "emscripten_glGetString": _emscripten_glGetString, "emscripten_glGetTexParameterfv": _emscripten_glGetTexParameterfv, "emscripten_glGetTexParameteriv": _emscripten_glGetTexParameteriv, "emscripten_glGetUniformLocation": _emscripten_glGetUniformLocation, "emscripten_glGetUniformfv": _emscripten_glGetUniformfv, "emscripten_glGetUniformiv": _emscripten_glGetUniformiv, "emscripten_glGetVertexAttribPointerv": _emscripten_glGetVertexAttribPointerv, "emscripten_glGetVertexAttribfv": _emscripten_glGetVertexAttribfv, "emscripten_glGetVertexAttribiv": _emscripten_glGetVertexAttribiv, "emscripten_glHint": _emscripten_glHint, "emscripten_glIsBuffer": _emscripten_glIsBuffer, "emscripten_glIsEnabled": _emscripten_glIsEnabled, "emscripten_glIsFramebuffer": _emscripten_glIsFramebuffer, "emscripten_glIsProgram": _emscripten_glIsProgram, "emscripten_glIsQueryEXT": _emscripten_glIsQueryEXT, "emscripten_glIsRenderbuffer": _emscripten_glIsRenderbuffer, "emscripten_glIsShader": _emscripten_glIsShader, "emscripten_glIsTexture": _emscripten_glIsTexture, "emscripten_glIsVertexArrayOES": _emscripten_glIsVertexArrayOES, "emscripten_glLineWidth": _emscripten_glLineWidth, "emscripten_glLinkProgram": _emscripten_glLinkProgram, "emscripten_glPixelStorei": _emscripten_glPixelStorei, "emscripten_glPolygonOffset": _emscripten_glPolygonOffset, "emscripten_glQueryCounterEXT": _emscripten_glQueryCounterEXT, "emscripten_glReadPixels": _emscripten_glReadPixels, "emscripten_glReleaseShaderCompiler": _emscripten_glReleaseShaderCompiler, "emscripten_glRenderbufferStorage": _emscripten_glRenderbufferStorage, "emscripten_glSampleCoverage": _emscripten_glSampleCoverage, "emscripten_glScissor": _emscripten_glScissor, "emscripten_glShaderBinary": _emscripten_glShaderBinary, "emscripten_glShaderSource": _emscripten_glShaderSource, "emscripten_glStencilFunc": _emscripten_glStencilFunc, "emscripten_glStencilFuncSeparate": _emscripten_glStencilFuncSeparate, "emscripten_glStencilMask": _emscripten_glStencilMask, "emscripten_glStencilMaskSeparate": _emscripten_glStencilMaskSeparate, "emscripten_glStencilOp": _emscripten_glStencilOp, "emscripten_glStencilOpSeparate": _emscripten_glStencilOpSeparate, "emscripten_glTexImage2D": _emscripten_glTexImage2D, "emscripten_glTexParameterf": _emscripten_glTexParameterf, "emscripten_glTexParameterfv": _emscripten_glTexParameterfv, "emscripten_glTexParameteri": _emscripten_glTexParameteri, "emscripten_glTexParameteriv": _emscripten_glTexParameteriv, "emscripten_glTexSubImage2D": _emscripten_glTexSubImage2D, "emscripten_glUniform1f": _emscripten_glUniform1f, "emscripten_glUniform1fv": _emscripten_glUniform1fv, "emscripten_glUniform1i": _emscripten_glUniform1i, "emscripten_glUniform1iv": _emscripten_glUniform1iv, "emscripten_glUniform2f": _emscripten_glUniform2f, "emscripten_glUniform2fv": _emscripten_glUniform2fv, "emscripten_glUniform2i": _emscripten_glUniform2i, "emscripten_glUniform2iv": _emscripten_glUniform2iv, "emscripten_glUniform3f": _emscripten_glUniform3f, "emscripten_glUniform3fv": _emscripten_glUniform3fv, "emscripten_glUniform3i": _emscripten_glUniform3i, "emscripten_glUniform3iv": _emscripten_glUniform3iv, "emscripten_glUniform4f": _emscripten_glUniform4f, "emscripten_glUniform4fv": _emscripten_glUniform4fv, "emscripten_glUniform4i": _emscripten_glUniform4i, "emscripten_glUniform4iv": _emscripten_glUniform4iv, "emscripten_glUniformMatrix2fv": _emscripten_glUniformMatrix2fv, "emscripten_glUniformMatrix3fv": _emscripten_glUniformMatrix3fv, "emscripten_glUniformMatrix4fv": _emscripten_glUniformMatrix4fv, "emscripten_glUseProgram": _emscripten_glUseProgram, "emscripten_glValidateProgram": _emscripten_glValidateProgram, "emscripten_glVertexAttrib1f": _emscripten_glVertexAttrib1f, "emscripten_glVertexAttrib1fv": _emscripten_glVertexAttrib1fv, "emscripten_glVertexAttrib2f": _emscripten_glVertexAttrib2f, "emscripten_glVertexAttrib2fv": _emscripten_glVertexAttrib2fv, "emscripten_glVertexAttrib3f": _emscripten_glVertexAttrib3f, "emscripten_glVertexAttrib3fv": _emscripten_glVertexAttrib3fv, "emscripten_glVertexAttrib4f": _emscripten_glVertexAttrib4f, "emscripten_glVertexAttrib4fv": _emscripten_glVertexAttrib4fv, "emscripten_glVertexAttribDivisorANGLE": _emscripten_glVertexAttribDivisorANGLE, "emscripten_glVertexAttribPointer": _emscripten_glVertexAttribPointer, "emscripten_glViewport": _emscripten_glViewport, "emscripten_is_main_browser_thread": _emscripten_is_main_browser_thread, "emscripten_longjmp": _emscripten_longjmp, "emscripten_memcpy_big": _emscripten_memcpy_big, "emscripten_random": _emscripten_random, "emscripten_request_fullscreen": _emscripten_request_fullscreen, "emscripten_request_fullscreen_strategy": _emscripten_request_fullscreen_strategy, "emscripten_request_pointerlock": _emscripten_request_pointerlock, "emscripten_resize_heap": _emscripten_resize_heap, "emscripten_run_script_int": _emscripten_run_script_int, "emscripten_sample_gamepad_data": _emscripten_sample_gamepad_data, "emscripten_set_blur_callback_on_thread": _emscripten_set_blur_callback_on_thread, "emscripten_set_canvas_element_size": _emscripten_set_canvas_element_size, "emscripten_set_click_callback_on_thread": _emscripten_set_click_callback_on_thread, "emscripten_set_element_css_size": _emscripten_set_element_css_size, "emscripten_set_focus_callback_on_thread": _emscripten_set_focus_callback_on_thread, "emscripten_set_fullscreenchange_callback_on_thread": _emscripten_set_fullscreenchange_callback_on_thread, "emscripten_set_gamepadconnected_callback_on_thread": _emscripten_set_gamepadconnected_callback_on_thread, "emscripten_set_gamepaddisconnected_callback_on_thread": _emscripten_set_gamepaddisconnected_callback_on_thread, "emscripten_set_keydown_callback_on_thread": _emscripten_set_keydown_callback_on_thread, "emscripten_set_keypress_callback_on_thread": _emscripten_set_keypress_callback_on_thread, "emscripten_set_keyup_callback_on_thread": _emscripten_set_keyup_callback_on_thread, "emscripten_set_main_loop": _emscripten_set_main_loop, "emscripten_set_mousedown_callback_on_thread": _emscripten_set_mousedown_callback_on_thread, "emscripten_set_mouseenter_callback_on_thread": _emscripten_set_mouseenter_callback_on_thread, "emscripten_set_mouseleave_callback_on_thread": _emscripten_set_mouseleave_callback_on_thread, "emscripten_set_mousemove_callback_on_thread": _emscripten_set_mousemove_callback_on_thread, "emscripten_set_mouseup_callback_on_thread": _emscripten_set_mouseup_callback_on_thread, "emscripten_set_pointerlockchange_callback_on_thread": _emscripten_set_pointerlockchange_callback_on_thread, "emscripten_set_resize_callback_on_thread": _emscripten_set_resize_callback_on_thread, "emscripten_set_touchcancel_callback_on_thread": _emscripten_set_touchcancel_callback_on_thread, "emscripten_set_touchend_callback_on_thread": _emscripten_set_touchend_callback_on_thread, "emscripten_set_touchmove_callback_on_thread": _emscripten_set_touchmove_callback_on_thread, "emscripten_set_touchstart_callback_on_thread": _emscripten_set_touchstart_callback_on_thread, "emscripten_set_visibilitychange_callback_on_thread": _emscripten_set_visibilitychange_callback_on_thread, "emscripten_set_wheel_callback_on_thread": _emscripten_set_wheel_callback_on_thread, "emscripten_start_fetch": _emscripten_start_fetch, "emscripten_webgl_create_context": _emscripten_webgl_create_context, "emscripten_webgl_init_context_attributes": _emscripten_webgl_init_context_attributes, "emscripten_webgl_make_context_current": _emscripten_webgl_make_context_current, "emscripten_websocket_close": _emscripten_websocket_close, "emscripten_websocket_delete": _emscripten_websocket_delete, "emscripten_websocket_is_supported": _emscripten_websocket_is_supported, "emscripten_websocket_new": _emscripten_websocket_new, "emscripten_websocket_send_binary": _emscripten_websocket_send_binary, "emscripten_websocket_set_onclose_callback_on_thread": _emscripten_websocket_set_onclose_callback_on_thread, "emscripten_websocket_set_onerror_callback_on_thread": _emscripten_websocket_set_onerror_callback_on_thread, "emscripten_websocket_set_onmessage_callback_on_thread": _emscripten_websocket_set_onmessage_callback_on_thread, "emscripten_websocket_set_onopen_callback_on_thread": _emscripten_websocket_set_onopen_callback_on_thread, "environ_get": _environ_get, "environ_sizes_get": _environ_sizes_get, "exit": _exit, "fd_close": _fd_close, "fd_read": _fd_read, "fd_seek": _fd_seek, "fd_write": _fd_write, "getTempRet0": _getTempRet0, "gettimeofday": _gettimeofday, "glActiveTexture": _glActiveTexture, "glAttachShader": _glAttachShader, "glBindBuffer": _glBindBuffer, "glBindTexture": _glBindTexture, "glBindVertexArray": _glBindVertexArray, "glBlendFunc": _glBlendFunc, "glBufferData": _glBufferData, "glBufferSubData": _glBufferSubData, "glClear": _glClear, "glClearColor": _glClearColor, "glCompileShader": _glCompileShader, "glCreateProgram": _glCreateProgram, "glCreateShader": _glCreateShader, "glDeleteShader": _glDeleteShader, "glDeleteTextures": _glDeleteTextures, "glDisable": _glDisable, "glDrawArrays": _glDrawArrays, "glDrawElements": _glDrawElements, "glEnable": _glEnable, "glEnableVertexAttribArray": _glEnableVertexAttribArray, "glGenBuffers": _glGenBuffers, "glGenTextures": _glGenTextures, "glGenVertexArrays": _glGenVertexArrays, "glGetAttribLocation": _glGetAttribLocation, "glGetProgramInfoLog": _glGetProgramInfoLog, "glGetProgramiv": _glGetProgramiv, "glGetShaderInfoLog": _glGetShaderInfoLog, "glGetShaderiv": _glGetShaderiv, "glGetUniformLocation": _glGetUniformLocation, "glLinkProgram": _glLinkProgram, "glShaderSource": _glShaderSource, "glTexImage2D": _glTexImage2D, "glTexParameteri": _glTexParameteri, "glUniform1i": _glUniform1i, "glUniform2f": _glUniform2f, "glUniform2i": _glUniform2i, "glUniform4f": _glUniform4f, "glUniformMatrix4fv": _glUniformMatrix4fv, "glUseProgram": _glUseProgram, "glVertexAttribPointer": _glVertexAttribPointer, "glViewport": _glViewport, "invoke_iii": invoke_iii, "invoke_vii": invoke_vii, "invoke_viiii": invoke_viiii, "memory": wasmMemory, "nanosleep": _nanosleep, "saveSetjmp": _saveSetjmp, "segfault": segfault, "setTempRet0": _setTempRet0, "sigaction": _sigaction, "signal": _signal, "strftime_l": _strftime_l, "table": wasmTable, "testSetjmp": _testSetjmp, "time": _time };
 var asm = createWasm();
 Module["asm"] = asm;
 var ___wasm_call_ctors = Module["___wasm_call_ctors"] = function() {
@@ -10003,16 +10994,16 @@ var dynCall_viii = Module["dynCall_viii"] = function() {
   return Module["asm"]["dynCall_viii"].apply(null, arguments)
 };
 
-var dynCall_v = Module["dynCall_v"] = function() {
-  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-  return Module["asm"]["dynCall_v"].apply(null, arguments)
-};
-
 var dynCall_viffi = Module["dynCall_viffi"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["dynCall_viffi"].apply(null, arguments)
+};
+
+var dynCall_v = Module["dynCall_v"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["dynCall_v"].apply(null, arguments)
 };
 
 var dynCall_iiii = Module["dynCall_iiii"] = function() {
@@ -10390,6 +11381,15 @@ if (!Object.getOwnPropertyDescriptor(Module, "GLEW")) Module["GLEW"] = function(
 if (!Object.getOwnPropertyDescriptor(Module, "IDBStore")) Module["IDBStore"] = function() { abort("'IDBStore' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "IDBStore__deps")) Module["IDBStore__deps"] = function() { abort("'IDBStore__deps' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "runAndAbortIfError")) Module["runAndAbortIfError"] = function() { abort("'runAndAbortIfError' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "Fetch__postset")) Module["Fetch__postset"] = function() { abort("'Fetch__postset' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "Fetch")) Module["Fetch"] = function() { abort("'Fetch' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "__emscripten_fetch_delete_cached_data")) Module["__emscripten_fetch_delete_cached_data"] = function() { abort("'__emscripten_fetch_delete_cached_data' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "__emscripten_fetch_load_cached_data")) Module["__emscripten_fetch_load_cached_data"] = function() { abort("'__emscripten_fetch_load_cached_data' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "__emscripten_fetch_cache_data")) Module["__emscripten_fetch_cache_data"] = function() { abort("'__emscripten_fetch_cache_data' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "__emscripten_fetch_xhr")) Module["__emscripten_fetch_xhr"] = function() { abort("'__emscripten_fetch_xhr' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "WS")) Module["WS"] = function() { abort("'WS' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "IDBFS__deps")) Module["IDBFS__deps"] = function() { abort("'IDBFS__deps' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+if (!Object.getOwnPropertyDescriptor(Module, "IDBFS")) Module["IDBFS"] = function() { abort("'IDBFS' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "warnOnce")) Module["warnOnce"] = function() { abort("'warnOnce' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "stackSave")) Module["stackSave"] = function() { abort("'stackSave' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "stackRestore")) Module["stackRestore"] = function() { abort("'stackRestore' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
@@ -10443,15 +11443,8 @@ function callMain(args) {
   var entryFunction = Module['_main'];
 
 
-  args = args || [];
-
-  var argc = args.length+1;
-  var argv = stackAlloc((argc + 1) * 4);
-  HEAP32[argv >> 2] = allocateUTF8OnStack(thisProgram);
-  for (var i = 1; i < argc; i++) {
-    HEAP32[(argv >> 2) + i] = allocateUTF8OnStack(args[i - 1]);
-  }
-  HEAP32[(argv >> 2) + argc] = 0;
+  var argc = 0;
+  var argv = 0;
 
 
   try {
