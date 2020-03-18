@@ -37,6 +37,8 @@ EM_BOOL WebSocketMessage(int eventType, const EmscriptenWebSocketMessageEvent *e
 	
 	std::vector<char> buffer(e->data, e->data + e->numBytes);
 	messageQueue.push(buffer);
+
+	// printBinaryBuffer((char*)e->data, e->numBytes);
 	return 0;
 }
 
@@ -124,5 +126,7 @@ int SocketSendUdp(Socket* socket, char* buf, int size)
 
 int SocketClose(Socket* socket)
 {
+	while(messageQueue.size()>0)
+		messageQueue.pop();
     return 0;
 }
