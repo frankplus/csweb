@@ -44,6 +44,8 @@ static char *mCategories[] =
 	"CSPSP v1.92",
 	"2011",
 	"",
+	"Web Port",
+	"",
 	"Programming",
 	"",
 	"Graphics",
@@ -85,6 +87,8 @@ static char *mCredits[] =
 {
 	"",
 	"",
+	"",
+	"Frankplus",
 	"",
 	"Kevin Chen",
 	"",

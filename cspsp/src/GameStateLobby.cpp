@@ -1089,7 +1089,7 @@ bool GameStateLobby::LoadPlayerInfo(char* buffer)
 	s += strlen("GETINFO") + 2;
 
 	if (mCurrentPlayerInfo != NULL) {
-		UpdateIcon(mPlayerInfoIconTexture,(unsigned char*)&s[0]);
+		// UpdateIcon(mPlayerInfoIconTexture,(unsigned char*)&s[0]);
 		s += 300;
 
 		char infobuffer[512];

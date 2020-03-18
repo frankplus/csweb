@@ -1,8 +1,11 @@
-body {
-  font-family: arial;
+body{
+  font-family: arial; 
+  font-size: 12pt; 
   margin: 0;
   padding: none;
+  background: #ffcc66 url('background.png')
 }
+
 
 .game {
     text-align: center; 
@@ -20,6 +23,16 @@ body {
   text-align: center; 
   margin: 0 auto;
   width: 600px;
+  background: #ddaa44 url('table.png');
+  border-collapse:separate;
+  border:solid black 1px;
+  border-radius:6px;
+  -moz-border-radius:6px;
+}
+
+.discord {
+  width: 30%;
+  margin: 20px;
 }
 
 #topbar {

@@ -1397,8 +1397,6 @@ void Game::Render()
 	mMap->Render(dx,dy);
 	mRenderer->EnableTextureFilter(true);
 
-	PrintFps();
-
 	float minx = dx-SCREEN_WIDTH_2-1.0f;
 	float miny = dx-SCREEN_HEIGHT_2-1.0f;
 	float maxx = dx+SCREEN_WIDTH_2+1.0f;
