@@ -4,6 +4,7 @@
 #include <map>
 #include <functional>
 #include <string>
+
 #include <emscripten.h>
 #include <emscripten/html5.h>
 #include <SDL.h>
@@ -14,9 +15,9 @@
 #include <JGE.h>
 #include <JApp.h>
 #include <JRenderer.h>
-#include <JGameLauncher.h>
-
 #include <JSoundSystem.h>
+
+#include "GameApp.h"
 
 using namespace std;
 using namespace chrono;
@@ -26,7 +27,6 @@ SDL_Renderer *renderer;
 
 JGE* g_engine = NULL;
 JApp* g_app = NULL;
-JGameLauncher* g_launcher = NULL;
 
 unsigned int lastTickCount;
 
@@ -114,13 +114,9 @@ string JGEGetTextInput()
 
 int InitGame(GLvoid)
 {
-    g_launcher = new JGameLauncher();
-	u32 flags = g_launcher->GetInitFlags();
-
-	g_engine = JGE::GetInstance();
-	
-	g_app = g_launcher->GetGameApp();
+	g_app = new GameApp();
 	g_app->Create();
+    g_engine = JGE::GetInstance();
 	g_engine->SetApp(g_app);
 	
 	JRenderer::GetInstance()->Enable2D();
@@ -204,7 +200,7 @@ void main_loop()
 
     unsigned int tickCount = SDL_GetTicks();   // Get The Tick Count
     unsigned int delta = tickCount - lastTickCount;
-	g_engine->SetDelta(delta);
+	g_engine->SetDelta(delta / 1000.0f);
 	g_engine->Update();
 	g_engine->mClicked = false;
     lastTickCount = tickCount;
