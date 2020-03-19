@@ -108,3 +108,13 @@ body{
   height: 20px;
   width: 300px;
 }
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: lightgray;
+  text-align: center;
+  font-size: small;
+  padding: 20px;
+}
