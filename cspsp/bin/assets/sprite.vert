@@ -1,3 +1,8 @@
+/*******************************************************
+ * 
+ * Copyright (C) 2019 Francesco Pham (pham.francesco@gmail.com)
+ * 
+ *******************************************************/
 precision mediump float;
 
 attribute vec2 vertex;

@@ -18,6 +18,7 @@
 #include <JSoundSystem.h>
 
 #include "GameApp.h"
+#include "Wlan.h"
 
 using namespace std;
 using namespace chrono;
@@ -72,6 +73,18 @@ map<int, int> gGamepadMap = {
     {14, CTRL_LEFT},
     {15, CTRL_RIGHT}
 };
+
+extern "C" void EMSCRIPTEN_KEEPALIVE set_local_proxy(bool local) 
+{ 
+    if (local)
+    {
+        SetProxyAddress("ws://localhost:2900");
+    }
+    else
+    {
+        SetProxyAddress("wss://frankinfotech.it:2900");
+    }
+}
 
 bool JGEGetButtonState(u32 button)
 {

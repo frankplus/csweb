@@ -2,6 +2,8 @@
 
 const fs = require('fs');
 
+const SSL = false;
+
 // Listen port of websocket client connection 
 const CLIENT_WEBSOCKET_LISTEN = 2900;
 
@@ -15,14 +17,18 @@ var dgram = require('dgram');
 const WebSocket = require('ws');
 const https = require('https');
 
-const server = https.createServer({
-	cert: fs.readFileSync(CRT_PATH),
-	key: fs.readFileSync(KEY_PATH)
-  });
 
-var wss = new WebSocket.Server({ server });
+if (SSL) {
+	const server = https.createServer({
+		cert: fs.readFileSync(CRT_PATH),
+		key: fs.readFileSync(KEY_PATH)
+	});
 
-// var wss = new WebSocket.Server({ port: CLIENT_WEBSOCKET_LISTEN }); // no ssl
+	var wss = new WebSocket.Server({ server });
+} else {
+	// no ssl
+	var wss = new WebSocket.Server({ port: CLIENT_WEBSOCKET_LISTEN }); 
+}
 
 wss.on('connection', function (ws) {
 	//Create a udp socket for this websocket connection
@@ -60,4 +66,5 @@ wss.on('connection', function (ws) {
 	});
 });
 
-server.listen(CLIENT_WEBSOCKET_LISTEN);
+if (SSL)
+	server.listen(CLIENT_WEBSOCKET_LISTEN);

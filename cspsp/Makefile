@@ -7,7 +7,7 @@ APP_DIR  := $(BUILD)/apps
 TARGET   := index.js
 INCLUDE := -I../JGE/include 
 SRC_DIR      := src
-EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_LIBPNG=1 -s ALLOW_MEMORY_GROWTH=1 -s FETCH=1 --use-preload-plugins --preload-file $(BUILD)/assets@/ 
+EMCC_FLAGS  := -s WASM=1 -s USE_SDL=2 -s USE_SDL_MIXER=2 -s USE_LIBPNG=1 -s ALLOW_MEMORY_GROWTH=1 -s FETCH=1 --use-preload-plugins --preload-file $(BUILD)/assets@/  # -s EXPORTED_FUNCTIONS='["_set_local_proxy"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]'
 LIBS 	 := ../JGE/build/lib/libjge.a
 
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp)

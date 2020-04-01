@@ -1,0 +1,8 @@
+{
+  "name": "cspsp_udpproxy",
+  "version": "1.0.0",
+  "description": "A websocket to upd proxy for cspsp",
+  "dependencies": {
+    "ws": "*"
+  }
+}

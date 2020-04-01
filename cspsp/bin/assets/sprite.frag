@@ -1,7 +1,8 @@
-//incoming values from the vertex shader stage.
-//if the vertices of a primitive have different values, they are interpolated!
-
-// setting float precision
+/*******************************************************
+ * 
+ * Copyright (C) 2019 Francesco Pham (pham.francesco@gmail.com)
+ * 
+ *******************************************************/
 precision mediump float;
 
 varying vec2 TexCoords;

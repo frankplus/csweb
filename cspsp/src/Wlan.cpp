@@ -5,6 +5,13 @@
 
 static EMSCRIPTEN_WEBSOCKET_T proxy_socket;
 static std::queue<std::vector<char>> messageQueue;
+static char *proxy_address = "wss://frankinfotech.it:2900";
+
+void SetProxyAddress(char *address) 
+{
+	strcpy(proxy_address, address);
+	WlanInit();
+}
 
 void printBinaryBuffer(char* buf, int size)
 {
@@ -55,8 +62,10 @@ int WlanInit()
 	emscripten_websocket_init_create_attributes(&attr);
 
 	char url[64];
-	sprintf(url, "wss://%s:%d", PROXY_IP, PROXY_PORT);
+	sprintf(url, proxy_address);
 	attr.url = url;
+
+	printf("connecting to %s \n", proxy_address);
 
 	proxy_socket = emscripten_websocket_new(&attr);
 	if (proxy_socket <= 0)

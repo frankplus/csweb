@@ -110,6 +110,17 @@
         </table>
       </div>
 
+      <form style="margin: 20px;">
+        <input type="checkbox" id="use_local_proxy" name="use_local_proxy" value="use_local_proxy">
+        <label for="use_local_proxy">Use localhost proxy</label>
+        <input type="button" id="set_proxy_btn" value="Set" onclick="onSetProxy()">
+        <!--
+        <label for="fname">Proxy address:</label><br>
+        <input type="text" id="proxy_address" value="wss://frankinfotech.it:2900">
+        <input type="button" id="set_proxy_btn" value="Set">
+        -->
+      </form>
+
       <a href="https://discord.gg/K2Ene4y"><img class="discord" src="joindiscord.png" alt="join out discord"></a>
     </div>
 
@@ -175,6 +186,11 @@
         };
       };
 
+      function onSetProxy() {
+        use_local_proxy = document.getElementById("use_local_proxy").checked;
+        _set_local_proxy(use_local_proxy);
+      }
+
       // Work-around chromium autoplay policy
       // https://github.com/emscripten-core/emscripten/issues/6511
       function resumeAudio(e) {
@@ -196,7 +212,7 @@
     <script async type="text/javascript" src="index.js"></script>
 
     <footer class="footer">
-      Copyright © 2019 by Francesco Pham <br>
+      Copyright © 2020 by Francesco Pham <br>
       All Rights Reserved.
     </footer>
   </body>

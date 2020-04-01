@@ -1,0 +1,9 @@
+{
+    "name": "cspsp_httpproxy",
+    "version": "1.0.0",
+    "description" : "Http appspot cspsp server proxy for cspsp",
+    "dependencies": {
+      "http-proxy": "*"
+    }
+  }
+  

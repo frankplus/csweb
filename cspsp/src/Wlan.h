@@ -6,9 +6,6 @@
 #include <stdlib.h> 
 #include <vector>
 
-#define PROXY_IP "frankinfotech.it"
-#define PROXY_PORT 2900
-
 struct ConnectionConfig {
 	char name[64];
 	int index;
@@ -29,5 +26,6 @@ int SocketRecv(Socket* socket, char* buf, int size);
 int SocketSend(Socket* socket, char* buf, int size);
 int SocketSendUdp(Socket* socket, char* buf, int size);
 int SocketClose(Socket* socket);
+void SetProxyAddress(char *address);
 
 #endif
